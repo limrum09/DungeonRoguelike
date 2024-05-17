@@ -2,3 +2,4 @@
 * text=auto
 *.terrain filter=lfs diff=lfs merge=lfs -text
 Terrain.asset filter=lfs diff=lfs merge=lfs -text
+New[[:space:]]Terrain.asset filter=lfs diff=lfs merge=lfs -text
