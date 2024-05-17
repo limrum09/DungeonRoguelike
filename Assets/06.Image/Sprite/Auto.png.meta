@@ -1,0 +1,1588 @@
+fileFormatVersion: 2
+guid: 22791b73bdf4ce945b357239371a867f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_0"
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 614
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406979627f8a35e45bbdfe9cb1ed11de
+      internalID: -743015247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_1"
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 610
+        width: 39
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3028a3f8b7d9d584b88844a8e9e6ad46
+      internalID: -697989019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_2"
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 610
+        width: 127
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a1b9bad0517dd4ab6cceae24292f6b
+      internalID: -815563397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_3"
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 623
+        width: 41
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d43ef39a7fb663a49b70fbbef120a290
+      internalID: 1850226476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_4"
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 612
+        width: 80
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f4fb8e885819e4cbf8563f53371a27
+      internalID: 604914491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_5"
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 619
+        width: 103
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef15ee241fecc448b5cd95124c7db49
+      internalID: 1342229146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_6"
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 634
+        width: 32
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cc402bf524ec3b4a8f85026c8af66de
+      internalID: -1650164022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_7"
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 634
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e439b8fd18c67b8409ab5583628b912f
+      internalID: 805761785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_8"
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 613
+        width: 80
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4c4ac910048a148a402312a7204473
+      internalID: 1575768371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_9"
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 614
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c296feaffed78646ae33dec05bcb0f7
+      internalID: 2021862841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_10"
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 618
+        width: 55
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4455cd16f6d45940a49383a0fda8e0d
+      internalID: 170632945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_11"
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 599
+        width: 46
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16e526200f0081438641b087eaaf898
+      internalID: 618777330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_12"
+      rect:
+        serializedVersion: 2
+        x: 1579
+        y: 613
+        width: 33
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be8ee0f77c6ad9945b2ba571ae7287a7
+      internalID: -777474701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_13"
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 614
+        width: 33
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd0732b0f636ac24d95909ee72e3090e
+      internalID: -869898386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_14"
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 476
+        width: 58
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b250428cf9e50064f9c40375bec18906
+      internalID: 600205640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_15"
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 482
+        width: 79
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1046d58df07034e4fbe66c7d14e858b0
+      internalID: -1478067168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_16"
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 480
+        width: 79
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb26f8da89ba6e4409df2f4dc1e62b58
+      internalID: -523296465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_17"
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 482
+        width: 79
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa10fc5f40088134a94efcc8d8826831
+      internalID: -390443031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_18"
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 462
+        width: 103
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b0236e9daee06647b04df97eaedbc7f
+      internalID: 279504928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_19"
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 482
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d46d4e92af25941adab3297aa4333f
+      internalID: -1239217719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_20"
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 482
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd51a6ecee697b84b9ee05fcfeac7d1b
+      internalID: -1766841310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_21"
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 475
+        width: 19
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97054baff4cc185428074bab2dbe496a
+      internalID: 1836002866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_22"
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 475
+        width: 17
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a7e76c86b40ad4f9e04f1bf928d417
+      internalID: -1569375922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_23"
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 474
+        width: 42
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03d0d8f81263b4438292166b5cffbe9
+      internalID: -1982376621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_24"
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 474
+        width: 44
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c2e4b06bb37a44191a1da173f1e674
+      internalID: -1351186432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_25"
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 483
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62189b44667530b428857634de6ffb94
+      internalID: 735289487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_26"
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 483
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8addee73dac24414591fd060ed65307d
+      internalID: -1792678982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_27"
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 463
+        width: 31
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d35a6b9869c2a0740ac54ec26e39fde2
+      internalID: 1266129377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_28"
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 462
+        width: 30
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dff9ab9fa880d646992876035dc7d0e
+      internalID: 1628890762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_29"
+      rect:
+        serializedVersion: 2
+        x: 1481
+        y: 462
+        width: 20
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcc7bc978993504fa8e9ed23871a68a
+      internalID: 2090143809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_30"
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 469
+        width: 26
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78cedad17e0db4b4aac7f8130e210f6c
+      internalID: 989202446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_31"
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 469
+        width: 28
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25c5e12d37643c141837936375dbc6f7
+      internalID: -848391709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_32"
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 319
+        width: 73
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcc7627c15c6f149bb04e9b470ff5f9
+      internalID: -1221629759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_33"
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 325
+        width: 82
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfb63f12c896289488e11df6da4deb4a
+      internalID: 1854769029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_34"
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 314
+        width: 80
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43e5c316d122a7a4c9fde558b29724d8
+      internalID: -1150366322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_35"
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 318
+        width: 138
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb7e5acdf294ac041821270dd1f8b52f
+      internalID: -755872364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_36"
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 314
+        width: 105
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 598f19de45435554293a3871e81e1132
+      internalID: -1825158791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_37"
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 305
+        width: 89
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8e5b0110e259cb43927cac55d96bfd3
+      internalID: 1351615932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_38"
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 314
+        width: 113
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bfe92740988ac4e8bcb0e55627321d
+      internalID: 680984143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_39"
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 310
+        width: 103
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8e650aeb33e9b443b4d381372383ff5
+      internalID: -1142688376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_40"
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 318
+        width: 120
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b609fe7b63e615444b477959d65d2fbb
+      internalID: 2004107152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_41"
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 314
+        width: 78
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00358c57c800a66459fb5682c729c705
+      internalID: 1046290697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_42"
+      rect:
+        serializedVersion: 2
+        x: 1430
+        y: 317
+        width: 117
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883305a0a3423f24ca3730ff9861acee
+      internalID: 669144263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_43"
+      rect:
+        serializedVersion: 2
+        x: 1583
+        y: 328
+        width: 97
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 870d91b6efc252d4588011c31bd67dee
+      internalID: -1102874338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_44"
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 183
+        width: 76
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c219861a0d28144a572493a5758eb1
+      internalID: -1238240840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_45"
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 183
+        width: 75
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c718027bba39374abe00e32580c9abc
+      internalID: -261893605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_46"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 184
+        width: 76
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c68a17bb9e84b4c82b6c5c54dde5ad
+      internalID: 1336697748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_47"
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 173
+        width: 103
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db6d582d1bc462439e1a18513c56abb
+      internalID: 407582549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_48"
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 177
+        width: 92
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82bea3eca1d9c6f44b1c5289305dc4e7
+      internalID: 998016709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_49"
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 171
+        width: 76
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b20b817c171744f9a0dc9ecc63172b
+      internalID: -51183545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_50"
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 177
+        width: 104
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e9ffd1cc8a5c8543bb3310ddd15061e
+      internalID: -468111163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_51"
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 177
+        width: 111
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ddc84383770ea4d8bc971d139fc6cf
+      internalID: 1875350940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_52"
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 172
+        width: 92
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7f0eefd8c786ee469501db7637dff91
+      internalID: -1096842033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_53"
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 176
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8319cbf58282a3a44b2e55d4094d3c25
+      internalID: 590978340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_54"
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 52
+        width: 76
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c1bf09b36c23764f88fda9f1c9d95dd
+      internalID: 1385603632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_55"
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 52
+        width: 73
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b9f6fc079f42f4e80489112dc4f8df
+      internalID: 942910562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_56"
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 53
+        width: 75
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c30945f708127ac4e99043e0ef04e4f3
+      internalID: -1574775452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_57"
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 53
+        width: 76
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7566334642027a49a32ff6692832df3
+      internalID: 644115729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_58"
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 53
+        width: 76
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c77647e708b9a743ab7d32c46feae9c
+      internalID: -1906413455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_59"
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 54
+        width: 75
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39fc803c53c9583448e4954af0abc4a4
+      internalID: -508765239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_60"
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 53
+        width: 75
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810ab7c1c2a4c234b8fdc1ac42a878b5
+      internalID: -1275036441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_61"
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 52
+        width: 76
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b59e72e18e5f7438bcf0a7433bb233
+      internalID: 41128085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_62"
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 42
+        width: 76
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9978f7d9098e71847b8bb1565754f9fe
+      internalID: -1543484453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_63"
+      rect:
+        serializedVersion: 2
+        x: 1311
+        y: 43
+        width: 75
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d59481a0ef325314b8a56d0f546339d7
+      internalID: 317408917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_64"
+      rect:
+        serializedVersion: 2
+        x: 1442
+        y: 43
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acffdc4c6fd70164e8c49f103cc58e75
+      internalID: 606487393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "PrefabScreenshotHeads\uBCF5\uC0AC_65"
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 43
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c627256982ff2f44b9db7e522fb1310
+      internalID: -1179597446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b940db175d07e264d95be5a417eebde8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "PrefabScreenshotHeads\uBCF5\uC0AC_18": 279504928
+      "PrefabScreenshotHeads\uBCF5\uC0AC_5": 1342229146
+      "PrefabScreenshotHeads\uBCF5\uC0AC_47": 407582549
+      "PrefabScreenshotHeads\uBCF5\uC0AC_49": -51183545
+      "PrefabScreenshotHeads\uBCF5\uC0AC_44": -1238240840
+      "PrefabScreenshotHeads\uBCF5\uC0AC_17": -390443031
+      "PrefabScreenshotHeads\uBCF5\uC0AC_29": 2090143809
+      "PrefabScreenshotHeads\uBCF5\uC0AC_58": -1906413455
+      "PrefabScreenshotHeads\uBCF5\uC0AC_46": 1336697748
+      "PrefabScreenshotHeads\uBCF5\uC0AC_0": -743015247
+      "PrefabScreenshotHeads\uBCF5\uC0AC_34": -1150366322
+      "PrefabScreenshotHeads\uBCF5\uC0AC_37": 1351615932
+      "PrefabScreenshotHeads\uBCF5\uC0AC_30": 989202446
+      "PrefabScreenshotHeads\uBCF5\uC0AC_39": -1142688376
+      "PrefabScreenshotHeads\uBCF5\uC0AC_10": 170632945
+      "PrefabScreenshotHeads\uBCF5\uC0AC_15": -1478067168
+      "PrefabScreenshotHeads\uBCF5\uC0AC_23": -1982376621
+      "PrefabScreenshotHeads\uBCF5\uC0AC_27": 1266129377
+      "PrefabScreenshotHeads\uBCF5\uC0AC_33": 1854769029
+      "PrefabScreenshotHeads\uBCF5\uC0AC_63": 317408917
+      "PrefabScreenshotHeads\uBCF5\uC0AC_32": -1221629759
+      "PrefabScreenshotHeads\uBCF5\uC0AC_31": -848391709
+      "PrefabScreenshotHeads\uBCF5\uC0AC_64": 606487393
+      "PrefabScreenshotHeads\uBCF5\uC0AC_51": 1875350940
+      "PrefabScreenshotHeads\uBCF5\uC0AC_3": 1850226476
+      "PrefabScreenshotHeads\uBCF5\uC0AC_21": 1836002866
+      "PrefabScreenshotHeads\uBCF5\uC0AC_9": 2021862841
+      "PrefabScreenshotHeads\uBCF5\uC0AC_62": -1543484453
+      "PrefabScreenshotHeads\uBCF5\uC0AC_36": -1825158791
+      "PrefabScreenshotHeads\uBCF5\uC0AC_25": 735289487
+      "PrefabScreenshotHeads\uBCF5\uC0AC_48": 998016709
+      "PrefabScreenshotHeads\uBCF5\uC0AC_56": -1574775452
+      "PrefabScreenshotHeads\uBCF5\uC0AC_59": -508765239
+      "PrefabScreenshotHeads\uBCF5\uC0AC_2": -815563397
+      "PrefabScreenshotHeads\uBCF5\uC0AC_1": -697989019
+      "PrefabScreenshotHeads\uBCF5\uC0AC_12": -777474701
+      "PrefabScreenshotHeads\uBCF5\uC0AC_50": -468111163
+      "PrefabScreenshotHeads\uBCF5\uC0AC_28": 1628890762
+      "PrefabScreenshotHeads\uBCF5\uC0AC_52": -1096842033
+      "PrefabScreenshotHeads\uBCF5\uC0AC_38": 680984143
+      "PrefabScreenshotHeads\uBCF5\uC0AC_60": -1275036441
+      "PrefabScreenshotHeads\uBCF5\uC0AC_4": 604914491
+      "PrefabScreenshotHeads\uBCF5\uC0AC_11": 618777330
+      "PrefabScreenshotHeads\uBCF5\uC0AC_19": -1239217719
+      "PrefabScreenshotHeads\uBCF5\uC0AC_24": -1351186432
+      "PrefabScreenshotHeads\uBCF5\uC0AC_45": -261893605
+      "PrefabScreenshotHeads\uBCF5\uC0AC_7": 805761785
+      "PrefabScreenshotHeads\uBCF5\uC0AC_57": 644115729
+      "PrefabScreenshotHeads\uBCF5\uC0AC_41": 1046290697
+      "PrefabScreenshotHeads\uBCF5\uC0AC_16": -523296465
+      "PrefabScreenshotHeads\uBCF5\uC0AC_55": 942910562
+      "PrefabScreenshotHeads\uBCF5\uC0AC_14": 600205640
+      "PrefabScreenshotHeads\uBCF5\uC0AC_65": -1179597446
+      "PrefabScreenshotHeads\uBCF5\uC0AC_26": -1792678982
+      "PrefabScreenshotHeads\uBCF5\uC0AC_53": 590978340
+      "PrefabScreenshotHeads\uBCF5\uC0AC_43": -1102874338
+      "PrefabScreenshotHeads\uBCF5\uC0AC_61": 41128085
+      "PrefabScreenshotHeads\uBCF5\uC0AC_54": 1385603632
+      "PrefabScreenshotHeads\uBCF5\uC0AC_6": -1650164022
+      "PrefabScreenshotHeads\uBCF5\uC0AC_42": 669144263
+      "PrefabScreenshotHeads\uBCF5\uC0AC_13": -869898386
+      "PrefabScreenshotHeads\uBCF5\uC0AC_22": -1569375922
+      "PrefabScreenshotHeads\uBCF5\uC0AC_8": 1575768371
+      "PrefabScreenshotHeads\uBCF5\uC0AC_40": 2004107152
+      "PrefabScreenshotHeads\uBCF5\uC0AC_35": -755872364
+      "PrefabScreenshotHeads\uBCF5\uC0AC_20": -1766841310
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

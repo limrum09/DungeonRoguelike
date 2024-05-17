@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: f802e53889ca5354dba767d95eb73807
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - EvilMage: {fileID: 3284327623702887146, guid: 858dd493f7e497a4e992fb2d1e11ad4e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayerComponent
+  - Sheild
+  - OneHandSword
+  - TwoHandSword
+  - Spear
+  - Hat
+  - HairPart
+  - Head
+  - HeadArmor
+  - Ground
+  - TYPEWEAPONR
+  - TYPEWEAPONL
+  - Body
+  - Cloak
+  - TYPEHEAD
+  - Mouth
+  - Eye
+  - Hair
+  - Mask
+  - Ear
+  - Enemy
+  - WeaponLeft
+  - WeaponRight
+  - TopHead
+  - RemainFlame
+  - Eyebrow
+  - Mustache
+  - Bow
+  - Wand
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - UI Part
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

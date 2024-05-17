@@ -1,0 +1,4 @@
+onExtraCommands" msgid="5162339812057983988">"获取额外的位置信息提供程序命令"</string>
+    <string name="permdesc_accessLocationExtraCommands" msgid="355369611979907967">"允许该应用使用其他的位置信息提供程序命令。此权限使该应用可以干扰GPS或其他位置信息源的运作。"</string>
+    <string name="permlab_accessFineLocation" msgid="6426318438195622966">"只能在前台获取精确的位置信息"</string>
+    <string name="permdesc_accessFineLocation" msgid="67
