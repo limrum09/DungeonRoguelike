@@ -100,17 +100,5 @@ public class UIAndSceneManager : MonoBehaviour
         lobbyUI.SetActive(false);
     }
 
-    public void ChangeEquipment(SelectTest item)
-    {
-        var selectItem = item.TestClone();
-
-        if(selectItem is ArmorSelectTest)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
+    public void ChangeEquipment(SelectTest item) => GameManager.instance.PlayerItemChangeTest(item);
 }

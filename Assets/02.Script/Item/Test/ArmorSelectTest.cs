@@ -10,8 +10,13 @@ public class ArmorSelectTest : SelectTest
     private bool itemOverlapping;
     [SerializeField]
     private int indexOverlapping;
-
+    
     public string SubCateogy => subCategory;
     public bool ItemOverlapping => itemOverlapping;
     public int IndexOverlapping => indexOverlapping;
+
+    public override SelectTest TestClone()
+    { 
+        return this;
+    }
 }

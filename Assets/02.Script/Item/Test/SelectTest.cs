@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SelectTest : MonoBehaviour
+public abstract class SelectTest : MonoBehaviour
 {
     [SerializeField]
     private GameObject prefab;
@@ -11,6 +11,7 @@ public class SelectTest : MonoBehaviour
     private EquipmentCategory equipmentCategory;
 
     public EquipmentCategory EquipmentCategory => equipmentCategory;
+    public GameObject ItemPrefab => prefab;
 
     public void SelectItemButton(GameObject selectObject)
     {
@@ -19,8 +20,5 @@ public class SelectTest : MonoBehaviour
         UIAndSceneManager.instance.ChangeEquipment(this);
     }
 
-    public SelectTest TestClone()
-    {
-        return this;
-    }
+    public abstract SelectTest TestClone();
 }

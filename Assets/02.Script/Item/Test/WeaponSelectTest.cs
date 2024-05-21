@@ -10,4 +10,9 @@ public class WeaponSelectTest : SelectTest
     private Animator weaponAnimator;
 
     public Animator WeaponAnimator => weaponAnimator;
+
+    public override SelectTest TestClone()
+    {
+        return this;
+    }
 }

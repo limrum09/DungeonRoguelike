@@ -18,6 +18,6 @@ public class EquipmentButton : MonoBehaviour
 
     public void OnClickedButton()
     {
-        category.SelectItemButton(itemPrefab);
+        category.SelectItemButton(itemPrefab);        
     }
 }
