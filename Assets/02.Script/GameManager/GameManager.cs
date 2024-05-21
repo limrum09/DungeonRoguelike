@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField]
     private StatusUIManager statusUI;
+    [SerializeField]
+    private PlayerInteractionTest interactionTest;
 
     public int level;
     public int health;
@@ -69,5 +71,24 @@ public class GameManager : MonoBehaviour
         player.PlayerSpeed = (float)9.75 + (float)(dex * 0.02) + (float)(str * 0.03) + item.ItemSpeed;
         player.SkillCoolTime = (float)9.8 + (float)((str + dex + health + luk) * 0.01) + item.ItemCoolTime;
         statusUI.SetStatusUIText();
+    }
+
+    public void InteractionTest(PlayerInteractionTest test)
+    {
+        this.interactionTest = test;
+    }
+
+    public void PlayerItemChangeTest(SelectTest item)
+    {
+        var changeItem = item.TestClone();
+
+        if(changeItem is ArmorSelectTest armorItem)
+        {
+            interactionTest.ArmorChange(armorItem);
+        }
+        else if(changeItem is WeaponSelectTest weaponItem)
+        {
+            interactionTest.WeaponChange(weaponItem);
+        }
     }
 }
