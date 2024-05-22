@@ -9,13 +9,17 @@ public abstract class SelectTest : MonoBehaviour
     private GameObject prefab;
     [SerializeField]
     private EquipmentCategory equipmentCategory;
+    [SerializeField]
+    private bool itemOverlapping;
 
     public EquipmentCategory EquipmentCategory => equipmentCategory;
     public GameObject ItemPrefab => prefab;
+    public bool ItemOverlapping => itemOverlapping;
 
-    public void SelectItemButton(GameObject selectObject)
+    public void SelectItemButton(GameObject selectObject, bool isOverLapping)
     {
         prefab = selectObject;
+        itemOverlapping = isOverLapping;
 
         UIAndSceneManager.instance.ChangeEquipment(this);
     }
