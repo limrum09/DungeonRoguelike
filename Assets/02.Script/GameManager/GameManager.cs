@@ -82,7 +82,11 @@ public class GameManager : MonoBehaviour
     {
         var changeItem = item.TestClone();
 
-        if(changeItem is ArmorSelectTest armorItem)
+        if(changeItem is ArmorSelectTest armorItemTest)
+        {
+            interactionTest.ArmorChange(armorItemTest);
+        }
+        else if(changeItem is ArmorSelect armorItem)
         {
             interactionTest.ArmorChange(armorItem);
         }

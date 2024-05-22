@@ -10,6 +10,10 @@ public class ItemCategory : MonoBehaviour
     private string subCategory;
     [SerializeField]
     public MeshFilter itemMeshFilter;
+    [SerializeField]
+    private int indexOverLapping;
+
+    public int IndexOverLapping => indexOverLapping;
 
     private void Start()
     {
@@ -21,7 +25,16 @@ public class ItemCategory : MonoBehaviour
 
     public void ChangeFilter(MeshFilter changeFilter)
     {
-        if (itemMeshFilter != null && changeFilter != null)
+        if (itemMeshFilter == null)
+        {
+            return;
+        }
+
+        if(changeFilter == null)
+        {
+            itemMeshFilter.sharedMesh = null;
+        }
+        else
         {
             itemMeshFilter.sharedMesh = changeFilter.sharedMesh;
         }

@@ -10,6 +10,8 @@ public class EquipmentButton : MonoBehaviour
     private GameObject itemPrefab;
     [SerializeField]
     private SelectTest category;
+    [SerializeField]
+    private bool isOverlapping;
 
     private void Start()
     {
@@ -18,6 +20,6 @@ public class EquipmentButton : MonoBehaviour
 
     public void OnClickedButton()
     {
-        category.SelectItemButton(itemPrefab);        
+        category.SelectItemButton(itemPrefab, isOverlapping);        
     }
 }
