@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCategory : MonoBehaviour
+public class ArmorsCategory : MonoBehaviour
 {
     [SerializeField]
     private EquipmentCategory armorCategory;
@@ -30,13 +30,6 @@ public class ItemCategory : MonoBehaviour
             return;
         }
 
-        if(changeFilter == null)
-        {
-            itemMeshFilter.sharedMesh = null;
-        }
-        else
-        {
-            itemMeshFilter.sharedMesh = changeFilter.sharedMesh;
-        }
+        itemMeshFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
     }
 }
