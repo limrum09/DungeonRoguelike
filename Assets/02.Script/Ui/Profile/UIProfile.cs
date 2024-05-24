@@ -17,20 +17,6 @@ public class UIProfile : MonoBehaviour
 
     public Image currentHPBar;
     public Image currentExpBar;
-    // Start is called before the first frame update
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
     public void UPHP()
     {

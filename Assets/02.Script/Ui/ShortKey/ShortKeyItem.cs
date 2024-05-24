@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class ShortKeyItem : MonoBehaviour
 {
     [SerializeField]
+    private ShortKeyManager shortKeyManager;
+    [SerializeField]
     private InvenItem item;
     private int itemIndex;
 
@@ -59,7 +61,7 @@ public class ShortKeyItem : MonoBehaviour
         {
             ViewItem();
 
-            ShortKeyManager.instance.InputItemInShortkey(shortkeyIndex);
+            shortKeyManager.InputItemInShortkey(shortkeyIndex);
         }        
     }
 

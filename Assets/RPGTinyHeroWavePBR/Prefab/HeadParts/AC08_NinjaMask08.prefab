@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7346447148184060746}
   - component: {fileID: 5934628679622479087}
   - component: {fileID: 8482809306053261349}
+  - component: {fileID: 8300111359563593792}
   m_Layer: 0
   m_Name: AC08_NinjaMask08
   m_TagString: Mask
@@ -83,3 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8300111359563593792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978129413738928624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 20
+  itemSpeed: 0
+  itemCoolTime: 0

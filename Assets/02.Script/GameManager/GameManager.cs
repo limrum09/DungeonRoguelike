@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,8 +37,29 @@ public class GameManager : MonoBehaviour
         str = 5;
         dex = 5;
         luk = 5;
+
+        SceneManager.sceneLoaded += OnSceneLoad;
     }
 
+    private void OnApplicationQuit()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoad;
+    }
+
+    private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        var uiManager = FindObjectOfType<StatusUIManager>();
+        if (uiManager != null)
+        {
+            GetStatusUI(uiManager);
+        }
+
+        var playerInteraction = FindObjectOfType<PlayerInteractionTest>();
+        if (playerInteraction != null)
+        {
+            InteractionTest(playerInteraction);
+        }
+    }
 
     private void Start()
     {
@@ -70,12 +92,8 @@ public class GameManager : MonoBehaviour
         player.CriticalPer = (float)(luk * 0.5) + (float)(dex * 0.2) + item.ItemCriticalPer;
         player.PlayerSpeed = (float)9.75 + (float)(dex * 0.02) + (float)(str * 0.03) + item.ItemSpeed;
         player.SkillCoolTime = (float)9.8 + (float)((str + dex + health + luk) * 0.01) + item.ItemCoolTime;
-        statusUI.SetStatusUIText();
-    }
 
-    public void InteractionTest(PlayerInteractionTest test)
-    {
-        this.interactionTest = test;
+        statusUI.SetStatusUIText();
     }
 
     public void PlayerItemChangeTest(SelectTest item)
@@ -91,4 +109,14 @@ public class GameManager : MonoBehaviour
             interactionTest.WeaponChange(weaponItem);
         }
     }
+    #region OnSceneLoad
+    public void InteractionTest(PlayerInteractionTest test)
+    {
+        this.interactionTest = test;
+    }
+    public void GetStatusUI(StatusUIManager UI)
+    {
+        this.statusUI = UI;
+    }
+    #endregion
 }

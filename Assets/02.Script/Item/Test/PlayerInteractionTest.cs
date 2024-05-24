@@ -28,14 +28,12 @@ public class PlayerInteractionTest : MonoBehaviour
     private RuntimeAnimatorController tempSaveLeftWeaponAnimatorController;
     private RuntimeAnimatorController tempSaveRightWeaponAnimatorController;
 
-    public Animator PlayerAnimator => animator;
     public GameObject WeaponR => weaponR;
     public GameObject WeaponL => weaponL;
 
     private void Start()
     {
         armorIndexOverLapping = 9999;
-        GameManager.instance.InteractionTest(this);
 
         meshFilterWeaponR = weaponR.gameObject.GetComponent<MeshFilter>();
         meshFilterWeaponL = weaponL.gameObject.GetComponent<MeshFilter>();
@@ -44,12 +42,18 @@ public class PlayerInteractionTest : MonoBehaviour
     public void WeaponChange(WeaponSelect weapon)
     {
         WeaponSelect newWeapon = weapon;
-            
+        ItemRotation weaponRotation = newWeapon.ItemPrefab != null ? newWeapon.ItemPrefab.GetComponent<ItemRotation>() : null;
+
         // Left Weapon
         if (newWeapon.LeftWeapon)
         {
             useWeaponL = true;
             WeaponL.SetActive(true);
+
+            if(weaponRotation != null)
+            {
+                WeaponL.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY * -1.0f, weaponRotation.PlayerItemRotationZ + 180f);
+            }
 
             // player don't select left weapon
             if (!newWeapon.ItemPrefab)
@@ -63,54 +67,53 @@ public class PlayerInteractionTest : MonoBehaviour
                 tempSaveLeftWeaponAnimatorController = newWeapon.WeaponAnimator;
             }
 
-            
-            if (weaponROneHand)
-            {
-                animator.runtimeAnimatorController = tempSaveLeftWeaponAnimatorController;
-            }
-            else
+            animator.runtimeAnimatorController = weaponROneHand ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
+
+            if(!weaponROneHand)
             {
                 WeaponR.SetActive(false);
-                animator.runtimeAnimatorController = defaultAnimatorController;
             }
         }
         // Right Wepon
         else
         {
+            if (weaponRotation != null)
+            {
+                WeaponR.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY, weaponRotation.PlayerItemRotationZ);
+            }
+            
+
             weaponR.SetActive(true);
             weaponROneHand = newWeapon.UseOndeHand;
 
             tempSaveRightWeaponAnimatorController = newWeapon.ItemPrefab != null ? newWeapon.WeaponAnimator : defaultAnimatorController;
 
+            animator.runtimeAnimatorController = tempSaveRightWeaponAnimatorController;
+
             // When player doesn't have left weapon after select right weapon
             if (!useWeaponL)
             {
                 weaponL.SetActive(false);
-                animator.runtimeAnimatorController = tempSaveRightWeaponAnimatorController;
             }
-            else
+            // When player have left weapon
+            else if(!newWeapon.UseOndeHand)
             {
-                if (!newWeapon.UseOndeHand)
-                {
-                    useWeaponL = false;
-                    weaponL.SetActive(false);
-                    animator.runtimeAnimatorController = tempSaveRightWeaponAnimatorController;
-                }
-                else
-                {
-                    Debug.Log("Use Weaopn two");
-                    animator.runtimeAnimatorController = tempSaveLeftWeaponAnimatorController;
-                }
+                // Select weapon is using two hands
+                useWeaponL = false;
+                weaponL.SetActive(false);
             }
-                
+            // Using one hand. Applying the left weapon's animator
+            else if (newWeapon.UseOndeHand)
+            {
+                animator.runtimeAnimatorController = newWeapon.ItemPrefab != null ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
+            }
         }
 
         MeshFilter changeFilter = newWeapon.ItemPrefab != null ? newWeapon.ItemPrefab.GetComponent<MeshFilter>() : null;
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;
         currentWeaponFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
 
-        //weaponR.SetActive(weaponROneHand);
-
+        ItemStatus.instance.ChangeWaeponItem(weapon);
     }
     public void ArmorChange(ArmorSelect armor)
     {
@@ -118,49 +121,43 @@ public class PlayerInteractionTest : MonoBehaviour
 
         bool onView;
         bool indexView;
+
         foreach (var items in armors)
         {
-            if (newArmor.EquipmentCategory == items.ArmorCategory)
+            if (newArmor.EquipmentCategory != items.ArmorCategory) continue;
+
+            indexView = true;
+            onView = newArmor.ItemOverlapping;
+
+            if (!newArmor.ItemOverlapping)
             {
-                indexView = true;
-                onView = newArmor.ItemOverlapping;
-
-                if (!newArmor.ItemOverlapping)
-                {
-                    armorIndexOverLapping = newArmor.IndexOverlapping;
-                }
-                else if(newArmor.ItemOverlapping)
-                {
-                    if(newArmor.IndexOverlapping > armorIndexOverLapping)
-                    {
-                        indexView = false;
-                    }
-                    else if(newArmor.IndexOverlapping == armorIndexOverLapping)
-                    {
-                        armorIndexOverLapping = 9999;
-                    }
-                }
-
-                if (newArmor.SubCateogy == items.SubCategory)
-                {
-                    onView = indexView;
-
-                    MeshFilter changeFilter = null;
-
-                    if (newArmor.ItemPrefab != null)
-                    {
-                        changeFilter = newArmor.ItemPrefab.GetComponent<MeshFilter>();
-                    }
-                    else if(changeFilter == null && newArmor.IndexOverlapping == armorIndexOverLapping)
-                    {
-                        armorIndexOverLapping = 9999;
-                    }
-
-                    items.ChangeFilter(changeFilter);
-                }
-
-                items.gameObject.SetActive(onView);
+                armorIndexOverLapping = newArmor.IndexOverlapping;
             }
+            else if(newArmor.IndexOverlapping > armorIndexOverLapping)
+            {
+                indexView = false;
+            }
+            else if (newArmor.IndexOverlapping == armorIndexOverLapping)
+            {
+                armorIndexOverLapping = 9999;
+            }
+
+            if (newArmor.SubCateogy == items.SubCategory)
+            {
+                onView = indexView;
+
+                MeshFilter changeFilter = newArmor.ItemPrefab != null ? newArmor.ItemPrefab.GetComponent<MeshFilter>() : null;
+
+                if (changeFilter == null && newArmor.IndexOverlapping == armorIndexOverLapping)
+                {
+                    armorIndexOverLapping = 9999;
+                }
+
+                items.ChangeFilter(changeFilter);
+                ItemStatus.instance.ChangeArmorItem(armor);
+            }
+
+            items.gameObject.SetActive(onView);
         }
     }
 }
