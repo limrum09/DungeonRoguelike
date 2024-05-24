@@ -30,10 +30,6 @@ public class StatusUIManager : MonoBehaviour
     public GameObject dexUPBtn;
     public GameObject lukUPBtn;
 
-    private void OnEnable()
-    {
-        ViewAndHideStateButton();
-    }
     public void SetStatusUIText()
     {
         var gameManager = GameManager.instance;

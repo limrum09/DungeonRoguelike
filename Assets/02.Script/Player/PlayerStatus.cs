@@ -78,7 +78,8 @@ public class PlayerStatus : MonoBehaviour
     {
         currentHP = maxHP;
 
-        UIProfile.instance.SetHPBar(maxHP, currentHP);
+        Debug.Log(CurrentHP + ", " + maxHP);
+        UIProfile.instance.SetHPBar(MaxHP, CurrentHP);
         UIProfile.instance.SetExpBar(level ,Exp, CurrentExp);
     }
 

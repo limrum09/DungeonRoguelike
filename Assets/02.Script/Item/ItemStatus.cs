@@ -6,20 +6,24 @@ public class ItemStatus : MonoBehaviour
 {
     public static ItemStatus instance;
 
-    [SerializeReference]
+    [SerializeField]
     private int itemHp;
-    [SerializeReference]
+    [SerializeField]
     private int itemDamage;
-    [SerializeReference]
+    [SerializeField]
     private int itemCriticalDamage;
-    [SerializeReference]
+    [SerializeField]
     private int itemSheild;
-    [SerializeReference]
+    [SerializeField]
     private float itemCriticalPer;
-    [SerializeReference]
+    [SerializeField]
     private float itemSpeed;
-    [SerializeReference]
+    [SerializeField]
     private float itemCoolTime;
+    [SerializeField]
+    private List<ItemInfoInItemStatus> weaponItems;
+    [SerializeField]
+    private List<ArmorItemInfoInItemStatus> armorItems;
 
     public int ItemHP { get { return itemHp; } set { itemHp = value; } }
     public int ItemDamage { get { return itemDamage; } set { itemDamage = value; } }
@@ -43,13 +47,12 @@ public class ItemStatus : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        itemHp = 0;
-        itemDamage = 0;
-        itemCriticalDamage = 0;
-        itemSheild = 0;
-        itemCriticalPer = 0f;
-        itemSpeed = 0f;
-        itemCoolTime = 0f;
+        ResetItemStatus();
+    }
+
+    private void Start()
+    {
+        
     }
 
     public void PlayerAddItemStatus()
@@ -60,5 +63,108 @@ public class ItemStatus : MonoBehaviour
     public void PlayerLostItemStatus()
     {
         GameManager.instance.ChangePlayerStatus();
+    }
+
+    public void ChangeWaeponItem(WeaponSelect weapon)
+    {
+        WeaponSelect newWeapon = weapon;
+        ItemPartStatus itemStatus = null;
+
+        if (newWeapon.ItemPrefab)
+        {
+            itemStatus = newWeapon.ItemPrefab.GetComponent<ItemPartStatus>();
+        }
+        else
+        {
+            Debug.Log("This item have not 'ItemPartStatus'.");
+        }
+
+        if (!newWeapon.LeftWeapon)
+        {
+            weaponItems[0].itemStatus = itemStatus;
+            if (!newWeapon.UseOndeHand)
+                weaponItems[1].itemStatus = null;
+        }
+        else
+        {
+            weaponItems[1].itemStatus = itemStatus;
+        }
+
+        SetItemStatus();
+    }
+
+    public void ChangeArmorItem(ArmorSelect item)
+    {
+        ArmorSelect newArmor = item;
+        ItemPartStatus itemStatus = null;
+
+        if (newArmor.ItemPrefab)
+        {
+            itemStatus = newArmor.ItemPrefab.GetComponent<ItemPartStatus>();
+        }
+        else
+        {
+            Debug.Log("This item have not 'ItemPartStatus'.");
+        }
+
+        foreach(ArmorItemInfoInItemStatus changeItemInfo in armorItems)
+        {
+            if(changeItemInfo.ItemCategory == newArmor.EquipmentCategory && changeItemInfo.SubCategory == newArmor.SubCateogy)
+            {
+                changeItemInfo.itemStatus = itemStatus != null ? itemStatus : null;
+
+                SetItemStatus();
+            }
+        }
+    }
+
+    private void SetItemStatus()
+    {
+        ResetItemStatus();
+        
+        foreach (ArmorItemInfoInItemStatus item in armorItems)
+        {
+            if(item.itemStatus != null)
+            {
+                ItemPartStatus changeItem = item.itemStatus;
+
+                itemHp += changeItem.ItemHP;
+                itemDamage += changeItem.ItemDamage;
+                itemCriticalDamage += changeItem.ItemCriticalDamage;
+                itemSheild += changeItem.ItemSheild;
+                itemCriticalPer += changeItem.ItemCriticalPer;
+                itemSpeed += changeItem.ItemSpeed;
+                itemCoolTime += changeItem.ItemCoolTime;
+            }
+        }
+
+        foreach(ItemInfoInItemStatus item in weaponItems)
+        {
+            if(item.itemStatus != null)
+            {
+                ItemPartStatus changeItem = item.itemStatus;
+
+                itemHp += changeItem.ItemHP;
+                itemDamage += changeItem.ItemDamage;
+                itemCriticalDamage += changeItem.ItemCriticalDamage;
+                itemSheild += changeItem.ItemSheild;
+                itemCriticalPer += changeItem.ItemCriticalPer;
+                itemSpeed += changeItem.ItemSpeed;
+                itemCoolTime += changeItem.ItemCoolTime;
+            }
+        }
+
+        GameManager.instance.ChangePlayerStatus();
+    }
+
+    private void ResetItemStatus()
+    {
+        itemHp = 0;
+        itemDamage = 0;
+        itemCriticalDamage = 0;
+        itemSheild = 0;
+        itemCriticalPer = 0f;
+        itemSpeed = 0f;
+        itemCoolTime = 0f;
     }
 }
