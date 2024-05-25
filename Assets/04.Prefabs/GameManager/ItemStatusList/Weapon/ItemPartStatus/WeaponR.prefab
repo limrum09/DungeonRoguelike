@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6711320754889892142}
+  - component: {fileID: -519072589324343358}
+  - component: {fileID: 721301555900413445}
   - component: {fileID: 1008600026002914940}
   m_Layer: 0
   m_Name: WeaponR
@@ -16,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6711320754889892142
 Transform:
   m_ObjectHideFlags: 0
@@ -32,6 +34,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 96
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-519072589324343358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226426629147294612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecba83ed8447adb4a847cdd66d4d1d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponItem: {fileID: 721301555900413445}
+  armorItem: {fileID: 0}
+  itemPartStatus: {fileID: 1008600026002914940}
+--- !u!114 &721301555900413445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226426629147294612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8fea95ebf9e514bbd67398d61604b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5564305034757115275, guid: bf390cd197216324cb82145dfad20c52, type: 3}
+  equipmentCategory: {fileID: 0}
+  itemOverlapping: 0
+  useOneHand: 1
+  leftWeapon: 0
+  weaponAnimator: {fileID: 9100000, guid: 404144ff63a285643bc7481d053110a3, type: 2}
 --- !u!114 &1008600026002914940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,9 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
+  itemDamage: 200
+  itemCriticalDamage: 50
   itemSheild: 0
   itemCriticalPer: 0
-  itemSpeed: 0
+  itemSpeed: 30
   itemCoolTime: 0

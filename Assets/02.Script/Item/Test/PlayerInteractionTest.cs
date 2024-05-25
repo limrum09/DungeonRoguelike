@@ -112,8 +112,6 @@ public class PlayerInteractionTest : MonoBehaviour
         MeshFilter changeFilter = newWeapon.ItemPrefab != null ? newWeapon.ItemPrefab.GetComponent<MeshFilter>() : null;
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;
         currentWeaponFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
-
-        ItemStatus.instance.ChangeWaeponItem(weapon);
     }
     public void ArmorChange(ArmorSelect armor)
     {
@@ -154,7 +152,6 @@ public class PlayerInteractionTest : MonoBehaviour
                 }
 
                 items.ChangeFilter(changeFilter);
-                ItemStatus.instance.ChangeArmorItem(armor);
             }
 
             items.gameObject.SetActive(onView);

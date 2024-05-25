@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_Mustache
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
-  itemStatus: {fileID: 1008600026002914940, guid: 34fa1aee3c13baf4d9f7770aac26c274, type: 3}
+  itemPart: {fileID: -6044061631008655773, guid: 34fa1aee3c13baf4d9f7770aac26c274, type: 3}
   subCategory: Mustache

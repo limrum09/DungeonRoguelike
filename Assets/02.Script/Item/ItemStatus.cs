@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ItemStatus : MonoBehaviour
 {
-    public static ItemStatus instance;
-
     [SerializeField]
     private int itemHp;
     [SerializeField]
@@ -24,6 +23,8 @@ public class ItemStatus : MonoBehaviour
     private List<ItemInfoInItemStatus> weaponItems;
     [SerializeField]
     private List<ArmorItemInfoInItemStatus> armorItems;
+    [SerializeField]
+    private PlayerInteractionTest interactionTest;
 
     public int ItemHP { get { return itemHp; } set { itemHp = value; } }
     public int ItemDamage { get { return itemDamage; } set { itemDamage = value; } }
@@ -36,23 +37,33 @@ public class ItemStatus : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
+        SceneManager.sceneLoaded += OnSceneLoad;
+    }
 
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+    private void OnApplicationQuit()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoad;
+    }
 
-        ResetItemStatus();
+    private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        var playerInteraction = FindObjectOfType<PlayerInteractionTest>();
+        if (playerInteraction != null)
+        {
+            InteractionTest(playerInteraction);
+        }
+    }
+
+        public void InteractionTest(PlayerInteractionTest test)
+    {
+        this.interactionTest = test;
     }
 
     private void Start()
     {
-        
+        LoadItemStatus();
+
+        GameManager.instance.ChangeExpBar();
     }
 
     public void PlayerAddItemStatus()
@@ -65,10 +76,37 @@ public class ItemStatus : MonoBehaviour
         GameManager.instance.ChangePlayerStatus();
     }
 
+    public void LoadItemStatus()
+    {
+        Debug.Log("Load Item Status");
+        foreach(var weapon in weaponItems)
+        {
+            Debug.Log("Searching Weapons");
+            if (weapon.SelectItemPart.WeaponItem != null)
+            {
+                Debug.Log("Change Weapon");
+                ChangeWaeponItem(weapon.SelectItemPart.WeaponItem);
+            }
+        }
+
+        foreach(var armor in armorItems)
+        {
+            if(armor.SelectItemPart.ArmorItem != null)
+            {
+
+                ChangeArmorItem(armor.SelectItemPart.ArmorItem);
+            }
+        }
+
+        SetItemStatus();
+    }
+
     public void ChangeWaeponItem(WeaponSelect weapon)
     {
         WeaponSelect newWeapon = weapon;
         ItemPartStatus itemStatus = null;
+
+        interactionTest.WeaponChange(newWeapon);
 
         if (newWeapon.ItemPrefab)
         {
@@ -81,15 +119,16 @@ public class ItemStatus : MonoBehaviour
 
         if (!newWeapon.LeftWeapon)
         {
-            weaponItems[0].itemStatus = itemStatus;
+            weaponItems[1].SelectItemPart.ChangeItem(newWeapon, itemStatus);
             if (!newWeapon.UseOndeHand)
-                weaponItems[1].itemStatus = null;
+                weaponItems[0].SelectItemPart.ChangeItem(newWeapon, itemStatus);
         }
         else
         {
-            weaponItems[1].itemStatus = itemStatus;
+            weaponItems[0].SelectItemPart.ChangeItem(newWeapon, itemStatus);
         }
 
+        Debug.Log("Change Weapon Item");
         SetItemStatus();
     }
 
@@ -97,6 +136,8 @@ public class ItemStatus : MonoBehaviour
     {
         ArmorSelect newArmor = item;
         ItemPartStatus itemStatus = null;
+
+        interactionTest.ArmorChange(newArmor);
 
         if (newArmor.ItemPrefab)
         {
@@ -111,7 +152,7 @@ public class ItemStatus : MonoBehaviour
         {
             if(changeItemInfo.ItemCategory == newArmor.EquipmentCategory && changeItemInfo.SubCategory == newArmor.SubCateogy)
             {
-                changeItemInfo.itemStatus = itemStatus != null ? itemStatus : null;
+                if (itemStatus != null) changeItemInfo.SelectItemPart.ChangeItem(newArmor, itemStatus);
 
                 SetItemStatus();
             }
@@ -124,9 +165,11 @@ public class ItemStatus : MonoBehaviour
         
         foreach (ArmorItemInfoInItemStatus item in armorItems)
         {
-            if(item.itemStatus != null)
+            if(item.SelectItemPart.StatusItemPart != null)
             {
-                ItemPartStatus changeItem = item.itemStatus;
+                // Debug.Log("Item Name : " + item);
+
+                ItemPartStatus changeItem = item.SelectItemPart.StatusItemPart;
 
                 itemHp += changeItem.ItemHP;
                 itemDamage += changeItem.ItemDamage;
@@ -140,9 +183,9 @@ public class ItemStatus : MonoBehaviour
 
         foreach(ItemInfoInItemStatus item in weaponItems)
         {
-            if(item.itemStatus != null)
+            if(item.SelectItemPart.StatusItemPart != null)
             {
-                ItemPartStatus changeItem = item.itemStatus;
+                ItemPartStatus changeItem = item.SelectItemPart.StatusItemPart;
 
                 itemHp += changeItem.ItemHP;
                 itemDamage += changeItem.ItemDamage;
@@ -155,6 +198,7 @@ public class ItemStatus : MonoBehaviour
         }
 
         GameManager.instance.ChangePlayerStatus();
+        GameManager.instance.ChangeHPBar();
     }
 
     private void ResetItemStatus()

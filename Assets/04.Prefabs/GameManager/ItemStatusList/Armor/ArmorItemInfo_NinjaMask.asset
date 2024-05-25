@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_NinjaMask
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
-  itemStatus: {fileID: -1020142793226551145, guid: 92f84190e039fbf4094c5c604e717541, type: 3}
+  itemPart: {fileID: 2681376150526111148, guid: f86bdfd4cc2ac9f4fb02a7522c9f95b6, type: 3}
   subCategory: NinjaMask

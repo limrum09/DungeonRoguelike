@@ -5,14 +5,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ToolTipController : MonoBehaviour, IPointerMoveHandler
+public class ToolTipController : MonoBehaviour, IPointerMoveHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
-    private GameObject tooltipPanel;
-    private InvenSlot invenSlot;
+    private GameObject tooltipBackGround;
+    [SerializeField]
     private Image itemTooltipImage;
+    [SerializeField]
     private TextMeshProUGUI itemTooltipName;
+    [SerializeField]
     private TextMeshProUGUI itemTooltipInfo;
+    private InvenSlot invenSlot;
+
+    private bool isPointerInside = false;
 
     public void OnPointerMove(PointerEventData eventData)
     {
@@ -26,34 +31,42 @@ public class ToolTipController : MonoBehaviour, IPointerMoveHandler
         }
 
         Vector2 eventPos = new Vector2(eventData.position.x + 240f, eventData.position.y - 100f);
-        tooltipPanel.transform.position = eventPos;
+        tooltipBackGround.transform.position = eventPos;
         ViewItemTooltip();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        tooltipPanel = GameObject.FindGameObjectWithTag("ToolTip").transform.GetChild(0).gameObject;
-        itemTooltipImage = tooltipPanel.transform.GetChild(0).GetComponent<Image>();
-        itemTooltipName = tooltipPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        itemTooltipInfo = tooltipPanel.transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        isPointerInside = true;
+        tooltipBackGround.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isPointerInside = false;
+        HideTooltip();
     }
 
     private void ViewItemTooltip()
     {
         if(invenSlot != null && invenSlot.itemName == "")
         {
-            tooltipPanel.SetActive(false);
-            itemTooltipImage.sprite = null;
-            itemTooltipName.text = "";
-            itemTooltipInfo.text = "";
+            HideTooltip();
         }
         else if(invenSlot != null)
         {
-            tooltipPanel.SetActive(true);
+            tooltipBackGround.SetActive(true);
             itemTooltipImage.sprite = invenSlot.itemImage.sprite;
             itemTooltipName.text = invenSlot.itemName;
             itemTooltipInfo.text = invenSlot.itemInfomation;
         }        
+    }
+
+    private void HideTooltip()
+    {
+        tooltipBackGround.SetActive(false);
+        itemTooltipImage.sprite = null;
+        itemTooltipName.text = "";
+        itemTooltipInfo.text = "";
     }
 }

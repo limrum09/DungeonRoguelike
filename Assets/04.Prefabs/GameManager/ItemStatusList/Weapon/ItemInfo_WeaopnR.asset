@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ItemInfo_WeaopnR
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 0}
-  itemStatus: {fileID: -3649025450942974065, guid: bf390cd197216324cb82145dfad20c52, type: 3}
+  itemPart: {fileID: -519072589324343358, guid: 999c689fde3e4134bbeaf25ae017551e, type: 3}

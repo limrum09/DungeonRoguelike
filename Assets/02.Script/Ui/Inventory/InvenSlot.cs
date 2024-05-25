@@ -31,7 +31,7 @@ public class InvenSlot : MonoBehaviour
         index = _index;
     }
 
-    public void SetSlotItme(InvenItem item)
+    public void SetSlotItem(InvenItem item)
     {
         if(item != null)
         {

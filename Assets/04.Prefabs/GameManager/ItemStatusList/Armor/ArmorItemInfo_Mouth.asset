@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_Mouth
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
-  itemStatus: {fileID: 1008600026002914940, guid: 942d8638cb8d287449eaa86a7cefd812, type: 3}
+  itemPart: {fileID: -3828477707732239763, guid: 942d8638cb8d287449eaa86a7cefd812, type: 3}
   subCategory: Mouth

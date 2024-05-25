@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_Glasses
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 0}
-  itemStatus: {fileID: 1008600026002914940, guid: 88e06cb6e84fdc948b622d429e392fb4, type: 3}
+  itemPart: {fileID: -6212927246420560570, guid: 88e06cb6e84fdc948b622d429e392fb4, type: 3}
   subCategory: Glasses
