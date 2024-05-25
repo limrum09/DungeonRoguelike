@@ -6,11 +6,11 @@ using UnityEngine;
 public abstract class SelectTest : MonoBehaviour
 {
     [SerializeField]
-    private GameObject prefab;
+    protected GameObject prefab;
     [SerializeField]
-    private EquipmentCategory equipmentCategory;
+    protected EquipmentCategory equipmentCategory;
     [SerializeField]
-    private bool itemOverlapping;
+    protected bool itemOverlapping;
 
     public EquipmentCategory EquipmentCategory => equipmentCategory;
     public GameObject ItemPrefab => prefab;

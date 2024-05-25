@@ -17,6 +17,17 @@ public class WeaponSelect : SelectTest
     public bool LeftWeapon => leftWeapon;
     public AnimatorController WeaponAnimator => weaponAnimator;
 
+
+    public void CopySelect(WeaponSelect copy)
+    {
+        prefab = copy.ItemPrefab;
+        equipmentCategory = copy.EquipmentCategory;
+        itemOverlapping = copy.ItemOverlapping;
+        useOneHand = copy.UseOndeHand;
+        leftWeapon = copy.LeftWeapon;
+        weaponAnimator = copy.WeaponAnimator;
+    }
+
     public override SelectTest TestClone()
     {
         return this;

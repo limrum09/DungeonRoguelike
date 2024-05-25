@@ -12,6 +12,15 @@ public class ArmorSelect : SelectTest
     public string SubCateogy => subCategory;
     public int IndexOverlapping => indexOverlapping;
 
+    public void CopySelect(ArmorSelect copy)
+    {
+        prefab = copy.ItemPrefab;
+        equipmentCategory = copy.EquipmentCategory;
+        itemOverlapping = copy.ItemOverlapping;
+        subCategory = copy.SubCateogy;
+        indexOverlapping = copy.IndexOverlapping;
+    }
+
     public override SelectTest TestClone()
     {
         return this;

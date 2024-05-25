@@ -70,17 +70,12 @@ public class PlayerStatus : MonoBehaviour
         if(level == 1)
         {
             exp = 200;
-            currentExp = 0;
         }
     }
 
     private void Start()
     {
-        currentHP = maxHP;
-
-        Debug.Log(CurrentHP + ", " + maxHP);
-        UIProfile.instance.SetHPBar(MaxHP, CurrentHP);
-        UIProfile.instance.SetExpBar(level ,Exp, CurrentExp);
+        
     }
 
     public void TakeDamage(int damage)
@@ -95,7 +90,7 @@ public class PlayerStatus : MonoBehaviour
                 isDie = true;
             }
 
-            UIProfile.instance.SetHPBar(maxHP,currentHP);
+            GameManager.instance.ChangeHPBar();
         }
     }
 
@@ -115,7 +110,7 @@ public class PlayerStatus : MonoBehaviour
                 GameManager.instance.LevelUP();
             }
 
-            UIProfile.instance.SetExpBar(level, Exp, CurrentExp);
+            GameManager.instance.ChangeExpBar();
         }
     }
 

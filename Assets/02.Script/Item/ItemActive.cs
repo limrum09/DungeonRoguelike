@@ -19,7 +19,7 @@ public class ItemActive : MonoBehaviour
     [SerializeField]
     private float itemCoolTime;
 
-    private void OnEnable()
+/*    private void OnEnable()
     {
         if (ItemStatus.instance != null)
         {
@@ -33,31 +33,31 @@ public class ItemActive : MonoBehaviour
         {
             ItemStatusMinus();
         }
-    }
+    }*/
 
     private void ItemStatusAdd()
     {
         Debug.Log("AddStatus " + this.gameObject.name);
-        ItemStatus.instance.ItemHP += itemHp;
+        /*ItemStatus.instance.ItemHP += itemHp;
         ItemStatus.instance.ItemDamage += itemDamage;
         ItemStatus.instance.ItemCriticalDamage += itemCriticalDamage;
         ItemStatus.instance.ItemSheid += itemSheild;
         ItemStatus.instance.ItemCriticalPer += itemCriticalPer;
         ItemStatus.instance.ItemSpeed += itemSpeed;
-        ItemStatus.instance.ItemCoolTime += itemCoolTime;
-        ItemStatus.instance.PlayerAddItemStatus();
+        ItemStatus.instance.ItemCoolTime += itemCoolTime;*/
+        //ItemStatus.instance.PlayerAddItemStatus();
     }
 
     private void ItemStatusMinus()
     {
         Debug.Log("LostStatus " + this.gameObject.name);
-        ItemStatus.instance.ItemHP -= itemHp;
+        /*ItemStatus.instance.ItemHP -= itemHp;
         ItemStatus.instance.ItemDamage -= itemDamage;
         ItemStatus.instance.ItemCriticalDamage -= itemCriticalDamage;
         ItemStatus.instance.ItemSheid -= itemSheild;
         ItemStatus.instance.ItemCriticalPer -= itemCriticalPer;
         ItemStatus.instance.ItemSpeed -= itemSpeed;
-        ItemStatus.instance.ItemCoolTime -= itemCoolTime;
-        ItemStatus.instance.PlayerLostItemStatus();
+        ItemStatus.instance.ItemCoolTime -= itemCoolTime;*/
+        //ItemStatus.instance.PlayerLostItemStatus();
     }
 }

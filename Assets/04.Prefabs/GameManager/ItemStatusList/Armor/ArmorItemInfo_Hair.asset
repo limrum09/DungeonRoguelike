@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_Hair
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
-  itemStatus: {fileID: 1008600026002914940, guid: 3bf8c74a4f8cb07499d2cf415ab86874, type: 3}
+  itemPart: {fileID: -2002435463980465439, guid: 3bf8c74a4f8cb07499d2cf415ab86874, type: 3}
   subCategory: hair

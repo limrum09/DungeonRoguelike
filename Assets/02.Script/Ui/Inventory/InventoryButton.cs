@@ -7,6 +7,8 @@ public class InventoryButton : MonoBehaviour
     [SerializeField]
     private GameObject content;
 
+    public GameObject Content => content;
+
     public bool isSorting;
     // Start is called before the first frame update
     void Start()

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class UIProfile : MonoBehaviour
 {
-    public static UIProfile instance;
-
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI currentHPText;
     public TextMeshProUGUI maxHPText;
@@ -18,7 +16,7 @@ public class UIProfile : MonoBehaviour
     public Image currentHPBar;
     public Image currentExpBar;
 
-    public void UPHP()
+    public void SetHPBar()
     {
         var player = PlayerStatus.instance;
 
@@ -28,26 +26,18 @@ public class UIProfile : MonoBehaviour
         maxHPText.text = maxHP.ToString();
         currentHPText.text = currentHP.ToString();
 
-        currentHPBar.rectTransform.sizeDelta = new Vector2((float)currentHP / (float)maxHP * 230f, currentHPBar.rectTransform.sizeDelta.y);
-    }
-
-    public void SetHPBar(int _maxHP, int _currentHP)
-    {
-        int maxHP = _maxHP;
-        int currentHP = _currentHP;
-
-        maxHPText.text = maxHP.ToString();
-        currentHPText.text = currentHP.ToString();
-
         currentHPBar.rectTransform.sizeDelta = new Vector2((float)currentHP/ (float)maxHP * 230f, currentHPBar.rectTransform.sizeDelta.y);
     }
 
-    public void SetExpBar(int _level, int _maxEXP, int _currentEXP)
+    public void SetExpBar()
     {
-        int maxEXP = _maxEXP;
-        int currentEXP = _currentEXP;
+        var player = PlayerStatus.instance;
 
-        levelText.text = _level.ToString();
+        int level = player.Level;
+        int maxEXP = player.Exp;
+        int currentEXP = player.CurrentExp;
+
+        levelText.text = level.ToString();
         maxEXPText.text = maxEXP.ToString();
         currentEXPText.text = currentEXP.ToString();
 

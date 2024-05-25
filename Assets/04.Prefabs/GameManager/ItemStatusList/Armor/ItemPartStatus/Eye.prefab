@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6711320754889892142}
-  - component: {fileID: -3828477707732239763}
-  - component: {fileID: -2022003929007202368}
+  - component: {fileID: -6212927246420560570}
+  - component: {fileID: 3301365705977095569}
   - component: {fileID: 1008600026002914940}
   m_Layer: 0
-  m_Name: Mouth
+  m_Name: Eye
   m_TagString: Hat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 96
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3828477707732239763
+--- !u!114 &-6212927246420560570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponItem: {fileID: 0}
-  armorItem: {fileID: -2022003929007202368}
+  armorItem: {fileID: 3301365705977095569}
   itemPartStatus: {fileID: 1008600026002914940}
---- !u!114 &-2022003929007202368
+--- !u!114 &3301365705977095569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

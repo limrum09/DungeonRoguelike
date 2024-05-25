@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_Head
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 11400000, guid: fc7dfbe3d053b004b8abf42f5cae4962, type: 2}
-  itemStatus: {fileID: 1008600026002914940, guid: 23efebf7ce20bef4ebb4e3bcd579b38a, type: 3}
+  itemPart: {fileID: 6713490750889622533, guid: 23efebf7ce20bef4ebb4e3bcd579b38a, type: 3}
   subCategory: head

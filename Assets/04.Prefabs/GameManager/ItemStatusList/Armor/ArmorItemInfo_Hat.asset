@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_Hat
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
-  itemStatus: {fileID: 0}
+  itemPart: {fileID: 8700478428171798779, guid: 621c6a38c79db0546ae58ad55b073a02, type: 3}
   subCategory: hat

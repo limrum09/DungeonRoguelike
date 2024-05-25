@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusUI: {fileID: 0}
-  interactionTest: {fileID: 0}
+  itemStatus: {fileID: 7999022074942841835}
   level: 0
   health: 0
   str: 0
@@ -85,6 +85,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfa7cc8ea4e5e524db66981526e21896, type: 2}
   - {fileID: 11400000, guid: 881634bf25980c64289f16d5891a6134, type: 2}
   - {fileID: 11400000, guid: db6e978069d698248a951eb999c7cdc4, type: 2}
+  interactionTest: {fileID: 0}
 --- !u!114 &7999022074942841836
 MonoBehaviour:
   m_ObjectHideFlags: 0

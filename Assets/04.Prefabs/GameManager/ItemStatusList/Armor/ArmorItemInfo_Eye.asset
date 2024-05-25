@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmorItemInfo_Eye
   m_EditorClassIdentifier: 
   itemCategory: {fileID: 11400000, guid: 33a171b2456295a4e860a49d7c2bd45d, type: 2}
-  itemStatus: {fileID: 0}
+  itemPart: {fileID: -6212927246420560570, guid: 68242cf4d613bb742b977f191ea615b5, type: 3}
   subCategory: eye

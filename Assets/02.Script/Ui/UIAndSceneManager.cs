@@ -16,10 +16,15 @@ public class UIAndSceneManager : MonoBehaviour
     GameObject inventoryUI;
     [SerializeField]
     GameObject statusUI;
+    [SerializeField]
+    private UIProfile uiProfile;
 
     int GameUIIndex;
 
     public ChangeEquipmentEvent onChangeEquipment;
+
+    public UIProfile Profile => uiProfile;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -100,5 +105,8 @@ public class UIAndSceneManager : MonoBehaviour
         lobbyUI.SetActive(false);
     }
 
-    public void ChangeEquipment(SelectTest item) => GameManager.instance.PlayerItemChangeTest(item);
+    public void ChangeEquipment(SelectTest item) => GameManager.instance.PlayerItemChange(item);
+
+    public void ChangeHPBar() => uiProfile.SetHPBar();
+    public void ChangeEXPBar() => uiProfile.SetExpBar();
 }

@@ -26,4 +26,30 @@ public class ItemPartStatus : MonoBehaviour
     public float ItemCriticalPer => itemCriticalPer;
     public float ItemSpeed => itemSpeed;
     public float ItemCoolTime => itemCoolTime;
+
+    public void StatusCopy(ItemPartStatus copyStatus)
+    {
+        //Debug.Log("Status Copy : " + copyStatus + ". hp : " + copyStatus.itemHp);
+        if(copyStatus != null)
+        {
+            itemHp = copyStatus.ItemHP;
+            itemDamage = copyStatus.ItemDamage;
+            itemCriticalDamage = copyStatus.ItemCriticalDamage;
+            itemSheild = copyStatus.ItemSheild;
+            itemCriticalPer = copyStatus.ItemCriticalPer;
+            itemSpeed = copyStatus.ItemSpeed;
+            itemCoolTime = copyStatus.ItemCoolTime;
+        }
+        else
+        {
+            itemHp = 0;
+            itemDamage = 0;
+            itemCriticalDamage = 0;
+            itemSheild = 0;
+            itemCriticalPer = 0f;
+            itemSpeed = 0f;
+            itemCoolTime = 0f;
+        }
+        
+    }
 }
