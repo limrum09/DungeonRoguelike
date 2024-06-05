@@ -5,6 +5,8 @@ using UnityEngine;
 public class ItemPartStatus : MonoBehaviour
 {
     [SerializeField]
+    private string ItemCode;
+    [SerializeField]
     private int itemHp;
     [SerializeField]
     private int itemDamage;

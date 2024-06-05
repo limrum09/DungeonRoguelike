@@ -19,11 +19,14 @@ public class InvenSlot : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI itemCntText;
 
+
+    private bool isCntView;
     private bool isView;
     private void Start()
     {
         itemCnt = 0;
         isView = false;
+        isCntView = false;
     }
 
     public void SetSlotIndex(int _index)
@@ -40,6 +43,9 @@ public class InvenSlot : MonoBehaviour
             itemCnt = item.itemCnt;
             itemImage.sprite = item.itemImage;
             itemInfomation = item.itemInfo;
+
+            if (item.ItemAmount == 1) isCntView = false;
+            else isCntView = true;
         }
         
         RefreshSlot();
@@ -77,7 +83,15 @@ public class InvenSlot : MonoBehaviour
         }
 
         itemImage.GetComponent<Image>().color = color;
-        itemCntText.text = itemCnt.ToString();
+
+        if (isCntView)
+        {
+            itemCntText.gameObject.SetActive(true);
+            itemCntText.text = itemCnt.ToString();
+        }
+            
+        else
+            itemCntText.gameObject.SetActive(false);
     }
 
     public void RefreshSlot()

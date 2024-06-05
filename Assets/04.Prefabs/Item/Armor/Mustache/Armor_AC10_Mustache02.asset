@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6807a09fed931354283c2a45ac8ce780, type: 3}
+  m_Name: Armor_AC10_Mustache02
+  m_EditorClassIdentifier: 
+  itemCode: AC10_Mustache02
+  armorItem: {fileID: 3897402828657008421, guid: 3ca59785bcff3d0439d3a57ac8f52fca, type: 3}
+  armorItemSprite: {fileID: -1930899715, guid: 28207216bc6ac4e47856cab795893fc9, type: 3}
+  equipmentCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
+  subCategory: Mustache
+  itemOverlapping: 1
+  indexOverlapping: 1
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0

@@ -105,7 +105,8 @@ public class UIAndSceneManager : MonoBehaviour
         lobbyUI.SetActive(false);
     }
 
-    public void ChangeEquipment(SelectTest item) => GameManager.instance.PlayerItemChange(item);
+    public void ChangeEquipment(WeaponItem item) => GameManager.instance.PlayerWeaponChange(item);
+    public void ChangeEquipment(ArmorItem item) => GameManager.instance.PlayerArmorChange(item);
 
     public void ChangeHPBar() => uiProfile.SetHPBar();
     public void ChangeEXPBar() => uiProfile.SetExpBar();

@@ -22,7 +22,7 @@ public class InventoryButton : MonoBehaviour
         foreach(Transform child in content.transform)
         {
             InvenSlot childInvenSlot = child.GetComponent<InvenSlot>();
-            if (childInvenSlot.itemType == ITEMTYPE.POSTION)
+            if (childInvenSlot.itemType == ITEMTYPE.POTION)
             {
                 childInvenSlot.gameObject.SetActive(true);
             }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ToolTipController : MonoBehaviour, IPointerMoveHandler, IPointerEnterHandler, IPointerExitHandler
+public class ToolTipController : MonoBehaviour
 {
     [SerializeField]
     private GameObject tooltipBackGround;
@@ -15,51 +15,31 @@ public class ToolTipController : MonoBehaviour, IPointerMoveHandler, IPointerEnt
     private TextMeshProUGUI itemTooltipName;
     [SerializeField]
     private TextMeshProUGUI itemTooltipInfo;
-    private InvenSlot invenSlot;
 
-    private bool isPointerInside = false;
-
-    public void OnPointerMove(PointerEventData eventData)
+    private void Start()
     {
-        GameObject enterUI = eventData.pointerEnter;
-
-        invenSlot = null;
-
-        if (enterUI != null && enterUI.GetComponent<InvenSlot>())
-        {
-            invenSlot = enterUI.GetComponent<InvenSlot>();
-        }
-
-        Vector2 eventPos = new Vector2(eventData.position.x + 240f, eventData.position.y - 100f);
-        tooltipBackGround.transform.position = eventPos;
-        ViewItemTooltip();
+        tooltipBackGround.SetActive(false);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void ViewItemTooltip(InvenSlot invenSlot)
     {
-        isPointerInside = true;
-        tooltipBackGround.SetActive(true);
-    }
+        InvenSlot item = invenSlot;
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isPointerInside = false;
-        HideTooltip();
-    }
-
-    private void ViewItemTooltip()
-    {
-        if(invenSlot != null && invenSlot.itemName == "")
+        if(item == null)
         {
             HideTooltip();
         }
-        else if(invenSlot != null)
+        else if (item != null && item.itemName == "")
+        {
+            HideTooltip();
+        }
+        else if (item != null)
         {
             tooltipBackGround.SetActive(true);
-            itemTooltipImage.sprite = invenSlot.itemImage.sprite;
-            itemTooltipName.text = invenSlot.itemName;
-            itemTooltipInfo.text = invenSlot.itemInfomation;
-        }        
+            itemTooltipImage.sprite = item.itemImage.sprite;
+            itemTooltipName.text = item.itemName;
+            itemTooltipInfo.text = item.itemInfomation;
+        }
     }
 
     private void HideTooltip()

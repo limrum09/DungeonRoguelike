@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6807a09fed931354283c2a45ac8ce780, type: 3}
+  m_Name: Armor_Eye12
+  m_EditorClassIdentifier: 
+  itemCode: Eye12
+  armorItem: {fileID: 4520617668602198134, guid: c6452b767c032ba46b7d55abff98c838, type: 3}
+  armorItemSprite: {fileID: -1726439917, guid: 36451a3563fc0544b8470324380d91f8, type: 3}
+  equipmentCategory: {fileID: 11400000, guid: 33a171b2456295a4e860a49d7c2bd45d, type: 2}
+  subCategory: eye
+  itemOverlapping: 1
+  indexOverlapping: 0
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0

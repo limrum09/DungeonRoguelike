@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
+  m_Name: Weapon_THS07_Sword
+  m_EditorClassIdentifier: 
+  itemCode: THS07_Sword
+  weaponItem: {fileID: 7138046058937190342, guid: e04f0e9c483df7643b493136bafed353, type: 3}
+  weaponItemSprite: {fileID: 481340271, guid: c72c70788502cdf46a57a56bc42a0a9b, type: 3}
+  equipmentCategory: {fileID: 11400000, guid: 487f657f9a8842d44b36de642f70e8b0, type: 2}
+  useOneHand: 0
+  leftWeapon: 0
+  weaponAnimator: {fileID: 9100000, guid: 7036c7c7403a3444abd50831be479bcd, type: 2}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0

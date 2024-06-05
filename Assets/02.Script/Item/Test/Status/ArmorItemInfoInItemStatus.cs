@@ -7,6 +7,8 @@ public class ArmorItemInfoInItemStatus : ItemInfoInItemStatus
 {
     [SerializeField]
     private string subCategory;
+    [SerializeField]
+    public ArmorItem armorItem;
 
     public string SubCategory => subCategory;
 }

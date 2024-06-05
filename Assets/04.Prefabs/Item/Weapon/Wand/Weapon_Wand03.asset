@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
+  m_Name: Weapon_Wand03
+  m_EditorClassIdentifier: 
+  itemCode: Wand03
+  weaponItem: {fileID: 7112451126930258141, guid: af3e1859fd1294d4f95d562b68ebf2a8, type: 3}
+  weaponItemSprite: {fileID: 1092734557, guid: fb6ba1341e65e9d4f824ce198fe6618b, type: 3}
+  equipmentCategory: {fileID: 11400000, guid: b32db9aff9bf74949a9d43869d54994f, type: 2}
+  useOneHand: 1
+  leftWeapon: 0
+  weaponAnimator: {fileID: 9100000, guid: 6935e9cee0008c84ab47a99f5de90a8a, type: 2}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0

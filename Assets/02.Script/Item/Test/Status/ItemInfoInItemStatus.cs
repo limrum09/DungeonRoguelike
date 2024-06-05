@@ -7,9 +7,9 @@ public class ItemInfoInItemStatus : ScriptableObject
 {
     [SerializeField]
     private EquipmentCategory itemCategory;
-    [SerializeField]
-    public ItemPart itemPart;
+    //[SerializeField]
+    //public ItemPart itemPart;
 
     public EquipmentCategory ItemCategory => itemCategory;
-    public ItemPart SelectItemPart => itemPart;
+    //public ItemPart SelectItemPart => itemPart;
 }

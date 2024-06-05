@@ -10,7 +10,7 @@ public class ScriptableObjectItem : MonoBehaviour
     {
         if (other.CompareTag("PlayerComponent"))
         {
-            InvenData.instance.AddItem(item);
+            InvenData.instance.CheckItem(item);
         }
     }
 }
