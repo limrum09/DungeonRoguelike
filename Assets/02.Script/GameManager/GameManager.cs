@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
+
     private void OnApplicationQuit()
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
@@ -105,18 +106,13 @@ public class GameManager : MonoBehaviour
         statusUI.SetStatusUIText();
     }
 
-    public void PlayerItemChange(SelectTest item)
+    public void PlayerWeaponChange(WeaponItem item)
     {
-        var changeItem = item.TestClone();
-
-        if(changeItem is ArmorSelect armorItem)
-        {
-            itemStatus.ChangeArmorItem(armorItem);
-        }
-        else if(changeItem is WeaponSelect weaponItem)
-        {
-            itemStatus.ChangeWaeponItem(weaponItem);
-        }
+        itemStatus.ChangeWeaponItem(item);
+    }
+    public void PlayerArmorChange(ArmorItem item)
+    {
+        itemStatus.ChangeArmorItem(item);
     }
 
     public void ChangeHPBar() => UIAndSceneManager.instance.ChangeHPBar();

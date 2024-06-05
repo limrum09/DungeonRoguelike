@@ -1,5 +1,7 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class InvenData : MonoBehaviour
@@ -16,6 +18,7 @@ public class InvenData : MonoBehaviour
     [SerializeField]
     private GameObject invenSlotPrefab;
 
+    public InventoryButton InvenButton => invenButton;
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,6 +32,19 @@ public class InvenData : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        if (!LoadFile("invenFile"))
+        {
+            Initialized(invenButton, invenContent);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveInvenDataToFile("invenFile");
     }
 
     public void Initialized(InventoryButton button, GameObject content)
@@ -98,22 +114,24 @@ public class InvenData : MonoBehaviour
     }
 
     // 아이템 획득
-    public void AddItem(InvenItem item)
+    public void CheckItem(InvenItem item)
     {
+        InvenItem newItem = item.Clone();
+
         // 인벤토리에 같은 아이템을 소유하고 있는지 확인
         for(int i = 0; i< invenSlots.Count; i++)
         {
             if(invenSlots[i] != null)
             {
                 // 같은 아이템이 있는 경우
-                if(invenSlots[i].itemName == item.itemName)
+                if(invenSlots[i].ItemCode == newItem.ItemCode)
                 {
-                    if (!item.IsMax())
+                    if (!invenSlots[i].IsMax())
                     {
                         invenSlots[i].itemCnt++;
                         RefreshInvenSlot(i);
                         return;
-                    } 
+                    }
                 }
             }
         }
@@ -124,7 +142,7 @@ public class InvenData : MonoBehaviour
         // 추가
         if (nullSlotIndex != -1)
         {
-            invenSlots[nullSlotIndex] = item;
+            invenSlots[nullSlotIndex] = newItem;
             invenSlots[nullSlotIndex].itemCnt = 1;
             RefreshInvenSlot(nullSlotIndex);
 
@@ -137,7 +155,6 @@ public class InvenData : MonoBehaviour
         // 비어 있는 칸이 없을 경우
         else
             Debug.Log("No null in List");
-
     }
 
     private bool IsNULL(InvenItem slot)
@@ -149,7 +166,7 @@ public class InvenData : MonoBehaviour
     private void AddItemSort(InvenItem item)
     {
         
-        if(item.itemtype == ITEMTYPE.POSTION)
+        if(item.itemtype == ITEMTYPE.POTION)
         {
             invenButton.PostionSortButton();
         }
@@ -205,6 +222,8 @@ public class InvenData : MonoBehaviour
             invenSlots[currentIndex] = invenSlots[lastIndex];
             invenSlots[lastIndex] = tempInvenItem;
 
+            RemoveInvenSlot(lastIndex);
+
             RefreshInvenSlot(lastIndex);
             RefreshInvenSlot(currentIndex);
         }
@@ -219,28 +238,91 @@ public class InvenData : MonoBehaviour
             if (invenSlot != null)
             {
                 invenSlots[index].itemCnt--;
-                RefreshInvenSlot(index);
 
                 if (invenSlots[index].itemCnt == 0)
                 {
                     invenSlot.RemoveSlot();
                     invenSlots[index] = null;
                 }
+                else if(invenSlots[index].itemCnt < 0)
+                {
+                    invenSlots[index].itemCnt = 0;
+                }
+
+                RefreshInvenSlot(index);
             }
         }
     }
 
-    public void UsingItem(InvenItem item, int index)
+    private JArray CreateSaveData(List<InvenItem> invens)
     {
-        if (!IsValidIndex(index)) return;
+        var saveData = new JArray();
 
-        if (item.itemCnt >= 1)
+        foreach(var invenSlot in invenSlots)
         {
-            item.itemCnt--;
+            if (invenSlot != null)
+                saveData.Add(JObject.FromObject(invenSlot.ToSaveInvenItem()));
+            else
+                saveData.Add(null);
         }
-        else if (item.itemCnt <= 0) item.itemCnt = 0;
 
-        RefreshInvenSlot(index);
+        return saveData;
+    }
+
+    public void SaveInvenDataToFile(string fileName)
+    {
+        var root = new JObject();
+
+        root.Add("SaveInvenSlots", CreateSaveData(invenSlots));
+
+        // Json을 문자열로 변환
+        string jsonString = root.ToString();
+
+        // 파일 경로 설정
+        string path = Path.Combine(Application.persistentDataPath, fileName);
+
+        // 파일에 Json 문자열 저장
+        File.WriteAllText(path, jsonString);
+    }
+
+    public bool LoadFile(string fileName)
+    {
+        // 파일 경로 설정
+        string path = Path.Combine(Application.persistentDataPath, fileName);
+
+        // 파일 존재 확인
+        if (File.Exists(path))
+        {
+            // 파일에서 Json 문자열 읽기
+            string jsonString = File.ReadAllText(path);
+
+            // Json 문자열을 JArray로 변환
+            JObject root = JObject.Parse(jsonString);
+            JArray jsonArray = (JArray)root["SaveInvenSlots"];
+
+            // JArray에서 InvenItem의 리스트로 변환
+            for(int i = 0; i< jsonArray.Count; i++)
+            {
+                JObject itemData = jsonArray[i] as JObject;
+
+                if(itemData != null)
+                {
+                    InvenItem item = ScriptableObject.CreateInstance<InvenItem>();
+                    item.LoadFrom(itemData);
+                    invenSlots[i] = item;
+                }
+                else
+                {
+                    invenSlots[i] = null;
+                }
+            }
+
+            CallInvenSlot(invenSlots.Count);
+
+            return true;
+        }
+        else
+            return false;
     }
 
     // invenContent.transform.GetChild(index).GetComponent<InvenSlot>();

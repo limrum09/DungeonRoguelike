@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
+  m_Name: Weapon_OHS03_Sword
+  m_EditorClassIdentifier: 
+  itemCode: OHS03_Sword
+  weaponItem: {fileID: 7325771415998630784, guid: 949ce6572c25a5446b035cac76c74aa4, type: 3}
+  weaponItemSprite: {fileID: -698759673, guid: 8d65b3e958df9694383798a0b4da07a5, type: 3}
+  equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
+  itemOverlapping: 0
+  useOneHand: 1
+  leftWeapon: 0
+  weaponAnimator: {fileID: 9100000, guid: 404144ff63a285643bc7481d053110a3, type: 2}
+  itemHp: 50
+  itemDamage: 150
+  itemCriticalDamage: 100
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0

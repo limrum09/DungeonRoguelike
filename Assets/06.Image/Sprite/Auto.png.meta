@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -1548,14 +1548,14 @@ TextureImporter:
       "PrefabScreenshotHeads\uBCF5\uC0AC_48": 998016709
       "PrefabScreenshotHeads\uBCF5\uC0AC_56": -1574775452
       "PrefabScreenshotHeads\uBCF5\uC0AC_59": -508765239
-      "PrefabScreenshotHeads\uBCF5\uC0AC_2": -815563397
       "PrefabScreenshotHeads\uBCF5\uC0AC_1": -697989019
+      "PrefabScreenshotHeads\uBCF5\uC0AC_2": -815563397
       "PrefabScreenshotHeads\uBCF5\uC0AC_12": -777474701
       "PrefabScreenshotHeads\uBCF5\uC0AC_50": -468111163
       "PrefabScreenshotHeads\uBCF5\uC0AC_28": 1628890762
+      "PrefabScreenshotHeads\uBCF5\uC0AC_60": -1275036441
       "PrefabScreenshotHeads\uBCF5\uC0AC_52": -1096842033
       "PrefabScreenshotHeads\uBCF5\uC0AC_38": 680984143
-      "PrefabScreenshotHeads\uBCF5\uC0AC_60": -1275036441
       "PrefabScreenshotHeads\uBCF5\uC0AC_4": 604914491
       "PrefabScreenshotHeads\uBCF5\uC0AC_11": 618777330
       "PrefabScreenshotHeads\uBCF5\uC0AC_19": -1239217719

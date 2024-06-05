@@ -53,9 +53,9 @@ public class ShortKeyItem : MonoBehaviour
 
     public void RegisterItem(int index)
     {
-        int _index = index;
+        itemIndex = index;
 
-        item = InvenData.instance.invenSlots[_index];
+        item = InvenData.instance.invenSlots[itemIndex];
 
         if(item != null)
         {
@@ -82,7 +82,7 @@ public class ShortKeyItem : MonoBehaviour
 
     private void UseItem()
     {
-        InvenData.instance.UsingItem(item, itemIndex);
+        InvenData.instance.UsingInvenItem(itemIndex);
 
         itemCnt.text = item.itemCnt.ToString();
     }

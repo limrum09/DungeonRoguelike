@@ -39,24 +39,27 @@ public class PlayerInteractionTest : MonoBehaviour
         meshFilterWeaponL = weaponL.gameObject.GetComponent<MeshFilter>();
     }
 
-    public void WeaponChange(WeaponSelect weapon)
-    {
-        WeaponSelect newWeapon = weapon;
-        ItemRotation weaponRotation = newWeapon.ItemPrefab != null ? newWeapon.ItemPrefab.GetComponent<ItemRotation>() : null;
 
+
+    public void WeaponChange(WeaponItem weapon)
+    {
+        WeaponItem newWeapon = weapon;
+        ItemRotation weaponRotation = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<ItemRotation>() : null;
+
+        // weaponROneHand 값을 어디선가 초기화 해줘야한다. 게임 시작할 때 무기 가지고 있는지 확인작업 필요한 듯
         // Left Weapon
         if (newWeapon.LeftWeapon)
         {
             useWeaponL = true;
             WeaponL.SetActive(true);
 
-            if(weaponRotation != null)
+            if (weaponRotation != null)
             {
                 WeaponL.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY * -1.0f, weaponRotation.PlayerItemRotationZ + 180f);
             }
 
             // player don't select left weapon
-            if (!newWeapon.ItemPrefab)
+            if (!newWeapon.WeaponItemObject)
             {
                 useWeaponL = false;
                 // condition ? true : false
@@ -69,7 +72,7 @@ public class PlayerInteractionTest : MonoBehaviour
 
             animator.runtimeAnimatorController = weaponROneHand ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
 
-            if(!weaponROneHand)
+            if (!weaponROneHand)
             {
                 WeaponR.SetActive(false);
             }
@@ -81,12 +84,12 @@ public class PlayerInteractionTest : MonoBehaviour
             {
                 WeaponR.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY, weaponRotation.PlayerItemRotationZ);
             }
-            
+
 
             weaponR.SetActive(true);
             weaponROneHand = newWeapon.UseOndeHand;
 
-            tempSaveRightWeaponAnimatorController = newWeapon.ItemPrefab != null ? newWeapon.WeaponAnimator : defaultAnimatorController;
+            tempSaveRightWeaponAnimatorController = newWeapon.WeaponItemObject != null ? newWeapon.WeaponAnimator : defaultAnimatorController;
 
             animator.runtimeAnimatorController = tempSaveRightWeaponAnimatorController;
 
@@ -96,7 +99,7 @@ public class PlayerInteractionTest : MonoBehaviour
                 weaponL.SetActive(false);
             }
             // When player have left weapon
-            else if(!newWeapon.UseOndeHand)
+            else if (!newWeapon.UseOndeHand)
             {
                 // Select weapon is using two hands
                 useWeaponL = false;
@@ -105,17 +108,18 @@ public class PlayerInteractionTest : MonoBehaviour
             // Using one hand. Applying the left weapon's animator
             else if (newWeapon.UseOndeHand)
             {
-                animator.runtimeAnimatorController = newWeapon.ItemPrefab != null ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
+                animator.runtimeAnimatorController = newWeapon.WeaponItemObject != null ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
             }
         }
 
-        MeshFilter changeFilter = newWeapon.ItemPrefab != null ? newWeapon.ItemPrefab.GetComponent<MeshFilter>() : null;
+        MeshFilter changeFilter = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<MeshFilter>() : null;
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;
         currentWeaponFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
     }
-    public void ArmorChange(ArmorSelect armor)
+
+    public void ArmorChange(ArmorItem armor)
     {
-        ArmorSelect newArmor = armor;
+        ArmorItem newArmor = armor;
 
         bool onView;
         bool indexView;
@@ -131,7 +135,7 @@ public class PlayerInteractionTest : MonoBehaviour
             {
                 armorIndexOverLapping = newArmor.IndexOverlapping;
             }
-            else if(newArmor.IndexOverlapping > armorIndexOverLapping)
+            else if (newArmor.IndexOverlapping > armorIndexOverLapping)
             {
                 indexView = false;
             }
@@ -140,11 +144,11 @@ public class PlayerInteractionTest : MonoBehaviour
                 armorIndexOverLapping = 9999;
             }
 
-            if (newArmor.SubCateogy == items.SubCategory)
+            if (newArmor.SubCategory == items.SubCategory)
             {
                 onView = indexView;
 
-                MeshFilter changeFilter = newArmor.ItemPrefab != null ? newArmor.ItemPrefab.GetComponent<MeshFilter>() : null;
+                MeshFilter changeFilter = newArmor.ArmorItemObject != null ? newArmor.ArmorItemObject.GetComponent<MeshFilter>() : null;
 
                 if (changeFilter == null && newArmor.IndexOverlapping == armorIndexOverLapping)
                 {

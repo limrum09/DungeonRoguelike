@@ -96,10 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemHp: 10
-  itemDamage: 10
-  itemCriticalDamage: 10
-  itemSheild: 10
-  itemCriticalPer: 10
+  ItemCode: 
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 50
+  itemCriticalPer: 20
   itemSpeed: 10
-  itemCoolTime: 10
+  itemCoolTime: 0

@@ -20,7 +20,7 @@ public class ItemStatus : MonoBehaviour
     [SerializeField]
     private float itemCoolTime;
     [SerializeField]
-    private List<ItemInfoInItemStatus> weaponItems;
+    private List<WeaponItemInfoInItemStatus> weaponItems;
     [SerializeField]
     private List<ArmorItemInfoInItemStatus> armorItems;
     [SerializeField]
@@ -76,100 +76,102 @@ public class ItemStatus : MonoBehaviour
         GameManager.instance.ChangePlayerStatus();
     }
 
+    // 아이템이 저장 되어 있을 시 가져오기
     public void LoadItemStatus()
     {
-        Debug.Log("Load Item Status");
-        foreach(var weapon in weaponItems)
+        /*foreach(var weapon in weaponItems)
         {
-            Debug.Log("Searching Weapons");
             if (weapon.SelectItemPart.WeaponItem != null)
             {
-                Debug.Log("Change Weapon");
                 ChangeWaeponItem(weapon.SelectItemPart.WeaponItem);
             }
-        }
-
-        foreach(var armor in armorItems)
-        {
-            if(armor.SelectItemPart.ArmorItem != null)
-            {
-
-                ChangeArmorItem(armor.SelectItemPart.ArmorItem);
-            }
-        }
+        }*/
 
         SetItemStatus();
     }
 
-    public void ChangeWaeponItem(WeaponSelect weapon)
+    // 무기 변경 시, 무기 저장 및 스탯 변경
+    public void ChangeWeaponItem(WeaponItem weapon)
     {
-        WeaponSelect newWeapon = weapon;
-        ItemPartStatus itemStatus = null;
+        WeaponItem newWeapon = weapon;
 
         interactionTest.WeaponChange(newWeapon);
 
-        if (newWeapon.ItemPrefab)
+        // 프리팹 있는지 확인
+        /*f (!newWeapon.WeaponItemObject)
         {
-            itemStatus = newWeapon.ItemPrefab.GetComponent<ItemPartStatus>();
-        }
-        else
-        {
-            Debug.Log("This item have not 'ItemPartStatus'.");
-        }
+            SetItemStatus();
+            return;
+        }*/
 
+        // 플레이어의 왼손 무기(방패, 한손검)가 아닐 경우
         if (!newWeapon.LeftWeapon)
         {
-            weaponItems[1].SelectItemPart.ChangeItem(newWeapon, itemStatus);
+            weaponItems[1].weaponItem = newWeapon;
+            // 두손 이상 사용하는 무기
             if (!newWeapon.UseOndeHand)
-                weaponItems[0].SelectItemPart.ChangeItem(newWeapon, itemStatus);
+            {
+                weaponItems[0].weaponItem = null;
+            }
         }
         else
         {
-            weaponItems[0].SelectItemPart.ChangeItem(newWeapon, itemStatus);
+            weaponItems[0].weaponItem = newWeapon;
         }
 
-        Debug.Log("Change Weapon Item");
         SetItemStatus();
     }
 
-    public void ChangeArmorItem(ArmorSelect item)
+    // 방어구 변경 시, 방어구 저장 및 스탯 변경
+    public void ChangeArmorItem(ArmorItem item)
     {
-        ArmorSelect newArmor = item;
-        ItemPartStatus itemStatus = null;
+        ArmorItem newArmor = item;
 
         interactionTest.ArmorChange(newArmor);
 
-        if (newArmor.ItemPrefab)
+        if (!newArmor.ArmorItemObject)
         {
-            itemStatus = newArmor.ItemPrefab.GetComponent<ItemPartStatus>();
-        }
-        else
-        {
-            Debug.Log("This item have not 'ItemPartStatus'.");
+            SetItemStatus();
+            Debug.Log("This item have not object(prefab).");
+            return;
         }
 
-        foreach(ArmorItemInfoInItemStatus changeItemInfo in armorItems)
+        foreach (ArmorItemInfoInItemStatus changeItemInfo in armorItems)
         {
-            if(changeItemInfo.ItemCategory == newArmor.EquipmentCategory && changeItemInfo.SubCategory == newArmor.SubCateogy)
+            // 전체 카테고리와 서브 카테고리를 비교하여 확인
+            if (changeItemInfo.ItemCategory == newArmor.EquipmentCategory && changeItemInfo.SubCategory == newArmor.SubCategory)
             {
-                if (itemStatus != null) changeItemInfo.SelectItemPart.ChangeItem(newArmor, itemStatus);
+                changeItemInfo.armorItem = newArmor;
 
                 SetItemStatus();
             }
         }
     }
 
+    // 호출 시, 전체 아이템 스탯 정정
     private void SetItemStatus()
     {
         ResetItemStatus();
         
         foreach (ArmorItemInfoInItemStatus item in armorItems)
         {
-            if(item.SelectItemPart.StatusItemPart != null)
+/*            if(item.SelectItemPart.StatusItemPart != null)
             {
-                // Debug.Log("Item Name : " + item);
-
                 ItemPartStatus changeItem = item.SelectItemPart.StatusItemPart;
+
+                itemHp += changeItem.ItemHP;
+                itemDamage += changeItem.ItemDamage;
+                itemCriticalDamage += changeItem.ItemCriticalDamage;
+                itemSheild += changeItem.ItemSheild;
+                itemCriticalPer += changeItem.ItemCriticalPer;
+                itemSpeed += changeItem.ItemSpeed;
+                itemCoolTime += changeItem.ItemCoolTime;
+            }*/
+
+            // Item Database에서 알맞은 itemCode를 찾아서 스텟을 증가시키기
+            if(item.armorItem != null)
+            {
+                ArmorItem changeItem = item.armorItem;
 
                 itemHp += changeItem.ItemHP;
                 itemDamage += changeItem.ItemDamage;
@@ -181,11 +183,11 @@ public class ItemStatus : MonoBehaviour
             }
         }
 
-        foreach(ItemInfoInItemStatus item in weaponItems)
+        foreach(WeaponItemInfoInItemStatus item in weaponItems)
         {
-            if(item.SelectItemPart.StatusItemPart != null)
+            if(item.weaponItem != null)
             {
-                ItemPartStatus changeItem = item.SelectItemPart.StatusItemPart;
+                WeaponItem changeItem = item.weaponItem;
 
                 itemHp += changeItem.ItemHP;
                 itemDamage += changeItem.ItemDamage;
@@ -201,6 +203,7 @@ public class ItemStatus : MonoBehaviour
         GameManager.instance.ChangeHPBar();
     }
 
+    // 스탯 초기화
     private void ResetItemStatus()
     {
         itemHp = 0;

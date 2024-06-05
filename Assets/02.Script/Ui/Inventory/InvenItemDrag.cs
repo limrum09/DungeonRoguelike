@@ -8,8 +8,11 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 {
     private bool isDrag;
 
+    [SerializeField]
     private GameObject itemIcon;
+    [SerializeField]
     private GameObject icon;
+    [SerializeField]
     private Image iconImage;
 
     int dragStartIndex;
@@ -29,9 +32,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerDown(PointerEventData eventData)
     {
         // When player clicked InvenSlot, save the InvenSlot in the mouse pointer position to the GameObject
-        GameObject clickUI = eventData.pointerEnter;
-
-        
+        var clickUI = eventData.pointerEnter;
 
         // if clickUI has InvenSlot componenet, clickInven has clickUI's InvenSlot
         if (clickUI != null && clickUI.GetComponent<InvenSlot>())
@@ -49,7 +50,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             dragStartIndex = FindIndex(clickInven);
 
             DoubleClick();
-            if (isDoubleClick && clickInven.itemType == ITEMTYPE.POSTION)
+            if (isDoubleClick && clickInven.itemType == ITEMTYPE.POTION)
             {
                 InvenData.instance.UsingInvenItem(dragStartIndex);
             }
@@ -80,7 +81,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnEndDrag(PointerEventData eventData)
     {
         
-        GameObject dragEndUI = eventData.pointerEnter;
+        var dragEndUI = eventData.pointerEnter;
 
         // Item move to dragEndUI's position
         InvenSlot dragEndInven;
@@ -102,7 +103,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         // input item for shortkey location
         ShortKeyItem shortKey;
-        if (dragEndUI.GetComponent<ShortKeyItem>() && clickInven.itemType == ITEMTYPE.POSTION)
+        if (dragEndUI.GetComponent<ShortKeyItem>() && clickInven.itemType == ITEMTYPE.POTION)
         {
             shortKey = dragEndUI.GetComponent<ShortKeyItem>();
         }
@@ -113,7 +114,6 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         if(shortKey != null)
         {
-            shortKey.SetItemIndex(dragStartIndex);
             shortKey.RegisterItem(dragStartIndex);
         }
     }
@@ -145,9 +145,6 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         clickTimer = -1.0f;
         isDoubleClick = false;
-        itemIcon = GameObject.FindGameObjectWithTag("ItemIcon");
-        icon = itemIcon.transform.GetChild(0).gameObject;
-        iconImage = icon.GetComponent<Image>();
         isDrag = false;
     }
 }
