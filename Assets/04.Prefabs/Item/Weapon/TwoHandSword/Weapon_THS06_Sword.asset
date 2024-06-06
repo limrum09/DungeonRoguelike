@@ -19,10 +19,10 @@ MonoBehaviour:
   useOneHand: 0
   leftWeapon: 0
   weaponAnimator: {fileID: 9100000, guid: 7036c7c7403a3444abd50831be479bcd, type: 2}
-  itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 0
-  itemCriticalPer: 0
+  itemHp: 400
+  itemDamage: 800
+  itemCriticalDamage: 400
+  itemSheild: 300
+  itemCriticalPer: 25
   itemSpeed: 0
   itemCoolTime: 0

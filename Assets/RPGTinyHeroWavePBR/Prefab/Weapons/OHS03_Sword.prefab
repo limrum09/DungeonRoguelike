@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7989824334958907706}
   - component: {fileID: 6435174873474031263}
   - component: {fileID: 9127285965799336533}
-  - component: {fileID: 1082605716005867903}
   - component: {fileID: -5936423365165877721}
   m_Layer: 0
   m_Name: OHS03_Sword
@@ -85,25 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1082605716005867903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7325771415998630784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemHp: 0
-  itemDamage: 150
-  itemCriticalDamage: 100
-  itemSheild: 0
-  itemCriticalPer: 20
-  itemSpeed: 30
-  itemCoolTime: 0
 --- !u!114 &-5936423365165877721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,4 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72433ac3bf147149bfc4e9aa78a3d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerItemRotation: {x: 0, y: 0, z: 0}
+  playerItemRotationX: 0
+  playerItemRotationY: 0
+  playerItemRotationZ: 0

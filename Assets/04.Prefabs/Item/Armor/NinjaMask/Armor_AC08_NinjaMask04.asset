@@ -22,7 +22,7 @@ MonoBehaviour:
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0
-  itemSheild: 0
-  itemCriticalPer: 0
+  itemSheild: 150
+  itemCriticalPer: 20
   itemSpeed: 0
   itemCoolTime: 0

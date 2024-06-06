@@ -64,7 +64,7 @@ public class InvenSlot : MonoBehaviour
     public void ViewAndHideInvenSlot(bool tf)
     {
         Color color = itemImage.GetComponent<Image>().color;
-        
+
         // tf == true, invenslot has item
         if (tf)
         {
@@ -82,16 +82,10 @@ public class InvenSlot : MonoBehaviour
             isView = false;
         }
 
-        itemImage.GetComponent<Image>().color = color;
-
-        if (isCntView)
-        {
-            itemCntText.gameObject.SetActive(true);
-            itemCntText.text = itemCnt.ToString();
-        }
-            
-        else
+        if (!isCntView)
             itemCntText.gameObject.SetActive(false);
+
+        itemImage.GetComponent<Image>().color = color;
     }
 
     public void RefreshSlot()

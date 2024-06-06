@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 258833992094966187}
   - component: {fileID: 3762840715413089806}
   - component: {fileID: 1431226556386253508}
-  - component: {fileID: -1802796155546313080}
   m_Layer: 0
   m_Name: Head04_Red
   m_TagString: Head
@@ -84,23 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-1802796155546313080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638456201653107473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemCode: 
-  itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 0
-  itemCriticalPer: 0
-  itemSpeed: 0
-  itemCoolTime: 0

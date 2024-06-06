@@ -36,15 +36,32 @@ public class InvenData : MonoBehaviour
 
     private void Start()
     {
-        if (!LoadFile("invenFile"))
+        /*if (!LoadFile("invenFile"))
         {
             Initialized(invenButton, invenContent);
+        }*/
+
+        string path = Path.Combine(Application.persistentDataPath, "SaveFile");
+
+        if(!File.Exists(path))
+        {
+            Debug.Log("First");
+
+            // No Save Inven Data, If you have save data, it need to be modify.
+            invenCount = invenSlots.Count;
         }
+        else
+        {
+            invenCount = SaveDatabase.instance.invenSaveDatas.inventoryCount;
+            Debug.Log("Inven Count : " + invenCount);
+        }
+
+        Initialized(invenButton, invenContent);
     }
 
     private void OnApplicationQuit()
     {
-        SaveInvenDataToFile("invenFile");
+        // SaveInvenDataToFile("invenFile");
     }
 
     public void Initialized(InventoryButton button, GameObject content)
@@ -57,8 +74,7 @@ public class InvenData : MonoBehaviour
 
     private void InitializeInventory()
     {
-        // No Save Inven Data, If you have save data, it need to be modify.
-        invenCount = invenSlots.Count;
+        
 
         int contentSlotCount = invenContent.transform.childCount;
         if (contentSlotCount > invenCount)
@@ -70,15 +86,26 @@ public class InvenData : MonoBehaviour
             }
             invenCount = contentSlotCount;
         }
-        else if (contentSlotCount == invenCount)
-        {
-            invenCount = contentSlotCount;
-        }
         else if (contentSlotCount < invenCount)
         {
             for (int i = contentSlotCount; i < invenCount; i++)
             {
                 InstantiateInvenSlot();
+            }
+        }
+
+        if(invenCount > invenSlots.Count)
+        {
+            for(int i = invenSlots.Count; i < invenCount; i++)
+            {
+                invenSlots.Add(null);
+            }
+        }
+        else if(invenCount < invenSlots.Count)
+        {
+            for(int i = invenCount; i < invenSlots.Count; i++)
+            {
+                invenSlots.RemoveAt(i);
             }
         }
 
@@ -182,19 +209,19 @@ public class InvenData : MonoBehaviour
         {
             InvenSlot invenSlot = GetInvenSlotComponent(i);
 
-            if (invenSlots[i] != null && invenSlots[i].itemCnt != 0)
+            if (invenSlots[i] == null)
+            {
+                invenSlot.RemoveSlot();
+            }
+            else if(invenSlots[i] != null && invenSlots[i].itemCnt != 0)
             {
                 invenSlot.SetSlotItem(invenSlots[i]);
                 invenSlot.ViewAndHideInvenSlot(true);
             }
-            else
-            {
-                invenSlot.RemoveSlot();
-            }
         }
     }
 
-    private void RefreshInvenSlot(int index)
+    public void RefreshInvenSlot(int index)
     {
         InvenSlot invenSlot = GetInvenSlotComponent(index);
 
@@ -252,77 +279,6 @@ public class InvenData : MonoBehaviour
                 RefreshInvenSlot(index);
             }
         }
-    }
-
-    private JArray CreateSaveData(List<InvenItem> invens)
-    {
-        var saveData = new JArray();
-
-        foreach(var invenSlot in invenSlots)
-        {
-            if (invenSlot != null)
-                saveData.Add(JObject.FromObject(invenSlot.ToSaveInvenItem()));
-            else
-                saveData.Add(null);
-        }
-
-        return saveData;
-    }
-
-    public void SaveInvenDataToFile(string fileName)
-    {
-        var root = new JObject();
-
-        root.Add("SaveInvenSlots", CreateSaveData(invenSlots));
-
-        // Json을 문자열로 변환
-        string jsonString = root.ToString();
-
-        // 파일 경로 설정
-        string path = Path.Combine(Application.persistentDataPath, fileName);
-
-        // 파일에 Json 문자열 저장
-        File.WriteAllText(path, jsonString);
-    }
-
-    public bool LoadFile(string fileName)
-    {
-        // 파일 경로 설정
-        string path = Path.Combine(Application.persistentDataPath, fileName);
-
-        // 파일 존재 확인
-        if (File.Exists(path))
-        {
-            // 파일에서 Json 문자열 읽기
-            string jsonString = File.ReadAllText(path);
-
-            // Json 문자열을 JArray로 변환
-            JObject root = JObject.Parse(jsonString);
-            JArray jsonArray = (JArray)root["SaveInvenSlots"];
-
-            // JArray에서 InvenItem의 리스트로 변환
-            for(int i = 0; i< jsonArray.Count; i++)
-            {
-                JObject itemData = jsonArray[i] as JObject;
-
-                if(itemData != null)
-                {
-                    InvenItem item = ScriptableObject.CreateInstance<InvenItem>();
-                    item.LoadFrom(itemData);
-                    invenSlots[i] = item;
-                }
-                else
-                {
-                    invenSlots[i] = null;
-                }
-            }
-
-            CallInvenSlot(invenSlots.Count);
-
-            return true;
-        }
-        else
-            return false;
     }
 
     // invenContent.transform.GetChild(index).GetComponent<InvenSlot>();

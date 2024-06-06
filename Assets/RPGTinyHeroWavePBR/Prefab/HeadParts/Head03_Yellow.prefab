@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8978953292447460082}
   - component: {fileID: 5419094683482105175}
   - component: {fileID: 7840919434523333021}
-  - component: {fileID: -115971985453686371}
   m_Layer: 0
   m_Name: Head03_Yellow
   m_TagString: Head
@@ -84,23 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-115971985453686371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8633531185577324616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemCode: 
-  itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 0
-  itemCriticalPer: 0
-  itemSpeed: 0
-  itemCoolTime: 0

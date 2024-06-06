@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
-  m_Name: HPSmallPotion
+  m_Name: MP_Middle_Potion
   m_EditorClassIdentifier: 
   itemtype: 1
-  itemCode: P001003
-  itemName: HPSmallPotion
-  itemInfo: "\uC791\uC740 \uCCB4\uB825 \uD3EC\uC158\uC774\uB2E4."
-  itemImage: {fileID: 453375901, guid: c26ccf27369ae93439f8950b97590f83, type: 3}
+  itemCode: P002002
+  itemName: MP_Middle_Potion
+  itemInfo: "\uC911\uAE09 \uB9C8\uB825 \uD68C\uBCF5 \uD45C\uC158\uC774\uB2E4."
+  itemImage: {fileID: -1984101795, guid: a1bce08b9322bdb4591d0d9257ec02a5, type: 3}
   itemCnt: 0
-  amount: 3
+  amount: 1
   isMax: 0
   hpHeal: 0
-  mpHeal: 0
+  mpHeal: 10000
   increaseDamage: 0
   increaseSpeed: 0
   durationTime: 0

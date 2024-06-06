@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7999022074942841834
 MonoBehaviour:
@@ -74,7 +74,7 @@ MonoBehaviour:
   itemSpeed: 0
   itemCoolTime: 0
   weaponItems:
-  - {fileID: 11400000, guid: 9c0b046e7572b4244b6e8bb8bdc25a47, type: 2}
+  - {fileID: 11400000, guid: e5da72e29d35a2440adab6a7b7162926, type: 2}
   - {fileID: 11400000, guid: ae41c5f20a7cd55429290271ce51a05c, type: 2}
   armorItems:
   - {fileID: 11400000, guid: 60c258c5fb8aed04fb7cd4070d9c02cb, type: 2}
@@ -102,7 +102,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: eb832400e7a5028489cda77fce95bda0, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   invenButton: {fileID: 0}

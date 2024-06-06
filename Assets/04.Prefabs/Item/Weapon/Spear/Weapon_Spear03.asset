@@ -16,14 +16,13 @@ MonoBehaviour:
   weaponItem: {fileID: 1689198140833441989, guid: 60ec2cc1a69bbc14d8728ead33e23f59, type: 3}
   weaponItemSprite: {fileID: 1366352945, guid: 0ab9775a8d9e25749ac79cef9413abc9, type: 3}
   equipmentCategory: {fileID: 11400000, guid: 155110a73134fde45ae3f2c0c1e87ead, type: 2}
-  itemOverlapping: 0
   useOneHand: 0
   leftWeapon: 0
   weaponAnimator: {fileID: 9100000, guid: 62f9ce182e8cdf547b48e85e6eb8140b, type: 2}
   itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
+  itemDamage: 600
+  itemCriticalDamage: 300
   itemSheild: 0
-  itemCriticalPer: 0
+  itemCriticalPer: 20
   itemSpeed: 0
   itemCoolTime: 0
