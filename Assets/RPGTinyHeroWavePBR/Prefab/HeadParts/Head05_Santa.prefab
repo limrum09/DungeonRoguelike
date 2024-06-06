@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4353211341275062155}
   - component: {fileID: 848485649020997678}
   - component: {fileID: 3180274136206877924}
-  - component: {fileID: -3077235534908051363}
   m_Layer: 0
   m_Name: Head05_Santa
   m_TagString: Head
@@ -84,23 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3077235534908051363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3972850014804673841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemCode: 
-  itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 0
-  itemCriticalPer: 0
-  itemSpeed: 0
-  itemCoolTime: 0

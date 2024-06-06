@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8128576405859260181}
   - component: {fileID: 5143492003653474480}
   - component: {fileID: 6955156446866779258}
-  - component: {fileID: 2311089769421834311}
   m_Layer: 0
   m_Name: Hat01
   m_TagString: Hat
@@ -84,23 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2311089769421834311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8900609848940203439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemCode: 
-  itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 50
-  itemCriticalPer: 20
-  itemSpeed: 10
-  itemCoolTime: 0

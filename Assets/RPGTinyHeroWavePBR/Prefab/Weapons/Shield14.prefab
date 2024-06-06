@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7932449672008804745}
   - component: {fileID: 6465589511839589932}
   - component: {fileID: 9105878423198257894}
-  - component: {fileID: -3973944897538730720}
   - component: {fileID: -4615582845496058383}
   m_Layer: 0
   m_Name: Shield14
@@ -85,25 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3973944897538730720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7304390400592048947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 0
-  itemCriticalPer: 0
-  itemSpeed: 0
-  itemCoolTime: 0
 --- !u!114 &-4615582845496058383
 MonoBehaviour:
   m_ObjectHideFlags: 0

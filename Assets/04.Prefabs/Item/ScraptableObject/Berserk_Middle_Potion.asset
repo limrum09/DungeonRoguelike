@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
-  m_Name: MPSmallPotion
+  m_Name: Berserk_Middle_Potion
   m_EditorClassIdentifier: 
   itemtype: 1
-  itemCode: P002003
-  itemName: MPSmallPotion
-  itemInfo: "\uC791\uC740 \uB9C8\uB825 \uD68C\uBCF5 \uD45C\uC158\uC774\uB2E4."
-  itemImage: {fileID: 1575890033, guid: c26ccf27369ae93439f8950b97590f83, type: 3}
+  itemCode: P003002
+  itemName: Berserk_Middle_Potion
+  itemInfo: "\uC911\uAE09 \uACF5\uACA9\uB825 \uC99D\uAC00 \uD3EC\uC158\uC774\uB2E4."
+  itemImage: {fileID: 1401425359, guid: efe9e2e989b5ee740a0272c07f3db41b, type: 3}
   itemCnt: 0
-  amount: 1
+  amount: 99
   isMax: 0
   hpHeal: 0
-  mpHeal: 1000
-  increaseDamage: 0
+  mpHeal: 0
+  increaseDamage: 5000
   increaseSpeed: 0
-  durationTime: 0
+  durationTime: 180

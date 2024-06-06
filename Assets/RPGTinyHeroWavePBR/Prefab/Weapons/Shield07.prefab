@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 448107314134639820}
   - component: {fileID: 3573646638997105513}
   - component: {fileID: 1620402954167132067}
-  - component: {fileID: 5480344309567755916}
   - component: {fileID: -1027957479652936192}
   m_Layer: 0
   m_Name: Shield07
@@ -85,25 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5480344309567755916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971703945100508790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemHp: 400
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 500
-  itemCriticalPer: 0
-  itemSpeed: 0
-  itemCoolTime: 0
 --- !u!114 &-1027957479652936192
 MonoBehaviour:
   m_ObjectHideFlags: 0

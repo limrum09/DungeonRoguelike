@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(fileName ="ArmorItemDatabase", menuName ="GameManager/Database/ArmorItemDatabase")]
 public class ArmorItemDatabase : ScriptableObject
@@ -10,6 +11,8 @@ public class ArmorItemDatabase : ScriptableObject
     private List<ArmorItem> armorItems;
 
     public IReadOnlyList<ArmorItem> ArmorItems => armorItems;
+
+    public ArmorItem FindItemBy(string armorItemCodeName) => armorItems.FirstOrDefault(x => x.ItemCode == armorItemCodeName);
 
     [ContextMenu("FindArmorItem")]
     private void FindArmorItem()

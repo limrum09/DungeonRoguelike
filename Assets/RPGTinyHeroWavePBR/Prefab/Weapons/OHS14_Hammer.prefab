@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2861734042863052701}
   - component: {fileID: 1160011595488798776}
   - component: {fileID: 4034599848125750514}
-  - component: {fileID: 1899301804630572855}
   - component: {fileID: -2627080081211157250}
   m_Layer: 0
   m_Name: OHS14_Hammer
@@ -85,25 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1899301804630572855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3241812588950912295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eab77e476f9bf43bf7498ba12dcae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemHp: 0
-  itemDamage: 150
-  itemCriticalDamage: 1200
-  itemSheild: 0
-  itemCriticalPer: 0
-  itemSpeed: 0
-  itemCoolTime: 0
 --- !u!114 &-2627080081211157250
 MonoBehaviour:
   m_ObjectHideFlags: 0

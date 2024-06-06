@@ -19,10 +19,10 @@ MonoBehaviour:
   subCategory: NinjaMask
   itemOverlapping: 0
   indexOverlapping: 0
-  itemHp: 0
+  itemHp: 200
   itemDamage: 0
-  itemCriticalDamage: 0
+  itemCriticalDamage: 100
   itemSheild: 0
-  itemCriticalPer: 0
+  itemCriticalPer: 25
   itemSpeed: 0
   itemCoolTime: 0

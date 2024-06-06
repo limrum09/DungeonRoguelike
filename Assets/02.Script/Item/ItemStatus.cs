@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ItemStatus : MonoBehaviour
 {
+    [Header("Items Total Status")]
     [SerializeField]
     private int itemHp;
     [SerializeField]
@@ -19,12 +21,14 @@ public class ItemStatus : MonoBehaviour
     private float itemSpeed;
     [SerializeField]
     private float itemCoolTime;
+
     [SerializeField]
     private List<WeaponItemInfoInItemStatus> weaponItems;
     [SerializeField]
     private List<ArmorItemInfoInItemStatus> armorItems;
     [SerializeField]
     private PlayerInteractionTest interactionTest;
+
 
     public int ItemHP { get { return itemHp; } set { itemHp = value; } }
     public int ItemDamage { get { return itemDamage; } set { itemDamage = value; } }
@@ -33,6 +37,10 @@ public class ItemStatus : MonoBehaviour
     public float ItemCriticalPer { get { return itemCriticalPer; } set { itemCriticalPer = value; } }
     public float ItemSpeed { get { return itemSpeed; } set { itemSpeed = value; } }
     public float ItemCoolTime { get { return itemCoolTime; } set { itemCoolTime = value; } }
+
+
+    public List<WeaponItemInfoInItemStatus> WeaponItems => weaponItems;
+    public List<ArmorItemInfoInItemStatus> ArmorItems => armorItems;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,14 +62,20 @@ public class ItemStatus : MonoBehaviour
         }
     }
 
-        public void InteractionTest(PlayerInteractionTest test)
+    public void InteractionTest(PlayerInteractionTest test)
     {
         this.interactionTest = test;
     }
 
     private void Start()
     {
-        LoadItemStatus();
+        string path = Path.Combine(Application.persistentDataPath, "SaveFile");
+
+        if (!File.Exists(path))
+        {
+         
+            // Have not Load File
+        }
 
         GameManager.instance.ChangeExpBar();
     }
@@ -74,20 +88,6 @@ public class ItemStatus : MonoBehaviour
     public void PlayerLostItemStatus()
     {
         GameManager.instance.ChangePlayerStatus();
-    }
-
-    // 아이템이 저장 되어 있을 시 가져오기
-    public void LoadItemStatus()
-    {
-        /*foreach(var weapon in weaponItems)
-        {
-            if (weapon.SelectItemPart.WeaponItem != null)
-            {
-                ChangeWaeponItem(weapon.SelectItemPart.WeaponItem);
-            }
-        }*/
-
-        SetItemStatus();
     }
 
     // 무기 변경 시, 무기 저장 및 스탯 변경
@@ -107,18 +107,19 @@ public class ItemStatus : MonoBehaviour
         // 플레이어의 왼손 무기(방패, 한손검)가 아닐 경우
         if (!newWeapon.LeftWeapon)
         {
-            weaponItems[1].weaponItem = newWeapon;
+            weaponItems[0].weaponItem = newWeapon;
             // 두손 이상 사용하는 무기
             if (!newWeapon.UseOndeHand)
             {
-                weaponItems[0].weaponItem = null;
+                weaponItems[1].weaponItem = null;
             }
         }
         else
         {
-            weaponItems[0].weaponItem = newWeapon;
+            weaponItems[1].weaponItem = newWeapon;
         }
 
+        Debug.Log("Change Weapon Item : " + newWeapon);
         SetItemStatus();
     }
 
@@ -155,19 +156,6 @@ public class ItemStatus : MonoBehaviour
         
         foreach (ArmorItemInfoInItemStatus item in armorItems)
         {
-/*            if(item.SelectItemPart.StatusItemPart != null)
-            {
-                ItemPartStatus changeItem = item.SelectItemPart.StatusItemPart;
-
-                itemHp += changeItem.ItemHP;
-                itemDamage += changeItem.ItemDamage;
-                itemCriticalDamage += changeItem.ItemCriticalDamage;
-                itemSheild += changeItem.ItemSheild;
-                itemCriticalPer += changeItem.ItemCriticalPer;
-                itemSpeed += changeItem.ItemSpeed;
-                itemCoolTime += changeItem.ItemCoolTime;
-            }*/
-
             // Item Database에서 알맞은 itemCode를 찾아서 스텟을 증가시키기
             if(item.armorItem != null)
             {
