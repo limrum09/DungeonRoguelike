@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         str = 5;
         dex = 5;
         luk = 5;
+        bonusState = 0;
 
         isStart = true;
     }
@@ -70,9 +71,24 @@ public class GameManager : MonoBehaviour
         // ChangePlayerStatus();
     }
 
+    public void InitializeGameManager()
+    {
+        level = 1;
+        health = 5;
+        str = 5;
+        dex = 5;
+        luk = 5;
+        bonusState = 0;
+
+        isStart = true;
+
+        ChangePlayerStatus();
+        ChangeExpBar();
+    }
+
     public void ChangeCurrentExp()
     {
-        statusUI.SetStatusUIText();
+        ChangeExpBar();
     }
 
     public void LevelUP()
@@ -80,6 +96,9 @@ public class GameManager : MonoBehaviour
         level++;
         PlayerStatus.instance.Level++;
         bonusState += 5;
+
+        PlayerStatus.instance.CurrentHP = PlayerStatus.instance.MaxHP;
+
         statusUI.SetStatusUIText();
         statusUI.ViewAndHideStateButton();
     }
@@ -103,21 +122,24 @@ public class GameManager : MonoBehaviour
             player.CurrentHP = player.MaxHP;
         }
 
+        if (player.CurrentHP >= player.MaxHP)
+            player.CurrentHP = player.MaxHP;
+
+        ChangeHPBar();
+    }
+
+    public void PlayerWeaponChange(WeaponItem item) => itemStatus.ChangeWeaponItem(item);
+    public void PlayerArmorChange(ArmorItem item) => itemStatus.ChangeArmorItem(item);
+    public void ChangeHPBar()
+    {
+        UIAndSceneManager.instance.ChangeHPBar();
         statusUI.SetStatusUIText();
     }
-
-    public void PlayerWeaponChange(WeaponItem item)
+    public void ChangeExpBar()
     {
-        itemStatus.ChangeWeaponItem(item);
+        UIAndSceneManager.instance.ChangeEXPBar();
+        statusUI.SetStatusUIText();
     }
-    public void PlayerArmorChange(ArmorItem item)
-    {
-        itemStatus.ChangeArmorItem(item);
-    }
-
-    public void ChangeHPBar() => UIAndSceneManager.instance.ChangeHPBar();
-
-    public void ChangeExpBar() => UIAndSceneManager.instance.ChangeEXPBar();
     #region OnSceneLoad
     public void GetStatusUI(StatusUIManager UI)
     {

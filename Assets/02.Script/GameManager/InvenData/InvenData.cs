@@ -42,26 +42,27 @@ public class InvenData : MonoBehaviour
         }*/
 
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
-
+        
+        // 처음 시작
         if(!File.Exists(path))
         {
             Debug.Log("First");
-
-            // No Save Inven Data, If you have save data, it need to be modify.
+            Initialized(InvenButton, invenContent);
             invenCount = invenSlots.Count;
         }
-        else
-        {
-            invenCount = SaveDatabase.instance.invenSaveDatas.inventoryCount;
-            Debug.Log("Inven Count : " + invenCount);
-        }
-
-        Initialized(invenButton, invenContent);
     }
 
     private void OnApplicationQuit()
     {
         // SaveInvenDataToFile("invenFile");
+    }
+
+    // SaveData가 있을 시, SaveDatabase.cs에서 호출
+    public void Initialzed(int inventoryCount)
+    {
+        invenCount = inventoryCount;
+
+        Initialized(invenButton, invenContent);
     }
 
     public void Initialized(InventoryButton button, GameObject content)

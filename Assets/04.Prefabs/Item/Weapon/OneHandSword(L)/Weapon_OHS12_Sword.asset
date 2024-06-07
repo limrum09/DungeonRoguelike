@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS12_Sword
   m_EditorClassIdentifier: 
-  itemCode: OHS12_Sword
+  itemCode: OHS12_Sword_Left
   weaponItem: {fileID: 2166713526128872012, guid: 0837e0393543c044884ee117532f6ada, type: 3}
   weaponItemSprite: {fileID: 428107918, guid: 8d65b3e958df9694383798a0b4da07a5, type: 3}
   equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
