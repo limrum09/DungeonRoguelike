@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS13_Axe
   m_EditorClassIdentifier: 
-  itemCode: OHS13_Axe
+  itemCode: OHS13_Axe_Right
   weaponItem: {fileID: 841242329023219168, guid: c4ac131e534416c4aafd651dc39c2945, type: 3}
   weaponItemSprite: {fileID: 1536186985, guid: 8d65b3e958df9694383798a0b4da07a5, type: 3}
   equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}

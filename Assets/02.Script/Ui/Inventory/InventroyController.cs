@@ -9,6 +9,6 @@ public class InventroyController : MonoBehaviour
 
     private void Start()
     {
-        InvenData.instance.Initialized(invenButton, invenButton.Content);
+        // InvenData.instance.Initialized(invenButton, invenButton.Content);
     }
 }

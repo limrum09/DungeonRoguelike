@@ -80,29 +80,13 @@ public class ItemStatus : MonoBehaviour
         GameManager.instance.ChangeExpBar();
     }
 
-    public void PlayerAddItemStatus()
-    {
-        GameManager.instance.ChangePlayerStatus();
-    }
-
-    public void PlayerLostItemStatus()
-    {
-        GameManager.instance.ChangePlayerStatus();
-    }
-
     // 무기 변경 시, 무기 저장 및 스탯 변경
     public void ChangeWeaponItem(WeaponItem weapon)
     {
         WeaponItem newWeapon = weapon;
 
+        // 새로 가져온 아이템을 player가 장착하기
         interactionTest.WeaponChange(newWeapon);
-
-        // 프리팹 있는지 확인
-        /*f (!newWeapon.WeaponItemObject)
-        {
-            SetItemStatus();
-            return;
-        }*/
 
         // 플레이어의 왼손 무기(방패, 한손검)가 아닐 경우
         if (!newWeapon.LeftWeapon)
@@ -119,7 +103,6 @@ public class ItemStatus : MonoBehaviour
             weaponItems[1].weaponItem = newWeapon;
         }
 
-        Debug.Log("Change Weapon Item : " + newWeapon);
         SetItemStatus();
     }
 
@@ -128,6 +111,7 @@ public class ItemStatus : MonoBehaviour
     {
         ArmorItem newArmor = item;
 
+        // 새로 가져온 Item을 플레이어가 착용하기
         interactionTest.ArmorChange(newArmor);
 
         if (!newArmor.ArmorItemObject)
@@ -141,12 +125,10 @@ public class ItemStatus : MonoBehaviour
         {
             // 전체 카테고리와 서브 카테고리를 비교하여 확인
             if (changeItemInfo.ItemCategory == newArmor.EquipmentCategory && changeItemInfo.SubCategory == newArmor.SubCategory)
-            {
-                changeItemInfo.armorItem = newArmor;
-
-                SetItemStatus();
-            }
+                    changeItemInfo.armorItem = newArmor;
         }
+
+        SetItemStatus();
     }
 
     // 호출 시, 전체 아이템 스탯 정정

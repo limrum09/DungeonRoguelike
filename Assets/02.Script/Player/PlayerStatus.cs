@@ -73,9 +73,12 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void InitializePlayerStatus()
     {
-        
+        level = 1;
+        currentExp = 0;
+        exp = 200;
+        isDie = false;
     }
 
     public void TakeDamage(int damage)
@@ -99,9 +102,8 @@ public class PlayerStatus : MonoBehaviour
         if(level <= 100)
         {
             currentExp += getExp;
-            GameManager.instance.ChangeCurrentExp();
 
-            if(currentExp >= exp)
+            while (currentExp >= exp)
             {
                 currentExp -= exp;
 

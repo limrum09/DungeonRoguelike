@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS14_Hammer
   m_EditorClassIdentifier: 
-  itemCode: OHS14_Hammer
+  itemCode: OHS14_Hammer_Right
   weaponItem: {fileID: 3241812588950912295, guid: 5c46bff3855bdcc40b8264ba30b041df, type: 3}
   weaponItemSprite: {fileID: -671536220, guid: 8d65b3e958df9694383798a0b4da07a5, type: 3}
   equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
