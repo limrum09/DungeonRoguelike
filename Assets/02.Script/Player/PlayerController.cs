@@ -15,17 +15,17 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("States")]
     [SerializeField]
     public PlayerState playerState = PlayerState.Idel;
-
-    public GameObject groundCheckPos;
+    [SerializeField]
     private GroundCheck groundCheck;
+
     private CharacterController controller;
     private Vector3 playerVector;
     public Animator animator;
 
-    [SerializeField]
-    private bool isGround;
+    [Header("Status Value")]
     [SerializeField]
     private float playerSpeed;
     [SerializeReference]
@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private float jumpHeigt;
     [SerializeField]
     private float gravityValue;
+    [SerializeField]
+    private bool isGround;
     public bool isCombo;
 
     private bool isDoubleJump;
@@ -41,7 +43,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        groundCheck = groundCheckPos.GetComponent<GroundCheck>();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         isCombo = false;

@@ -5,20 +5,31 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    protected Transform player;
+    [SerializeField]
+    protected Transform spawnPosition;
+    [SerializeField]
     protected Transform target;
     protected NavMeshAgent nmAgent;
     protected Animator animator;
 
+    [SerializeField]
     protected bool checkPlayer;
     public bool hitEnemy;
+
+    private bool checkMosterArea;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        checkPlayer = false;
+        checkMosterArea = false;
+        checkPlayer = true;
         hitEnemy = false;
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        target = spawnPosition;
+
         nmAgent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
     }
 
@@ -32,7 +43,44 @@ public class Enemy : MonoBehaviour
                 EnemyMove();
             }
             LookPlayer();
-        }        
+        }
+    }
+
+    public void StaySpawnPosition()
+    {
+        animator.SetBool("Attack", false);
+        animator.SetFloat("Forward", 0);
+    }
+
+    public void CheckMonsterArea(bool isArea)
+    {
+        checkMosterArea = isArea;
+        if (!isArea)
+        {
+            target = spawnPosition;
+        }
+    }
+
+    public void DetectPlayer(bool detect)
+    {
+        Debug.Log("Detect : " + detect + ", Check :" + checkMosterArea);
+        if (detect)
+        {
+            Debug.Log("Detect Player! " + checkMosterArea);
+            if (checkMosterArea)
+            {
+                Debug.Log("Attack Player");
+                target = player;
+            }
+            
+            checkPlayer = false;
+        }
+        else
+        {
+            Debug.Log("Lost Player");
+            target = spawnPosition;
+            checkPlayer = true;
+        }
     }
 
     // Follow the Player
@@ -90,30 +138,41 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Attack", true);
     }
 
+    public void EnemyAttack()
+    {
+        checkPlayer = true;
+        Attackanimation();
+    }
+
+    public void EnemyMoveToPlayer()
+    {
+        checkPlayer = false;
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        /*if (other.CompareTag("Player"))
         {
             checkPlayer = true;
             Attackanimation();
-        }
+        }*/
     }
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+/*        if (other.CompareTag("Player"))
         {
             checkPlayer = true;
             Attackanimation();
-        }
+        }*/
     }
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+/*        if (other.CompareTag("Player"))
         {
             checkPlayer = false;
-        }
+        }*/
     }
 
     public void EnemyHitMove()

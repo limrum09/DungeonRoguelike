@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7999022074942841834}
   - component: {fileID: 7999022074942841835}
   - component: {fileID: 7999022074942841836}
+  - component: {fileID: 1057770570}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -74,8 +75,8 @@ MonoBehaviour:
   itemSpeed: 0
   itemCoolTime: 0
   weaponItems:
-  - {fileID: 11400000, guid: e5da72e29d35a2440adab6a7b7162926, type: 2}
   - {fileID: 11400000, guid: ae41c5f20a7cd55429290271ce51a05c, type: 2}
+  - {fileID: 11400000, guid: e5da72e29d35a2440adab6a7b7162926, type: 2}
   armorItems:
   - {fileID: 11400000, guid: 60c258c5fb8aed04fb7cd4070d9c02cb, type: 2}
   - {fileID: 11400000, guid: 8758f286921486d4883a55eed0b9470e, type: 2}
@@ -108,3 +109,34 @@ MonoBehaviour:
   invenButton: {fileID: 0}
   invenContent: {fileID: 0}
   invenSlotPrefab: {fileID: 5143820561751147302, guid: 26cccdcbf07077a4f96e4df2e25219a2, type: 3}
+--- !u!114 &1057770570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999022074942841837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e220e2f190c743428a4b339f7facca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+    inventoryCount: 0
+    slotIndexs: 
+    itemCnts: 
+    itemCodes: []
+    weaponItemCode: []
+    armorItemCode: []
+    level: 0
+    health: 0
+    str: 0
+    dex: 0
+    luk: 0
+    bonusState: 0
+    currnetHP: 0
+    exp: 0
+    currentExp: 0
+  invenItemDatabase: {fileID: 0}
+  weaponItemDatabase: {fileID: 0}
+  armorItemDatabase: {fileID: 0}

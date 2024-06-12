@@ -8,6 +8,7 @@ public class EnemyCanvasController : MonoBehaviour
 {
     public Image currentHPBar;
 
+    [SerializeField]
     private EnemyStatus enemyStatus;
     private Canvas enemyCanvas;
     private GameObject playerCamera;
@@ -20,7 +21,6 @@ public class EnemyCanvasController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyStatus = this.transform.root.GetComponent<EnemyStatus>();
         enemyCanvas = GetComponent<Canvas>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
         lastHPSize = currentHPBar.rectTransform.sizeDelta;
