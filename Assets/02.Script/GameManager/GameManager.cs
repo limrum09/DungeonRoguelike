@@ -25,12 +25,14 @@ public class GameManager : MonoBehaviour
     {
         if(instance == null)
         {
+            Debug.Log("GameManager");
             instance = this;
 
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
+            Debug.Log("GameManager Destroyed");
             Destroy(this.gameObject);
         }
 

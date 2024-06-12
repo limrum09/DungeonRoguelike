@@ -1429,8 +1429,8 @@ GameObject:
   - component: {fileID: 3786118074857639817}
   - component: {fileID: 3786118074857639818}
   - component: {fileID: 3786118074857639813}
-  - component: {fileID: 3786118075208097196}
   - component: {fileID: 4641546542090574087}
+  - component: {fileID: 3786118075208097196}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: PlayerComponent
@@ -1479,7 +1479,7 @@ Transform:
   - {fileID: 3786118074893251910}
   - {fileID: 3786118075112125301}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4439042706887067140
 Animator:
@@ -1548,13 +1548,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: 0
-  groundCheckPos: {fileID: 3786118075112125300}
+  groundCheck: {fileID: 3786118075112125303}
   animator: {fileID: 0}
-  isGround: 0
   playerSpeed: 15
   rotationSpeed: 1
   jumpHeigt: 3
   gravityValue: -9.8
+  isGround: 0
   isCombo: 0
 --- !u!114 &3786118074857639813
 MonoBehaviour:
@@ -1580,19 +1580,6 @@ MonoBehaviour:
   exp: 0
   currentExp: 0
   isDie: 0
---- !u!114 &3786118075208097196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3556660645084377639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb1ae51ad4a4f444abaefb701bb13c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3786118074857639818}
 --- !u!114 &4641546542090574087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,6 +1606,19 @@ MonoBehaviour:
   - {fileID: 574754512431151974}
   - {fileID: 6659950326394427777}
   armorIndexOverLapping: 0
+--- !u!114 &3786118075208097196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3556660645084377639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb1ae51ad4a4f444abaefb701bb13c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3786118074857639818}
 --- !u!1 &3604973251741487611
 GameObject:
   m_ObjectHideFlags: 0
@@ -11801,7 +11801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 827500848075308831, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827500848075308831, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}
       propertyPath: m_TagString

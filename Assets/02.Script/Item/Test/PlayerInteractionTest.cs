@@ -114,7 +114,14 @@ public class PlayerInteractionTest : MonoBehaviour
 
         MeshFilter changeFilter = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<MeshFilter>() : null;
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;
+        Debug.Log("Change Filter : " + changeFilter + ", Current Weapon Filter : " + currentWeaponFilter);
         currentWeaponFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
+
+        if (!newWeapon.LeftWeapon && currentWeaponFilter == meshFilterWeaponR)
+        {
+            MeshCollider meshCollider = weaponR.GetComponent<MeshCollider>();
+            meshCollider.sharedMesh = currentWeaponFilter.sharedMesh;
+        }
     }
 
     public void ArmorChange(ArmorItem armor)
