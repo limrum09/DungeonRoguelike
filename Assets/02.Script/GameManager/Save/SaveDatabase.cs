@@ -21,7 +21,7 @@ public class SaveDatabase : MonoBehaviour
     private void Awake()
     {
         if(instance == null)
-        {
+        { 
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -94,9 +94,9 @@ public class SaveDatabase : MonoBehaviour
 
         for(int i =0; i < itemStatus.WeaponItems.Count; i++)
         {
-            // itemStatus.WeaponItems´Â ¿Ş¼Õ°ú ¿À¸¥¼ÕÀ» À§ÇØ ¹è¿­ÀÇ Å©±â°¡ 2ÀÌ´Ù. 
-            // ¹«±â°¡ ±âº»ÀûÀ¸·Î ¿À¸¥¼Õ¿¡ ÀåÂøÇÏ¸ç ÇÑ°³ÀÇ ¹«±â¸¦ »ç¿ëÇÏ¸é ¿À¸¥¼Õ¿¡ ÀåÂøµÈ´Ù.
-            // ¿Ş¼Õ¿¡ ÀåÂøµÈ ¹«±â°¡ ¾ø´Â °æ¿ì itemStatus.WeaponItems[i].weaponItem´Â null°ªÀ» °¡Áø´Ù.
+            // itemStatus.WeaponItemsëŠ” ì™¼ì†ê³¼ ì˜¤ë¥¸ì†ì„ ìœ„í•´ ë°°ì—´ì˜ í¬ê¸°ê°€ 2ì´ë‹¤. 
+            // ë¬´ê¸°ê°€ ê¸°ë³¸ì ìœ¼ë¡œ ì˜¤ë¥¸ì†ì— ì¥ì°©í•˜ë©° í•œê°œì˜ ë¬´ê¸°ë¥¼ ì‚¬ìš©í•˜ë©´ ì˜¤ë¥¸ì†ì— ì¥ì°©ëœë‹¤.
+            // ì™¼ì†ì— ì¥ì°©ëœ ë¬´ê¸°ê°€ ì—†ëŠ” ê²½ìš° itemStatus.WeaponItems[i].weaponItemëŠ” nullê°’ì„ ê°€ì§„ë‹¤.
             if(itemStatus.WeaponItems[i].weaponItem != null)
             {
                 saveData.weaponItemCode.Add(itemStatus.WeaponItems[i].weaponItem.ItemCode);
@@ -105,34 +105,34 @@ public class SaveDatabase : MonoBehaviour
 
         for(int i = 0; i < itemStatus.ArmorItems.Count; i++)
         {
-            // ¾ÆÀÌÅÛÀ» ÀåÂøÇÏÁö ¾Ê´Â °æ¿ì itemStatus.ArmorItmes[i].armorItemÀÇ °ªÀº null°ªÀÌ´Ù.
+            // ì•„ì´í…œì„ ì¥ì°©í•˜ì§€ ì•ŠëŠ” ê²½ìš° itemStatus.ArmorItmes[i].armorItemì˜ ê°’ì€ nullê°’ì´ë‹¤.
             if(itemStatus.ArmorItems[i].armorItem != null)
             {
                 saveData.armorItemCode.Add(itemStatus.ArmorItems[i].armorItem.ItemCode);
             }
         }
 
-        // ÇöÁ¦ ÀÎº¥Åä¸®ÀÇ Å©±â¸¦ ÀúÀå
+        // í˜„ì œ ì¸ë²¤í† ë¦¬ì˜ í¬ê¸°ë¥¼ ì €ì¥
         saveData.inventoryCount = invenSlots.Count;
         for (int i = 0; i < saveData.inventoryCount; i++)
         {
             if(invenSlots[i] != null)
             {
-                // ÀúÀåµÇ´Â ItemCode, itemCnt, index´Â ¼­·Î ´Ù¸¥ ¹è¿­¿¡ °ªÀ» ÀúÀåµÈ´Ù.
-                // ¼­·Î ´Ù¸¥ ¹è¿­ÀÇ °°Àº index°ªÀ» °¡Áø´Ù. (ÀúÀå½Ã iÀÇ °ª¿¡ ÀúÀåµÈ´Ù.)
+                // ì €ì¥ë˜ëŠ” ItemCode, itemCnt, indexëŠ” ì„œë¡œ ë‹¤ë¥¸ ë°°ì—´ì— ê°’ì„ ì €ì¥ëœë‹¤.
+                // ì„œë¡œ ë‹¤ë¥¸ ë°°ì—´ì˜ ê°™ì€ indexê°’ì„ ê°€ì§„ë‹¤. (ì €ì¥ì‹œ iì˜ ê°’ì— ì €ì¥ëœë‹¤.)
                 saveData.itemCodes.Add(invenSlots[i].ItemCode);
                 saveData.itemCnts.Add(invenSlots[i].itemCnt);
                 saveData.slotIndexs.Add(i);
             }
         }
 
-        // µ¥ÀÌÅÍ ÀúÀå
-        string json = JsonUtility.ToJson(saveData);   // Json Á÷¿­È­
+        // ë°ì´í„° ì €ì¥
+        string json = JsonUtility.ToJson(saveData);   // Json ì§ì—´í™”
 
-        // ÆÄÀÏ °æ·Î ¼³Á¤
+        // íŒŒì¼ ê²½ë¡œ ì„¤ì •
         string path = Path.Combine(Application.persistentDataPath, fileName);
 
-        // ÆÄÀÏ¿¡ Json ¹®ÀÚ¿­ ÀúÀå
+        // íŒŒì¼ì— Json ë¬¸ìì—´ ì €ì¥
         File.WriteAllText(path, json);
     }
 
@@ -143,10 +143,10 @@ public class SaveDatabase : MonoBehaviour
 
         if (File.Exists(path))
         {
-            // Json¹®ÀÚ¿­À» ÀĞ¾î¿À±â
+            // Jsonë¬¸ìì—´ì„ ì½ì–´ì˜¤ê¸°
             string loadJson = File.ReadAllText(path);
 
-            // ÇØ´ç À§Ä¡¿¡ InvenSaveData°¡ º¯È¯µÈ µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é °¡Á®¿À±â
+            // í•´ë‹¹ ìœ„ì¹˜ì— InvenSaveDataê°€ ë³€í™˜ëœ ë°ì´í„°ê°€ ìˆìœ¼ë©´ ê°€ì ¸ì˜¤ê¸°
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
             var gM = GameManager.instance;
@@ -170,10 +170,10 @@ public class SaveDatabase : MonoBehaviour
             {
                 if (!string.IsNullOrEmpty(saveData.weaponItemCode[i]))
                 {
-                    // ItemCode°¡ ÀÏÄ¡ÇÏ´Â ¹«±â Ã£±â
+                    // ItemCodeê°€ ì¼ì¹˜í•˜ëŠ” ë¬´ê¸° ì°¾ê¸°
                     WeaponItem item = SearchWeaponItem(saveData.weaponItemCode[i]);
 
-                    // GameManagerÀÇ PlayerWeaponChange È£Ãâ
+                    // GameManagerì˜ PlayerWeaponChange í˜¸ì¶œ
                     GameManager.instance.PlayerWeaponChange(item);
                 }                
             }
@@ -182,29 +182,29 @@ public class SaveDatabase : MonoBehaviour
             {
                 if (!string.IsNullOrEmpty(saveData.armorItemCode[i]))
                 {
-                    // ItemCode°¡ ÀÏÄ¡ÇÏ´Â ¹æ¾î±¸ Ã£±â
+                    // ItemCodeê°€ ì¼ì¹˜í•˜ëŠ” ë°©ì–´êµ¬ ì°¾ê¸°
                     ArmorItem item = SearchArmorItem(saveData.armorItemCode[i]);
 
-                    // GameManagerÀÇ PlayerArmorChange È£Ãâ
+                    // GameManagerì˜ PlayerArmorChange í˜¸ì¶œ
                     GameManager.instance.PlayerArmorChange(item);
                 }
             }
 
 
-            // ÀÎº¥Åä¸® ÃÊ°¡È­
+            // ì¸ë²¤í† ë¦¬ ì´ˆê°€í™”
             InvenData.instance.Initialzed(saveData.inventoryCount);
             for (int i = 0; i < saveData.slotIndexs.Count; i++)
             {   
                 if (!string.IsNullOrEmpty(saveData.itemCodes[i]))
                 {
                     InvenItem loadItem = null;
-                    // Item DB¿¡¼­ Code°¡ ¸ÂÀº ¾ÆÀÌÅÛÀ» Ã£¾Æ cloneÀ¸·Î º¹»ç
+                    // Item DBì—ì„œ Codeê°€ ë§ì€ ì•„ì´í…œì„ ì°¾ì•„ cloneìœ¼ë¡œ ë³µì‚¬
                     loadItem = SearchInvenItem(saveData.itemCodes[i]).Clone();
-                    // Ã£Àº ItemÀÇ °³¼ö º¯°æ
+                    // ì°¾ì€ Itemì˜ ê°œìˆ˜ ë³€ê²½
                     loadItem.itemCnt = saveData.itemCnts[i];
-                    // ÀúÀåµÇ¾î ÀÖ´Â index¸¦ °¡Á®¿Í¼­ invenSlotsÀÇ index Ãß°¡
+                    // ì €ì¥ë˜ì–´ ìˆëŠ” indexë¥¼ ê°€ì ¸ì™€ì„œ invenSlotsì˜ index ì¶”ê°€
                     invenSlots[saveData.slotIndexs[i]] = loadItem;
-                    // ÇØ´ç Ãß°¡µÈ ¾ÆÀÌÅÛ ½½·ÔÀ» »õ·Î°íÄ§
+                    // í•´ë‹¹ ì¶”ê°€ëœ ì•„ì´í…œ ìŠ¬ë¡¯ì„ ìƒˆë¡œê³ ì¹¨
                     InvenData.instance.RefreshInvenSlot(saveData.slotIndexs[i]);
                 }
             }   

@@ -145,7 +145,7 @@ public class StatusUIManager : MonoBehaviour
     {
         StatusUP("str");
     }
-
+     
     public void DEXUP()
     {
         StatusUP("dex");

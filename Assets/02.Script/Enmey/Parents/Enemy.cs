@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
     // Follow the Player
     protected virtual void EnemyMove()
     {
-        // °Å¸®±¸ÇÏ±â
+        // ê±°ë¦¬êµ¬í•˜ê¸°
         animator.SetBool("Attack", false);
         animator.SetFloat("Forward", 1);
         nmAgent.SetDestination(target.position - new Vector3(1.5f, 0f, 1.5f));

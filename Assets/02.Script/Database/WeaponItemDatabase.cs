@@ -14,20 +14,20 @@ public class WeaponItemDatabase : ScriptableObject
 
     public WeaponItem FindItemBy(string weaponItemCodeName) => weaponItem.FirstOrDefault(x => x.ItemCode == weaponItemCodeName);
 
-    [ContextMenu("FindWeaponItem")]
+    [ContextMenu("FindWeaponItem")] 
     private void FindWeaponItem()
     {
         weaponItem = new List<WeaponItem>();
 
-        // Ã£°í ½ÍÀº ¿¡¼ÂÀÇ Å¸ÀÔ
+        // ì°¾ê³  ì‹¶ì€ ì—ì…‹ì˜ íƒ€ì…
         string[] guids = AssetDatabase.FindAssets($"t:{typeof(WeaponItem)}");
 
         foreach (var guid in guids)
         {
-            // Ã£À¸·Á´Â ¿ÀºêÁ§Æ®ÀÇ °æ·Î
+            // ì°¾ìœ¼ë ¤ëŠ” ì˜¤ë¸Œì íŠ¸ì˜ ê²½ë¡œ
             string assetPath = AssetDatabase.GUIDToAssetPath(guid);
 
-            // °æ·Î¸¦ ÅëÇØ Ã£Àº ¿ÀºêÁ§Æ®
+            // ê²½ë¡œë¥¼ í†µí•´ ì°¾ì€ ì˜¤ë¸Œì íŠ¸
             var armorItem = AssetDatabase.LoadAssetAtPath<WeaponItem>(assetPath);
 
             if (armorItem.GetType() == typeof(WeaponItem))
