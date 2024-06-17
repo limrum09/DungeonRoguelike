@@ -19,7 +19,7 @@ public class SaveData
     public int dex;
     public int luk;
     public int bonusState;
-
+ 
     public int currnetHP;
 
     public int exp;

@@ -7,6 +7,7 @@ public class UIAndSceneManager : MonoBehaviour
     public static UIAndSceneManager instance;
 
     public delegate void ChangeEquipmentEvent();
+    public delegate void onSelectQuestListHandler(Quest quest);
 
     [SerializeField]
     GameObject lobbyUI;
@@ -18,10 +19,13 @@ public class UIAndSceneManager : MonoBehaviour
     GameObject statusUI;
     [SerializeField]
     private UIProfile uiProfile;
+    [SerializeField]
+    private QuestViewUI questViewUI;
 
     int GameUIIndex;
 
     public ChangeEquipmentEvent onChangeEquipment;
+    public event onSelectQuestListHandler onSelectQuestListView;
 
     public UIProfile Profile => uiProfile;
 
@@ -35,7 +39,7 @@ public class UIAndSceneManager : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); 
         }
     }
 
@@ -105,9 +109,14 @@ public class UIAndSceneManager : MonoBehaviour
         lobbyUI.SetActive(false);
     }
 
+
     public void ChangeEquipment(WeaponItem item) => GameManager.instance.PlayerWeaponChange(item);
     public void ChangeEquipment(ArmorItem item) => GameManager.instance.PlayerArmorChange(item);
-
     public void ChangeHPBar() => uiProfile.SetHPBar();
     public void ChangeEXPBar() => uiProfile.SetExpBar();
+
+    public void ChangeQuestDetailView(Quest quest)
+    {
+        onSelectQuestListView?.Invoke(quest);
+    }
 }

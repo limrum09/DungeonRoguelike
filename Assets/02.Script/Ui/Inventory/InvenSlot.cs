@@ -60,7 +60,7 @@ public class InvenSlot : MonoBehaviour
         itemInfomation = "";
         RefreshSlot();
     }
-
+     
     public void ViewAndHideInvenSlot(bool tf)
     {
         Color color = itemImage.GetComponent<Image>().color;
@@ -68,7 +68,7 @@ public class InvenSlot : MonoBehaviour
         // tf == true, invenslot has item
         if (tf)
         {
-            // ºÒÅõ¸í
+            // ë¶ˆíˆ¬ëª…
             color.a = 1.0f;
 
             itemCntTextObject.SetActive(true);

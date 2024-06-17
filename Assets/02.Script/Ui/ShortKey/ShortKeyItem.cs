@@ -28,7 +28,7 @@ public class ShortKeyItem : MonoBehaviour
         isInputKey = false;
         SetShortkeyNumber();
 
-        // ÀúÀåµÈ °ÍÀÌ ÀÖ´ÂÁö È®ÀÎ ÇÊ¿ä
+        // ì €ì¥ëœ ê²ƒì´ ìˆëŠ”ì§€ í™•ì¸ í•„ìš”
 
     }
 

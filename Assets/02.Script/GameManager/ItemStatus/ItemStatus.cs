@@ -80,19 +80,19 @@ public class ItemStatus : MonoBehaviour
         GameManager.instance.ChangeExpBar();
     }
 
-    // ¹«±â º¯°æ ½Ã, ¹«±â ÀúÀå ¹× ½ºÅÈ º¯°æ
+    // ë¬´ê¸° ë³€ê²½ ì‹œ, ë¬´ê¸° ì €ì¥ ë° ìŠ¤íƒ¯ ë³€ê²½
     public void ChangeWeaponItem(WeaponItem weapon)
     {
         WeaponItem newWeapon = weapon;
 
-        // »õ·Î °¡Á®¿Â ¾ÆÀÌÅÛÀ» player°¡ ÀåÂøÇÏ±â
+        // ìƒˆë¡œ ê°€ì ¸ì˜¨ ì•„ì´í…œì„ playerê°€ ì¥ì°©í•˜ê¸°
         interactionTest.WeaponChange(newWeapon);
 
-        // ÇÃ·¹ÀÌ¾îÀÇ ¿Ş¼Õ ¹«±â(¹æÆĞ, ÇÑ¼Õ°Ë)°¡ ¾Æ´Ò °æ¿ì
+        // í”Œë ˆì´ì–´ì˜ ì™¼ì† ë¬´ê¸°(ë°©íŒ¨, í•œì†ê²€)ê°€ ì•„ë‹ ê²½ìš°
         if (!newWeapon.LeftWeapon)
         {
             weaponItems[0].weaponItem = newWeapon;
-            // µÎ¼Õ ÀÌ»ó »ç¿ëÇÏ´Â ¹«±â
+            // ë‘ì† ì´ìƒ ì‚¬ìš©í•˜ëŠ” ë¬´ê¸°
             if (!newWeapon.UseOndeHand)
             {
                 weaponItems[1].weaponItem = null;
@@ -106,12 +106,12 @@ public class ItemStatus : MonoBehaviour
         SetItemStatus();
     }
 
-    // ¹æ¾î±¸ º¯°æ ½Ã, ¹æ¾î±¸ ÀúÀå ¹× ½ºÅÈ º¯°æ
+    // ë°©ì–´êµ¬ ë³€ê²½ ì‹œ, ë°©ì–´êµ¬ ì €ì¥ ë° ìŠ¤íƒ¯ ë³€ê²½
     public void ChangeArmorItem(ArmorItem item)
     {
         ArmorItem newArmor = item;
 
-        // »õ·Î °¡Á®¿Â ItemÀ» ÇÃ·¹ÀÌ¾î°¡ Âø¿ëÇÏ±â
+        // ìƒˆë¡œ ê°€ì ¸ì˜¨ Itemì„ í”Œë ˆì´ì–´ê°€ ì°©ìš©í•˜ê¸°
         interactionTest.ArmorChange(newArmor);
 
         if (!newArmor.ArmorItemObject)
@@ -123,7 +123,7 @@ public class ItemStatus : MonoBehaviour
 
         foreach (ArmorItemInfoInItemStatus changeItemInfo in armorItems)
         {
-            // ÀüÃ¼ Ä«Å×°í¸®¿Í ¼­ºê Ä«Å×°í¸®¸¦ ºñ±³ÇÏ¿© È®ÀÎ
+            // ì „ì²´ ì¹´í…Œê³ ë¦¬ì™€ ì„œë¸Œ ì¹´í…Œê³ ë¦¬ë¥¼ ë¹„êµí•˜ì—¬ í™•ì¸
             if (changeItemInfo.ItemCategory == newArmor.EquipmentCategory && changeItemInfo.SubCategory == newArmor.SubCategory)
                     changeItemInfo.armorItem = newArmor;
         }
@@ -131,14 +131,14 @@ public class ItemStatus : MonoBehaviour
         SetItemStatus();
     }
 
-    // È£Ãâ ½Ã, ÀüÃ¼ ¾ÆÀÌÅÛ ½ºÅÈ Á¤Á¤
+    // í˜¸ì¶œ ì‹œ, ì „ì²´ ì•„ì´í…œ ìŠ¤íƒ¯ ì •ì •
     private void SetItemStatus()
     {
         ResetItemStatus();
         
         foreach (ArmorItemInfoInItemStatus item in armorItems)
         {
-            // Item Database¿¡¼­ ¾Ë¸ÂÀº itemCode¸¦ Ã£¾Æ¼­ ½ºÅİÀ» Áõ°¡½ÃÅ°±â
+            // Item Databaseì—ì„œ ì•Œë§ì€ itemCodeë¥¼ ì°¾ì•„ì„œ ìŠ¤í…Ÿì„ ì¦ê°€ì‹œí‚¤ê¸°
             if(item.armorItem != null)
             {
                 ArmorItem changeItem = item.armorItem;
@@ -152,7 +152,7 @@ public class ItemStatus : MonoBehaviour
                 itemCoolTime += changeItem.ItemCoolTime;
             }
         }
-
+         
         foreach(WeaponItemInfoInItemStatus item in weaponItems)
         {
             if(item.weaponItem != null)
@@ -173,7 +173,7 @@ public class ItemStatus : MonoBehaviour
         GameManager.instance.ChangeHPBar();
     }
 
-    // ½ºÅÈ ÃÊ±âÈ­
+    // ìŠ¤íƒ¯ ì´ˆê¸°í™”
     private void ResetItemStatus()
     {
         itemHp = 0;

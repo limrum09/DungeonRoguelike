@@ -17,7 +17,7 @@ public class InvenData : MonoBehaviour
     private GameObject invenContent;
     [SerializeField]
     private GameObject invenSlotPrefab;
-
+     
     public InventoryButton InvenButton => invenButton;
     // Start is called before the first frame update
     void Awake()
@@ -43,7 +43,7 @@ public class InvenData : MonoBehaviour
 
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
         
-        // Ã³À½ ½ÃÀÛ
+        // ì²˜ìŒ ì‹œì‘
         if(!File.Exists(path))
         {
             Debug.Log("First");
@@ -57,7 +57,7 @@ public class InvenData : MonoBehaviour
         // SaveInvenDataToFile("invenFile");
     }
 
-    // SaveData°¡ ÀÖÀ» ½Ã, SaveDatabase.cs¿¡¼­ È£Ãâ
+    // SaveDataê°€ ìˆì„ ì‹œ, SaveDatabase.csì—ì„œ í˜¸ì¶œ
     public void Initialzed(int inventoryCount)
     {
         invenCount = inventoryCount;
@@ -125,7 +125,7 @@ public class InvenData : MonoBehaviour
         return newInvenSlot;
     }
 
-    // ÀÎº¥Åä¸® °³¼ö Áõ°¡
+    // ì¸ë²¤í† ë¦¬ ê°œìˆ˜ ì¦ê°€
     public void AddInventorySlotCount()
     {
         for (int i = 0; i < 6; i++)
@@ -141,17 +141,17 @@ public class InvenData : MonoBehaviour
         }
     }
 
-    // ¾ÆÀÌÅÛ È¹µæ
+    // ì•„ì´í…œ íšë“
     public void CheckItem(InvenItem item)
     {
         InvenItem newItem = item.Clone();
 
-        // ÀÎº¥Åä¸®¿¡ °°Àº ¾ÆÀÌÅÛÀ» ¼ÒÀ¯ÇÏ°í ÀÖ´ÂÁö È®ÀÎ
+        // ì¸ë²¤í† ë¦¬ì— ê°™ì€ ì•„ì´í…œì„ ì†Œìœ í•˜ê³  ìˆëŠ”ì§€ í™•ì¸
         for(int i = 0; i< invenSlots.Count; i++)
         {
             if(invenSlots[i] != null)
             {
-                // °°Àº ¾ÆÀÌÅÛÀÌ ÀÖ´Â °æ¿ì
+                // ê°™ì€ ì•„ì´í…œì´ ìˆëŠ” ê²½ìš°
                 if(invenSlots[i].ItemCode == newItem.ItemCode)
                 {
                     if (!invenSlots[i].IsMax())
@@ -164,23 +164,23 @@ public class InvenData : MonoBehaviour
             }
         }
 
-        // °°Àº ¾ÆÀÌÅÛÀÌ ¾ø´Â °æ¿ì ºñ¾îÀÖ´Â invenSlots¿¡ »õ·Ó°Ô Ãß°¡
-        // ºñ¾î ÀÖ´Â Ä­ Ã£±â
+        // ê°™ì€ ì•„ì´í…œì´ ì—†ëŠ” ê²½ìš° ë¹„ì–´ìˆëŠ” invenSlotsì— ìƒˆë¡­ê²Œ ì¶”ê°€
+        // ë¹„ì–´ ìˆëŠ” ì¹¸ ì°¾ê¸°
         int nullSlotIndex = invenSlots.FindIndex(IsNULL);
-        // Ãß°¡
+        // ì¶”ê°€
         if (nullSlotIndex != -1)
         {
             invenSlots[nullSlotIndex] = newItem;
             invenSlots[nullSlotIndex].itemCnt = 1;
             RefreshInvenSlot(nullSlotIndex);
 
-            // ÀÎº¥Åä¸®°¡ Á¤·Ä Áß ÀÏ½Ã Á¤·Ä
+            // ì¸ë²¤í† ë¦¬ê°€ ì •ë ¬ ì¤‘ ì¼ì‹œ ì •ë ¬
             if (invenButton.isSorting)
             {
                 AddItemSort(invenSlots[nullSlotIndex]);
             }
         }
-        // ºñ¾î ÀÖ´Â Ä­ÀÌ ¾øÀ» °æ¿ì
+        // ë¹„ì–´ ìˆëŠ” ì¹¸ì´ ì—†ì„ ê²½ìš°
         else
             Debug.Log("No null in List");
     }
@@ -190,7 +190,7 @@ public class InvenData : MonoBehaviour
         return slot == null;
     }
 
-    // Á¾·ùº°·Î Á¤·Ä
+    // ì¢…ë¥˜ë³„ë¡œ ì •ë ¬
     private void AddItemSort(InvenItem item)
     {
         

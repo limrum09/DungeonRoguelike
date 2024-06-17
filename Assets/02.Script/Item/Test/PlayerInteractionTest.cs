@@ -46,7 +46,7 @@ public class PlayerInteractionTest : MonoBehaviour
         WeaponItem newWeapon = weapon;
         ItemRotation weaponRotation = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<ItemRotation>() : null;
 
-        // weaponROneHand °ªÀ» ¾îµğ¼±°¡ ÃÊ±âÈ­ ÇØÁà¾ßÇÑ´Ù. °ÔÀÓ ½ÃÀÛÇÒ ¶§ ¹«±â °¡Áö°í ÀÖ´ÂÁö È®ÀÎÀÛ¾÷ ÇÊ¿äÇÑ µí
+        // weaponROneHand ê°’ì„ ì–´ë””ì„ ê°€ ì´ˆê¸°í™” í•´ì¤˜ì•¼í•œë‹¤. ê²Œì„ ì‹œì‘í•  ë•Œ ë¬´ê¸° ê°€ì§€ê³  ìˆëŠ”ì§€ í™•ì¸ì‘ì—… í•„ìš”í•œ ë“¯
         // Left Weapon
         if (newWeapon.LeftWeapon)
         {
@@ -123,7 +123,7 @@ public class PlayerInteractionTest : MonoBehaviour
             meshCollider.sharedMesh = currentWeaponFilter.sharedMesh;
         }
     }
-
+     
     public void ArmorChange(ArmorItem armor)
     {
         ArmorItem newArmor = armor;

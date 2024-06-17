@@ -9,17 +9,17 @@ public class DetectPlayerCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ µé¾î¿ÔÀ» °æ¿ì
+        // í”Œë ˆì´ì–´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
         if (other.CompareTag("Player"))
         {
             Debug.Log("In Player");
             enemyCollider.DetectPlayer(true);
         }
     }
-
+     
     private void OnTriggerExit(Collider other)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ ³ª°¬À» °æ¿ì
+        // í”Œë ˆì´ì–´ê°€ ë‚˜ê°”ì„ ê²½ìš°
         if (other.CompareTag("Player"))
         {
             Debug.Log("Out Player");
