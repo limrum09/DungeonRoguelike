@@ -4,18 +4,49 @@ using UnityEngine;
 
 public class QuestViewUI : MonoBehaviour
 {
+    [Header("Quest UI")]
     [SerializeField]
     private GameObject questViewUI;
+
+    [Header("List View")]
     [SerializeField]
     private QuestListViewController listView;
     [SerializeField]
+    private QuestListToggle activeQuestToggle;
+    [SerializeField]
+    private QuestListToggle completedQuestToggle;
+
+    [Header("Detail View")]
+    [SerializeField]
     private QuestDetailViewController detailView;
 
+    [Header("Tracker View")]
+    [SerializeField]
+    private QuestTrackerView trackerView;
     
 
-    private void Start()
+    public void QuestUIStart()
     {
         listView.ListViewStart();
         detailView.DetailViewStart();
+        trackerView.TrackerViewStart();
+
+        activeQuestToggle.SelectToggle();
+        completedQuestToggle.SelectToggle();
+
+        var enableList = listView.Content.transform.GetChild(0).GetComponent<QuestListContainer>();
+
+        if(enableList != null)
+        {
+            enableList.ShowDetailQuestView();
+        }
+    }
+
+    public void SetTrackerViewQuest(Quest quest, bool isOn)
+    {
+        if (isOn)
+            trackerView.QuestInputToTrackerView(quest);
+        else
+            trackerView.QuestRemoveToTrackerView(quest);
     }
 }
