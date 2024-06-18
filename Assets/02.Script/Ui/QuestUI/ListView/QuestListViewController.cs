@@ -11,7 +11,7 @@ public class QuestListViewController : MonoBehaviour
     [SerializeField]
     private QuestListContentController completeQuestView;
 
-
+    public GameObject Content => content;
     public void ListViewStart()
     {
         var questSystem = QuestSystem.instance;

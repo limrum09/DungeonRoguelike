@@ -50,6 +50,8 @@ public class UIAndSceneManager : MonoBehaviour
         GameUIIndex = findObject.transform.childCount - 1;
 
         findObject = null;
+
+        questViewUI.QuestUIStart();
     }
 
     // Update is called once per frame
@@ -119,4 +121,6 @@ public class UIAndSceneManager : MonoBehaviour
     {
         onSelectQuestListView?.Invoke(quest);
     }
+
+    public void SetTackerViewQuest(Quest quest, bool isOn) => questViewUI.SetTrackerViewQuest(quest, isOn);
 }

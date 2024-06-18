@@ -20,8 +20,6 @@ public class QuestListContainer : MonoBehaviour
             checkBoxButton.SetQuest(quest);
 
         questTitle.text = quest.DisplayName;
-
-        Debug.Log("Update Quest List");
     }
 
     public void ShowDetailQuestView()
