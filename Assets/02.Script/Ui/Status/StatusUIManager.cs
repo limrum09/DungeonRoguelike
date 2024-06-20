@@ -158,6 +158,12 @@ public class StatusUIManager : MonoBehaviour
 
     private void StatusUP(string status)
     {
+        GameManager.instance.PlayerStatusUp(status);
+        ViewAndHideStateButton();
+    }
+
+/*    private void StatusUP(string status)
+    {
         var gameManager = GameManager.instance;
         bool useState = false;
 
@@ -197,5 +203,5 @@ public class StatusUIManager : MonoBehaviour
         }
         else
             ViewAndHideStateButton();
-    }
+    }*/
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7999022074942841833}
   - component: {fileID: 7999022074942841834}
+  - component: {fileID: 7951307945854060596}
   - component: {fileID: 7999022074942841835}
   - component: {fileID: 7999022074942841836}
   - component: {fileID: 1057770570}
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7999022074942841834
 MonoBehaviour:
@@ -49,12 +50,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusUI: {fileID: 0}
   itemStatus: {fileID: 7999022074942841835}
+  playerSaveStatus: {fileID: 0}
   level: 0
   health: 0
   str: 0
   dex: 0
   luk: 0
   bonusState: 0
+--- !u!114 &7951307945854060596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999022074942841837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f750a8473cd640a478f2a71902315a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  health: 0
+  str: 0
+  dex: 0
+  luk: 0
+  bonusState: 0
+  exp: 0
+  currentExp: 0
 --- !u!114 &7999022074942841835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +159,8 @@ MonoBehaviour:
     currnetHP: 0
     exp: 0
     currentExp: 0
+    activeQuest: []
+    completedQuest: []
   invenItemDatabase: {fileID: 0}
   weaponItemDatabase: {fileID: 0}
   armorItemDatabase: {fileID: 0}

@@ -24,4 +24,7 @@ public class SaveData
 
     public int exp;
     public int currentExp;
+
+    public List<Quest> activeQuest = new List<Quest>();
+    public List<Quest> completedQuest = new List<Quest>();
 }

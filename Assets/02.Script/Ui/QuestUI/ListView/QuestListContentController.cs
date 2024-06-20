@@ -12,20 +12,20 @@ public class QuestListContentController : MonoBehaviour
     private QuestListContainer containerPrefab;
 
     // 사용 방법 대충 알겠지만, 정리 필요
-    private Dictionary<Quest, GameObject> elemetQuests = new Dictionary<Quest, GameObject>();
+    private Dictionary<Quest, GameObject> elementQuests = new Dictionary<Quest, GameObject>();
 
     public void AddElement(Quest quest)
     {
         var element = Instantiate(containerPrefab, content.transform);
         element.UpdateQuestList(quest);
 
-        elemetQuests.Add(quest, element.gameObject);
+        elementQuests.Add(quest, element.gameObject);
     }
 
     public void RemoveElement(Quest quest)
     {
-        Destroy(elemetQuests[quest]);
-        elemetQuests.Remove(quest);
+        Destroy(elementQuests[quest]);
+        elementQuests.Remove(quest);
     }
 
     public void UpdateQuestListContentSize()
