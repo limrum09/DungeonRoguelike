@@ -110,6 +110,7 @@ public class PlayerStatus : MonoBehaviour
                 exp = exp + (level * 50) + 150;
 
                 GameManager.instance.LevelUP();
+                Debug.Log("Player Status LevelUp");
             }
 
             GameManager.instance.ChangeExpBar();

@@ -27,9 +27,17 @@ public class TrackerViewContainer : MonoBehaviour
 
     public void SetTrackerView(Quest quest)
     {
+        if (quest == null)
+        {
+            TrackerViewContainerStart();
+            return;
+        }
+            
+
         inputQuest = quest;
 
-        questTitle.text = inputQuest.DisplayName;
+        var newQuestTitle = Instantiate(questTitle, thisRect);
+        newQuestTitle.text = $" {inputQuest.DisplayName}";
 
         foreach(var taskGroup in inputQuest.TaskGroups)
         {
@@ -39,6 +47,8 @@ public class TrackerViewContainer : MonoBehaviour
                 newTrackerTask.UpdateTaskText(task);
             }
         }
+
+        newQuestTitle.transform.SetAsFirstSibling();
 
         SetTrackerViewContainerSize();
     }
@@ -61,9 +71,12 @@ public class TrackerViewContainer : MonoBehaviour
 
     private void SetTrackerViewContainerSize()
     {
-        float rectHeight = 40.0f;
+        float rectHeight = 0.0f;
 
-        for(int i = 0; i < this.gameObject.transform.childCount; i++)
+        if(this.transform.childCount > 0)
+            rectHeight = 40.0f;
+
+        for (int i = 0; i < this.gameObject.transform.childCount - 1; i++)
         {
             rectHeight += 30.0f;
         }

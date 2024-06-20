@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private StatusUIManager statusUI;
     [SerializeField]
     private ItemStatus itemStatus;
+    [SerializeField]
+    private PlayerSaveStatus playerSaveStatus;
 
     public int level;
     public int health;
@@ -36,7 +38,8 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        FirstStart();
+        playerSaveStatus.FirstStart();
+        isStart = true;
 
         SceneManager.sceneLoaded += OnSceneLoad;
     }
@@ -58,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void FirstStart()
     {
-        level = 1;
+        level = playerSaveStatus.Level;
         health = 5;
         str = 5;
         dex = 5;
@@ -105,9 +108,21 @@ public class GameManager : MonoBehaviour
         statusUI.ViewAndHideStateButton();
     }
 
+    private void GetPlayerStatus()
+    {
+        level = playerSaveStatus.Level;
+        health = playerSaveStatus.Health;
+        str = playerSaveStatus.Str;
+        dex = playerSaveStatus.Dex;
+        luk = playerSaveStatus.Luk;
+        bonusState = playerSaveStatus.BonusStatus;
+    }
+
     public void ChangePlayerStatus()
     {
-        var player = PlayerStatus.instance;        
+        var player = PlayerStatus.instance;
+
+        GetPlayerStatus();
 
         player.Level = level;
         player.MaxHP = (health * 20) + (str * 5) + itemStatus.ItemHP;
@@ -129,6 +144,8 @@ public class GameManager : MonoBehaviour
 
         ChangeHPBar();
     }
+
+    public void PlayerStatusUp(string status) => playerSaveStatus.StatusUP(status);
 
     public void PlayerWeaponChange(WeaponItem item) => itemStatus.ChangeWeaponItem(item);
     public void PlayerArmorChange(ArmorItem item) => itemStatus.ChangeArmorItem(item);
