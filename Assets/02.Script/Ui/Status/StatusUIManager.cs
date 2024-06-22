@@ -33,7 +33,7 @@ public class StatusUIManager : MonoBehaviour
     public void SetStatusUIText()
     {
         var gameManager = GameManager.instance;
-        var player = PlayerStatus.instance;
+        var player = PlayerInteractionStatus.instance;
 
         currentLevelText.text = gameManager.level.ToString();
         currentHPText.text = player.CurrentHP.ToString();
@@ -44,8 +44,9 @@ public class StatusUIManager : MonoBehaviour
         criticalPerText.text = player.CriticalPer.ToString();
         speedText.text = player.PlayerSpeed.ToString();
         cooltimeText.text = player.SkillCoolTime.ToString();
-        currentExp.text = player.CurrentExp.ToString();
-        exp.text = player.Exp.ToString();
+
+        currentExp.text = gameManager.currentExp.ToString();
+        exp.text = gameManager.exp.ToString();
 
         healthPointText.text = gameManager.health.ToString();
         dexPointText.text = gameManager.dex.ToString();
@@ -53,7 +54,7 @@ public class StatusUIManager : MonoBehaviour
         lukPointText.text = gameManager.luk.ToString();
         bonusPointText.text = gameManager.bonusState.ToString();
 
-        ExpWidthSet(player.Exp);
+        ExpWidthSet(gameManager.exp);
     }
 
     public void ExpWidthSet(int cExp)

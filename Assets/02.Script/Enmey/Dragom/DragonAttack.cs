@@ -22,7 +22,7 @@ public class DragonAttack : EnemyAttack
 
         if (other.CompareTag("PlayerComponent"))
         {
-            other.GetComponent<PlayerStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
+            other.GetComponent<PlayerInteractionStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
         }
 
         if (other.CompareTag("Ground"))
@@ -31,7 +31,7 @@ public class DragonAttack : EnemyAttack
             {
                 for (int i = 0; i < collisionNum; i++)
                 {
-                    // ³Ê¹« ¸¹À½ ¼öÁ¤ ÇÊ¿ä
+                    // ë„ˆë¬´ ë§ŽìŒ ìˆ˜ì • í•„ìš”
                     Vector3 collisionPos = collisionEvents[i].intersection;
                     if (i != 0 && Vector3.Distance(collisionPos, collisionEvents[i - 1].intersection) >= 2.0f)
                     {
@@ -58,7 +58,7 @@ public class DragonAttack : EnemyAttack
 
                 if (colliders[j].CompareTag("Player"))
                 {
-                    colliders[j].GetComponentInParent<PlayerStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
+                    colliders[j].GetComponentInParent<PlayerInteractionStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
                 }
             }
         }

@@ -34,12 +34,15 @@ public class QuestViewUI : MonoBehaviour
         activeQuestToggle.SelectToggle();
         completedQuestToggle.SelectToggle();
 
-        var enableList = listView.Content.transform.GetChild(0).GetComponent<QuestListContainer>();
+        var enableList = listView.Content.transform.GetChild(0);
 
         if(enableList != null)
         {
-            enableList.ShowDetailQuestView();
+            var questListContainer = enableList.GetComponent<QuestListContainer>();
+            questListContainer.ShowDetailQuestView();
         }
+
+        questViewUI.SetActive(false);
     }
 
     public void SetTrackerViewQuest(Quest quest, bool isOn)

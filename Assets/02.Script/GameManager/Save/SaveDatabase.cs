@@ -12,12 +12,21 @@ public class SaveDatabase : MonoBehaviour
     private List<InvenItem> invenSlots;
     private ItemStatus itemStatus;
 
+    [Header("Player Data")]
+    [SerializeField]
+    private PlayerStatus playerSaveStatus;
+
+    [Header("DataBase")]
     [SerializeField]
     private InvenItemDatabase invenItemDatabase;
     [SerializeField]
     private WeaponItemDatabase weaponItemDatabase;
     [SerializeField]
     private ArmorItemDatabase armorItemDatabase;
+    [SerializeField]
+    private QuestDatabase questDatabase;
+    [SerializeField]
+    private QuestDatabase achievementDatabase;
     private void Awake()
     {
         if(instance == null)
@@ -33,6 +42,8 @@ public class SaveDatabase : MonoBehaviour
         invenItemDatabase = Resources.Load<InvenItemDatabase>("InvenItemDatabase");
         weaponItemDatabase = Resources.Load<WeaponItemDatabase>("WeaponItemDatabase");
         armorItemDatabase = Resources.Load<ArmorItemDatabase>("ArmorItemDatabase");
+        questDatabase = Resources.Load<QuestDatabase>("QuestDatabase");
+        achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
     }
 
 
@@ -58,7 +69,12 @@ public class SaveDatabase : MonoBehaviour
         saveData.weaponItemCode.Clear();
         saveData.armorItemCode.Clear();
 
-        saveData.level = 1;
+        saveData.playerSaveStatus = null;
+
+        saveData.activeQuestSaveData.Clear();
+        saveData.completedQuestSaveData.Clear();
+
+        /*saveData.level = 1;
         saveData.health = 5;
         saveData.str = 5;
         saveData.dex = 5;
@@ -67,16 +83,18 @@ public class SaveDatabase : MonoBehaviour
 
         saveData.currnetHP = 125;
         saveData.exp = 200;
-        saveData.currentExp = 0;
+        saveData.currentExp = 0;*/
     }
 
     public void SaveData(string fileName)
     {
         Initialzed();
 
-        var gM = GameManager.instance;
+        //var gM = GameManager.instance;
 
-        saveData.level = gM.level;
+        saveData.playerSaveStatus = playerSaveStatus.GetPlayerSaveStatus();
+
+        /*saveData.level = gM.level;
         saveData.health = gM.health;
         saveData.str = gM.str;
         saveData.dex = gM.dex;
@@ -88,7 +106,21 @@ public class SaveDatabase : MonoBehaviour
 
         saveData.currnetHP = player.CurrentHP;
         saveData.exp = player.Exp;
-        saveData.currentExp = player.CurrentExp;
+        saveData.currentExp = player.CurrentExp;*/
+
+
+        var questSystem = QuestSystem.instance;
+
+        foreach (var activeQuest in questSystem.ActiveQeusts)
+        {
+            saveData.activeQuestSaveData.Add(activeQuest.QuestSave());
+        }
+
+        foreach(var completedQuest in questSystem.CompletedQuests)
+        {
+            saveData.completedQuestSaveData.Add(completedQuest.QuestSave());
+        }
+
 
         itemStatus = FindObjectOfType<ItemStatus>();
 
@@ -149,8 +181,7 @@ public class SaveDatabase : MonoBehaviour
             // 해당 위치에 InvenSaveData가 변환된 데이터가 있으면 가져오기
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
-            var gM = GameManager.instance;
-
+            /*
             gM.level = saveData.level;
             gM.health = saveData.health;
             gM.str = saveData.str;
@@ -163,8 +194,21 @@ public class SaveDatabase : MonoBehaviour
 
             player.CurrentHP = saveData.currnetHP;
             player.Exp = saveData.exp;
-            player.CurrentExp = saveData.currentExp;
+            player.CurrentExp = saveData.currentExp;*/
 
+            foreach(var activeQuest in saveData.activeQuestSaveData)
+            {
+                Quest newActiveQuest = questDatabase.FindQuestBy(activeQuest.questCode);
+                QuestSystem.instance.LoadActiveQuest(activeQuest, newActiveQuest);
+            }
+
+            foreach (var completedQuest in saveData.completedQuestSaveData)
+            {
+                Quest newCompletedQuest = questDatabase.FindQuestBy(completedQuest.questCode);
+                QuestSystem.instance.LoadCompletedQuest(completedQuest, newCompletedQuest);
+            }
+
+            
 
             for (int i = 0; i < saveData.weaponItemCode.Count; i++)
             {
@@ -207,7 +251,12 @@ public class SaveDatabase : MonoBehaviour
                     // 해당 추가된 아이템 슬롯을 새로고침
                     InvenData.instance.RefreshInvenSlot(saveData.slotIndexs[i]);
                 }
-            }   
+            }
+
+            playerSaveStatus.SetPlayerSavestatus(saveData.playerSaveStatus);
+
+            QuestViewUI questViewUI = FindObjectOfType<QuestViewUI>();
+            questViewUI.QuestUIStart();
         }
     }
 

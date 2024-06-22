@@ -20,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponentInParent<PlayerStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
+            other.GetComponentInParent<PlayerInteractionStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
         }
     }
 }

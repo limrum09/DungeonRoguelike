@@ -33,7 +33,7 @@ public class WeaponAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && playerController.isCombo == true && isAttack == true)
         {
-            other.GetComponentInParent<EnemyStatus>().TakeDamage(GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerStatus>().PlayerDamage);
+            other.GetComponentInParent<EnemyStatus>().TakeDamage(GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerInteractionStatus>().PlayerDamage);
         }
     }
 }

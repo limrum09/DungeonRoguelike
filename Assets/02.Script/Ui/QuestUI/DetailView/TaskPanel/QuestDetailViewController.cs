@@ -37,12 +37,20 @@ public class QuestDetailViewController : MonoBehaviour
     private List<TaskContainerController> taskContainer;
     private List<RewardContainer> rewardContainer;
 
+    private Quest currentQuest;
+
     public void DetailViewStart()
     {
         taskContainer = CreatePool(taskContainerPrefab, taskContainerCount, taskContent);
         rewardContainer = CreatePool(rewardContainerPrefab, rewardContainerCount, rewardContent);
 
+
         UIAndSceneManager.instance.onSelectQuestListView += ChangeQuestView;
+
+        for(int i = 0; i < taskContainer.Count;i++)
+        {
+            taskContainer[i].gameObject.SetActive(false);
+        }
     }
 
     private void OnApplicationQuit()
@@ -63,11 +71,21 @@ public class QuestDetailViewController : MonoBehaviour
         return pool;
     }
 
+    public void QuestSuccessCountChange(Quest quest)
+    {
+        if (currentQuest != quest)
+            return;
+
+
+    }
+
     // QuestList에서 Quest를 선택하면 호출
     public void ChangeQuestView(Quest quest)
     {
         if (quest == null)
             return;
+
+        currentQuest = quest;
 
         titleText.text = quest.DisplayName;
         descriptionText.text = quest.Description;
@@ -82,11 +100,12 @@ public class QuestDetailViewController : MonoBehaviour
                 if(task != null)
                 {
                     var poolObject = taskContainer[taskIndex++];
+                    
+                    // Text 업데이트
+                    poolObject.DetailViewTaskSetup(task);
+
                     // 사용 할 Pool Object보이기
                     poolObject.gameObject.SetActive(true);
-
-                    // Text 업데이트
-                    poolObject.UpdateTaskText(task);
                 }
             }
         }

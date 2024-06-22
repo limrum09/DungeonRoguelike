@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PlayerStatus.instance.isDie)
+        if (!PlayerInteractionStatus.instance.isDie)
         {
             isGround = groundCheck.IsGround();
             if (isGround && playerVector.y < 0)
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
 
-            // EventSystem.current.IsPointerOverGameObject() <= UI Å¬¸¯½Ã È£Ãâ
+            // EventSystem.current.IsPointerOverGameObject() <= UI í´ë¦­ì‹œ í˜¸ì¶œ
             if (!EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)))
             {
                 playerState = PlayerState.Attack;
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = transform.forward * vertical;
 
-        playerSpeed = PlayerStatus.instance.PlayerSpeed;
+        playerSpeed = PlayerInteractionStatus.instance.PlayerSpeed;
         controller.Move(moveDirection * playerSpeed * Time.deltaTime);
         transform.rotation *= Quaternion.Euler(0, horizontal * rotationSpeed, 0);
 
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
             isCombo = true;
             animator.SetBool("IsAttack", true);
 
-            // ¾ÕÀ¸·Î Á¶±Ý ÀüÁø
+            // ì•žìœ¼ë¡œ ì¡°ê¸ˆ ì „ì§„
             // Vector3 moveDirection  = transform.forward *  0.1f;
             // controller.Move(moveDirection);
 

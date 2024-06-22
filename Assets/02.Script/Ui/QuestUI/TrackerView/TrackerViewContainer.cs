@@ -25,6 +25,14 @@ public class TrackerViewContainer : MonoBehaviour
             RemoveTrackerView();
     }
 
+    public void QuestSuccessChange(Quest quest)
+    {
+        if (quest != inputQuest)
+            return;
+
+        
+    }
+
     public void SetTrackerView(Quest quest)
     {
         if (quest == null)
@@ -44,7 +52,7 @@ public class TrackerViewContainer : MonoBehaviour
             foreach(var task in taskGroup.Tasks)
             {
                 var newTrackerTask = Instantiate(taskPrefab, thisRect);
-                newTrackerTask.UpdateTaskText(task);
+                newTrackerTask.TrackerViewSetup(task);
             }
         }
 

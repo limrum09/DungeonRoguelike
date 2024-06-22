@@ -15,7 +15,7 @@ public class EvilMageAttack : EnemyAttack
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponentInParent<PlayerStatus>().TakeDamage(EvilMage.GetComponent<EnemyStatus>().AttackDamage);
+            other.GetComponentInParent<PlayerInteractionStatus>().TakeDamage(EvilMage.GetComponent<EnemyStatus>().AttackDamage);
         }
     }
 }

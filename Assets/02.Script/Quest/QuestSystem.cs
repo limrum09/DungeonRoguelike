@@ -8,6 +8,7 @@ public class QuestSystem : MonoBehaviour
     public delegate void QuestRegisteredHandler(Quest quest);
     public delegate void QuestCompletedHandler(Quest quest);
     public delegate void QuestCanceledHandler(Quest quest);
+    public delegate void QuestRecieveReportHnadler(Quest quest);
 
 
     public static QuestSystem instance;
@@ -42,6 +43,8 @@ public class QuestSystem : MonoBehaviour
 
     public event QuestRegisteredHandler onAchievementRegisterd;
     public event QuestCompletedHandler onAchievementCompleted;
+
+    public event QuestRecieveReportHnadler onQuestRecieveReport;
 
 
     public IReadOnlyList<Quest> ActiveQeusts => activeQuests;
@@ -83,7 +86,11 @@ public class QuestSystem : MonoBehaviour
     public void QuestSystemRecieveReport(List<Quest> quests, string category, object target, int successCount)
     {
         foreach (var quest in quests)
+        {
             quest.QuestReceiveReport(category, target, successCount);
+            onQuestRecieveReport?.Invoke(quest);
+        }
+            
     }
     public void QuestSystemRecieveReport(string category, object target, int successCount)
     {
@@ -110,6 +117,27 @@ public class QuestSystem : MonoBehaviour
     public bool ContainsActiveAchievement(Quest quest) => activeAchievement.Any(x => x.CodeName == quest.CodeName);
     // 완료한 업적에서 매개변수가 있는지 확인
     public bool ContainsCompletedAchievements(Quest quest) => completedAchievements.Any(x => x.CodeName == quest.CodeName);
+
+    public void LoadActiveQuest(QuestSaveData saveData, Quest quest)
+    {
+        var newQuest = QuestSystemRegister(quest);
+        newQuest.LoadQuest(saveData);
+    }
+
+    public void LoadCompletedQuest(QuestSaveData saveData, Quest quest)
+    {
+        var newQuest = quest.Clone();
+        newQuest.LoadQuest(saveData);
+
+        if (newQuest is Quest)
+        {
+            completedQuests.Add(newQuest);
+        }
+        else
+        {
+            completedAchievements.Add(newQuest);
+        }
+    }
 
 
     private void OnQuestCompleted(Quest quest)

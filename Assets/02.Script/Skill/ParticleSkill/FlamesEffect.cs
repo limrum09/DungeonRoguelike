@@ -30,7 +30,7 @@ public class FlamesEffect : MonoBehaviour
     {
         if (other.CompareTag("PlayerComponent"))
         {
-            other.GetComponent<PlayerStatus>().TakeDamage(damage);
+            other.GetComponent<PlayerInteractionStatus>().TakeDamage(damage);
 
         }
     }
@@ -42,7 +42,7 @@ public class FlamesEffect : MonoBehaviour
             timer = true;
             if(time >= 0.1f)
             {
-                other.GetComponent<PlayerStatus>().TakeDamage(damage);
+                other.GetComponent<PlayerInteractionStatus>().TakeDamage(damage);
                 time = 0.0f;
             }
             
