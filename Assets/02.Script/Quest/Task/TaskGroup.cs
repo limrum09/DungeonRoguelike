@@ -52,8 +52,8 @@ public class TaskGroup
 
     public void TaskGroupComplete()
     {
-        if (IsComplete)
-            return;
+        /*if (IsComplete)
+            return;*/
 
         State = TaskGroupState.Complete;
 

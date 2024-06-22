@@ -18,7 +18,7 @@ public class UIProfile : MonoBehaviour
 
     public void SetHPBar()
     {
-        var player = PlayerStatus.instance;
+        var player = PlayerInteractionStatus.instance;
 
         int maxHP = player.MaxHP;
         int currentHP = player.CurrentHP;
@@ -31,11 +31,11 @@ public class UIProfile : MonoBehaviour
 
     public void SetExpBar()
     {
-        var player = PlayerStatus.instance;
+        var gameMananger = GameManager.instance;
 
-        int level = player.Level;
-        int maxEXP = player.Exp;
-        int currentEXP = player.CurrentExp;
+        int level = gameMananger.level;
+        int maxEXP = gameMananger.exp;
+        int currentEXP = gameMananger.currentExp;
 
         levelText.text = level.ToString();
         maxEXPText.text = maxEXP.ToString();

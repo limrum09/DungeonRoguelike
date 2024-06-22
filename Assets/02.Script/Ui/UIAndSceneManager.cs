@@ -8,6 +8,7 @@ public class UIAndSceneManager : MonoBehaviour
 
     public delegate void ChangeEquipmentEvent();
     public delegate void onSelectQuestListHandler(Quest quest);
+    public delegate void QuestUISucessChangeHandler(Quest quest);
 
     [SerializeField]
     GameObject lobbyUI;
@@ -18,9 +19,13 @@ public class UIAndSceneManager : MonoBehaviour
     [SerializeField]
     GameObject statusUI;
     [SerializeField]
+    GameObject questViewUI;
+
+
+    [SerializeField]
     private UIProfile uiProfile;
     [SerializeField]
-    private QuestViewUI questViewUI;
+    private QuestViewUI questUI;
 
     int GameUIIndex;
 
@@ -50,8 +55,8 @@ public class UIAndSceneManager : MonoBehaviour
         GameUIIndex = findObject.transform.childCount - 1;
 
         findObject = null;
-
-        questViewUI.QuestUIStart();
+        
+        // questViewUI.QuestUIStart();
     }
 
     // Update is called once per frame
@@ -80,6 +85,18 @@ public class UIAndSceneManager : MonoBehaviour
                 ViewStatus();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (questViewUI.activeSelf)
+            {
+                HideQuestUI();
+            }
+            else
+            {
+                ViewQuestUI();
+            }
+        }
     }
 
     public void ViewInventory()
@@ -102,6 +119,15 @@ public class UIAndSceneManager : MonoBehaviour
         statusUI.SetActive(false);
     }
 
+    public void ViewQuestUI()
+    {
+        questViewUI.SetActive(true);
+    }
+    public void HideQuestUI()
+    {
+        questViewUI.SetActive(false);
+    }
+
     public void LobbyScene()
     {
         lobbyUI.SetActive(true);
@@ -122,5 +148,5 @@ public class UIAndSceneManager : MonoBehaviour
         onSelectQuestListView?.Invoke(quest);
     }
 
-    public void SetTackerViewQuest(Quest quest, bool isOn) => questViewUI.SetTrackerViewQuest(quest, isOn);
+    public void SetTackerViewQuest(Quest quest, bool isOn) => questUI.SetTrackerViewQuest(quest, isOn);
 }

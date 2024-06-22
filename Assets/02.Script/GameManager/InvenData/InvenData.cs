@@ -265,6 +265,9 @@ public class InvenData : MonoBehaviour
 
             if (invenSlot != null)
             {
+                if (invenSlots[index].itemCnt == 0)
+                    return;
+
                 invenSlots[index].itemCnt--;
 
                 if (invenSlots[index].itemCnt == 0)

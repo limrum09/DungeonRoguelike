@@ -14,7 +14,20 @@ public class TrackerViewTask : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI taskText;
 
-    public void UpdateTaskText(Task task)
+    private Task currentTask;
+    private void OnDestroy()
+    {
+        currentTask.onSuccessChanged -= UpdateTaskText;
+    }
+
+    public void TrackerViewSetup(Task task)
+    {
+        currentTask = task;
+        currentTask.onSuccessChanged += UpdateTaskText;
+        UpdateTaskText(task, 0, 0);
+    }
+
+    public void UpdateTaskText(Task task, int currnetSuccess, int prevSuccess)
     {
         if (task.IsComplete)
             taskText.text = BuildText(task, ColorCode(completeColor), ColorCode(completeColor));

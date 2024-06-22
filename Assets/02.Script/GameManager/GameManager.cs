@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ItemStatus itemStatus;
     [SerializeField]
-    private PlayerSaveStatus playerSaveStatus;
+    private PlayerStatus playerSaveStatus;
 
     public int level;
     public int health;
@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public int dex;
     public int luk;
     public int bonusState;
+
+    public int exp;
+    public int currentExp;
 
     private bool isStart;
 
@@ -59,18 +62,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void FirstStart()
-    {
-        level = playerSaveStatus.Level;
-        health = 5;
-        str = 5;
-        dex = 5;
-        luk = 5;
-        bonusState = 0;
-
-        isStart = true;
-    }
-
     private void Start()
     {
         // ChangePlayerStatus();
@@ -78,13 +69,6 @@ public class GameManager : MonoBehaviour
 
     public void InitializeGameManager()
     {
-        level = 1;
-        health = 5;
-        str = 5;
-        dex = 5;
-        luk = 5;
-        bonusState = 0;
-
         isStart = true;
 
         ChangePlayerStatus();
@@ -98,12 +82,13 @@ public class GameManager : MonoBehaviour
 
     public void LevelUP()
     {
-        level++;
-        PlayerStatus.instance.Level++;
-        bonusState += 5;
+        //level++;
+        //PlayerStatus.instance.Level++;
+        //bonusState += 5;
 
-        PlayerStatus.instance.CurrentHP = PlayerStatus.instance.MaxHP;
+        PlayerInteractionStatus.instance.CurrentHP = PlayerInteractionStatus.instance.MaxHP;
 
+        ChangeExpBar();
         statusUI.SetStatusUIText();
         statusUI.ViewAndHideStateButton();
     }
@@ -116,15 +101,17 @@ public class GameManager : MonoBehaviour
         dex = playerSaveStatus.Dex;
         luk = playerSaveStatus.Luk;
         bonusState = playerSaveStatus.BonusStatus;
+
+        exp = playerSaveStatus.Exp;
+        currentExp = playerSaveStatus.CurrentExp;
     }
 
     public void ChangePlayerStatus()
     {
-        var player = PlayerStatus.instance;
+        var player = PlayerInteractionStatus.instance;
 
         GetPlayerStatus();
 
-        player.Level = level;
         player.MaxHP = (health * 20) + (str * 5) + itemStatus.ItemHP;
         player.PlayerDamage = (str * 4) + (dex * 1) + itemStatus.ItemDamage;
         player.Sheild = (health * 2) + (str * 1) + (dex * 1) + itemStatus.ItemSheid;
@@ -133,7 +120,7 @@ public class GameManager : MonoBehaviour
         player.PlayerSpeed = (float)9.75 + (float)(dex * 0.02) + (float)(str * 0.03) + itemStatus.ItemSpeed;
         player.SkillCoolTime = (float)9.8 + (float)((str + dex + health + luk) * 0.01) + itemStatus.ItemCoolTime;
 
-        if (player.Level == 1 && isStart)
+        if (level == 1 && isStart)
         {
             isStart = false;
             player.CurrentHP = player.MaxHP;
@@ -151,11 +138,15 @@ public class GameManager : MonoBehaviour
     public void PlayerArmorChange(ArmorItem item) => itemStatus.ChangeArmorItem(item);
     public void ChangeHPBar()
     {
+        GetPlayerStatus();
+
         UIAndSceneManager.instance.ChangeHPBar();
         statusUI.SetStatusUIText();
     }
     public void ChangeExpBar()
     {
+        GetPlayerStatus();
+
         UIAndSceneManager.instance.ChangeEXPBar();
         statusUI.SetStatusUIText();
     }

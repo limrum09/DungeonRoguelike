@@ -81,7 +81,6 @@ public class Quest : ScriptableObject
     public event CompletedHandler onCompleted;
     public event CanceledHandler onCanceled;
     public event NewTaskGroupHandler onNewTaskGroup;
-
     // QuestStart라고 보는 것도 괜찮다.
     public void QuestRegisterd()
     {
@@ -125,7 +124,7 @@ public class Quest : ScriptableObject
             else
             {
                 // 현제 진행 중인 TaskGroup
-                var prevTaskGroup = taskGroups[currentTaskGroupIndex];
+                var prevTaskGroup = taskGroups[currentTaskGroupIndex++];
                 // 현제 진행 중이던 TaskGroup종료
                 prevTaskGroup.TaskGroupEnd();
 
@@ -177,5 +176,41 @@ public class Quest : ScriptableObject
     public bool ContainsTarget(object target) => taskGroups.Any(x => x.ContainsTarget(this));
     public bool ContainsTarget(TaskTarget target) => ContainsTarget(target.Value);
 
-    private void OnSuccesschange(Task task, int currentSuccess, int successCount) => onTaskSuccessChanged?.Invoke(this, task, currentSuccess, successCount);
+    private void OnSuccesschange(Task task, int currentSuccess, int successCount) 
+    {
+        onTaskSuccessChanged?.Invoke(this, task, currentSuccess, successCount);
+        // UIAndSceneManager.instance.QuestviewChange(this);
+    }
+
+    public QuestSaveData QuestSave()
+    {
+        return new QuestSaveData
+        {
+            questCode = this.questCode,
+            state = this.State,
+            taskGroupIndex = currentTaskGroupIndex,
+            taskSuccessCount = CurrentTaskGroup.Tasks.Select(x => x.CurrentSuccess).ToArray()
+        };
+    }
+
+    public void LoadQuest(QuestSaveData saveData)
+    {
+        State = saveData.state;
+        currentTaskGroupIndex = saveData.taskGroupIndex;
+
+        // 이전에 처리한 퀘스트
+        for(int i = 0;i < currentTaskGroupIndex; i++)
+        {
+            var taskGroup = taskGroups[i];
+            taskGroup.TaskGroupStart();
+            taskGroup.TaskGroupComplete();
+        }
+
+        // 다시 진행 될 퀘스트 중, successCount가져오기
+        for(int i = 0; i < saveData.taskSuccessCount.Length; i++)
+        {
+            CurrentTaskGroup.TaskGroupStart();
+            CurrentTaskGroup.Tasks[i].CurrentSuccess = saveData.taskSuccessCount[i];
+        }
+    }
 }

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemInfo: "\uD558\uAE09 \uB9C8\uB825 \uD68C\uBCF5 \uD45C\uC158\uC774\uB2E4."
   itemImage: {fileID: 1575890033, guid: c26ccf27369ae93439f8950b97590f83, type: 3}
   itemCnt: 0
-  amount: 1
+  amount: 99
   isMax: 0
   hpHeal: 0
   mpHeal: 1000

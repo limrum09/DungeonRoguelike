@@ -12,7 +12,7 @@ public class QuestDatabase : ScriptableObject
 
     public IReadOnlyList<Quest> Quests => quests;
 
-    public Quest FindQuestBy(string codeName) => quests.FirstOrDefault(x => x.CodeName == codeName);
+    public Quest FindQuestBy(string questCode) => quests.FirstOrDefault(x => x.QuestCode == questCode);
 
 #if UNITY_EDITOR 
     [ContextMenu("FindQuests")]

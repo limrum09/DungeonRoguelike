@@ -14,7 +14,37 @@ public class TaskContainerController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI taskText;
 
-    public void UpdateTaskText(Task task)
+    [SerializeField]
+    private Task currentTask;
+
+    private void OnApplicationQuit()
+    {
+        if(this.gameObject.activeSelf && currentTask != null)
+            currentTask.onSuccessChanged -= UpdateTaskText;
+    }
+
+    private void OnDisable()
+    {
+        if (currentTask != null)
+        {
+            currentTask.onSuccessChanged -= UpdateTaskText;
+        }        
+    }
+
+    private void OnEnable()
+    {
+        if(currentTask != null)
+        {
+            currentTask.onSuccessChanged += UpdateTaskText;
+        }
+    }
+
+    public void DetailViewTaskSetup(Task task)
+    {
+        currentTask = task;   
+        UpdateTaskText(task, 0, 0);
+    }
+    public void UpdateTaskText(Task task, int susseccCount, int prevCount)
     {
         if (task.IsComplete)
             taskText.text = BuildText(task, ColorCode(taskCompleteColor), ColorCode(taskCompleteColor));

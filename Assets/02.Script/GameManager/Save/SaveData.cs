@@ -13,7 +13,7 @@ public class SaveData
     public List<string> weaponItemCode = new List<string>();
     public List<string> armorItemCode = new List<string>();
 
-    public int level;
+    /*public int level;
     public int health;
     public int str;
     public int dex;
@@ -23,8 +23,10 @@ public class SaveData
     public int currnetHP;
 
     public int exp;
-    public int currentExp;
+    public int currentExp;*/
 
-    public List<Quest> activeQuest = new List<Quest>();
-    public List<Quest> completedQuest = new List<Quest>();
+    public PlayerStatusSaveData playerSaveStatus = new PlayerStatusSaveData();
+
+    public List<QuestSaveData> activeQuestSaveData = new List<QuestSaveData>();
+    public List<QuestSaveData> completedQuestSaveData = new List<QuestSaveData>();
 }
