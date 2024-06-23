@@ -13,17 +13,27 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerStatus playerSaveStatus;
 
-    public int level;
-    public int health;
-    public int str;
-    public int dex;
-    public int luk;
-    public int bonusState;
 
-    public int exp;
-    public int currentExp;
+    private int level;
+    private int health;
+    private int str;
+    private int dex;
+    private int luk;
+    private int bonusState;
+
+    private int exp;
+    private int currentExp;
 
     private bool isStart;
+
+    public int Level => level;
+    public int Health => health;
+    public int Str => str;
+    public int Dex => dex;
+    public int Luk => luk;
+    public int Exp => exp;
+    public int CurrentExp => currentExp;
+    public int BonusState => bonusState;
 
     // Start is called before the first frame update
     void Awake()
@@ -82,10 +92,6 @@ public class GameManager : MonoBehaviour
 
     public void LevelUP()
     {
-        //level++;
-        //PlayerStatus.instance.Level++;
-        //bonusState += 5;
-
         PlayerInteractionStatus.instance.CurrentHP = PlayerInteractionStatus.instance.MaxHP;
 
         ChangeExpBar();
@@ -133,6 +139,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayerStatusUp(string status) => playerSaveStatus.StatusUP(status);
+    public void PlayerGetExp(int exp) => playerSaveStatus.GetExp(exp);
 
     public void PlayerWeaponChange(WeaponItem item) => itemStatus.ChangeWeaponItem(item);
     public void PlayerArmorChange(ArmorItem item) => itemStatus.ChangeArmorItem(item);

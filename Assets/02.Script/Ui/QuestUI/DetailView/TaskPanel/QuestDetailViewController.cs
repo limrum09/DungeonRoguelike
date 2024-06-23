@@ -46,11 +46,6 @@ public class QuestDetailViewController : MonoBehaviour
 
 
         UIAndSceneManager.instance.onSelectQuestListView += ChangeQuestView;
-
-        for(int i = 0; i < taskContainer.Count;i++)
-        {
-            taskContainer[i].gameObject.SetActive(false);
-        }
     }
 
     private void OnApplicationQuit()
@@ -84,6 +79,11 @@ public class QuestDetailViewController : MonoBehaviour
     {
         if (quest == null)
             return;
+
+        for (int i = 0; i < taskContainer.Count; i++)
+        {
+            taskContainer[i].gameObject.SetActive(false);
+        }
 
         currentQuest = quest;
 

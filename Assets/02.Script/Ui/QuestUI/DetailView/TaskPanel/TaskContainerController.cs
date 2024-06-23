@@ -20,7 +20,11 @@ public class TaskContainerController : MonoBehaviour
     private void OnApplicationQuit()
     {
         if(this.gameObject.activeSelf && currentTask != null)
+        {
             currentTask.onSuccessChanged -= UpdateTaskText;
+            currentTask = null;
+        }
+            
     }
 
     private void OnDisable()
@@ -28,6 +32,7 @@ public class TaskContainerController : MonoBehaviour
         if (currentTask != null)
         {
             currentTask.onSuccessChanged -= UpdateTaskText;
+            currentTask = null;
         }        
     }
 
@@ -46,6 +51,9 @@ public class TaskContainerController : MonoBehaviour
     }
     public void UpdateTaskText(Task task, int susseccCount, int prevCount)
     {
+        if (currentTask != task)
+            return;
+
         if (task.IsComplete)
             taskText.text = BuildText(task, ColorCode(taskCompleteColor), ColorCode(taskCompleteColor));
         else

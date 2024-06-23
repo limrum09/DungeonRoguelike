@@ -33,9 +33,9 @@ public class UIProfile : MonoBehaviour
     {
         var gameMananger = GameManager.instance;
 
-        int level = gameMananger.level;
-        int maxEXP = gameMananger.exp;
-        int currentEXP = gameMananger.currentExp;
+        int level = gameMananger.Level;
+        int maxEXP = gameMananger.Exp;
+        int currentEXP = gameMananger.CurrentExp;
 
         levelText.text = level.ToString();
         maxEXPText.text = maxEXP.ToString();

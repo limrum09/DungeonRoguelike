@@ -28,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3fca7fb050832814bbb78bb4de769e02, type: 2}
   - {fileID: 11400000, guid: f2e6390fa438cf7499f2559e5715792b, type: 2}
   - {fileID: 11400000, guid: 570ce15d5d01db44f8bac9c93981f30b, type: 2}
-  autoComplete: 1
+  autoComplete: 0
   isCancelable: 0
   isSavable: 1
   acceptionCondition:
