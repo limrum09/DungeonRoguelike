@@ -73,41 +73,13 @@ public class SaveDatabase : MonoBehaviour
 
         saveData.activeQuestSaveData.Clear();
         saveData.completedQuestSaveData.Clear();
-
-        /*saveData.level = 1;
-        saveData.health = 5;
-        saveData.str = 5;
-        saveData.dex = 5;
-        saveData.luk = 5;
-        saveData.bonusState = 5;
-
-        saveData.currnetHP = 125;
-        saveData.exp = 200;
-        saveData.currentExp = 0;*/
     }
 
     public void SaveData(string fileName)
     {
         Initialzed();
 
-        //var gM = GameManager.instance;
-
         saveData.playerSaveStatus = playerSaveStatus.GetPlayerSaveStatus();
-
-        /*saveData.level = gM.level;
-        saveData.health = gM.health;
-        saveData.str = gM.str;
-        saveData.dex = gM.dex;
-        saveData.luk = gM.luk;
-        saveData.bonusState = gM.bonusState;
-
-
-        var player = PlayerStatus.instance;
-
-        saveData.currnetHP = player.CurrentHP;
-        saveData.exp = player.Exp;
-        saveData.currentExp = player.CurrentExp;*/
-
 
         var questSystem = QuestSystem.instance;
 
@@ -180,21 +152,6 @@ public class SaveDatabase : MonoBehaviour
 
             // 해당 위치에 InvenSaveData가 변환된 데이터가 있으면 가져오기
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
-
-            /*
-            gM.level = saveData.level;
-            gM.health = saveData.health;
-            gM.str = saveData.str;
-            gM.dex = saveData.dex;
-            gM.luk = saveData.luk;
-            gM.bonusState = saveData.bonusState;
-
-
-            var player = PlayerStatus.instance;
-
-            player.CurrentHP = saveData.currnetHP;
-            player.Exp = saveData.exp;
-            player.CurrentExp = saveData.currentExp;*/
 
             foreach(var activeQuest in saveData.activeQuestSaveData)
             {

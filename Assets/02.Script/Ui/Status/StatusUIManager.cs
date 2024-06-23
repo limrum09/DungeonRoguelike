@@ -35,7 +35,7 @@ public class StatusUIManager : MonoBehaviour
         var gameManager = GameManager.instance;
         var player = PlayerInteractionStatus.instance;
 
-        currentLevelText.text = gameManager.level.ToString();
+        currentLevelText.text = gameManager.Level.ToString();
         currentHPText.text = player.CurrentHP.ToString();
         maxHPText.text = player.MaxHP.ToString();
         sheildText.text = player.Sheild.ToString();
@@ -45,16 +45,16 @@ public class StatusUIManager : MonoBehaviour
         speedText.text = player.PlayerSpeed.ToString();
         cooltimeText.text = player.SkillCoolTime.ToString();
 
-        currentExp.text = gameManager.currentExp.ToString();
-        exp.text = gameManager.exp.ToString();
+        currentExp.text = gameManager.CurrentExp.ToString();
+        exp.text = gameManager.Exp.ToString();
 
-        healthPointText.text = gameManager.health.ToString();
-        dexPointText.text = gameManager.dex.ToString();
-        strPointText.text = gameManager.str.ToString();
-        lukPointText.text = gameManager.luk.ToString();
-        bonusPointText.text = gameManager.bonusState.ToString();
+        healthPointText.text = gameManager.Health.ToString();
+        dexPointText.text = gameManager.Dex.ToString();
+        strPointText.text = gameManager.Str.ToString();
+        lukPointText.text = gameManager.Luk.ToString();
+        bonusPointText.text = gameManager.BonusState.ToString();
 
-        ExpWidthSet(gameManager.exp);
+        ExpWidthSet(gameManager.Exp);
     }
 
     public void ExpWidthSet(int cExp)
@@ -121,7 +121,7 @@ public class StatusUIManager : MonoBehaviour
 
     public void ViewAndHideStateButton()
     {
-        if(GameManager.instance.bonusState >= 1)
+        if(GameManager.instance.BonusState >= 1)
         {
             healthUPBtn.SetActive(true);
             strUPBtn.SetActive(true);

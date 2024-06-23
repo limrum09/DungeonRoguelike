@@ -101,7 +101,7 @@ public class UIAndSceneManager : MonoBehaviour
 
     public void ViewInventory()
     {
-        inventoryUI.transform.SetSiblingIndex(GameUIIndex);
+        inventoryUI.transform.SetAsFirstSibling();
         inventoryUI.SetActive(true);
     }
     public void HideInventory()
@@ -111,7 +111,7 @@ public class UIAndSceneManager : MonoBehaviour
 
     public void ViewStatus()
     {
-        statusUI.transform.SetSiblingIndex(GameUIIndex);
+        statusUI.transform.SetAsFirstSibling();
         statusUI.SetActive(true);
     }
     public void HideStatus()
@@ -121,6 +121,7 @@ public class UIAndSceneManager : MonoBehaviour
 
     public void ViewQuestUI()
     {
+        questViewUI.transform.SetAsFirstSibling();
         questViewUI.SetActive(true);
     }
     public void HideQuestUI()

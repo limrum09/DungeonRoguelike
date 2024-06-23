@@ -144,7 +144,6 @@ public class PlayerStatus : MonoBehaviour
             }
 
             GameManager.instance.LevelUP();
-            //GameManager.instance.ChangeExpBar();
         }
     }
 

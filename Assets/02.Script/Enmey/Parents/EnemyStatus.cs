@@ -68,6 +68,7 @@ public class EnemyStatus : MonoBehaviour
             {
                 currentHP = 0;
                 animator.SetBool("Hit", false);
+                GameManager.instance.PlayerGetExp(exp);
                 EnemyDead();
             }
             else

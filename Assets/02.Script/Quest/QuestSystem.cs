@@ -8,7 +8,6 @@ public class QuestSystem : MonoBehaviour
     public delegate void QuestRegisteredHandler(Quest quest);
     public delegate void QuestCompletedHandler(Quest quest);
     public delegate void QuestCanceledHandler(Quest quest);
-    public delegate void QuestRecieveReportHnadler(Quest quest);
 
 
     public static QuestSystem instance;
@@ -43,8 +42,6 @@ public class QuestSystem : MonoBehaviour
 
     public event QuestRegisteredHandler onAchievementRegisterd;
     public event QuestCompletedHandler onAchievementCompleted;
-
-    public event QuestRecieveReportHnadler onQuestRecieveReport;
 
 
     public IReadOnlyList<Quest> ActiveQeusts => activeQuests;
@@ -85,12 +82,15 @@ public class QuestSystem : MonoBehaviour
 
     public void QuestSystemRecieveReport(List<Quest> quests, string category, object target, int successCount)
     {
-        foreach (var quest in quests)
+        // foreach문 사용 시, Quest를 동시에 완료했을 경우 activeQuest나 activeAchievement의 quest가 완료되어 배열에서 사라지면서,
+        // InvalidOperationException: Collection was modified; enumeration operation may not execute 오류가 생겨난다.
+        // 자동 완료일 경우에 생기는 문제이기에 Quest에서는 크게 상관이 없다. 하지만 Achievement에서는 문제가 발생할 수 있다.
+        List<Quest> copyQuest = new List<Quest>(quests);
+
+        for(int i = 0; i < copyQuest.Count; i++)
         {
-            quest.QuestReceiveReport(category, target, successCount);
-            onQuestRecieveReport?.Invoke(quest);
+            copyQuest[i].QuestReceiveReport(category, target, successCount);
         }
-            
     }
     public void QuestSystemRecieveReport(string category, object target, int successCount)
     {
@@ -106,6 +106,18 @@ public class QuestSystem : MonoBehaviour
         {
             if (quest.IsCompletable)
                 quest.QuestComplete();
+        }
+    }
+
+    // 하나의 퀘스트만 자동으로 성공
+    public void CompletedWaitingQuest(Quest quest)
+    {
+        List<Quest> copyActiveQuests = new List<Quest>(activeQuests);
+
+        for(int i = 0;i < copyActiveQuests.Count;i++)
+        {
+            if (copyActiveQuests[i].QuestCode == quest.QuestCode && copyActiveQuests[i].IsCompletable)
+                copyActiveQuests[i].QuestComplete();
         }
     }
 
