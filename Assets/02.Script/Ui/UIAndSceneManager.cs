@@ -10,6 +10,7 @@ public class UIAndSceneManager : MonoBehaviour
     public delegate void onSelectQuestListHandler(Quest quest);
     public delegate void QuestUISucessChangeHandler(Quest quest);
 
+    [Header("GameObject")]
     [SerializeField]
     GameObject lobbyUI;
     [SerializeField]
@@ -20,12 +21,16 @@ public class UIAndSceneManager : MonoBehaviour
     GameObject statusUI;
     [SerializeField]
     GameObject questViewUI;
+    [SerializeField]
+    GameObject NPCUI;
 
-
+    [Header("Script")]
     [SerializeField]
     private UIProfile uiProfile;
     [SerializeField]
     private QuestViewUI questUI;
+    [SerializeField]
+    private NPCTalkUIController npcTalkUIController;
 
     int GameUIIndex;
 
@@ -150,4 +155,6 @@ public class UIAndSceneManager : MonoBehaviour
     }
 
     public void SetTackerViewQuest(Quest quest, bool isOn) => questUI.SetTrackerViewQuest(quest, isOn);
+    public void NPCQuestTalkWithPlayer(QuestAndScenario questAndScenario) => npcTalkUIController.GetQuestAndScenario(questAndScenario);
+    public void NPCBasicTalkWithPlayer(Scenario basic) => npcTalkUIController.NPCBasicScenario(basic);
 }
