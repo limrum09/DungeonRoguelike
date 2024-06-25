@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3bc40f7ec2fae448ca907dac8e0366, type: 3}
+  m_Name: OrcKill1_Collection
+  m_EditorClassIdentifier: 
+  normalStory:
+  - {fileID: 11400000, guid: d8f9b35b0a5ad7249a8a72dda38710b6, type: 2}
+  - {fileID: 11400000, guid: 784da3f884f621e43b49b67b9d921279, type: 2}
+  - {fileID: 0}
+  acceptionStory:
+  - {fileID: 11400000, guid: 134e8c5b06faac94d8529cee36693c2d, type: 2}
+  - {fileID: 11400000, guid: 9f6347517a9533146a7ab7791e40d00e, type: 2}
+  cancelStory:
+  - {fileID: 11400000, guid: b6b3503620d664e4d807455ff88ac86a, type: 2}
+  - {fileID: 11400000, guid: 2d90cd8a029821e499d6080270ee52ae, type: 2}
