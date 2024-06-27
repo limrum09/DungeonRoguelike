@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b3bc40f7ec2fae448ca907dac8e0366, type: 3}
-  m_Name: OrcKill1_Collection
+  m_Name: OrcKill2_Collection
   m_EditorClassIdentifier: 
   normalStory:
   - {fileID: 11400000, guid: d8f9b35b0a5ad7249a8a72dda38710b6, type: 2}
