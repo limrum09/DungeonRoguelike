@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca6cd73cd49e1d46afb9519e702a561, type: 3}
-  m_Name: Story_KillOrcs1_3
+  m_Name: Story_KillOrcs2_Cancel1
   m_EditorClassIdentifier: 
   isNPCTalk: 1
   storys:
-  - "\uC624\uD06C 10\uB9C8\uB9AC\uB97C \uCC98\uCE58\uD574\uC8FC\uC138\uC694!"
+  - "\uC557...."
+  - "\uC544\uC27D\uB124\uC694. \uD558\uC9C0\uB9CC \uBAA8\uD5D8\uAC00\uB2D8\uC758
+    \uACB0\uC815\uC774\uB2C8 \uC774\uD574\uD574\uC694."
+  - "\uD639\uC2DC, \uB9C8\uC74C\uC774 \uBC14\uB00C\uC2E0\uB2E4\uBA74\uB2E4\uC2DC
+    \uB9D0\uC744 \uAC78\uC5B4\uC8FC\uC138\uC694!"

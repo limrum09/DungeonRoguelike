@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ca6cd73cd49e1d46afb9519e702a561, type: 3}
-  m_Name: Story_KillOrcs1_3
+  m_Script: {fileID: 11500000, guid: 5dad3c886b889e041b31dcf3043b7efe, type: 3}
+  m_Name: QuestAndScenario_OrcKill1
   m_EditorClassIdentifier: 
-  isNPCTalk: 1
-  storys:
-  - "\uC624\uD06C 10\uB9C8\uB9AC\uB97C \uCC98\uCE58\uD574\uC8FC\uC138\uC694!"
+  scenarios: {fileID: 11400000, guid: 5c92dc0e37f055144b00b4ea4d431e80, type: 2}
+  quest: {fileID: 11400000, guid: 0924ccf6e514e6449b019c666196ff83, type: 2}

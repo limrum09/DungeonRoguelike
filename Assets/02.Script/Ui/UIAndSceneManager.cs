@@ -155,6 +155,6 @@ public class UIAndSceneManager : MonoBehaviour
     }
 
     public void SetTackerViewQuest(Quest quest, bool isOn) => questUI.SetTrackerViewQuest(quest, isOn);
-    public void NPCQuestTalkWithPlayer(QuestAndScenario questAndScenario) => npcTalkUIController.GetQuestAndScenario(questAndScenario);
+    public void NPCQuestTalkWithPlayer(List<QuestAndScenario> questAndScenario) => npcTalkUIController.GetQuestAndScenario(questAndScenario);
     public void NPCBasicTalkWithPlayer(Scenario basic) => npcTalkUIController.NPCBasicScenario(basic);
 }

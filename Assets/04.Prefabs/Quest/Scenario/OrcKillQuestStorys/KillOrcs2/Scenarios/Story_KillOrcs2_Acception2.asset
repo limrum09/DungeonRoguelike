@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dad3c886b889e041b31dcf3043b7efe, type: 3}
-  m_Name: QuestAndScenario
+  m_Script: {fileID: 11500000, guid: 0ca6cd73cd49e1d46afb9519e702a561, type: 3}
+  m_Name: Story_KillOrcs2_Acception2
   m_EditorClassIdentifier: 
-  scenarios: {fileID: 0}
-  quest: {fileID: 0}
+  isNPCTalk: 0
+  storys:
+  - "\uC54C\uACA0\uC2B5\uB2C8\uB2E4."
