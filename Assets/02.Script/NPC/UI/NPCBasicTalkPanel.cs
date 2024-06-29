@@ -24,6 +24,7 @@ public class NPCBasicTalkPanel : MonoBehaviour
         foreach(var questAndScenario in questAndScenarios)
         {
             NPCSelectQuest newSelectQuest = Instantiate(npcSelectQuestPrefab, content);
+            newSelectQuest.GetQuestAndScenario(questAndScenario);
         }
     }
 }

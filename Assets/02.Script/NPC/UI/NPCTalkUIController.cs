@@ -5,13 +5,16 @@ using UnityEngine;
 public class NPCTalkUIController : MonoBehaviour
 {
     [SerializeField]
+    private Scenario npcBasicTalkScenario;
+    [SerializeField]
     private List<QuestAndScenario> questAndScenarios;
+    
 
     [SerializeField]
     public QuestAndScenario selectQuest;
 
     [SerializeField]
-    private GameObject npcBasicTalkPanel;
+    private NPCBasicTalkPanel npcBasicTalkPanel;
     [SerializeField]
     private GameObject npcTalkPanel;
     [SerializeField]
@@ -33,28 +36,30 @@ public class NPCTalkUIController : MonoBehaviour
 
     public void QuestSelect(QuestAndScenario questAndScenario)
     {
+        Debug.Log("Quest Select !");
         selectQuest = questAndScenario;
 
         NPCQUestScenarioTalkToPlayer(selectQuest);
     }
 
-    public void NPCBasicScenario(Scenario basic)
+    public void NPCBasicScenario()
     {
-        npcBasicTalkPanel.SetActive(false);
+        npcBasicTalkPanel.gameObject.SetActive(true);
         npcTalkPanel.SetActive(false);
         playerTalkPanel.SetActive(false);
 
-
+        npcBasicTalkPanel.NPCTalk(npcBasicTalkScenario, questAndScenarios);
     }
 
-    public void GetQuestAndScenario(List<QuestAndScenario> questAndScenarios)
+    public void GetQuestAndScenario(Scenario basicScenario, List<QuestAndScenario> questAndScenarios)
     {
         this.questAndScenarios = questAndScenarios;
-        
+        this.npcBasicTalkScenario = basicScenario;
         
         questScenarioIndex = 0;
 
         //NPCQUestScenarioTalkToPlayer();
+        NPCBasicScenario();
     }
 
     private void NPCQUestScenarioTalkToPlayer(QuestAndScenario selectQuestAndScenario)

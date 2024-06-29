@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dad3c886b889e041b31dcf3043b7efe, type: 3}
   m_Name: QuestAndScenario_OrcKill2
   m_EditorClassIdentifier: 
-  scenarios: {fileID: 11400000, guid: 5c92dc0e37f055144b00b4ea4d431e80, type: 2}
-  quest: {fileID: 11400000, guid: 0924ccf6e514e6449b019c666196ff83, type: 2}
+  scenarios: {fileID: 11400000, guid: dfa1ce726e20fb84080d9ed2cad09bdb, type: 2}
+  quest: {fileID: 11400000, guid: d8b32670c3986cb4b8281b3a9bd43776, type: 2}
