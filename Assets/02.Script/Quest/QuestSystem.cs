@@ -130,6 +130,11 @@ public class QuestSystem : MonoBehaviour
     // 완료한 업적에서 매개변수가 있는지 확인
     public bool ContainsCompletedAchievements(Quest quest) => completedAchievements.Any(x => x.CodeName == quest.CodeName);
 
+    public Quest GetActiveQuest(Quest checkQuest)
+    {
+        return activeQuests.FirstOrDefault(x => x.CodeName == checkQuest.CodeName);
+    }
+
     public void LoadActiveQuest(QuestSaveData saveData, Quest quest)
     {
         var newQuest = QuestSystemRegister(quest);

@@ -7,18 +7,23 @@ using UnityEngine.UI;
 public class InvenSlot : MonoBehaviour
 {
     public int index;
+    [SerializeField]
+    private InvenItem currentItem;
 
+    [Header("Item Info")]
     public ITEMTYPE itemType;
     public string itemName;
     public int itemCnt;
     public Image itemImage;
     public string itemInfomation;
 
+    [Header("Slot Object")]
     [SerializeField]
     private GameObject itemCntTextObject;
     [SerializeField]
     private TextMeshProUGUI itemCntText;
 
+    public InvenItem CurrentItem => currentItem;
 
     private bool isCntView;
     private bool isView;
@@ -38,6 +43,7 @@ public class InvenSlot : MonoBehaviour
     {
         if(item != null)
         {
+            currentItem = item;
             itemType = item.itemtype;
             itemName = item.itemName;
             itemCnt = item.itemCnt;
@@ -46,13 +52,18 @@ public class InvenSlot : MonoBehaviour
 
             if (item.ItemAmount == 1) isCntView = false;
             else isCntView = true;
+
+            RefreshSlot();
         }
-        
-        RefreshSlot();
+        else
+        {
+            RemoveSlot();
+        }
     }
 
     public void RemoveSlot()
     {
+        currentItem = null;
         itemType = ITEMTYPE.All;
         itemName = "";
         itemCnt = 0;

@@ -11,8 +11,14 @@ public class QuestScenarioCollection : ScriptableObject
     private List<Scenario> acceptionStory;
     [SerializeField]
     private List<Scenario> cancelStory;
+    [SerializeField]
+    private List<Scenario> runningScenario;
+    [SerializeField]
+    private List<Scenario> completeScenario;
 
     public List<Scenario> NormalScenario => normalStory;
     public List<Scenario> AcceptionScenario => acceptionStory;
-    public List<Scenario> CanCelScenario => cancelStory;
+    public List<Scenario> CancelScenario => cancelStory;
+    public List<Scenario> RunningScenario => runningScenario;
+    public List<Scenario> CompleteScenario => completeScenario;
 }

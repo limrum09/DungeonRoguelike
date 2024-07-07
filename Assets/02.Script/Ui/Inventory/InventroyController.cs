@@ -6,6 +6,8 @@ public class InventroyController : MonoBehaviour
 {
     [SerializeField]
     private InventoryButton invenButton;
+    [SerializeField]
+    private GameObject invenContent;
 
     private void Start()
     {

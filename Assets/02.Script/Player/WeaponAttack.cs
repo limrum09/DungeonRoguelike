@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour
 {
-    private GameObject player;
+    [SerializeField]
     private PlayerController playerController;
 
     private bool isAttack;
@@ -12,8 +12,6 @@ public class WeaponAttack : MonoBehaviour
     void Start()
     {
         isAttack = false;
-        player = GameObject.FindGameObjectWithTag("PlayerComponent");
-        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame

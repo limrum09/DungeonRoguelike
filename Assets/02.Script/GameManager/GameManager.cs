@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField]
-    private StatusUIManager statusUI;
-    [SerializeField]
     private ItemStatus itemStatus;
     [SerializeField]
     private PlayerStatus playerSaveStatus;
@@ -65,16 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        var uiManager = FindObjectOfType<StatusUIManager>();
-        if (uiManager != null)
-        {
-            GetStatusUI(uiManager);
-        }
-    }
-
-    private void Start()
-    {
-        // ChangePlayerStatus();
+        
     }
 
     public void InitializeGameManager()
@@ -95,8 +84,8 @@ public class GameManager : MonoBehaviour
         PlayerInteractionStatus.instance.CurrentHP = PlayerInteractionStatus.instance.MaxHP;
 
         ChangeExpBar();
-        statusUI.SetStatusUIText();
-        statusUI.ViewAndHideStateButton();
+
+        UIAndSceneManager.instance.LevelUPUI();
     }
 
     private void GetPlayerStatus()
@@ -148,19 +137,11 @@ public class GameManager : MonoBehaviour
         GetPlayerStatus();
 
         UIAndSceneManager.instance.ChangeHPBar();
-        statusUI.SetStatusUIText();
     }
     public void ChangeExpBar()
     {
         GetPlayerStatus();
 
         UIAndSceneManager.instance.ChangeEXPBar();
-        statusUI.SetStatusUIText();
     }
-    #region OnSceneLoad
-    public void GetStatusUI(StatusUIManager UI)
-    {
-        this.statusUI = UI;
-    }
-    #endregion
 }

@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class NPCUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private NPCInteractionText interactionText;
+    [SerializeField]
+    private NPCTalkUIController talkUI;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public NPCInteractionText InteractionText => interactionText;
+    public NPCTalkUIController TalkUI => talkUI;
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ShortKeyManager : MonoBehaviour
 {
-    public static ShortKeyManager instance;
-
     [SerializeField]
     private List<ShortKeyItem> shortKeys = new List<ShortKeyItem>();
 
@@ -13,17 +11,6 @@ public class ShortKeyManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {   
-        if(instance == null)
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-
         shortkeyCnt = this.transform.childCount;
         for(int i = 0; i< shortkeyCnt; i++)
         {

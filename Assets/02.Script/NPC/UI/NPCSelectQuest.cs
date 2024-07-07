@@ -16,28 +16,47 @@ public class NPCSelectQuest : MonoBehaviour
     [SerializeField]
     private Sprite[] questStateImages;
 
+    private Quest thisQuest;
+    private Quest activeQuest;
+    private ScenarioState scenarioState;
+
+    private void Start()
+    {
+        activeQuest = null;
+    }
+
     public void GetQuestAndScenario(QuestAndScenario getQuestAndScenario)
     {
         questAndScenario = getQuestAndScenario;
 
-        Quest getQuest = getQuestAndScenario.Quest;
-
-        if(getQuest.State == QuestState.Complete)
+        thisQuest = getQuestAndScenario.Quest;
+        
+        if(thisQuest.State == QuestState.Complete || !thisQuest.IsAcceptable)
         {
             Destroy(this.gameObject);
         }
 
-        questTitle.text = getQuest.DisplayName;
+        questTitle.text = thisQuest.DisplayName;
 
-        switch (getQuest.State)
+        activeQuest = QuestSystem.instance.GetActiveQuest(thisQuest);
+
+        if(activeQuest != null)
         {
-            case QuestState.Inactive:
+            if (activeQuest.State == QuestState.WaitingForCompletion)
+                getQuestAndScenario.State = ScenarioState.WaitingForCompletion;
+        }
+
+        scenarioState = getQuestAndScenario.State;
+
+        switch (scenarioState)
+        {
+            case ScenarioState.Inactive:
                 stateImage.sprite = questStateImages[0];
                 break;
-            case QuestState.Running:
+            case ScenarioState.Running:
                 stateImage.sprite = questStateImages[1];
                 break;
-            case QuestState.WaitingForCompletion:
+            case ScenarioState.WaitingForCompletion:
                 stateImage.sprite = questStateImages[2];
                 break;
         }
@@ -48,5 +67,14 @@ public class NPCSelectQuest : MonoBehaviour
         NPCTalkUIController root = FindObjectOfType<NPCTalkUIController>();
 
         root.QuestSelect(questAndScenario);
+
+        // if Quest's State is WaitingForCompeltion then Quest Complete
+        if(activeQuest != null)
+        {
+            if (activeQuest.State == QuestState.WaitingForCompletion)
+            {
+                QuestSystem.instance.CompletedWaitingQuest(activeQuest);
+            }                
+        }
     }
 }
