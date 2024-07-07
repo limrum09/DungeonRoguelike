@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 playerVector;
-    public Animator animator;
+    [SerializeField]
+    private Animator animator;
 
     [Header("Status Value")]
     [SerializeField]
@@ -39,17 +40,17 @@ public class PlayerController : MonoBehaviour
     public bool isCombo;
 
     private bool isDoubleJump;
+    public Animator Ani => animator;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
         isCombo = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!PlayerInteractionStatus.instance.isDie)
         {
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
                     playerMove();
                     break;
                 case PlayerState.Attack:
-                    PlayerCombo();
+                    PlayerAttack();
                     break;
             }
 
@@ -83,7 +84,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("Die", true);
-            //animator.SetTrigger("TDie");
         }
         
     }
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(playerVector * Time.deltaTime);
     }
 
-    private void PlayerCombo()
+    private void PlayerAttack()
     {
         if (!isCombo)
         {

@@ -34,7 +34,11 @@ public class QuestViewUI : MonoBehaviour
         activeQuestToggle.SelectToggle();
         completedQuestToggle.SelectToggle();
 
-        var enableList = listView.Content.transform.GetChild(0);
+        Transform enableList = null;
+        if (listView.Content.transform.childCount > 0)
+        {
+            enableList = listView.Content.transform.GetChild(0);
+        }        
 
         if(enableList != null)
         {

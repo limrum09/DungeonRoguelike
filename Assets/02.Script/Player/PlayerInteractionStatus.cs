@@ -6,6 +6,8 @@ public class PlayerInteractionStatus : MonoBehaviour
 {
     public static PlayerInteractionStatus instance;
 
+    private PlayerController playerController;
+
     [SerializeField]
     private int maxHP;
     [SerializeField]
@@ -58,6 +60,11 @@ public class PlayerInteractionStatus : MonoBehaviour
         isDie = false;
     }
 
+    private void Start()
+    {
+        playerController = GetComponent<PlayerController>();
+    }
+
     public void InitializePlayerStatus()
     {
         isDie = false;
@@ -82,13 +89,13 @@ public class PlayerInteractionStatus : MonoBehaviour
     public void Resurrection()
     {
         isDie = false;
-        this.gameObject.GetComponent<PlayerController>().animator.SetBool("Die", false);
+        playerController.Ani.SetBool("Die", false);
     }
 
     public void Resurrection(int hp)
     {
         currentHP += hp;
         isDie = false;
-        this.gameObject.GetComponent<PlayerController>().animator.SetBool("Die", false);
+        playerController.Ani.SetBool("Die", false);
     }
 }

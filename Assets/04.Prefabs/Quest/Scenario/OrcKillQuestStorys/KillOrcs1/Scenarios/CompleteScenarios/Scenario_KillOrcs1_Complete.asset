@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca6cd73cd49e1d46afb9519e702a561, type: 3}
-  m_Name: Story_KillOrcs1_3
+  m_Name: Scenario_KillOrcs1_Complete
   m_EditorClassIdentifier: 
   isNPCTalk: 1
+  isQuestSuggest: 0
   storys:
-  - "\uC624\uD06C 10\uB9C8\uB9AC\uB97C \uCC98\uCE58\uD574\uC8FC\uC138\uC694!"
+  - "\uC624\uD06C\uB97C \uC804\uBD80 \uCC98\uB9AC\uD558\uC168\uB124\uC694!"
+  - "\uACE0\uC0DD\uD558\uC168\uC2B5\uB2C8\uB2E4. \uBAA8\uD5D8\uAC00\uB2D8!"

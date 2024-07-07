@@ -17,14 +17,16 @@ public class PlayerInteractionToNPC : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             isNPCTalk = true;
+            Debug.Log("Is Key Down : " + isNPCTalk);
         }
 
         if (Input.GetKeyUp(KeyCode.X))
         {
             isNPCTalk = false;
+            Debug.Log("Is Key Up : " + isNPCTalk);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("NPC") && isNPCTalk)
         {
@@ -41,12 +43,13 @@ public class PlayerInteractionToNPC : MonoBehaviour
             
             if(npc != null)
             {
-                Sprite npcImage = npc.NPCImage;
-                Scenario basicScenario = npc.BasicScenario;
-                List<QuestAndScenario> newQuestAndScenario = npc.QuestAndScenario;
+                npc.SetNPCTalkUIValue();
 
+                isNPCTalk = false;
                 // UNSceneManager에게 넘겨주기
-            }            
+            }
+
+            Debug.Log("Is NPC ? " + npc);
         }
     }
 }

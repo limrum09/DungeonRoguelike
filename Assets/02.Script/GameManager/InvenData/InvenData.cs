@@ -36,11 +36,6 @@ public class InvenData : MonoBehaviour
 
     private void Start()
     {
-        /*if (!LoadFile("invenFile"))
-        {
-            Initialized(invenButton, invenContent);
-        }*/
-
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
         
         // 처음 시작
@@ -50,11 +45,6 @@ public class InvenData : MonoBehaviour
             Initialized(InvenButton, invenContent);
             invenCount = invenSlots.Count;
         }
-    }
-
-    private void OnApplicationQuit()
-    {
-        // SaveInvenDataToFile("invenFile");
     }
 
     // SaveData가 있을 시, SaveDatabase.cs에서 호출
@@ -75,14 +65,11 @@ public class InvenData : MonoBehaviour
 
     private void InitializeInventory()
     {
-        
-
         int contentSlotCount = invenContent.transform.childCount;
         if (contentSlotCount > invenCount)
         {
             for (int i = invenCount; i < contentSlotCount; i++)
             {
-                // instance
                 invenSlots.Add(null);
             }
             invenCount = contentSlotCount;
@@ -115,6 +102,8 @@ public class InvenData : MonoBehaviour
         {
             GetInvenSlotComponent(i).SetSlotIndex(i);
         }
+
+        invenButton.Content.GetComponent<SetInventoryContentSize>().ResetContentSize();
     }
 
     private GameObject InstantiateInvenSlot()
@@ -152,14 +141,11 @@ public class InvenData : MonoBehaviour
             if(invenSlots[i] != null)
             {
                 // 같은 아이템이 있는 경우
-                if(invenSlots[i].ItemCode == newItem.ItemCode)
+                if(invenSlots[i].ItemCode == newItem.ItemCode && !!invenSlots[i].IsMax())
                 {
-                    if (!invenSlots[i].IsMax())
-                    {
-                        invenSlots[i].itemCnt++;
-                        RefreshInvenSlot(i);
-                        return;
-                    }
+                    invenSlots[i].itemCnt++;
+                    RefreshInvenSlot(i);
+                    return;
                 }
             }
         }
@@ -232,29 +218,64 @@ public class InvenData : MonoBehaviour
         }
     }
 
-    private void RemoveInvenSlot(int index)
-    {
-        InvenSlot invenSlot = GetInvenSlotComponent(index);
-
-        if(invenSlot != null)
-        {
-            invenSlot.RemoveSlot();
-        }
-    }
-
+    // currentIndex가 도착 InvenSlot, lastIndex가 아이템을 잡기 시작한 지점
     public void MoveInvenItem(int lastIndex, int currentIndex)
     {
-        if(IsValidIndex(lastIndex) && IsValidIndex(currentIndex))
+        if (IsValidIndex(lastIndex) && IsValidIndex(currentIndex))
         {
-            InvenItem tempInvenItem = invenSlots[currentIndex];
-            invenSlots[currentIndex] = invenSlots[lastIndex];
-            invenSlots[lastIndex] = tempInvenItem;
+            // Potion이고, itemCode가 동일할 경우, 포션을 합친다.
+            if (invenSlots[currentIndex] != null && lastIndex != currentIndex) 
+            {
+                if(invenSlots[currentIndex].itemtype == ITEMTYPE.POTION && invenSlots[lastIndex].ItemCode == invenSlots[currentIndex].ItemCode)
+                    CombinePotionCount(lastIndex, currentIndex);
+                else
+                    ChangeIndexInvenItem(lastIndex, currentIndex);
+            }
+            else
+                ChangeIndexInvenItem(lastIndex, currentIndex);
 
-            RemoveInvenSlot(lastIndex);
 
             RefreshInvenSlot(lastIndex);
             RefreshInvenSlot(currentIndex);
         }
+    }
+
+    // 포션일 경우 아이템 함치기
+    private void CombinePotionCount(int lastIndex, int currentIndex)
+    {
+        int ItemAmount = invenSlots[currentIndex].ItemAmount;
+        int currentIndexItemCount = invenSlots[currentIndex].itemCnt;
+
+        // 드레그한 위치의 포션의 개수가 Amount보다 적을 시, 동작
+        if (currentIndexItemCount < ItemAmount)
+        {
+            int lastIndexItemCount = invenSlots[lastIndex].itemCnt;
+            int itemSum = lastIndexItemCount + currentIndexItemCount;
+
+            // 현제 두 포션의 개수의 합이 Amount보다 많을 시, true. 예) Amount가 99라면 합이 최소 100은 어야 true.
+            if(itemSum > ItemAmount)
+            {
+                lastIndexItemCount = itemSum - ItemAmount;
+                currentIndexItemCount = ItemAmount;
+
+                invenSlots[lastIndex].itemCnt = lastIndexItemCount;
+            }
+            else
+            {
+                currentIndexItemCount = itemSum;
+
+                invenSlots[lastIndex] = null;
+            }
+
+            invenSlots[currentIndex].itemCnt = currentIndexItemCount;
+        }
+    }
+
+    private void ChangeIndexInvenItem(int lastIndex, int currentIndex)
+    {
+        InvenItem tempInvenItem = invenSlots[currentIndex];
+        invenSlots[currentIndex] = invenSlots[lastIndex];
+        invenSlots[lastIndex] = tempInvenItem;
     }
 
     public void UsingInvenItem(int index)
@@ -263,21 +284,16 @@ public class InvenData : MonoBehaviour
         {
             InvenSlot invenSlot = GetInvenSlotComponent(index);
 
-            if (invenSlot != null)
+            if (invenSlot.CurrentItem != null)
             {
                 if (invenSlots[index].itemCnt == 0)
                     return;
 
                 invenSlots[index].itemCnt--;
 
-                if (invenSlots[index].itemCnt == 0)
+                if (invenSlots[index].itemCnt <= 0)
                 {
-                    invenSlot.RemoveSlot();
                     invenSlots[index] = null;
-                }
-                else if(invenSlots[index].itemCnt < 0)
-                {
-                    invenSlots[index].itemCnt = 0;
                 }
 
                 RefreshInvenSlot(index);
@@ -298,6 +314,7 @@ public class InvenData : MonoBehaviour
         return selectInven != null ? selectInven.GetComponent<InvenSlot>() : null;
     }
 
+    // index 값이 inventory의 개수르 넘기지 않는지 확인
     private bool IsValidIndex(int index)
     {
         return index >= 0 && index < invenContent.transform.childCount;

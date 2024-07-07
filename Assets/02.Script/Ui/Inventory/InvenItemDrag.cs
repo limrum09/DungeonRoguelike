@@ -45,7 +45,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         }
 
         // if clickInven include 'InvenSlot' component, player can use and drag item
-        if (clickInven != null && clickInven.itemName != "")
+        if (clickInven != null && clickInven.CurrentItem != null)
         {
             dragStartIndex = FindIndex(clickInven);
 
@@ -55,6 +55,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 InvenData.instance.UsingInvenItem(dragStartIndex);
             }
 
+            Debug.Log("Current Item Count : " + clickInven.itemCnt);
             icon.SetActive(true);
             itemIcon.transform.position = Input.mousePosition;
             iconImage.sprite = clickInven.itemImage.sprite;

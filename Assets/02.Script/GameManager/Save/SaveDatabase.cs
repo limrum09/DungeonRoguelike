@@ -143,6 +143,7 @@ public class SaveDatabase : MonoBehaviour
 
     public void LoadData(string fileName)
     {
+        Debug.Log("Load Data");
         string path = Path.Combine(Application.persistentDataPath, fileName);
 
         if (File.Exists(path))

@@ -15,4 +15,25 @@ public class NPCQuestController : MonoBehaviour
     public Scenario BasicScenario => basicScenario;
     public List<QuestAndScenario> QuestAndScenario => questAndScenario;
     public Sprite NPCImage => npcImage;
+
+    public void SetNPCTalkUIValue()
+    {
+        UIAndSceneManager.instance.NPCQuestTalkWithPlayer(basicScenario, questAndScenario, npcImage);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            UIAndSceneManager.instance.PlayerInQuestNPC();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            UIAndSceneManager.instance.PlayerOutQuestNPC();
+        }
+    }
 }

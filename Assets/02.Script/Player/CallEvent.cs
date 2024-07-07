@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CallEvent : MonoBehaviour
 {
-    public PlayerController player;
+    [SerializeField]
+    private PlayerController player;
 
     public void MoveForward()
     {
@@ -16,17 +17,17 @@ public class CallEvent : MonoBehaviour
     {
         player.isCombo = false;
         player.playerState = PlayerState.Idel;
-        player.animator.SetBool("IsAttack", false);
+        player.Ani.SetBool("IsAttack", false);
     }
 
     public void DieEnd()
     {
-        player.animator.SetBool("Die", false);
+        player.Ani.SetBool("Die", false);
     }
 
     public void JumpEnd()
     {
-        player.animator.SetBool("Jump", false);
-        player.animator.SetBool("DoubleJump", false);
+        player.Ani.SetBool("Jump", false);
+        player.Ani.SetBool("DoubleJump", false);
     }
 }

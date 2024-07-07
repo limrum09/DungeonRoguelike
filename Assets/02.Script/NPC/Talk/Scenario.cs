@@ -6,6 +6,7 @@ using UnityEngine;
 public class Scenario : ScriptableObject
 {
     public bool isNPCTalk;
+    public bool isQuestSuggest; // 퀘스트 수락, 퀘스트에 하나만 있어도 충분함
 
     [TextArea]
     public string[] storys;

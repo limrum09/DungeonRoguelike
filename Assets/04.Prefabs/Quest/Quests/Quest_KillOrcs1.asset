@@ -31,6 +31,5 @@ MonoBehaviour:
   autoComplete: 0
   isCancelable: 0
   isSavable: 1
-  acceptionCondition:
-  - {fileID: 0}
+  acceptionCondition: []
   cancelCondition: []

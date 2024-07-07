@@ -22,3 +22,7 @@ MonoBehaviour:
   cancelStory:
   - {fileID: 11400000, guid: b6b3503620d664e4d807455ff88ac86a, type: 2}
   - {fileID: 11400000, guid: 2d90cd8a029821e499d6080270ee52ae, type: 2}
+  runningScenario:
+  - {fileID: 11400000, guid: 791a7cb5f3fbcb148ab5abfb2c93d8e0, type: 2}
+  completeScenario:
+  - {fileID: 11400000, guid: 3ceda40904bd1854fa711f0cbabdaef7, type: 2}
