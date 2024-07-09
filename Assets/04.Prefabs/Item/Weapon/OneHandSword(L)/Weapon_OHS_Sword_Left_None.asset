@@ -16,10 +16,10 @@ MonoBehaviour:
   weaponItem: {fileID: 0}
   weaponItemSprite: {fileID: 0}
   equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
-  itemOverlapping: 0
   useOneHand: 1
   leftWeapon: 1
   weaponAnimator: {fileID: 9100000, guid: cc05ad1f2be3bd8419d1cbc952fae9a1, type: 2}
+  weaponValue: 0
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0

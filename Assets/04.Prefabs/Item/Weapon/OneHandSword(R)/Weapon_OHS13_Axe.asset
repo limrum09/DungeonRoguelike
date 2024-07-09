@@ -19,6 +19,7 @@ MonoBehaviour:
   useOneHand: 1
   leftWeapon: 0
   weaponAnimator: {fileID: 9100000, guid: 404144ff63a285643bc7481d053110a3, type: 2}
+  weaponValue: 1
   itemHp: 100
   itemDamage: 200
   itemCriticalDamage: 350

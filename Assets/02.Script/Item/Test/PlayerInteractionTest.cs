@@ -21,6 +21,8 @@ public class PlayerInteractionTest : MonoBehaviour
     [SerializeField]
     private int armorIndexOverLapping;
 
+    private int rightWeaponValue;
+    private int leftWeaponValue;
     private bool weaponROneHand;
     private bool useWeaponL;
     private MeshFilter meshFilterWeaponR;
@@ -39,14 +41,9 @@ public class PlayerInteractionTest : MonoBehaviour
         meshFilterWeaponL = weaponL.gameObject.GetComponent<MeshFilter>();
     }
 
-
-
-    public void WeaponChange(WeaponItem weapon)
+    public void WeaponChangeTemp(WeaponItem weapon)
     {
-        WeaponItem newWeapon = weapon;
-        ItemRotation weaponRotation = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<ItemRotation>() : null;
-
-        // weaponROneHand 값을 어디선가 초기화 해줘야한다. 게임 시작할 때 무기 가지고 있는지 확인작업 필요한 듯
+        /*        // weaponROneHand 값을 어디선가 초기화 해줘야한다. 게임 시작할 때 무기 가지고 있는지 확인작업 필요한 듯
         // Left Weapon
         if (newWeapon.LeftWeapon)
         {
@@ -110,7 +107,105 @@ public class PlayerInteractionTest : MonoBehaviour
             {
                 animator.runtimeAnimatorController = newWeapon.WeaponItemObject != null ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
             }
+        }*/
+    }
+
+    public void WeaponChange(WeaponItem weapon)
+    {
+        WeaponItem newWeapon = weapon;
+        ItemRotation weaponRotation = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<ItemRotation>() : null;
+
+        int weaponAniValue = newWeapon.WeaponValue;
+
+        if (!newWeapon.UseOndeHand)
+        {
+            leftWeaponValue = 0;
+            weaponL.SetActive(false);
         }
+            
+
+        if (!newWeapon.LeftWeapon)
+            rightWeaponValue = weaponAniValue;
+        else
+        {
+            weaponL.SetActive(true);
+            leftWeaponValue = weaponAniValue;
+        }
+
+        animator.SetInteger("RightWeaponValue", rightWeaponValue);
+        animator.SetInteger("LeftWeaponValue", leftWeaponValue);
+
+        animator.SetFloat("Forward", 0.0f);
+        animator.SetFloat("Rotation", 0.0f);
+        animator.SetBool("Jump", false);
+        animator.SetBool("Walk", false);
+        animator.SetBool("IsAttack", false);
+
+        /*        // weaponROneHand 값을 어디선가 초기화 해줘야한다. 게임 시작할 때 무기 가지고 있는지 확인작업 필요한 듯
+                // Left Weapon
+                if (newWeapon.LeftWeapon)
+                {
+                    useWeaponL = true;
+                    WeaponL.SetActive(true);
+
+                    if (weaponRotation != null)
+                    {
+                        WeaponL.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY * -1.0f, weaponRotation.PlayerItemRotationZ + 180f);
+                    }
+
+                    // player don't select left weapon
+                    if (!newWeapon.WeaponItemObject)
+                    {
+                        useWeaponL = false;
+                        // condition ? true : false
+                        tempSaveLeftWeaponAnimatorController = tempSaveRightWeaponAnimatorController != null ? tempSaveRightWeaponAnimatorController : defaultAnimatorController;
+                    }
+                    else
+                    {
+                        tempSaveLeftWeaponAnimatorController = newWeapon.WeaponAnimator;
+                    }
+
+                    animator.runtimeAnimatorController = weaponROneHand ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
+
+                    if (!weaponROneHand)
+                    {
+                        WeaponR.SetActive(false);
+                    }
+                }
+                // Right Wepon
+                else
+                {
+                    if (weaponRotation != null)
+                    {
+                        WeaponR.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY, weaponRotation.PlayerItemRotationZ);
+                    }
+
+
+                    weaponR.SetActive(true);
+                    weaponROneHand = newWeapon.UseOndeHand;
+
+                    tempSaveRightWeaponAnimatorController = newWeapon.WeaponItemObject != null ? newWeapon.WeaponAnimator : defaultAnimatorController;
+
+                    animator.runtimeAnimatorController = tempSaveRightWeaponAnimatorController;
+
+                    // When player doesn't have left weapon after select right weapon
+                    if (!useWeaponL)
+                    {
+                        weaponL.SetActive(false);
+                    }
+                    // When player have left weapon
+                    else if (!newWeapon.UseOndeHand)
+                    {
+                        // Select weapon is using two hands
+                        useWeaponL = false;
+                        weaponL.SetActive(false);
+                    }
+                    // Using one hand. Applying the left weapon's animator
+                    else if (newWeapon.UseOndeHand)
+                    {
+                        animator.runtimeAnimatorController = newWeapon.WeaponItemObject != null ? tempSaveLeftWeaponAnimatorController : defaultAnimatorController;
+                    }
+                }*/
 
         MeshFilter changeFilter = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<MeshFilter>() : null;
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;

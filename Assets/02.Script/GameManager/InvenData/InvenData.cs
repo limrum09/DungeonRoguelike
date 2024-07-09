@@ -103,7 +103,7 @@ public class InvenData : MonoBehaviour
             GetInvenSlotComponent(i).SetSlotIndex(i);
         }
 
-        invenButton.Content.GetComponent<SetInventoryContentSize>().ResetContentSize();
+        // invenButton.Content.GetComponent<SetInventoryContentSize>().ResetContentSize();
     }
 
     private GameObject InstantiateInvenSlot()
