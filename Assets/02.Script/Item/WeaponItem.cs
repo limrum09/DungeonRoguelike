@@ -22,8 +22,6 @@ public class WeaponItem : ScriptableObject
     [SerializeField]
     private bool leftWeapon;
     [SerializeField]
-    private AnimatorController weaponAnimator;
-    [SerializeField]
     private int weaponValue;
 
     [Header("Status")]
@@ -49,7 +47,6 @@ public class WeaponItem : ScriptableObject
     public EquipmentCategory EquipmentCategory => equipmentCategory;
     public bool UseOndeHand => useOneHand;
     public bool LeftWeapon => leftWeapon;
-    public AnimatorController WeaponAnimator => weaponAnimator;
     public int WeaponValue => weaponValue;
 
     public int ItemHP => itemHp;

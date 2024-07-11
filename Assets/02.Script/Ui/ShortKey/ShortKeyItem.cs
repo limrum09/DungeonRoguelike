@@ -42,7 +42,7 @@ public class ShortKeyItem : MonoBehaviour
                 UseItem();
             }
 
-            itemCnt.text = item.itemCnt.ToString();
+            itemCnt.text = ItemCount().ToString();
         }        
     }
 
@@ -69,7 +69,7 @@ public class ShortKeyItem : MonoBehaviour
     {
         viewPort.SetActive(true);
         ItemIcon.sprite = item.itemImage;
-        itemCnt.text = item.itemCnt.ToString();
+        itemCnt.text = ItemCount().ToString();
     }
 
     public void HideItem()
@@ -82,9 +82,9 @@ public class ShortKeyItem : MonoBehaviour
 
     private void UseItem()
     {
-        InvenData.instance.UsingInvenItem(itemIndex);
+        InvenData.instance.UsingInvenItem(item);
 
-        itemCnt.text = item.itemCnt.ToString();
+        itemCnt.text = ItemCount().ToString();
     }
 
     private void SetShortkeyNumber()
@@ -101,6 +101,22 @@ public class ShortKeyItem : MonoBehaviour
         text = Convert.ToChar(s);
 
         shortkeyNumber.text = text.ToString();
+    }
+
+    private int ItemCount()
+    {
+        int count = 0;
+
+        foreach(var inven in InvenData.instance.invenSlots)
+        {
+            if(inven != null && item != null)
+            {
+                if (inven.itemName == item.itemName)
+                    count += inven.itemCnt;
+            }
+        }
+
+        return count;
     }
 
     public InvenItem GetItem()
