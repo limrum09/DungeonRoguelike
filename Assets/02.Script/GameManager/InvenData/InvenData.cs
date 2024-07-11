@@ -278,6 +278,29 @@ public class InvenData : MonoBehaviour
         invenSlots[lastIndex] = tempInvenItem;
     }
 
+    public void UsingInvenItem(InvenItem item)
+    {
+        for(int i =0; i < invenSlots.Count; i++)
+        {
+            if(invenSlots[i] != null)
+            {
+                if (invenSlots[i].itemName == item.itemName)
+                {
+                    invenSlots[i].itemCnt--;
+
+                    if (invenSlots[i].itemCnt <= 0)
+                    {
+                        invenSlots[i] = null;
+                    }
+
+                    RefreshInvenSlot(i);
+
+                    break;
+                }
+            }            
+        }
+    }
+
     public void UsingInvenItem(int index)
     {
         if (IsValidIndex(index))
