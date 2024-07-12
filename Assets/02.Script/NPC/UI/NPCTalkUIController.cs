@@ -44,13 +44,15 @@ public class NPCTalkUIController : MonoBehaviour
 
     public void NPCBasicScenario()
     {
-        npcBasicScenarioPanel.gameObject.SetActive(true);
-        npcScenarioPanel.gameObject.SetActive(false);
-        playerScenarioPanel.gameObject.SetActive(false);
+        npcBasicScenarioPanel.gameObject.SetActive(true);   // 기본적으로 NPC가 말하는 UI
+        npcScenarioPanel.gameObject.SetActive(false);       // Quest 선택 후, NPC의 대화상자
+        playerScenarioPanel.gameObject.SetActive(false);    // Quest 선택 후, Player의 대화상자
 
+        // 기본 NPC 대화상자 호출
         npcBasicScenarioPanel.NPCTalk(npcBasicTalkScenario, questAndScenarios);
     }
 
+    // 호출 시 퀘스트UI 시작
     public void GetQuestAndScenario(Scenario basicScenario, List<QuestAndScenario> questAndScenarios, Sprite npcImage)
     {
         if (isTalkUI)
@@ -63,7 +65,6 @@ public class NPCTalkUIController : MonoBehaviour
 
         questScenarioIndex = 0;
 
-        //NPCQUestScenarioTalkToPlayer();
         NPCBasicScenario();
     }
 
@@ -72,6 +73,7 @@ public class NPCTalkUIController : MonoBehaviour
         Debug.Log("Quest Select !");
         selectQuest = questAndScenario;
 
+        // 퀘스트 선택 시, 현제 상태에 따라 시나리오가 정해짐
         if(selectQuest.State == ScenarioState.Inactive)
         {
             currentScenario = selectQuest.Scenarios.NormalScenario;
@@ -88,6 +90,7 @@ public class NPCTalkUIController : MonoBehaviour
         NPCQUestScenarioTalkToPlayer();
     }
 
+    // Player나 NPC가 본인의 Scenario가 끝났을 시, 호출
     public void NextQuestScenario()
     {
         Debug.Log("Next Scenario");
@@ -97,16 +100,20 @@ public class NPCTalkUIController : MonoBehaviour
         }
     }
 
+    // 시나리오 재생
     private void NPCQUestScenarioTalkToPlayer()
     {
         int length = currentScenario.Count;
 
+        // 준비된 시나리오가 없는 경우
         if (length == questScenarioIndex)
         {
+            // 종료
             NPCTalkEnd();
             return;
         }
 
+        // NPC 시나리오
         if (currentScenario[questScenarioIndex].isNPCTalk)
         {
             npcScenarioPanel.gameObject.SetActive(true);
@@ -114,6 +121,7 @@ public class NPCTalkUIController : MonoBehaviour
 
             npcScenarioPanel.GetScenario(currentScenario[questScenarioIndex]);
         }
+        // Player 사나리오
         else
         {
             npcScenarioPanel.gameObject.SetActive(false);
@@ -125,36 +133,38 @@ public class NPCTalkUIController : MonoBehaviour
         questScenarioIndex++;
     }
 
+    // 퀘스트 수락 시
     public void AccoptionQuest()
     {
         if(selectQuest != null)
         {
-            questScenarioIndex = 0;
-            currentScenario = selectQuest.Scenarios.AcceptionScenario;
-            selectQuest.State = ScenarioState.Running;
+            questScenarioIndex = 0;                                     // 시나리오 순서 초기화
+            currentScenario = selectQuest.Scenarios.AcceptionScenario;  // 현제 시나리오를 퀘스트 수락 시나리오로 변경
+            selectQuest.State = ScenarioState.Running;                  // 시나리오 상태 변경
 
-            Quest acceptionQuest = selectQuest.Quest;
+            Quest acceptionQuest = selectQuest.Quest;                   // 선택한 퀘스트
 
-            QuestSystem.instance.QuestSystemRegister(acceptionQuest);
+            QuestSystem.instance.QuestSystemRegister(acceptionQuest);   // QuestSystem에 퀘스트를 시작하도록 추가
 
             NPCQUestScenarioTalkToPlayer();
         }        
     }
 
+    // 거절 시
     public void CancelQuest()
     {
         if(selectQuest != null)
         {
-            questScenarioIndex = 0;
-            currentScenario = selectQuest.Scenarios.CancelScenario;
+            questScenarioIndex = 0;                                 // 시나리오 순서 초기화
+            currentScenario = selectQuest.Scenarios.CancelScenario; // 현제 시나리오를 퀘스트 거절 시나리오로 변경
 
             NPCQUestScenarioTalkToPlayer();
         }
     }
 
+    // 시나리오 종료
     public void NPCTalkEnd()
     {
-        Debug.Log("NPC TALK END");
         isTalkUI = false;
         questScenarioIndex = 0;
 

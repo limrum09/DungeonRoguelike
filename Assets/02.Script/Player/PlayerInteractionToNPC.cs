@@ -46,7 +46,6 @@ public class PlayerInteractionToNPC : MonoBehaviour
                 npc.SetNPCTalkUIValue();
 
                 isNPCTalk = false;
-                // UNSceneManager에게 넘겨주기
             }
 
             Debug.Log("Is NPC ? " + npc);

@@ -83,6 +83,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            animator.SetBool("Jump", false);
+            animator.SetBool("DoubleJump", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("IsAttack", false);
+
             animator.SetBool("Die", true);
         }
         
