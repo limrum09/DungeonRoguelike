@@ -9,6 +9,7 @@ public class SaveData
     public List<int> slotIndexs = new List<int>();
     public List<int> itemCnts = new List<int>();
     public List<string> itemCodes = new List<string>();
+    // public Dictionary<int, InvenItem> invenData = new Dictionary<int, InvenItem>();
 
     public List<string> weaponItemCode = new List<string>();
     public List<string> armorItemCode = new List<string>();
