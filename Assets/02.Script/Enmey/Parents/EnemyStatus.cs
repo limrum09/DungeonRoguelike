@@ -16,8 +16,11 @@ public class EnemyStatus : MonoBehaviour
     protected float walkSpeed;
     [SerializeField]
     protected int exp;
+    [SerializeField]
+    protected AudioClip[] audioClips;
 
     protected Animator animator;
+    protected AudioSource audioSource;
 
     public int MaxHP
     {
@@ -55,7 +58,9 @@ public class EnemyStatus : MonoBehaviour
     protected void Start()
     {
         animator = GetComponent<Animator>();
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
     }
 
     public void TakeDamage(int damage)
@@ -157,6 +162,11 @@ public class EnemyStatus : MonoBehaviour
     protected void EnemyHit()
     {
         animator.SetBool("Hit", true);
+
+        if(audioClips[1] != null)
+        {
+            audioSource.PlayOneShot(audioClips[1]);
+        }
         GetComponent<Enemy>().EnemyHitMove();
     }
 }
