@@ -67,6 +67,34 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.37826088
+        functionName: AttackSound
+        data: SpearSwing3
+        objectReferenceParameter: {fileID: 11500000, guid: 4fb1ae51ad4a4f444abaefb701bb13c3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.46086955
+        functionName: AttackSound
+        data: SpearSwing3
+        objectReferenceParameter: {fileID: 11500000, guid: 4fb1ae51ad4a4f444abaefb701bb13c3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.59565216
+        functionName: AttackSound
+        data: SpearSwing3
+        objectReferenceParameter: {fileID: 11500000, guid: 4fb1ae51ad4a4f444abaefb701bb13c3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7304348
+        functionName: AttackSound
+        data: SpearSwing3
+        objectReferenceParameter: {fileID: 11500000, guid: 4fb1ae51ad4a4f444abaefb701bb13c3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

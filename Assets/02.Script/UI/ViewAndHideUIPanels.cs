@@ -24,11 +24,11 @@ public class ViewAndHideUIPanels : MonoBehaviour
         {
             if (inventoryUI.activeSelf)
             {
-                HideInventory();
+                HideUI(inventoryUI);
             }
             else
             {
-                ViewInventory();
+                ViewUI(inventoryUI, true);
             }
         }
 
@@ -36,11 +36,11 @@ public class ViewAndHideUIPanels : MonoBehaviour
         {
             if (statusUI.activeSelf)
             {
-                HideStatus();
+                HideUI(statusUI);
             }
             else
             {
-                ViewStatus();
+                ViewUI(statusUI, true);
             }
         }
 
@@ -48,43 +48,32 @@ public class ViewAndHideUIPanels : MonoBehaviour
         {
             if (questViewUI.activeSelf)
             {
-                HideQuestUI();
+                HideUI(questViewUI);
             }
             else
             {
-                ViewQuestUI();
+                ViewUI(questViewUI, true);
             }
         }
     }
 
-    public void ViewInventory()
+    public void ViewUI(GameObject viewUI, bool setFirst)
     {
-        inventoryUI.transform.SetAsFirstSibling();
-        inventoryUI.SetActive(true);
-    }
-    public void HideInventory()
-    {
-        inventoryUI.SetActive(false);
+        if (setFirst)
+        {
+            var root = viewUI.transform.parent;
+            root.transform.SetAsLastSibling();
+        }
+        SoundManager.instance.GetAudioAudioPath(SelectAudio.UIOpen, "UI/UI_OpenAndClose");
+
+        viewUI.SetActive(true);
     }
 
-    public void ViewStatus()
+    public void HideUI(GameObject hideUI)
     {
-        statusUI.transform.SetAsFirstSibling();
-        statusUI.SetActive(true);
-    }
-    public void HideStatus()
-    {
-        statusUI.SetActive(false);
-    }
+        hideUI.SetActive(false);
 
-    public void ViewQuestUI()
-    {
-        questViewUI.transform.SetAsFirstSibling();
-        questViewUI.SetActive(true);
-    }
-    public void HideQuestUI()
-    {
-        questViewUI.SetActive(false);
+        SoundManager.instance.GetAudioAudioPath(SelectAudio.UIClose, "UI/UI_OpenAndClose");
     }
 
     public void LobbyScene()

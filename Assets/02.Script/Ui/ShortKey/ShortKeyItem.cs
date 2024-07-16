@@ -21,11 +21,9 @@ public class ShortKeyItem : MonoBehaviour
     public Text itemCnt;
     public TextMeshProUGUI shortkeyNumber;
 
-    private bool isInputKey;
     // Start is called before the first frame update
     void Start()
     {
-        isInputKey = false;
         SetShortkeyNumber();
 
         // 저장된 것이 있는지 확인 필요

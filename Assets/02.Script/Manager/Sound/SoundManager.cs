@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,9 @@ public enum SelectAudio
     PlayerFoot,
     PlayerSkill,
     UIClick,
-    UIClose
+    UIOpen,
+    UIClose,
+    AudioCount
 }
 public class SoundManager : MonoBehaviour
 {
@@ -21,30 +24,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip[] bgmClips;
 
-
-    [Header("Player Audios")]
     [SerializeField]
-    private AudioController playerAttackAudio;
+    private AudioSource[] audios;
     [SerializeField]
-    private List<AudioClip> playerAttackClips;
-    [SerializeField]
-    private AudioController playerFootAudio;
-    [SerializeField]
-    private List<AudioClip> playerFootClips;
-    [SerializeField]
-    private AudioController playerSkillAudio;
-    [SerializeField]
-    private List<AudioClip> playerSkillClips;
-
-    [Header("UI Audios")]
-    [SerializeField]
-    private AudioController uiClickAudio;
-    [SerializeField]
-    private AudioClip uiClickClip;
-    [SerializeField]
-    private AudioController uiClodeAudio;
-    [SerializeField]
-    private AudioClip uiCloseClip;
+    private Dictionary<string, AudioClip> audioClips;
 
     [Header("Master Volume")]
     public float masterVolumeSFX;
@@ -68,7 +51,31 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        
+        //uiClodeAudio.Init();
+
+        if(instance != null)
+        {
+            var root = instance.gameObject;
+
+            string[] soundsName = System.Enum.GetNames(typeof(SelectAudio));
+
+            audios = new AudioSource[(int)SelectAudio.AudioCount];
+            audioClips = new Dictionary<string, AudioClip>();
+
+            for (int i = 0; i< soundsName.Length - 1; i++)
+            {
+                GameObject newSoundObject = new GameObject();
+                newSoundObject.name = soundsName[i];
+                newSoundObject.transform.parent = root.transform;
+
+                audios[i] = newSoundObject.AddComponent<AudioSource>();
+            }
+
+            if(bgmClips != null)
+            {
+
+            }
+        }
     }
 
     public void Init()
@@ -76,75 +83,47 @@ public class SoundManager : MonoBehaviour
         
     }
 
+    public void Clear()
+    {
+        foreach(AudioSource audio in audios)
+        {
+            audio.clip = null;
+            audio.Stop();
+        }
+
+        bgmAudio.Stop();
+    }
+
     public void ChaneBGM(string sceneName)
     {
 
     }
-
-    public void PlayAudio(SelectAudio audio, string audioName)
+    public void GetAudioAudioPath(SelectAudio audio, string clipPath)
     {
-        switch (audio)
-        {
-            case SelectAudio.PlayerAttack:
-                PlayerAttackAudio(audioName);
-                break;
-            case SelectAudio.PlayerFoot:
-                PlayerFootAudio(audioName);
-                break;
-            case SelectAudio.PlayerSkill:
-                PlayerSkillAudio(audioName);
-                break;
-            case SelectAudio.UIClick:
-                UIClickAudio(audioName);
-                break;
-            case SelectAudio.UIClose:
-                UICloseAudio(audioName);
-                break;
-        }
+        AudioClip playClip = GetAudioClip(clipPath);
+
+        PlayAudio(playClip, audio);
     }
 
-    private void PlayerAttackAudio(string audioName)
+    private AudioClip GetAudioClip(string clipPath)
     {
-        int index = 0;
+        if (clipPath.Contains("Sound/") == false)
+            clipPath = $"Sound/{clipPath}";
 
-        switch (audioName)
+        AudioClip playClip = null;
+
+        if (audioClips.TryGetValue(clipPath, out playClip) == false)
         {
-            case "singleSword":
-                index = 0;
-                break;
-            case "doubleSword":
-                index = 1;
-                break;
-            case "swordAndSheid":
-                index = 2;
-                break;
-            case "spear":
-                index = 3;
-                break;
-            case "twoHandSword":
-                index = 4;
-                break;
-            case "magic":
-                index = 5;
-                break;
+            playClip = Resources.Load<AudioClip>(clipPath);
+            audioClips.Add(clipPath, playClip);
         }
 
-        playerAttackAudio.PlayAudioOneShot(playerAttackClips[index]);
+        return playClip;
     }
-    private void PlayerFootAudio(string audioName)
-    {
 
-    }
-    private void PlayerSkillAudio(string audioName)
+    private void PlayAudio(AudioClip audioClip, SelectAudio audioType)
     {
-
-    }
-    private void UIClickAudio(string audioName)
-    {
-
-    }
-    private void UICloseAudio(string audioName)
-    {
-
+        AudioSource playAudio = audios[(int)audioType];
+        playAudio.PlayOneShot(audioClip);
     }
 }

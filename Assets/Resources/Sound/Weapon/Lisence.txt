@@ -1,0 +1,8 @@
+Whoosh Heavy Spear Hammer Large by EminYILDIRIM -- https://freesound.org/s/540300/ -- License: Attribution 4.0
+	- HammerSwing
+	- HammerWield
+
+Spear_Trap.wav by Killersmurf96 -- https://freesound.org/s/423125/ -- License: Attribution 4.0
+	- SpearSwing1
+	- SpearSwing2
+	- SpearSwing3

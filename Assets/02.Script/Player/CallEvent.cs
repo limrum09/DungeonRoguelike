@@ -20,6 +20,12 @@ public class CallEvent : MonoBehaviour
         player.Ani.SetBool("IsAttack", false);
     }
 
+    public void AttackSound(string weapon)
+    {
+        string path = "Weapon/" + weapon;
+        SoundManager.instance.GetAudioAudioPath(SelectAudio.PlayerAttack, path);
+    }
+
     public void DieEnd()
     {
         player.Ani.SetBool("Die", false);
