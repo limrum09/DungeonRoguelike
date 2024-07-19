@@ -6,3 +6,6 @@ Spear_Trap.wav by Killersmurf96 -- https://freesound.org/s/423125/ -- License: A
 	- SpearSwing1
 	- SpearSwing2
 	- SpearSwing3
+
+field-recording foot-steps on dry leaves by rayjensen -- https://freesound.org/s/347223/ -- License: Attribution 4.0
+	- FootStep
