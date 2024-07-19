@@ -96,9 +96,15 @@ public class SoundManager : MonoBehaviour
 
     public void ChaneBGM(string sceneName)
     {
+        if (sceneName.Contains("Sound/") == false)
+            sceneName = $"Sound/{sceneName}";
 
+        AudioClip bgmClip = Resources.Load<AudioClip>(sceneName);
+
+        bgmAudio.clip = bgmClip;
+        bgmAudio.Play();
     }
-    public void GetAudioAudioPath(SelectAudio audio, string clipPath)
+    public void SetAudioAudioPath(SelectAudio audio, string clipPath)
     {
         AudioClip playClip = GetAudioClip(clipPath);
 
@@ -124,6 +130,10 @@ public class SoundManager : MonoBehaviour
     private void PlayAudio(AudioClip audioClip, SelectAudio audioType)
     {
         AudioSource playAudio = audios[(int)audioType];
+
+        if (audioType == SelectAudio.PlayerFoot)
+            playAudio.pitch = PlayerInteractionStatus.instance.PlayerSpeed;
+
         playAudio.PlayOneShot(audioClip);
     }
 }
