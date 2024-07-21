@@ -9,17 +9,28 @@ public class ShortKeyItem : MonoBehaviour
 {
     [SerializeField]
     private ShortKeyManager shortKeyManager;
+
+    [Header("Public")]
+    public TextMeshProUGUI shortkeyNumber;
+    public string inputShortKey;
+    private int shortkeyIndex;
+
+    [Header("Item")]
     [SerializeField]
     private InvenItem item;
+    [SerializeField]
+    private Image itemIcon;
+    [SerializeField]
+    private GameObject viewPort;
+    [SerializeField]
+    private Text itemCnt;
     private int itemIndex;
 
-    public int shortkeyIndex;
-
-    public string inputShortKey;
-    public GameObject viewPort;
-    public Image ItemIcon;
-    public Text itemCnt;
-    public TextMeshProUGUI shortkeyNumber;
+    [Header("Skill")]
+    [SerializeField]
+    private ActiveSkill skill;
+    [SerializeField]
+    private Image skillImgeSlot;
 
     // Start is called before the first frame update
     void Start()
@@ -37,16 +48,45 @@ public class ShortKeyItem : MonoBehaviour
         {
             if (Input.GetKeyDown(inputShortKey))
             {
-                UseItem();
+                if (item != null)
+                {
+                    itemCnt.text = ItemCount().ToString();
+                    UseItem();
+                }                    
+                else if (skill != null)
+                    UseSkill();
             }
+        }
+    }
 
-            itemCnt.text = ItemCount().ToString();
-        }        
+    public void SetIndex(int index)
+    {
+        shortkeyIndex = index;
+
+        // 저장된 단축키가 없을 경우
+        HideItem();
+        HideSkill();
     }
 
     public void SetItemIndex(int index)
     {
         itemIndex = index;
+    }
+
+    public void RegisterSkill(ActiveSkill getSkill)
+    {
+        ActiveSkill newSkill = getSkill.SkillClone();
+
+        skill = newSkill;
+
+        HideItem();
+
+        if(skill != null)
+        {
+            Viewskill(skill);
+
+            shortKeyManager.InputSkillInShortkey(shortkeyIndex);
+        }
     }
 
     public void RegisterItem(int index)
@@ -55,27 +95,48 @@ public class ShortKeyItem : MonoBehaviour
 
         item = InvenData.instance.invenSlots[itemIndex];
 
+        HideSkill();
+
         if(item != null)
         {
             ViewItem();
 
+            // 다른 단축키에서 해당 아이템 제거
             shortKeyManager.InputItemInShortkey(shortkeyIndex);
         }        
     }
 
-    private void ViewItem()
+    public void HideSkill()
     {
-        viewPort.SetActive(true);
-        ItemIcon.sprite = item.itemImage;
-        itemCnt.text = ItemCount().ToString();
+        skill = null;
+        skillImgeSlot.sprite = null;
+        skillImgeSlot.gameObject.SetActive(false);
     }
 
     public void HideItem()
     {
         item = null;
-        ItemIcon.sprite = null;
+        itemIcon.sprite = null;
         itemCnt.text = "";
         viewPort.SetActive(false);
+    }
+
+    private void Viewskill(ActiveSkill activeSkill)
+    {
+        skillImgeSlot.gameObject.SetActive(true);
+        skillImgeSlot.sprite = activeSkill.icon;
+    }
+
+    private void ViewItem()
+    {
+        viewPort.SetActive(true);
+        itemIcon.sprite = item.itemImage;
+        itemCnt.text = ItemCount().ToString();
+    }
+
+    private void UseSkill()
+    {
+        
     }
 
     private void UseItem()
@@ -120,5 +181,10 @@ public class ShortKeyItem : MonoBehaviour
     public InvenItem GetItem()
     {
         return item;
+    }
+
+    public ActiveSkill GetSkill()
+    {
+        return skill;
     }
 }

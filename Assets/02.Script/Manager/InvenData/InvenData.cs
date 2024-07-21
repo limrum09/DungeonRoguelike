@@ -34,7 +34,7 @@ public class InvenData : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void InvenDataStart()
     {
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
         
@@ -42,9 +42,14 @@ public class InvenData : MonoBehaviour
         if(!File.Exists(path))
         {
             Debug.Log("First");
-            Initialized(InvenButton, invenContent);
+            Initialized();
             invenCount = invenSlots.Count;
         }
+    }
+
+    public void GetInvenButton(InventoryButton button)
+    {
+        invenButton = button;
     }
 
     // SaveData가 있을 시, SaveDatabase.cs에서 호출
@@ -52,13 +57,13 @@ public class InvenData : MonoBehaviour
     {
         invenCount = inventoryCount;
 
-        Initialized(invenButton, invenContent);
+        Initialized();
     }
 
-    public void Initialized(InventoryButton button, GameObject content)
+    public void Initialized()
     {
-        invenContent = content;
-        invenButton = button;
+        invenButton = UIAndSceneManager.instance.InventoryUI;
+        invenContent = invenButton.Content;
 
         InitializeInventory();
     }

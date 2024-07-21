@@ -27,24 +27,6 @@ public class SaveDatabase : MonoBehaviour
     private QuestDatabase questDatabase;
     [SerializeField]
     private QuestDatabase achievementDatabase;
-    private void Awake()
-    {
-        if(instance == null)
-        { 
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        invenItemDatabase = Resources.Load<InvenItemDatabase>("InvenItemDatabase");
-        weaponItemDatabase = Resources.Load<WeaponItemDatabase>("WeaponItemDatabase");
-        armorItemDatabase = Resources.Load<ArmorItemDatabase>("ArmorItemDatabase");
-        questDatabase = Resources.Load<QuestDatabase>("QuestDatabase");
-        achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
-    }
 
 
     private void OnApplicationQuit()
@@ -52,8 +34,16 @@ public class SaveDatabase : MonoBehaviour
         SaveData("SaveFile");
     }
 
-    private void Start()
+    public void SaveDatabaseStart()
     {
+        invenItemDatabase = Resources.Load<InvenItemDatabase>("InvenItemDatabase");
+        weaponItemDatabase = Resources.Load<WeaponItemDatabase>("WeaponItemDatabase");
+        armorItemDatabase = Resources.Load<ArmorItemDatabase>("ArmorItemDatabase");
+        questDatabase = Resources.Load<QuestDatabase>("QuestDatabase");
+        achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
+
+        playerSaveStatus = GameManager.instance.PlayerSaveStatus;
+
         invenSlots = InvenData.instance.invenSlots;
 
         LoadData("SaveFile");
@@ -144,6 +134,10 @@ public class SaveDatabase : MonoBehaviour
     public void LoadData(string fileName)
     {
         Debug.Log("Load Data");
+
+        var gameManager = GameManager.instance;
+        gameManager.GameManagerStart();
+
         string path = Path.Combine(Application.persistentDataPath, fileName);
 
         if (File.Exists(path))
@@ -176,7 +170,7 @@ public class SaveDatabase : MonoBehaviour
                     WeaponItem item = SearchWeaponItem(saveData.weaponItemCode[i]);
 
                     // GameManager의 PlayerWeaponChange 호출
-                    GameManager.instance.PlayerWeaponChange(item);
+                    gameManager.PlayerWeaponChange(item);
                 }                
             }
 
@@ -188,7 +182,7 @@ public class SaveDatabase : MonoBehaviour
                     ArmorItem item = SearchArmorItem(saveData.armorItemCode[i]);
 
                     // GameManager의 PlayerArmorChange 호출
-                    GameManager.instance.PlayerArmorChange(item);
+                    gameManager.PlayerArmorChange(item);
                 }
             }
 
