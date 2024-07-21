@@ -27,7 +27,7 @@ public class PlayerInteractionTest : MonoBehaviour
     public GameObject WeaponR => weaponR;
     public GameObject WeaponL => weaponL;
 
-    private void Start()
+    public void PlayerInterationStart()
     {
         armorIndexOverLapping = 9999;
 
@@ -84,6 +84,8 @@ public class PlayerInteractionTest : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Walk", false);
         animator.SetBool("IsAttack", false);
+
+        Debug.Log("Interration Test New Weapon : " + newWeapon);
 
         MeshFilter changeFilter = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<MeshFilter>() : null;
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;

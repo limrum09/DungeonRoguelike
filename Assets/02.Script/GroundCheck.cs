@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
+    [SerializeField]
     private Collider groundCollider;
 
     [SerializeField]
@@ -15,7 +16,7 @@ public class GroundCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        groundCollider = GetComponent<Collider>();
+        //groundCollider = GetComponent<Collider>();
     }
 
     public bool IsGround()

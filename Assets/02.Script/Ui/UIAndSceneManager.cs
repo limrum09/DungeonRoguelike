@@ -11,6 +11,8 @@ public class UIAndSceneManager : MonoBehaviour
     public delegate void QuestUISucessChangeHandler(Quest quest);
 
     [SerializeField]
+    private InventoryButton invenUI;
+    [SerializeField]
     private StatusUIManager statusUI;
     [SerializeField]
     private UIProfile uiProfile;
@@ -23,6 +25,8 @@ public class UIAndSceneManager : MonoBehaviour
 
     public ChangeEquipmentEvent onChangeEquipment;
     public event onSelectQuestListHandler onSelectQuestListView;
+
+    public InventoryButton InventoryUI => invenUI;
     // Start is called before the first frame update
     private void Awake()
     {

@@ -65,6 +65,7 @@ public class ItemStatus : MonoBehaviour
     public void InteractionTest(PlayerInteractionTest test)
     {
         this.interactionTest = test;
+        interactionTest.PlayerInterationStart();
     }
 
     private void Start()
@@ -76,8 +77,6 @@ public class ItemStatus : MonoBehaviour
          
             // Have not Load File
         }
-
-        GameManager.instance.ChangeExpBar();
     }
 
     // 무기 변경 시, 무기 저장 및 스탯 변경
@@ -85,6 +84,7 @@ public class ItemStatus : MonoBehaviour
     {
         WeaponItem newWeapon = weapon;
 
+        Debug.Log("New Weapon : " + newWeapon);
         // 새로 가져온 아이템을 player가 장착하기
         interactionTest.WeaponChange(newWeapon);
 

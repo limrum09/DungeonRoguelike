@@ -183,6 +183,12 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void UseActiveSkill(ActiveSkill skill)
+    {
+        animator.Play(skill.animationName);
+        Debug.Log("스킬 " + skill.animationName + " 사용");
+    }
+
     private void PlayerComboEnd()
     {
         //isCombo = false;

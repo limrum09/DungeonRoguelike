@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [SerializeField]
+    private GameObject player;
+
+    [Header("Script")]
     [SerializeField]
     private ItemStatus itemStatus;
     [SerializeField]
@@ -24,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private bool isStart;
 
+    public PlayerStatus PlayerSaveStatus => playerSaveStatus;
+
     public int Level => level;
     public int Health => health;
     public int Str => str;
@@ -33,28 +40,24 @@ public class GameManager : MonoBehaviour
     public int CurrentExp => currentExp;
     public int BonusState => bonusState;
 
-    // Start is called before the first frame update
-    void Awake()
+    public void GameManagerStart()
     {
-        if(instance == null)
-        {
-            Debug.Log("GameManager");
-            instance = this;
+        instance = this;
 
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Debug.Log("GameManager Destroyed");
-            Destroy(this.gameObject);
-        }
-
-        playerSaveStatus.FirstStart();
         isStart = true;
 
         SceneManager.sceneLoaded += OnSceneLoad;
-    }
+        Transform playerRespawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
 
+        GameObject playerObject = Instantiate(player);
+        playerObject.name = "Player";
+        playerObject.transform.position = playerRespawnPoint.position;
+
+        itemStatus.InteractionTest(playerObject.GetComponent<PlayerInteractionTest>());
+
+        playerSaveStatus.FirstStart();
+        ChangeExpBar();
+    }
 
     private void OnApplicationQuit()
     {
