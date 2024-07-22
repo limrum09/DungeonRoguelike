@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3113234748699060877, guid: a3b8d4c04df3e7c45b1ec8f7bd3ec77b, type: 3}
-  playerRespawnPoint: {fileID: 0}
   itemStatus: {fileID: 7999022074942841835}
   playerSaveStatus: {fileID: 7951307945854060596}
+  invenData: {fileID: 7999022074942841836}
 --- !u!114 &7951307945854060596
 MonoBehaviour:
   m_ObjectHideFlags: 0

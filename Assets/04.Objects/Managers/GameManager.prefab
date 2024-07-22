@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3113234748699060877, guid: a3b8d4c04df3e7c45b1ec8f7bd3ec77b, type: 3}
-  playerRespawnPoint: {fileID: 0}
   itemStatus: {fileID: 4636573234975432105}
   playerSaveStatus: {fileID: 4684568839007893110}
+  invenData: {fileID: 4636573234975432110}
 --- !u!114 &4684568839007893110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,15 +63,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f750a8473cd640a478f2a71902315a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
-  health: 0
-  str: 0
-  dex: 0
-  luk: 0
+  level: 1
+  health: 5
+  str: 5
+  dex: 5
+  luk: 5
   bonusState: 0
-  exp: 0
+  exp: 200
   currentExp: 0
-  currentHP: 0
+  currentHP: 425
 --- !u!114 &4636573234975432105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,11 +84,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab573abb4b52e774c8ece1bd2d2e21c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemHp: 0
-  itemDamage: 0
-  itemCriticalDamage: 0
-  itemSheild: 0
-  itemCriticalPer: 0
+  itemHp: 300
+  itemDamage: 100
+  itemCriticalDamage: 250
+  itemSheild: 100
+  itemCriticalPer: 40
   itemSpeed: 0
   itemCoolTime: 0
   weaponItems:
@@ -117,6 +117,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invenSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

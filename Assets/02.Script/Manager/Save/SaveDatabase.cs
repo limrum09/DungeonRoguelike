@@ -33,7 +33,6 @@ public class SaveDatabase : MonoBehaviour
     {
         SaveData("SaveFile");
     }
-
     public void SaveDatabaseStart()
     {
         invenItemDatabase = Resources.Load<InvenItemDatabase>("InvenItemDatabase");
@@ -44,7 +43,9 @@ public class SaveDatabase : MonoBehaviour
 
         playerSaveStatus = GameManager.instance.PlayerSaveStatus;
 
-        invenSlots = InvenData.instance.invenSlots;
+        invenSlots = GameManager.instance.InvenDatas.invenSlots;
+
+        Debug.Log("Call Inven Slots : " + invenSlots);
 
         LoadData("SaveFile");
     }
@@ -105,6 +106,7 @@ public class SaveDatabase : MonoBehaviour
                 saveData.armorItemCode.Add(itemStatus.ArmorItems[i].armorItem.ItemCode);
             }
         }
+        Debug.Log("Call Inven Slots : " + invenSlots);
 
         // 현제 인벤토리의 크기를 저장
         saveData.inventoryCount = invenSlots.Count;
@@ -136,7 +138,6 @@ public class SaveDatabase : MonoBehaviour
         Debug.Log("Load Data");
 
         var gameManager = GameManager.instance;
-        gameManager.GameManagerStart();
 
         string path = Path.Combine(Application.persistentDataPath, fileName);
 
