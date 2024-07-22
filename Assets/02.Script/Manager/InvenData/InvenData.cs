@@ -22,7 +22,7 @@ public class InvenData : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (instance == null)
+/*        if (instance == null)
         {
             instance = this;
 
@@ -31,15 +31,19 @@ public class InvenData : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
-        }
+        }*/
     }
 
-    private void InvenDataStart()
+    public void InvenDataStart()
     {
+        instance = this;
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
-        
+
+        invenButton = UIAndSceneManager.instance.InventoryUI;
+        invenContent = invenButton.Content;
+
         // 처음 시작
-        if(!File.Exists(path))
+        if (!File.Exists(path))
         {
             Debug.Log("First");
             Initialized();
@@ -62,9 +66,6 @@ public class InvenData : MonoBehaviour
 
     public void Initialized()
     {
-        invenButton = UIAndSceneManager.instance.InventoryUI;
-        invenContent = invenButton.Content;
-
         InitializeInventory();
     }
 

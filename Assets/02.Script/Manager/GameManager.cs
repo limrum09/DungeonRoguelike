@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private ItemStatus itemStatus;
     [SerializeField]
     private PlayerStatus playerSaveStatus;
+    [SerializeField]
+    private InvenData invenData;
 
 
     private int level;
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     private bool isStart;
 
     public PlayerStatus PlayerSaveStatus => playerSaveStatus;
+    public InvenData InvenDatas => invenData;
 
     public int Level => level;
     public int Health => health;
@@ -56,6 +59,7 @@ public class GameManager : MonoBehaviour
         itemStatus.InteractionTest(playerObject.GetComponent<PlayerInteractionTest>());
 
         playerSaveStatus.FirstStart();
+        invenData.InvenDataStart();
         ChangeExpBar();
     }
 
