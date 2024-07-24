@@ -28,11 +28,13 @@ public class SaveDatabase : MonoBehaviour
     [SerializeField]
     private QuestDatabase achievementDatabase;
 
+    private float saveCool;
 
-    private void OnApplicationQuit()
+    public void DataSaving()
     {
         SaveData("SaveFile");
     }
+
     public void SaveDatabaseStart()
     {
         invenItemDatabase = Resources.Load<InvenItemDatabase>("InvenItemDatabase");
@@ -41,11 +43,15 @@ public class SaveDatabase : MonoBehaviour
         questDatabase = Resources.Load<QuestDatabase>("QuestDatabase");
         achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
 
-        playerSaveStatus = GameManager.instance.PlayerSaveStatus;
+        var game = Manager.Instance.Game;
 
-        invenSlots = GameManager.instance.InvenDatas.invenSlots;
+        playerSaveStatus = game.PlayerSaveStatus;
+
+        invenSlots = game.InvenDatas.invenSlots;
 
         Debug.Log("Call Inven Slots : " + invenSlots);
+
+        saveCool = 0f;
 
         LoadData("SaveFile");
     }
@@ -137,7 +143,7 @@ public class SaveDatabase : MonoBehaviour
     {
         Debug.Log("Load Data");
 
-        var gameManager = GameManager.instance;
+        var gameManager = Manager.Instance.Game;
 
         string path = Path.Combine(Application.persistentDataPath, fileName);
 

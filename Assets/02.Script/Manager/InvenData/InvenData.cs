@@ -36,7 +36,11 @@ public class InvenData : MonoBehaviour
 
     public void InvenDataStart()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
 
         invenButton = UIAndSceneManager.instance.InventoryUI;

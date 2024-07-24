@@ -169,8 +169,8 @@ public class ItemStatus : MonoBehaviour
             }
         }
 
-        GameManager.instance.ChangePlayerStatus();
-        GameManager.instance.ChangeHPBar();
+        Manager.Instance.Game.ChangePlayerStatus();
+        Manager.Instance.Game.ChangeHPBar();
     }
 
     // 스탯 초기화

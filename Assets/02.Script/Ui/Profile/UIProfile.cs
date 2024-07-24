@@ -31,7 +31,7 @@ public class UIProfile : MonoBehaviour
 
     public void SetExpBar()
     {
-        var gameMananger = GameManager.instance;
+        var gameMananger = Manager.Instance.Game;
 
         int level = gameMananger.Level;
         int maxEXP = gameMananger.Exp;

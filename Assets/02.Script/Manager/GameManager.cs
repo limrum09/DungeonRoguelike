@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
     [SerializeField]
     private GameObject player;
 
@@ -45,8 +43,6 @@ public class GameManager : MonoBehaviour
 
     public void GameManagerStart()
     {
-        instance = this;
-
         isStart = true;
 
         SceneManager.sceneLoaded += OnSceneLoad;

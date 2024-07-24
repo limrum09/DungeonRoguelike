@@ -70,7 +70,7 @@ public class PlayerStatus : MonoBehaviour
 
         this.currentHP = saveData.currentHp;
 
-        GameManager.instance.InitializeGameManager();
+        Manager.Instance.Game.InitializeGameManager();
     }
 
     public void FirstStart()
@@ -85,7 +85,7 @@ public class PlayerStatus : MonoBehaviour
         exp = 200;
         currentExp = 0;
 
-        GameManager.instance.InitializeGameManager();
+        Manager.Instance.Game.InitializeGameManager();
     }
 
     public void StatusUP(string status)
@@ -120,7 +120,7 @@ public class PlayerStatus : MonoBehaviour
             if (useState)
             {
                 bonusState--;
-                GameManager.instance.ChangePlayerStatus();
+                Manager.Instance.Game.ChangePlayerStatus();
             }
             else
                 Debug.Log("Can't use bonus status");
@@ -143,7 +143,7 @@ public class PlayerStatus : MonoBehaviour
                 bonusState += 5;
             }
 
-            GameManager.instance.LevelUP();
+            Manager.Instance.Game.LevelUP();
         }
     }
 

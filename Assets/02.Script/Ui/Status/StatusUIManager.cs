@@ -32,7 +32,7 @@ public class StatusUIManager : MonoBehaviour
 
     public void SetStatusUIText()
     {
-        var gameManager = GameManager.instance;
+        var gameManager = Manager.Instance.Game;
         var player = PlayerInteractionStatus.instance;
 
         currentLevelText.text = gameManager.Level.ToString();
@@ -121,7 +121,7 @@ public class StatusUIManager : MonoBehaviour
 
     public void ViewAndHideStateButton()
     {
-        if(GameManager.instance.BonusState >= 1)
+        if(Manager.Instance.Game.BonusState >= 1)
         {
             healthUPBtn.SetActive(true);
             strUPBtn.SetActive(true);
@@ -159,50 +159,7 @@ public class StatusUIManager : MonoBehaviour
 
     private void StatusUP(string status)
     {
-        GameManager.instance.PlayerStatusUp(status);
+        Manager.Instance.Game.PlayerStatusUp(status);
         ViewAndHideStateButton();
     }
-
-/*    private void StatusUP(string status)
-    {
-        var gameManager = GameManager.instance;
-        bool useState = false;
-
-        if (gameManager.bonusState >= 1)
-        {
-            switch (status)
-            {
-                case "health":
-                    gameManager.health++;
-                    useState = true;
-                    break;
-                case "str":
-                    gameManager.str++;
-                    useState = true;
-                    break;
-                case "dex":
-                    gameManager.dex++;
-                    useState = true;
-                    break;
-                case "luk":
-                    gameManager.luk++;
-                    useState = true;
-                    break;
-                default:
-                    useState = false;
-                    break;
-            }
-
-            if (useState)
-            {
-                gameManager.bonusState--;
-                gameManager.ChangePlayerStatus();
-            }
-            else
-                Debug.Log("Can't use bonus status");
-            ViewAndHideStateButton();
-        }
-        else
-            ViewAndHideStateButton();
-    }*/
 }

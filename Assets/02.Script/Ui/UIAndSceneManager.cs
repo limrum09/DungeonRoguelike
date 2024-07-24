@@ -41,8 +41,8 @@ public class UIAndSceneManager : MonoBehaviour
         }
     }
 
-    public void ChangeEquipment(WeaponItem item) => GameManager.instance.PlayerWeaponChange(item);
-    public void ChangeEquipment(ArmorItem item) => GameManager.instance.PlayerArmorChange(item);
+    public void ChangeEquipment(WeaponItem item) => Manager.Instance.Game.PlayerWeaponChange(item);
+    public void ChangeEquipment(ArmorItem item) => Manager.Instance.Game.PlayerArmorChange(item);
     public void ChangeHPBar() 
     {
         uiProfile.SetHPBar();
