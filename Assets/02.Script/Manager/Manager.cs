@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    public static Manager instance;
+    public static Manager Instance;
 
     [SerializeField]
     private SaveDatabase saveManager;
     [SerializeField]
+    private SoundManager soundManager;
+
+    [SerializeField]
     private GameManager gameManager;
+
+    public GameManager Game => gameManager;
+    public SoundManager Sound => soundManager;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
             Debug.Log("Manager");
-            instance = this;
+            Instance = this;
 
             DontDestroyOnLoad(this.gameObject);
         }
@@ -27,10 +33,18 @@ public class Manager : MonoBehaviour
         }
     }
 
+    private void OnApplicationQuit()
+    {
+        saveManager.DataSaving();
+    }
+
     private void Start()
     {
         Instantiate(gameManager, this.transform);
         gameManager.GameManagerStart();
+
+        Instantiate(soundManager, this.transform);
+        soundManager.SoundManagerStart();
 
         Instantiate(saveManager, this.transform);
         saveManager.SaveDatabaseStart();

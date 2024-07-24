@@ -16,8 +16,6 @@ public enum SelectAudio
 }
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
-
     [Header("BGM")]
     [SerializeField]
     private AudioSource bgmAudio;
@@ -33,54 +31,28 @@ public class SoundManager : MonoBehaviour
     public float masterVolumeSFX;
     public float masterVolumeBGM;
 
-    private void Awake()
+    public void SoundManagerStart()
     {
-        if (instance == null)
+        var root = this.gameObject;
+
+        string[] soundsName = System.Enum.GetNames(typeof(SelectAudio));
+
+        audios = new AudioSource[(int)SelectAudio.AudioCount];
+        audioClips = new Dictionary<string, AudioClip>();
+
+        for (int i = 0; i < soundsName.Length - 1; i++)
         {
-            Debug.Log("GameManager");
-            instance = this;
+            GameObject newSoundObject = new GameObject();
+            newSoundObject.name = soundsName[i];
+            newSoundObject.transform.SetParent(root.transform, false);
 
-            DontDestroyOnLoad(this.gameObject);
+            audios[i] = newSoundObject.AddComponent<AudioSource>();
         }
-        else
+
+        if (bgmClips != null)
         {
-            Debug.Log("GameManager Destroyed");
-            Destroy(this.gameObject);
+
         }
-    }
-
-    private void Start()
-    {
-        //uiClodeAudio.Init();
-
-        if(instance != null)
-        {
-            var root = instance.gameObject;
-
-            string[] soundsName = System.Enum.GetNames(typeof(SelectAudio));
-
-            audios = new AudioSource[(int)SelectAudio.AudioCount];
-            audioClips = new Dictionary<string, AudioClip>();
-
-            for (int i = 0; i< soundsName.Length - 1; i++)
-            {
-                GameObject newSoundObject = new GameObject();
-                newSoundObject.name = soundsName[i];
-                newSoundObject.transform.parent = root.transform;
-
-                audios[i] = newSoundObject.AddComponent<AudioSource>();
-            }
-
-            if(bgmClips != null)
-            {
-
-            }
-        }
-    }
-
-    public void Init()
-    {
-        
     }
 
     public void Clear()

@@ -64,7 +64,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
             var root = viewUI.transform.parent;
             root.transform.SetAsLastSibling();
         }
-        SoundManager.instance.SetAudioAudioPath(SelectAudio.UIOpen, "UI/UI_OpenAndClose");
+        Manager.Instance.Sound.SetAudioAudioPath(SelectAudio.UIOpen, "UI/UI_OpenAndClose");
 
         viewUI.SetActive(true);
     }
@@ -73,7 +73,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
     {
         hideUI.SetActive(false);
 
-        SoundManager.instance.SetAudioAudioPath(SelectAudio.UIClose, "UI/UI_OpenAndClose");
+        Manager.Instance.Sound.SetAudioAudioPath(SelectAudio.UIClose, "UI/UI_OpenAndClose");
     }
 
     public void LobbyScene()

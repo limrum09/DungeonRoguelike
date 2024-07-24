@@ -82,7 +82,7 @@ public class PlayerInteractionStatus : MonoBehaviour
                 isDie = true;
             }
 
-            GameManager.instance.ChangeHPBar();
+            Manager.Instance.Game.ChangeHPBar();
         }
     }
 
