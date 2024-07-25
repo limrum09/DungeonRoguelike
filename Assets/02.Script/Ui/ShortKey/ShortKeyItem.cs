@@ -12,7 +12,7 @@ public class ShortKeyItem : MonoBehaviour
 
     [Header("Public")]
     public TextMeshProUGUI shortkeyNumber;
-    public string inputShortKey;
+    private string inputShortKey;
     private int shortkeyIndex;
 
     [Header("Item")]
@@ -32,21 +32,12 @@ public class ShortKeyItem : MonoBehaviour
     [SerializeField]
     private Image skillImgeSlot;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetShortkeyNumber();
-
-        // 저장된 것이 있는지 확인 필요
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if(item != null)
+        if(item != null || skill != null)
         {
-            if (Input.GetKeyDown(inputShortKey))
+            if (Input.GetKeyDown(Manager.Instance.Key.GetKeyCode(inputShortKey)))
             {
                 if (item != null)
                 {
@@ -59,13 +50,21 @@ public class ShortKeyItem : MonoBehaviour
         }
     }
 
-    public void SetIndex(int index)
+    public void SetIndex(int index, string key)
     {
         shortkeyIndex = index;
+
+        SetShoryKey(key);
 
         // 저장된 단축키가 없을 경우
         HideItem();
         HideSkill();
+    }
+
+    public void SetShoryKey(string key)
+    {
+        inputShortKey = key;
+        SetShortKeyText();
     }
 
     public void SetItemIndex(int index)
@@ -136,7 +135,7 @@ public class ShortKeyItem : MonoBehaviour
 
     private void UseSkill()
     {
-        
+        Manager.Instance.Game.PlayerController.UseActiveSkill(skill);
     }
 
     private void UseItem()
@@ -144,22 +143,6 @@ public class ShortKeyItem : MonoBehaviour
         InvenData.instance.UsingInvenItem(item);
 
         itemCnt.text = ItemCount().ToString();
-    }
-
-    private void SetShortkeyNumber()
-    {
-        char text = inputShortKey[0];
-        
-        int s = Convert.ToInt32(text);
-
-        if(97 <= s && s <= 122)
-        {
-            s -= 32;
-        }
-
-        text = Convert.ToChar(s);
-
-        shortkeyNumber.text = text.ToString();
     }
 
     private int ItemCount()
@@ -176,6 +159,21 @@ public class ShortKeyItem : MonoBehaviour
         }
 
         return count;
+    }
+
+    // UI에 표시되는 단축키
+    private void SetShortKeyText()
+    {
+        // 단축키를 받아와서 string으로 변환
+        string code = Manager.Instance.Key.GetKeyCode(inputShortKey).ToString();
+
+        // 단축키가 숫자일시, "Alpha"가 들어가기에 제거
+        if (code.Contains("Alpha"))
+        {
+            code = code.Replace("Alpha","");
+        }
+
+        shortkeyNumber.text = code;
     }
 
     public InvenItem GetItem()

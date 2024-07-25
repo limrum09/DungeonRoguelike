@@ -29,13 +29,10 @@ public class PlayerInteractionTest : MonoBehaviour
 
     public void PlayerInterationStart()
     {
-        Debug.Log("PlayerInteration Start");
         armorIndexOverLapping = 9999;
 
         meshFilterWeaponR = weaponR.gameObject.GetComponent<MeshFilter>();
         meshFilterWeaponL = weaponL.gameObject.GetComponent<MeshFilter>();
-
-        Debug.Log("Is Get ? : " + meshFilterWeaponR != null);
     }
 
     public void WeaponChange(WeaponItem weapon)
@@ -44,8 +41,6 @@ public class PlayerInteractionTest : MonoBehaviour
         ItemRotation weaponRotation = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<ItemRotation>() : null;
 
         int weaponAniValue = newWeapon.WeaponValue;
-
-        Debug.Log("WeaponL : " + weaponL + ", WeaponR : " + weaponR);
 
         if (!newWeapon.UseOndeHand)
         {
@@ -89,8 +84,6 @@ public class PlayerInteractionTest : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Walk", false);
         animator.SetBool("IsAttack", false);
-
-        Debug.Log("Interration Test New Weapon : " + newWeapon);
 
         MeshFilter changeFilter = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<MeshFilter>() : null;
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;

@@ -23,13 +23,13 @@ public class CallEvent : MonoBehaviour
     public void AttackSound(string weapon)
     {
         string path = "Weapon/" + weapon;
-        Manager.Instance.Sound.SetAudioAudioPath(SelectAudio.PlayerAttack, path);
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.PlayerAttack, path);
     }
 
     public void FootSound(string foot)
     {
         string path = "Foot/" + foot;
-        Manager.Instance.Sound.SetAudioAudioPath(SelectAudio.PlayerFoot, path);
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.PlayerFoot, path);
     }
 
     public void DieEnd()

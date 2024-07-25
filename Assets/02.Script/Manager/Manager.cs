@@ -10,12 +10,15 @@ public class Manager : MonoBehaviour
     private SaveDatabase saveManager;
     [SerializeField]
     private SoundManager soundManager;
+    [SerializeField]
+    private InputKey inputKey;
 
     [SerializeField]
     private GameManager gameManager;
 
     public GameManager Game => gameManager;
     public SoundManager Sound => soundManager;
+    public InputKey Key => inputKey;
 
     private void Awake()
     {
@@ -40,13 +43,16 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(gameManager, this.transform);
+        gameManager = Instantiate(gameManager, this.transform);
         gameManager.GameManagerStart();
 
-        Instantiate(soundManager, this.transform);
+        soundManager = Instantiate(soundManager, this.transform);
         soundManager.SoundManagerStart();
 
-        Instantiate(saveManager, this.transform);
+        inputKey = Instantiate(inputKey, this.transform);
+        inputKey.InputKeyStart();
+
+        saveManager = Instantiate(saveManager, this.transform);
         saveManager.SaveDatabaseStart();
     }
 }

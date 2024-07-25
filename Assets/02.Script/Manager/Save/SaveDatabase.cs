@@ -44,12 +44,8 @@ public class SaveDatabase : MonoBehaviour
         achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
 
         var game = Manager.Instance.Game;
-
         playerSaveStatus = game.PlayerSaveStatus;
-
         invenSlots = game.InvenDatas.invenSlots;
-
-        Debug.Log("Call Inven Slots : " + invenSlots);
 
         saveCool = 0f;
 
@@ -112,7 +108,6 @@ public class SaveDatabase : MonoBehaviour
                 saveData.armorItemCode.Add(itemStatus.ArmorItems[i].armorItem.ItemCode);
             }
         }
-        Debug.Log("Call Inven Slots : " + invenSlots);
 
         // 현제 인벤토리의 크기를 저장
         saveData.inventoryCount = invenSlots.Count;

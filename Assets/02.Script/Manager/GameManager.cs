@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private InvenData invenData;
 
+    private PlayerController playerController;
+
 
     private int level;
     private int health;
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     private bool isStart;
 
+    public PlayerController PlayerController => playerController;
     public PlayerStatus PlayerSaveStatus => playerSaveStatus;
     public InvenData InvenDatas => invenData;
 
@@ -46,17 +49,26 @@ public class GameManager : MonoBehaviour
         isStart = true;
 
         SceneManager.sceneLoaded += OnSceneLoad;
+
+        GameObject newPlayer = PlayerRespawnInRespawnPoint();
+        itemStatus.InteractionTest(newPlayer.GetComponent<PlayerInteractionTest>());
+
+        playerSaveStatus.FirstStart();
+        invenData.InvenDataStart();
+        ChangeExpBar();
+    }
+
+    private GameObject PlayerRespawnInRespawnPoint()
+    {
         Transform playerRespawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
 
         GameObject playerObject = Instantiate(player);
         playerObject.name = "Player";
         playerObject.transform.position = playerRespawnPoint.position;
 
-        itemStatus.InteractionTest(playerObject.GetComponent<PlayerInteractionTest>());
+        playerController = playerObject.GetComponent<PlayerController>();
 
-        playerSaveStatus.FirstStart();
-        invenData.InvenDataStart();
-        ChangeExpBar();
+        return playerObject;
     }
 
     private void OnApplicationQuit()

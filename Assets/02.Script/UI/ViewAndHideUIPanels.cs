@@ -20,7 +20,8 @@ public class ViewAndHideUIPanels : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        var key = Manager.Instance.Key;
+        if (Input.GetKeyDown(key.GetKeyCode("Inventory")))
         {
             if (inventoryUI.activeSelf)
             {
@@ -32,7 +33,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(key.GetKeyCode("Status")))
         {
             if (statusUI.activeSelf)
             {
@@ -44,7 +45,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(key.GetKeyCode("Quest")))
         {
             if (questViewUI.activeSelf)
             {
@@ -64,7 +65,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
             var root = viewUI.transform.parent;
             root.transform.SetAsLastSibling();
         }
-        Manager.Instance.Sound.SetAudioAudioPath(SelectAudio.UIOpen, "UI/UI_OpenAndClose");
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UIOpen, "UI/UI_OpenAndClose");
 
         viewUI.SetActive(true);
     }
@@ -73,7 +74,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
     {
         hideUI.SetActive(false);
 
-        Manager.Instance.Sound.SetAudioAudioPath(SelectAudio.UIClose, "UI/UI_OpenAndClose");
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UIClose, "UI/UI_OpenAndClose");
     }
 
     public void LobbyScene()
