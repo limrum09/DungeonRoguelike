@@ -9,13 +9,13 @@ public class ShortKeyManager : MonoBehaviour
 
     private int shortkeyCnt;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {   
         shortkeyCnt = this.transform.childCount;
         for(int i = 0; i< shortkeyCnt; i++)
         {
             shortKeys.Add(this.transform.GetChild(i).GetComponent<ShortKeyItem>());
-            shortKeys[i].SetIndex(i);
+            shortKeys[i].SetIndex(i, $"ShortKey{i+1}");
         }
     }
 
