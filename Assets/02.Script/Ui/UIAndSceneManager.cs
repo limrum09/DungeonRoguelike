@@ -11,6 +11,8 @@ public class UIAndSceneManager : MonoBehaviour
     public delegate void QuestUISucessChangeHandler(Quest quest);
 
     [SerializeField]
+    private ShortKeyManager shortCutBox;
+    [SerializeField]
     private InventoryButton invenUI;
     [SerializeField]
     private StatusUIManager statusUI;
@@ -22,6 +24,8 @@ public class UIAndSceneManager : MonoBehaviour
     private NPCTalkUIController npcTalkUIController;
     [SerializeField]
     private NPCUI npcUI;
+    [SerializeField]
+    private SettingContorller settingUI;
 
     public ChangeEquipmentEvent onChangeEquipment;
     public event onSelectQuestListHandler onSelectQuestListView;
@@ -39,6 +43,14 @@ public class UIAndSceneManager : MonoBehaviour
         {
             Destroy(this.gameObject); 
         }
+    }
+
+    private void Start()
+    {
+        shortCutBox.ShortCutBoxStart();
+        invenUI.InvenToryStart();
+        npcTalkUIController.NPCTalkControllerStart();
+        settingUI.SettingControllerStart();
     }
 
     public void ChangeEquipment(WeaponItem item) => Manager.Instance.Game.PlayerWeaponChange(item);
@@ -70,4 +82,5 @@ public class UIAndSceneManager : MonoBehaviour
     public void NPCQuestTalkWithPlayer(Scenario basicScenario, List<QuestAndScenario> questAndScenario, Sprite npcImage) => npcTalkUIController.GetQuestAndScenario(basicScenario ,questAndScenario, npcImage);
     public void PlayerInQuestNPC() => npcUI.InteractionText.PlayerIn();
     public void PlayerOutQuestNPC() => npcUI.InteractionText.PlayerOut();
+    public void ChangeShortCutValue(string keyString) => shortCutBox.ChangeShortKey(keyString);
 }

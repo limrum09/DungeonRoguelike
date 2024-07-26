@@ -9,13 +9,25 @@ public class ShortKeyManager : MonoBehaviour
 
     private int shortkeyCnt;
     // Start is called before the first frame update
-    void Start()
-    {   
-        shortkeyCnt = this.transform.childCount;
+    public void ShortCutBoxStart()
+    {
+        shortkeyCnt = shortKeys.Count;
         for(int i = 0; i< shortkeyCnt; i++)
         {
             shortKeys.Add(this.transform.GetChild(i).GetComponent<ShortKeyItem>());
             shortKeys[i].SetIndex(i, $"ShortKey{i+1}");
+        }
+    }
+
+    // 단축키의 값이 바뀌었으면, 바뀐 단축키의 key값을 넘겨줘서 해당 key의 위치에 있는 값을 다시 받아냄
+    public void ChangeShortKey(string keyString)
+    {
+        foreach(var child in shortKeys)
+        {
+            if(child.InputShortKey == keyString)
+            {
+                child.SetShoryKey(keyString);
+            }
         }
     }
 

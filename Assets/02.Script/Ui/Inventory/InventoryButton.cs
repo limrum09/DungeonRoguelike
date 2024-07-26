@@ -11,7 +11,7 @@ public class InventoryButton : MonoBehaviour
 
     public bool isSorting;
     // Start is called before the first frame update
-    void Start()
+    public void InvenToryStart()
     {
         isSorting = false;
     }

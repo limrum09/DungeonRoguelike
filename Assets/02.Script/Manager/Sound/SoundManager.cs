@@ -92,6 +92,36 @@ public class SoundManager : MonoBehaviour
         PlayAudio(playClip, audio);
     }
 
+    public void SetAudioVolume(AudioType audioType, float value)
+    {
+        if(audioType == AudioType.UIClick || audioType == AudioType.UIClose || audioType == AudioType.UIOpen)
+        {
+            AudioSource playAudio1 = audios[(int)AudioType.UIClick];
+            AudioSource playAudio2 = audios[(int)AudioType.UIClose];
+            AudioSource playAudio3 = audios[(int)AudioType.UIOpen];
+
+            playAudio1.volume = value * masterVolumeSFX;
+            playAudio2.volume = value * masterVolumeSFX;
+            playAudio3.volume = value * masterVolumeSFX;
+        }
+        else
+        {
+            AudioSource playAudio = audios[(int)audioType];
+            playAudio.volume = value * masterVolumeSFX;
+        }
+    }
+
+    public void SetMasterVolume(MasterVolumeType masterVolume, float value)
+    {
+        if (masterVolume == MasterVolumeType.BGM)
+        {
+            masterVolumeBGM = value;
+            bgmAudio.volume = masterVolumeBGM;
+        }
+        else if (masterVolume == MasterVolumeType.SFX)
+            masterVolumeSFX = value;
+    }
+
     // 이름과 위치로 AudioClip을 가져옴
     private AudioClip GetAudioClip(string clipPath)
     {

@@ -34,6 +34,20 @@ public class InputKey : MonoBehaviour
         inputKeys.Add("ShortKey8", KeyCode.Alpha8);
     }
 
+    public void ChangKeycode(string keyString, KeyCode code)
+    {
+        if((code >= KeyCode.A && code <= KeyCode.Z && code != KeyCode.W && code != KeyCode.A && code != KeyCode.S && code != KeyCode.D) || 
+            (code >= KeyCode.Alpha1 && code <= KeyCode.Alpha9))
+        {
+
+        }
+
+
+        inputKeys[keyString] = code;
+
+        // 저장 필요
+    }
+
     public KeyCode GetKeyCode(string keyString)
     {
         return inputKeys[keyString];

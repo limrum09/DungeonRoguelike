@@ -32,11 +32,13 @@ public class ShortKeyItem : MonoBehaviour
     [SerializeField]
     private Image skillImgeSlot;
 
+    public string InputShortKey => inputShortKey;
     // Update is called once per frame
     void Update()
     {
         if(item != null || skill != null)
         {
+            Debug.Log("Input Key Value : " + inputShortKey);
             if (Input.GetKeyDown(Manager.Instance.Key.GetKeyCode(inputShortKey)))
             {
                 if (item != null)
