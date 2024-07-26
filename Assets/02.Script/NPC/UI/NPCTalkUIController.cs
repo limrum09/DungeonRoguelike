@@ -25,7 +25,7 @@ public class NPCTalkUIController : MonoBehaviour
     private int questScenarioIndex;
     private bool isTalkUI;
 
-    private void Start()
+    public void NPCTalkControllerStart()
     {
         isTalkUI = false;
     }
