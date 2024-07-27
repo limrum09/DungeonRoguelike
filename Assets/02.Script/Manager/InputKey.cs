@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class InputKey : MonoBehaviour
 {
-    private Dictionary<string, KeyCode> inputKeys;
+    private Dictionary<string, KeyCode> inputKeys = new Dictionary<string, KeyCode>();
     // Start is called before the first frame update
     public void InputKeyStart()
     {
-        inputKeys = new Dictionary<string, KeyCode>();
-
         ResetKeyCode();
 
         Debug.Log("Reset Key");
@@ -23,6 +21,7 @@ public class InputKey : MonoBehaviour
         inputKeys.Add("Skill", KeyCode.K);
         inputKeys.Add("Quest", KeyCode.Q);
         inputKeys.Add("Status", KeyCode.F);
+        inputKeys.Add("Option", KeyCode.Escape);
 
         inputKeys.Add("ShortKey1", KeyCode.Alpha1);
         inputKeys.Add("ShortKey2", KeyCode.Alpha2);
