@@ -17,56 +17,103 @@ public class ViewAndHideUIPanels : MonoBehaviour
     GameObject questViewUI;
     [SerializeField]
     GameObject NPCUI;
+    [SerializeField]
+    GameObject SettingUI;
+    [SerializeField]
+    GameObject OptionUI;
+
+    private GameObject lastUI;
+    private InputKey key;
+
+    private List<GameObject> GameUI;
+
+    public void ViewAndHideUIStart()
+    {
+        GameUI = new List<GameObject> { 
+            inventoryUI,
+            statusUI,
+            questViewUI,
+            SettingUI
+        };
+
+        foreach(var ui in GameUI)
+        {
+            ui.SetActive(false);
+        }
+        OptionUI.SetActive(false);
+
+        key = Manager.Instance.Key;
+    }
 
     void Update()
     {
-        var key = Manager.Instance.Key;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Player 시점에서 가장 앞에 보이는 UI 종료
+            lastUI = HideLastIndexUI();
+            if (lastUI != null)
+                HideUI(lastUI);
+        }
+
         if (Input.GetKeyDown(key.GetKeyCode("Inventory")))
         {
-            if (inventoryUI.activeSelf)
-            {
-                HideUI(inventoryUI);
-            }
-            else
-            {
-                ViewUI(inventoryUI, true);
-            }
+            ToggleUI(inventoryUI, true);
         }
 
         if (Input.GetKeyDown(key.GetKeyCode("Status")))
         {
-            if (statusUI.activeSelf)
-            {
-                HideUI(statusUI);
-            }
-            else
-            {
-                ViewUI(statusUI, true);
-            }
+            ToggleUI(statusUI, true);
         }
 
         if (Input.GetKeyDown(key.GetKeyCode("Quest")))
         {
-            if (questViewUI.activeSelf)
-            {
-                HideUI(questViewUI);
-            }
-            else
-            {
-                ViewUI(questViewUI, true);
-            }
+            ToggleUI(questViewUI, true);
+        }
+
+        if (Input.GetKeyDown(key.GetKeyCode("Option")) && lastUI == null)
+        {
+            ToggleUI(OptionUI, true);
         }
     }
 
-    public void ViewUI(GameObject viewUI, bool setFirst)
+    private void ToggleUI(GameObject ui, bool topView)
     {
-        if (setFirst)
+        if (ui.activeSelf)
         {
-            var root = viewUI.transform.parent;
-            root.transform.SetAsLastSibling();
+            HideUI(ui);
         }
+        else
+        {
+            ViewUI(ui, topView);
+        }
+    }
+
+    // OptionUI에서 SettingUI를 실행
+    public void ViewUI(GameObject viewUI)
+    {
+        var root = viewUI.transform.parent;
+        root.transform.SetAsLastSibling();
+
         Manager.Instance.Sound.SetAudioAudioPath(AudioType.UIOpen, "UI/UI_OpenAndClose");
 
+        viewUI.SetActive(true);
+    }
+
+    public void ViewUI(GameObject viewUI, bool topView)
+    {
+        // topView(UI중 가장 앞에 보이도록)
+        if (topView)
+        {
+            // UI들은 전부 자식 Object이기에 부모 Object의 값을 가져온다.
+            var root = viewUI.transform.parent;
+            // Hierachy의 부모 Object의 순서를 가장 아래로 옮긴다.
+            root.transform.SetAsLastSibling();
+        }
+
+        // 소리 재생
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UIOpen, "UI/UI_OpenAndClose");
+
+        // 보이도록 하기
         viewUI.SetActive(true);
     }
 
@@ -84,5 +131,32 @@ public class ViewAndHideUIPanels : MonoBehaviour
     public void OUTLobbyScene()
     {
         lobbyUI.SetActive(false);
+    }
+
+    // GameUI에 SiblingLastIndex(제일 마지막에 실행한, 가장 앞에 보이는)인 UI를 넘겨준다.
+    private GameObject HideLastIndexUI()
+    {
+        GameObject lastUI = null;
+        int lastIndex = -999;
+
+        // GameUI List의 UI들의 정보
+        foreach(var ui in GameUI)
+        {
+            // UI가 켜져있다면 실행
+            if (ui.activeSelf)
+            {
+                // 부모 Object의 Index값 받기
+                int siblingIndex = ui.transform.parent.GetSiblingIndex();
+
+                // 가장 높은 Index값 정하기
+                if(siblingIndex > lastIndex)
+                {
+                    lastIndex = siblingIndex;
+                    lastUI = ui;
+                }
+            }
+        }
+
+        return lastUI;
     }
 }

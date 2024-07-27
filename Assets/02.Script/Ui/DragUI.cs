@@ -37,11 +37,16 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
     {
         var selectUI = eventData.pointerEnter;
 
+        if (selectUI.transform.gameObject.CompareTag("GameUI"))
+        {
+            selectUI.transform.parent.SetAsLastSibling();
+        }
+
         if (!isDrag && selectUI != null && selectUI.CompareTag("DragUI"))
         {
             ui = selectUI.transform.parent.gameObject;
             int index = ui.transform.childCount - 1;
-            ui.transform.SetSiblingIndex(index);
+            ui.transform.parent.SetSiblingIndex(index);
 
             startinPoint = ui.transform.position;
             clickPoint = eventData.position;
