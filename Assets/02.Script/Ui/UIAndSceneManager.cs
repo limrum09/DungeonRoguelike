@@ -26,6 +26,8 @@ public class UIAndSceneManager : MonoBehaviour
     private NPCUI npcUI;
     [SerializeField]
     private SettingContorller settingUI;
+    [SerializeField]
+    private UISkillController skillUI;
 
     public ChangeEquipmentEvent onChangeEquipment;
     public event onSelectQuestListHandler onSelectQuestListView;
@@ -79,6 +81,7 @@ public class UIAndSceneManager : MonoBehaviour
         onSelectQuestListView?.Invoke(quest);
     }
 
+    public void SelectSkill(ActiveSkill skill) => skillUI.SelectSkill(skill);
     public void SetTackerViewQuest(Quest quest, bool isOn) => questUI.SetTrackerViewQuest(quest, isOn);
     public void NPCQuestTalkWithPlayer(Scenario basicScenario, List<QuestAndScenario> questAndScenario, Sprite npcImage) => npcTalkUIController.GetQuestAndScenario(basicScenario ,questAndScenario, npcImage);
     public void PlayerInQuestNPC() => npcUI.InteractionText.PlayerIn();

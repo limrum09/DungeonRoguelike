@@ -18,4 +18,6 @@ public class SaveData
 
     public List<QuestSaveData> activeQuestSaveData = new List<QuestSaveData>();
     public List<QuestSaveData> completedQuestSaveData = new List<QuestSaveData>();
+
+    public string shortCutKeySaveData;
 }

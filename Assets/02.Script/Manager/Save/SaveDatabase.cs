@@ -11,6 +11,7 @@ public class SaveDatabase : MonoBehaviour
 
     private List<InvenItem> invenSlots;
     private ItemStatus itemStatus;
+    private InputKey shortKey;
 
     [Header("Player Data")]
     [SerializeField]
@@ -43,9 +44,10 @@ public class SaveDatabase : MonoBehaviour
         questDatabase = Resources.Load<QuestDatabase>("QuestDatabase");
         achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
 
-        var game = Manager.Instance.Game;
-        playerSaveStatus = game.PlayerSaveStatus;
-        invenSlots = game.InvenDatas.invenSlots;
+        var manager = Manager.Instance;
+        playerSaveStatus = manager.Game.PlayerSaveStatus;
+        invenSlots = manager.Game.InvenDatas.invenSlots;
+        shortKey = manager.Key;
 
         saveCool = 0f;
 
@@ -66,6 +68,8 @@ public class SaveDatabase : MonoBehaviour
 
         saveData.activeQuestSaveData.Clear();
         saveData.completedQuestSaveData.Clear();
+
+        saveData.shortCutKeySaveData = null;
     }
 
     public void SaveData(string fileName)
@@ -122,6 +126,9 @@ public class SaveDatabase : MonoBehaviour
                 saveData.slotIndexs.Add(i);
             }
         }
+
+        // 단축키 저장
+        saveData.shortCutKeySaveData = shortKey.SerializeShortCutKeyDictionary();
 
         // 데이터 저장
         string json = JsonUtility.ToJson(saveData);   // Json 직열화
@@ -208,6 +215,9 @@ public class SaveDatabase : MonoBehaviour
             }
 
             playerSaveStatus.SetPlayerSavestatus(saveData.playerSaveStatus);
+
+            // 단축키 로드
+            shortKey.DeserializeShortCutKeyDictionary(saveData.shortCutKeySaveData);
 
             QuestViewUI questViewUI = FindObjectOfType<QuestViewUI>();
             questViewUI.QuestUIStart();

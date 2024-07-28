@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum SkillWeaponValue
@@ -14,14 +15,44 @@ public enum SkillWeaponValue
 [CreateAssetMenu(menuName = "Skill/ActiveSkill", fileName = "Skill_")]
 public class ActiveSkill : ScriptableObject
 {
+    [Header("Saveing Data")]
+    // 에니메이션 이름_무기 번호
+    public string skillCode;
+    public int skillLevel;
+
+    [Header("Info")]
+    public string skillName;
     public SkillWeaponValue weapon;
     public string animationName;
     public Sprite icon;
+    [TextArea]
+    public string skillInfo;
+
+    [Header("Option")]
+    [SerializeField]
+    private int needPlayerLevel;
+    [SerializeField]
+    private ActiveSkillCondition[] conditions;
 
     public float coolTime;
 
     private float rightWeaponValue;
 
+    public int NeedPlayerLevel => needPlayerLevel;
+    public ActiveSkillCondition[] Conditions => conditions;
+    public bool NeedSkillCondition {
+        get {
+
+            bool check = true;
+
+            if (conditions != null)
+                check = conditions.All(x => x.IsSkillPass());
+
+            return check;
+        }        
+    }
+
+    public bool NeedLevelCondition => needPlayerLevel <= Manager.Instance.Game.Level;
     public float RightWeaponValue
     {
         get
@@ -45,6 +76,12 @@ public class ActiveSkill : ScriptableObject
 
             return rightWeaponValue;
         }
+    }
+
+    public void SkillLevelUp()
+    {
+        skillLevel++;
+        // 다른 것들 추가 필요
     }
 
     public ActiveSkill SkillClone() => this;
