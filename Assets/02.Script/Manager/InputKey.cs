@@ -1,5 +1,7 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class InputKey : MonoBehaviour
@@ -8,9 +10,13 @@ public class InputKey : MonoBehaviour
     // Start is called before the first frame update
     public void InputKeyStart()
     {
-        ResetKeyCode();
+        string path = Path.Combine(Application.persistentDataPath, "SaveFile");
+        if (!File.Exists(path))
+        {
+            ResetKeyCode();
 
-        Debug.Log("Reset Key");
+            Debug.Log("Don't have load file, Reset Key");
+        }
     }
 
     public void ResetKeyCode()
@@ -38,11 +44,8 @@ public class InputKey : MonoBehaviour
         if((code >= KeyCode.A && code <= KeyCode.Z && code != KeyCode.W && code != KeyCode.A && code != KeyCode.S && code != KeyCode.D) || 
             (code >= KeyCode.Alpha1 && code <= KeyCode.Alpha9))
         {
-
+            inputKeys[keyString] = code;
         }
-
-
-        inputKeys[keyString] = code;
 
         // 저장 필요
     }
@@ -50,5 +53,26 @@ public class InputKey : MonoBehaviour
     public KeyCode GetKeyCode(string keyString)
     {
         return inputKeys[keyString];
+    }
+
+    // Json 저장을 위한 직열화
+    public string SerializeShortCutKeyDictionary()
+    {
+        return JsonConvert.SerializeObject(inputKeys);
+    }
+
+    public void DeserializeShortCutKeyDictionary(string json)
+    {
+        var deserializedInputKeys = JsonConvert.DeserializeObject<Dictionary<string, KeyCode>>(json);
+
+        // key-value pair가 올바르게 저장되어 있는지 확인
+        if (deserializedInputKeys != null && deserializedInputKeys.Count > 0)
+        {
+            inputKeys = deserializedInputKeys;
+        }
+        else
+        {
+            ResetKeyCode();
+        }
     }
 }
