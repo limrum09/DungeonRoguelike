@@ -38,7 +38,6 @@ public class ShortKeyItem : MonoBehaviour
     {
         if(item != null || skill != null)
         {
-            Debug.Log("Input Key Value : " + inputShortKey);
             if (Input.GetKeyDown(Manager.Instance.Key.GetKeyCode(inputShortKey)))
             {
                 if (item != null)
@@ -74,7 +73,7 @@ public class ShortKeyItem : MonoBehaviour
         itemIndex = index;
     }
 
-    public void RegisterSkill(ActiveSkill getSkill)
+    public void RegisterInput(ActiveSkill getSkill)
     {
         ActiveSkill newSkill = getSkill.SkillClone();
 
@@ -90,7 +89,7 @@ public class ShortKeyItem : MonoBehaviour
         }
     }
 
-    public void RegisterItem(int index)
+    public void RegisterInput(int index)
     {
         itemIndex = index;
 
@@ -125,7 +124,7 @@ public class ShortKeyItem : MonoBehaviour
     private void Viewskill(ActiveSkill activeSkill)
     {
         skillImgeSlot.gameObject.SetActive(true);
-        skillImgeSlot.sprite = activeSkill.icon;
+        skillImgeSlot.sprite = activeSkill.SkillIcon;
     }
 
     private void ViewItem()

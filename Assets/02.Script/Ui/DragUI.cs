@@ -19,6 +19,7 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
     Vector2 offset;
 
     private InvenSlot invenItem;
+    private bool isSkillDrag;
 
     private void Start()
     {
@@ -31,7 +32,30 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
             offset = eventData.position - clickPoint;
             ui.transform.position = startinPoint + offset;
         }
+
+/*        if (isSkillDrag)
+        {
+            dragIcon.transform.position = Input.mousePosition;
+        }*/
     }
+
+/*    public void OnPointerClick(PointerEventData eventData)
+    {
+        var selectUI = eventData.pointerEnter;
+
+        Debug.Log("Select UI : " + selectUI);
+
+        if (selectUI != null && selectUI.GetComponent<UISkillImage>() != null)
+        {
+            Debug.Log("Click !");
+            isSkillDrag = true;
+
+            ActiveSkill skill = selectUI.GetComponent<UISkillImage>().Skill;
+            dragIcon.SetActiveSkill(skill);
+
+            dragIcon.gameObject.SetActive(true);
+        }
+    }*/
 
     public void OnPointerDown(PointerEventData eventData)
     {

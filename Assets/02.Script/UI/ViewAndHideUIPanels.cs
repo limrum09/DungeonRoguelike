@@ -18,9 +18,11 @@ public class ViewAndHideUIPanels : MonoBehaviour
     [SerializeField]
     GameObject NPCUI;
     [SerializeField]
-    GameObject SettingUI;
+    GameObject skillUI;
     [SerializeField]
-    GameObject OptionUI;
+    GameObject settingUI;
+    [SerializeField]
+    GameObject optionUI;
 
     private GameObject lastUI;
     private InputKey key;
@@ -33,14 +35,14 @@ public class ViewAndHideUIPanels : MonoBehaviour
             inventoryUI,
             statusUI,
             questViewUI,
-            SettingUI
+            settingUI
         };
 
         foreach(var ui in GameUI)
         {
             ui.SetActive(false);
         }
-        OptionUI.SetActive(false);
+        optionUI.SetActive(false);
 
         key = Manager.Instance.Key;
     }
@@ -70,9 +72,14 @@ public class ViewAndHideUIPanels : MonoBehaviour
             ToggleUI(questViewUI, true);
         }
 
+        if (Input.GetKeyDown(key.GetKeyCode("Skill")))
+        {
+            ToggleUI(skillUI, true);
+        }
+
         if (Input.GetKeyDown(key.GetKeyCode("Option")) && lastUI == null)
         {
-            ToggleUI(OptionUI, true);
+            ToggleUI(optionUI, true);
         }
     }
 

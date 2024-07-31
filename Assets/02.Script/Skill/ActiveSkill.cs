@@ -17,16 +17,25 @@ public class ActiveSkill : ScriptableObject
 {
     [Header("Saveing Data")]
     // 에니메이션 이름_무기 번호
-    public string skillCode;
-    public int skillLevel;
+    [SerializeField]
+    private string skillCode;
+    [SerializeField]
+    private int skillLevel;
+    [SerializeField]
+    private int maxLevel;
 
     [Header("Info")]
-    public string skillName;
-    public SkillWeaponValue weapon;
-    public string animationName;
-    public Sprite icon;
+    [SerializeField]
+    private string skillName;
+    [SerializeField]
+    private SkillWeaponValue weapon;
+    [SerializeField]
+    private string animationName;
+    [SerializeField]
+    private Sprite icon;
     [TextArea]
-    public string skillInfo;
+    [SerializeField]
+    private string skillInfo;
 
     [Header("Option")]
     [SerializeField]
@@ -34,8 +43,17 @@ public class ActiveSkill : ScriptableObject
     [SerializeField]
     private ActiveSkillCondition[] conditions;
 
-    public float coolTime;
+    public string SkillCode => skillCode;
+    public int CurrentSkillLevel => skillLevel;
+    public int MaxSkillLeven => maxLevel;
 
+    public string SkillName => skillName;
+    public SkillWeaponValue WeaponValue => weapon;
+    public string AnimationName => animationName;
+    public Sprite SkillIcon => icon;
+    public string SkillInfo => skillInfo;
+
+    public float coolTime;
     private float rightWeaponValue;
 
     public int NeedPlayerLevel => needPlayerLevel;
@@ -80,6 +98,9 @@ public class ActiveSkill : ScriptableObject
 
     public void SkillLevelUp()
     {
+        if (skillLevel >= maxLevel)
+            return;
+
         skillLevel++;
         // 다른 것들 추가 필요
     }

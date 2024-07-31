@@ -23,6 +23,21 @@ public class UISkillController : MonoBehaviour
     [SerializeField]
     private Button skillLevelUpBtn;
 
+    public void SkillUIInitialized()
+    {
+        if(currentSkill == null)
+        {
+            skillImage.sprite = null;
+            skillImage.gameObject.SetActive(false);
+
+            skillName.text = "";
+            skillInfo.text = "";
+            skillConditionInfo.text = "";
+
+            skillLevelUpBtn.interactable = false;
+        }
+    }
+
     public void SelectSkill(ActiveSkill skill)
     {
         bool checkCondition = true;
@@ -30,12 +45,20 @@ public class UISkillController : MonoBehaviour
 
         currentSkill = skill;
 
-        skillImage.sprite = currentSkill.icon;
-        skillName.text = currentSkill.skillName;
-        skillInfo.text = currentSkill.skillInfo;
+        if (currentSkill != null)
+            skillImage.gameObject.SetActive(true);
+        else
+            SkillUIInitialized();
 
+        // 스킬 이미지, 이름, 정보
+        skillImage.sprite = currentSkill.SkillIcon;
+        skillName.text = $"{currentSkill.SkillName} Lv.{currentSkill.CurrentSkillLevel} / MaxLv.{currentSkill.MaxSkillLeven}";
+        skillInfo.text = currentSkill.SkillInfo;
+
+        // 스킬 조건
         string conditionText = null;
 
+        // 스킬의 필요한 레벨이 부족할 경우
         if (!currentSkill.NeedLevelCondition)
         {
             checkCondition = false;
@@ -43,6 +66,7 @@ public class UISkillController : MonoBehaviour
             needConditions = true;
         }
 
+        // 선행스킬을 덜 익혔을 경우
         if (!currentSkill.NeedSkillCondition)
         {
             checkCondition = false;
@@ -59,10 +83,20 @@ public class UISkillController : MonoBehaviour
             }
         }
 
+        // 스킬 조건을 모두 만족하지 못 한경우 실행
         if (!checkCondition)
+        {
             skillConditionInfo.text = conditionText;
+            skillLevelUpBtn.interactable = false;
+        }
         else
+        {
             skillConditionInfo.text = "";
+            skillLevelUpBtn.interactable = true;
+        }
+
+        if (currentSkill.CurrentSkillLevel >= currentSkill.MaxSkillLeven)
+            skillLevelUpBtn.interactable = false;
     }
 
     public void SkillLevelUp()
@@ -74,5 +108,18 @@ public class UISkillController : MonoBehaviour
 
         // 스킬 레벨업
         currentSkill.SkillLevelUp();
+
+        RefreshSkill();
+    }
+
+    private void RefreshSkill()
+    {
+        // 스킬 이미지, 이름, 정보
+        skillImage.sprite = currentSkill.SkillIcon;
+        skillName.text = $"{currentSkill.SkillName} Lv.{currentSkill.CurrentSkillLevel} / MaxLv.{currentSkill.MaxSkillLeven}";
+        skillInfo.text = currentSkill.SkillInfo;
+
+        if (currentSkill.CurrentSkillLevel >= currentSkill.MaxSkillLeven)
+            skillLevelUpBtn.interactable = false;
     }
 }
