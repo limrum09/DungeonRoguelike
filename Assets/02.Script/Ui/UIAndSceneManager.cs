@@ -54,6 +54,7 @@ public class UIAndSceneManager : MonoBehaviour
         invenUI.InvenToryStart();
         npcTalkUIController.NPCTalkControllerStart();
         settingUI.SettingControllerStart();
+        skillUI.SkillUIInitialized();
     }
 
     public void ChangeEquipment(WeaponItem item) => Manager.Instance.Game.PlayerWeaponChange(item);

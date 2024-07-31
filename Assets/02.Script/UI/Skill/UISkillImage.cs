@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UISkillImage : MonoBehaviour
+public class UISkillImage : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private ActiveSkill skill;
@@ -12,12 +13,12 @@ public class UISkillImage : MonoBehaviour
     GameObject line;
 
     private Image icon;
-    private Button btn;
+
+    public ActiveSkill Skill => skill;
 
     private void Start()
     {
         icon = GetComponent<Image>();
-        btn = GetComponent<Button>();
 
         if (skill == null)
         {
@@ -28,7 +29,7 @@ public class UISkillImage : MonoBehaviour
         }
         else
         {
-            icon.sprite = skill.icon;
+            icon.sprite = skill.SkillIcon;
 
             if(line != null)
             {
@@ -36,11 +37,9 @@ public class UISkillImage : MonoBehaviour
                     line.SetActive(false);
             }
         }
-
-        btn.onClick.AddListener(OnClickBtn);
     }
 
-    private void OnClickBtn()
+    public void OnPointerClick(PointerEventData eventData)
     {
         UIAndSceneManager.instance.SelectSkill(skill);
     }

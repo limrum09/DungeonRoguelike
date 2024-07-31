@@ -10,14 +10,14 @@ public class ActiveSkillCondition : ScriptableObject
     [SerializeField]
     private int needSkillLevel;
 
-    public string NeedActiveSkillName => needActiveSkill.skillName;
+    public string NeedActiveSkillName => needActiveSkill.SkillName;
     public int NeedSkillLevel => needSkillLevel;
 
     public bool IsSkillPass()
     {
         bool check = false;
 
-        if (needActiveSkill.skillLevel >= needSkillLevel)
+        if (needActiveSkill.CurrentSkillLevel >= needSkillLevel)
             check = true;
 
         return check;

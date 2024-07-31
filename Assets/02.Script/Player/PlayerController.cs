@@ -185,8 +185,11 @@ public class PlayerController : MonoBehaviour
 
     public void UseActiveSkill(ActiveSkill skill)
     {
-        animator.Play(skill.animationName);
-        Debug.Log("스킬 " + skill.animationName + " 사용");
+        if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue"))
+            return;
+
+        animator.Play(skill.AnimationName);
+        Debug.Log("스킬 " + skill.AnimationName + " 사용");
     }
 
     private void PlayerComboEnd()
