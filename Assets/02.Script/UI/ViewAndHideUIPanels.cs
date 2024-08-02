@@ -35,7 +35,8 @@ public class ViewAndHideUIPanels : MonoBehaviour
             inventoryUI,
             statusUI,
             questViewUI,
-            settingUI
+            settingUI,
+            skillUI
         };
 
         foreach(var ui in GameUI)

@@ -1060,7 +1060,7 @@ AnimatorStateMachine:
     m_Position: {x: 670, y: 370, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -4538179996768354700}
-    m_Position: {x: 490, y: 500, z: 0}
+    m_Position: {x: 60, y: 370, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
@@ -2629,7 +2629,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3483435047655598376}
-    m_Position: {x: 310, y: 20, z: 0}
+    m_Position: {x: 310, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1490952399879075349}
     m_Position: {x: 320, y: 210, z: 0}
@@ -7197,7 +7197,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: Spear_Rush
   m_Speed: 1
-  m_CycleOffset: 0
+  m_CycleOffset: 1
   m_Transitions:
   - {fileID: 3920654405767066673}
   m_StateMachineBehaviours: []
@@ -7209,11 +7209,11 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 51a71d4ef978ee94aa31714035fdc7da, type: 2}
+  m_Motion: {fileID: 7400000, guid: e084a602310358944a52b2a3ecd157a3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: Forward
   m_TimeParameter: 
 --- !u!1102 &3539230974496463454
 AnimatorState:
@@ -7413,10 +7413,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsSkill
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1622156507359980247}
   m_Solo: 0
