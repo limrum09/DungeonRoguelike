@@ -12,6 +12,8 @@ public class Manager : MonoBehaviour
     private SoundManager soundManager;
     [SerializeField]
     private InputKey inputKey;
+    [SerializeField]
+    private CameraController camearaController;
 
     [SerializeField]
     private GameManager gameManager;
@@ -19,6 +21,7 @@ public class Manager : MonoBehaviour
     public GameManager Game => gameManager;
     public SoundManager Sound => soundManager;
     public InputKey Key => inputKey;
+    public CameraController Camera => camearaController;
 
     private void Awake()
     {
@@ -33,6 +36,14 @@ public class Manager : MonoBehaviour
         {
             Debug.Log("Manager Destroyed");
             Destroy(this.gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(inputKey.GetKeyCode("Camera")))
+        {
+            camearaController.ChangeCameraView();
         }
     }
 
@@ -54,5 +65,8 @@ public class Manager : MonoBehaviour
 
         saveManager = Instantiate(saveManager, this.transform);
         saveManager.SaveDatabaseStart();
+
+        camearaController = Instantiate(camearaController, this.transform);
+        camearaController.CameraStart();
     }
 }

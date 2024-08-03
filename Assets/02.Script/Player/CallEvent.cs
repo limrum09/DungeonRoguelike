@@ -42,4 +42,9 @@ public class CallEvent : MonoBehaviour
         player.Ani.SetBool("Jump", false);
         player.Ani.SetBool("DoubleJump", false);
     }
+
+    public void SkillEnd()
+    {
+        player.isMove = true;
+    }
 }
