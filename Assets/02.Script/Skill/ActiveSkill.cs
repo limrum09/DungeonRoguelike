@@ -23,6 +23,8 @@ public class ActiveSkill : ScriptableObject
     private int skillLevel;
     [SerializeField]
     private int maxLevel;
+    [SerializeField]
+    private bool canMove;
 
     [Header("Info")]
     [SerializeField]
@@ -46,6 +48,7 @@ public class ActiveSkill : ScriptableObject
     public string SkillCode => skillCode;
     public int CurrentSkillLevel => skillLevel;
     public int MaxSkillLeven => maxLevel;
+    public bool CanMove => canMove;
 
     public string SkillName => skillName;
     public SkillWeaponValue WeaponValue => weapon;

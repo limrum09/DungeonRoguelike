@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private float gravityValue;
     [SerializeField]
     private bool isGround;
+    public bool isMove;
     public bool isCombo;
 
     private bool isDoubleJump;
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        isMove = true;
         isCombo = false;
     }
 
@@ -95,6 +97,9 @@ public class PlayerController : MonoBehaviour
 
     private void playerMove()
     {
+        if (!isMove)
+            return;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -187,7 +192,7 @@ public class PlayerController : MonoBehaviour
     {
         if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue"))
             return;
-
+        isMove = skill.CanMove;
         animator.Play(skill.AnimationName);
         Debug.Log("스킬 " + skill.AnimationName + " 사용");
     }

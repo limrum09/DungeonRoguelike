@@ -23,11 +23,14 @@ public class InputKey : MonoBehaviour
     {
         inputKeys.Clear();
 
+        Debug.Log("키 리셋");
+
         inputKeys.Add("Inventory", KeyCode.I);
         inputKeys.Add("Skill", KeyCode.K);
         inputKeys.Add("Quest", KeyCode.Q);
         inputKeys.Add("Status", KeyCode.F);
         inputKeys.Add("Option", KeyCode.Escape);
+        inputKeys.Add("Camera", KeyCode.C);
 
         inputKeys.Add("ShortKey1", KeyCode.Alpha1);
         inputKeys.Add("ShortKey2", KeyCode.Alpha2);
