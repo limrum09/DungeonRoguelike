@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoad;
 
         GameObject newPlayer = PlayerRespawnInRespawnPoint();
+        newPlayer.GetComponent<PlayerController>().PlayerControllerStart();
         itemStatus.InteractionTest(newPlayer.GetComponent<PlayerInteractionTest>());
 
         playerSaveStatus.FirstStart();

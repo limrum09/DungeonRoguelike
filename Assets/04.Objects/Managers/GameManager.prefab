@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d7b8849f6156548984ef9b3e783981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3113234748699060877, guid: a3b8d4c04df3e7c45b1ec8f7bd3ec77b, type: 3}
+  player: {fileID: 8545169012543264202, guid: bfeb92d66a002464387da0d6d98fda2b, type: 3}
   itemStatus: {fileID: 4636573234975432105}
   playerSaveStatus: {fileID: 4684568839007893110}
   invenData: {fileID: 4636573234975432110}

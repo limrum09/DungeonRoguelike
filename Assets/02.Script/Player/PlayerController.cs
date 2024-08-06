@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     public Animator Ani => animator;
 
     // Start is called before the first frame update
-    void Start()
+    public void PlayerControllerStart()
     {
         controller = GetComponent<CharacterController>();
         isMove = true;

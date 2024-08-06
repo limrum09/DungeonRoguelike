@@ -8,6 +8,7 @@ public enum SkillWeaponValue
     Public,
     OneHandSword,
     TwoHandSword,
+    Sheild,
     Spear,
     Magic
 }
@@ -58,6 +59,7 @@ public class ActiveSkill : ScriptableObject
 
     public float coolTime;
     private float rightWeaponValue;
+    private float leftWeaponValue;
 
     public int NeedPlayerLevel => needPlayerLevel;
     public ActiveSkillCondition[] Conditions => conditions;
@@ -96,6 +98,21 @@ public class ActiveSkill : ScriptableObject
             }
 
             return rightWeaponValue;
+        }
+    }
+
+    public float LeftWeaponValue
+    {
+        get
+        {
+            if (weapon == SkillWeaponValue.Sheild)
+                leftWeaponValue = 2;
+            else if (weapon == SkillWeaponValue.OneHandSword)
+                leftWeaponValue = 1;
+            else
+                leftWeaponValue = 0;
+
+            return leftWeaponValue;
         }
     }
 
