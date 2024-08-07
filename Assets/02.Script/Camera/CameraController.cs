@@ -15,6 +15,9 @@ public class CameraController : MonoBehaviour
         this.gameObject.transform.position = target.position;
     }
 
+    // 카메라가 타겟을 따라가도록 해야함
+
+
     public void ChangeCameraView()
     {
         int camearaCnt = cameras.Count;

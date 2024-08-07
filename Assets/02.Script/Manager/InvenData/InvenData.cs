@@ -19,20 +19,6 @@ public class InvenData : MonoBehaviour
     private GameObject invenSlotPrefab;
      
     public InventoryButton InvenButton => invenButton;
-    // Start is called before the first frame update
-    void Awake()
-    {
-/*        if (instance == null)
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }*/
-    }
 
     public void InvenDataStart()
     {
@@ -151,7 +137,7 @@ public class InvenData : MonoBehaviour
             if(invenSlots[i] != null)
             {
                 // 같은 아이템이 있는 경우
-                if(invenSlots[i].ItemCode == newItem.ItemCode && !!invenSlots[i].IsMax())
+                if(invenSlots[i].ItemCode == newItem.ItemCode && !invenSlots[i].IsMax())
                 {
                     invenSlots[i].itemCnt++;
                     RefreshInvenSlot(i);
