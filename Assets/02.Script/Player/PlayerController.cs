@@ -103,11 +103,12 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 moveDirection = transform.forward * vertical;
+        // Vector3 moveDirection = transform.forward * vertical;
+        Vector3 moveDirection = new Vector3(horizontal, 0, vertical);
 
         playerSpeed = PlayerInteractionStatus.instance.PlayerSpeed;
         controller.Move(moveDirection * playerSpeed * Time.deltaTime);
-        transform.rotation *= Quaternion.Euler(0, horizontal * rotationSpeed, 0);
+        // transform.rotation *= Quaternion.Euler(0, horizontal * rotationSpeed, 0);
 
         if (isGround)
         {

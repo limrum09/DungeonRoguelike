@@ -43,6 +43,7 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(inputKey.GetKeyCode("Camera")))
         {
+            Debug.Log("Camera!");
             camearaController.ChangeCameraView();
         }
     }

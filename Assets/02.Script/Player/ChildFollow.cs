@@ -13,8 +13,12 @@ public class ChildFollow : MonoBehaviour
         offset = transform.position - childTransform.position;
     }
 
-    private void LateUpdate()
+    public void Following()
     {
-        transform.position = childTransform.position + offset;
+        if(childTransform.position != this.transform.position)
+        {
+            Debug.Log("Follow Child!");
+            childTransform.position = transform.position + offset;
+        }
     }
 }
