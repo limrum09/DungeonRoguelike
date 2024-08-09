@@ -40,12 +40,18 @@ public class PlayerController : MonoBehaviour
     public bool isMove;
     public bool isCombo;
 
+    [Header("Cinemachine")]
+    [SerializeField]
+    private GameObject playerCollider;
+
+    private InputKey key;
     private bool isDoubleJump;
     public Animator Ani => animator;
 
     // Start is called before the first frame update
     public void PlayerControllerStart()
     {
+        key = Manager.Instance.Key;
         controller = GetComponent<CharacterController>();
         isMove = true;
         isCombo = false;
@@ -100,44 +106,52 @@ public class PlayerController : MonoBehaviour
         if (!isMove)
             return;
 
+        PlayerJump();
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Vector3 moveDirection = transform.forward * vertical;
-        Vector3 moveDirection = new Vector3(horizontal, 0, vertical);
-
         playerSpeed = PlayerInteractionStatus.instance.PlayerSpeed;
-        controller.Move(moveDirection * playerSpeed * Time.deltaTime);
-        // transform.rotation *= Quaternion.Euler(0, horizontal * rotationSpeed, 0);
+
+        if (Input.GetKeyDown(key.GetKeyCode("Sprint")))
+        {
+            playerSpeed = playerSpeed * 1.5f;
+            animator.SetBool("Sprint", true);
+        }
+        else if (Input.GetKeyUp(key.GetKeyCode("Sprint")))
+        {
+            animator.SetBool("Sprint", false);
+        }
+            
 
         if (isGround)
         {
             isDoubleJump = false;
-            if (horizontal < 0)
-            {
-                animator.SetFloat("Rotation", -1);
-            }
-            else if (horizontal > 0)
-            {
-                animator.SetFloat("Rotation", 1);
-            }
-            else if (horizontal == 0)
-            {
-                animator.SetFloat("Rotation", 0);
-            }
 
-            if (vertical < 0)
-            {
-                animator.SetFloat("Forward", -1);
-            }
-            else if (vertical >= 0)
-            {
-                animator.SetFloat("Forward", 0);
-            }
+            Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
 
-            if (new Vector3(horizontal, 0, vertical) != Vector3.zero)
+            // 입력한 값이 있는 경우
+            if (direction.magnitude >= 0.1f)
             {
                 animator.SetBool("Walk", true);
+
+                // 입력한 값을 기준으로 회전 각도 계산
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+                // 현제 각도를 목표 각도로 보간
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, 0.1f);
+
+                // 목표 각도로 플레이어 회전
+                transform.rotation = Quaternion.Euler(0, angle, 0);
+
+                // 플레이어 이동 방향
+                Vector3 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+
+                // 캐릭터 컨트롤러로 플레이어 이동
+                controller.Move(moveDirection * playerSpeed * Time.deltaTime);
+
+                // Cinemachine을 playerCollider로 잡았음. 플레이어가 회전해도 playerCollider가 회전하지 않는다.
+                playerCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else
             {
@@ -148,9 +162,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Walk", false);
         }
-        
-
-        PlayerJump();
     }
 
     private void PlayerJump()
@@ -158,6 +169,7 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (isGround && Input.GetKeyDown(KeyCode.Space) && !animator.GetBool("Jump"))
         {
+
             playerVector.y += Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
             animator.SetBool("Jump", true);
         }

@@ -39,15 +39,6 @@ public class Manager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(inputKey.GetKeyCode("Camera")))
-        {
-            Debug.Log("Camera!");
-            camearaController.ChangeCameraView();
-        }
-    }
-
     private void OnApplicationQuit()
     {
         saveManager.DataSaving();

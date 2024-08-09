@@ -51,8 +51,12 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoad;
 
         GameObject newPlayer = PlayerRespawnInRespawnPoint();
-        newPlayer.GetComponent<PlayerController>().PlayerControllerStart();
-        itemStatus.InteractionTest(newPlayer.GetComponent<PlayerInteractionTest>());
+        
+
+        Transform playerRespawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
+        newPlayer.transform.position = playerRespawnPoint.position;
+
+        Debug.Log("Player Position : " + newPlayer.transform.position);
 
         playerSaveStatus.FirstStart();
         invenData.InvenDataStart();
@@ -61,13 +65,13 @@ public class GameManager : MonoBehaviour
 
     private GameObject PlayerRespawnInRespawnPoint()
     {
-        Transform playerRespawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
-
         GameObject playerObject = Instantiate(player);
-        playerObject.name = "Player";
-        playerObject.transform.position = playerRespawnPoint.position;
+        playerObject.name = "PlayerObject";
 
         playerController = playerObject.GetComponent<PlayerController>();
+        playerController.PlayerControllerStart();
+
+        itemStatus.InteractionTest(playerObject.GetComponent<PlayerInteractionTest>());
 
         return playerObject;
     }

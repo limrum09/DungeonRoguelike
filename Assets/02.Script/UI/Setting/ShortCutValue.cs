@@ -16,6 +16,12 @@ public class ShortCutValue : MonoBehaviour
     public string KeyValue => keyValue;
     public string PrevTextValue => prevTextValue;
 
+    public void StartShortCutKey()
+    {
+        string keyCode = Manager.Instance.Key.GetKeyCode(KeyValue).ToString();
+        inputKeyCodeValue.text = keyCode;
+    }
+
     public bool CheckLength()
     {
         bool oneChar = false;
@@ -32,7 +38,9 @@ public class ShortCutValue : MonoBehaviour
                 currentString = currentString.ToUpper();
                 inputKeyCodeValue.text = currentString;
             }
-        }            
+        }
+        else if (currentString == KeyCode.Space.ToString())
+            oneChar = true;
 
         return oneChar;
     }
