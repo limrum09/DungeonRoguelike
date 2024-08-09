@@ -1380,10 +1380,10 @@ AnimatorStateMachine:
     m_Position: {x: 150, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3624947749448080526}
-    m_Position: {x: 670, y: 220, z: 0}
+    m_Position: {x: 690, y: 330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1948060629527938030}
-    m_Position: {x: 690, y: 340, z: 0}
+    m_Position: {x: 450, y: 520, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -2926,7 +2926,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 4
     m_ConditionEvent: Forward
     m_EventTreshold: -0.5
   - m_ConditionMode: 1
@@ -8385,7 +8385,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 8000508847055888603}
+  m_Motion: {fileID: 1827226128182048838, guid: f972403304e9d7041a3aabbe3fc748fe, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -8804,7 +8804,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
+  - m_ConditionMode: 3
     m_ConditionEvent: Forward
     m_EventTreshold: -0.5
   - m_ConditionMode: 1

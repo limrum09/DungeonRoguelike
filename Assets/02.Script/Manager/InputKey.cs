@@ -21,6 +21,7 @@ public class InputKey : MonoBehaviour
 
     public void ResetKeyCode()
     {
+        Debug.Log("Input Key : " + inputKeys.Count);
         inputKeys.Clear();
 
         Debug.Log("키 리셋");
@@ -32,6 +33,9 @@ public class InputKey : MonoBehaviour
         inputKeys.Add("Option", KeyCode.Escape);
         inputKeys.Add("Camera", KeyCode.C);
 
+        inputKeys.Add("Attack", KeyCode.Z);
+        inputKeys.Add("Sprint", KeyCode.X);
+
         inputKeys.Add("ShortKey1", KeyCode.Alpha1);
         inputKeys.Add("ShortKey2", KeyCode.Alpha2);
         inputKeys.Add("ShortKey3", KeyCode.Alpha3);
@@ -40,6 +44,8 @@ public class InputKey : MonoBehaviour
         inputKeys.Add("ShortKey6", KeyCode.Alpha6);
         inputKeys.Add("ShortKey7", KeyCode.Alpha7);
         inputKeys.Add("ShortKey8", KeyCode.Alpha8);
+
+        Debug.Log("Input Key : " + inputKeys.Count);
     }
 
     public void ChangKeycode(string keyString, KeyCode code)
@@ -61,6 +67,8 @@ public class InputKey : MonoBehaviour
     // Json 저장을 위한 직열화
     public string SerializeShortCutKeyDictionary()
     {
+        Debug.Log("저장 됨 ?" + inputKeys.Count);
+        Debug.Log("저장 됨 ?" + inputKeys["Sprint"]);
         return JsonConvert.SerializeObject(inputKeys);
     }
 
@@ -68,13 +76,16 @@ public class InputKey : MonoBehaviour
     {
         var deserializedInputKeys = JsonConvert.DeserializeObject<Dictionary<string, KeyCode>>(json);
 
+        Debug.Log("저장 된 것 같은데? " + deserializedInputKeys.Count + ", Input Key : " + inputKeys.Count);
         // key-value pair가 올바르게 저장되어 있는지 확인
         if (deserializedInputKeys != null && deserializedInputKeys.Count > 0)
         {
+            Debug.Log("문제 없다?");
             inputKeys = deserializedInputKeys;
         }
         else
         {
+            Debug.Log("문제 생김");
             ResetKeyCode();
         }
     }

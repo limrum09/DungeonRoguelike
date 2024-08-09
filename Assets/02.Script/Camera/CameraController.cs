@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,32 +6,82 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private List<Camera> cameras;
+    private Camera cameras;
+    [SerializeField]
+    private List<CinemachineVirtualCamera> virtualCamearas;
+
+    [Header("Camera Zoom Distance")]
+    [SerializeField]
+    [Range(5, 15)] private float minDistance;
+    [SerializeField]
+    [Range(16, 30)] private float maxDistance;
+
 
     private Transform target;
     public void CameraStart()
     {
-        target = GameObject.FindGameObjectWithTag("PlayerComponent").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
 
         this.gameObject.transform.position = target.position;
+
+        foreach(var virtualCameara in virtualCamearas)
+        {
+            virtualCameara.Follow = target;
+        }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(Manager.Instance.Key.GetKeyCode("Camera")))
+        {
+            ChangeCameraView();
+        }
 
-    // 카메라가 타겟을 따라가도록 해야함
+        float scrollwheel = Input.GetAxis("Mouse ScrollWheel");
 
+        if(Input.GetMouseButton(1) && scrollwheel != 0)
+        {
+            
+            Debug.Log("Wheel");
+            if (virtualCamearas[0].gameObject.activeSelf)
+            {
+                CinemachineComponentBase componentBase = virtualCamearas[0].GetCinemachineComponent(CinemachineCore.Stage.Body);
+                if (componentBase is Cinemachine3rdPersonFollow thirdPersonFollow)
+                {
+                    thirdPersonFollow.CameraDistance = Mathf.Clamp(thirdPersonFollow.CameraDistance - scrollwheel * 10f, minDistance, maxDistance);
+                }
+            }
+            else if (virtualCamearas[1].gameObject.activeSelf)
+            {
+                CinemachineComponentBase componentBase = virtualCamearas[1].GetCinemachineComponent(CinemachineCore.Stage.Body);
+                if (componentBase is CinemachineTransposer transposer)
+                {
+                    Vector3 currentOffset = transposer.m_FollowOffset;
+
+                    float y = Mathf.Clamp(currentOffset.y - scrollwheel * 10f, 5f, 30f);
+                    float z = Mathf.Clamp(currentOffset.z + scrollwheel * 10f, -29f, -4f);
+
+                    Vector3 newOffset = new Vector3(0, y, z);
+
+                    transposer.m_FollowOffset = newOffset;
+                }
+            }
+                
+        }
+    }
 
     public void ChangeCameraView()
     {
-        int camearaCnt = cameras.Count;
+        int camearaCnt = virtualCamearas.Count;
         for(int i = 0; i < camearaCnt ; i++)
         {
-            if (cameras[i].gameObject.activeSelf)
+            if (virtualCamearas[i].gameObject.activeSelf)
             {
-                cameras[i++].gameObject.SetActive(false);
+                virtualCamearas[i++].gameObject.SetActive(false);
 
                 if (i >= camearaCnt)
                     i = 0;
 
-                cameras[i].gameObject.SetActive(true);
+                virtualCamearas[i].gameObject.SetActive(true);
 
                 break;
             }

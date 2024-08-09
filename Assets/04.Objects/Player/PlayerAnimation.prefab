@@ -64,7 +64,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143856277453094789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 227.87, y: 24.07, z: 270}
+  m_LocalPosition: {x: 227, y: 100, z: 270}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -96,7 +96,7 @@ Transform:
   - {fileID: 3747444993462151747}
   - {fileID: 8528909041567477691}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &954337972027280294
 Animator:
@@ -168,12 +168,13 @@ MonoBehaviour:
   groundCheck: {fileID: 2044992203729305890}
   animator: {fileID: 954337972027280294}
   playerSpeed: 15
-  rotationSpeed: 1
+  rotationSpeed: 15
   jumpHeigt: 3
   gravityValue: -9.8
   isGround: 0
   isMove: 0
   isCombo: 0
+  playerCollider: {fileID: 1958786055646627667}
 --- !u!114 &3503929093125470125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,14 +1039,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958786055646627667}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.03489949, y: 0, z: 0, w: 0.99939084}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 771457117482476863}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4, y: 0, z: 0}
 --- !u!136 &3746791924252830356
 CapsuleCollider:
   m_ObjectHideFlags: 0
