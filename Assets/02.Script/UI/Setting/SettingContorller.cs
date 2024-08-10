@@ -14,6 +14,7 @@ public class SettingContorller : MonoBehaviour
         for(int i = 0; i< shortCut.Count; i++)
         {
             shortCut[i].SetPrevText();
+            shortCut[i].StartShortCutKey();
         }
     }
     public void ChangeSliderValue(SliderValue slider)
@@ -48,25 +49,29 @@ public class SettingContorller : MonoBehaviour
         }
 
         string keyCodeString = shortCut.InputKeyCodeValue.text;
-        KeyCode keyCode;
+        KeyCode _keyCode;
+
+        Debug.Log("Key Code String : " + keyCodeString);
 
         try
         {
             // Attempt to parse the string to a KeyCode
-            keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyCodeString, true);
-
+            _keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyCodeString, true);
+            Debug.Log("Set Key Code : " + _keyCode);
             
-            Manager.Instance.Key.ChangKeycode(shortCut.KeyValue, keyCode);
+            Manager.Instance.Key.ChangKeycode(shortCut.KeyValue, _keyCode);
             UIAndSceneManager.instance.ChangeShortCutValue(shortCut.KeyValue);
 
             shortCut.SetPrevText();
         }
         catch (System.ArgumentException)
         {
+            Debug.Log("Error String : " + keyCodeString);
             shortCut.CancelChange();
         }
     }
 
+    // 소리, 단축키 등 바로가기 버튼
     public void ClickButtonToPosition(float positionY)
     {
         Vector2 rectPosition = contentRect.anchoredPosition;
