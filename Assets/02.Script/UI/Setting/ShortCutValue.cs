@@ -16,9 +16,17 @@ public class ShortCutValue : MonoBehaviour
     public string KeyValue => keyValue;
     public string PrevTextValue => prevTextValue;
 
+    // 시작 시, 각자 해당되는 단축키 필드에 보여주기
     public void StartShortCutKey()
     {
         string keyCode = Manager.Instance.Key.GetKeyCode(KeyValue).ToString();
+
+        // Text에서 Alpha제거
+        if (keyCode.Contains("Alpha"))
+        {
+            keyCode = keyCode.Replace("Alpha", "");
+        }
+
         inputKeyCodeValue.text = keyCode;
     }
 
@@ -27,20 +35,24 @@ public class ShortCutValue : MonoBehaviour
         bool oneChar = false;
         string currentString = inputKeyCodeValue.text;
 
+        Debug.Log("Current String : " + currentString);
+
         // 입력된 값이 1글자일 경우
-        if (currentString.Length == 1)
+        if (currentString.Length == 1 || currentString == " ")
         {
             oneChar = true;
+
+            if (currentString == " ")
+                currentString = "Space";
 
             // 소문자일 경우, 대문자로 변경
             if (currentString[0] >= 'a' && currentString[0] <= 'z')
             {
                 currentString = currentString.ToUpper();
-                inputKeyCodeValue.text = currentString;
             }
-        }
-        else if (currentString == KeyCode.Space.ToString())
-            oneChar = true;
+
+            inputKeyCodeValue.text = currentString;
+        }            
 
         return oneChar;
     }

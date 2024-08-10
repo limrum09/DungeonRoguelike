@@ -43,18 +43,29 @@ public class PlayerController : MonoBehaviour
     [Header("Cinemachine")]
     [SerializeField]
     private GameObject playerCollider;
+    [SerializeField]
+    private Transform respawnPoint;
 
     private InputKey key;
     private bool isDoubleJump;
     public Animator Ani => animator;
 
+    private float preVelocityY;
+
     // Start is called before the first frame update
     public void PlayerControllerStart()
     {
-        key = Manager.Instance.Key;
         controller = GetComponent<CharacterController>();
+        PlayerInRespawnPoint();
         isMove = true;
         isCombo = false;
+    }
+
+    public void PlayerInRespawnPoint()
+    {
+        respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
+        transform.position = respawnPoint.position;
+        controller.transform.position = respawnPoint.position;
     }
 
     // Update is called once per frame
@@ -113,50 +124,51 @@ public class PlayerController : MonoBehaviour
 
         playerSpeed = PlayerInteractionStatus.instance.PlayerSpeed;
 
-        if (Input.GetKeyDown(key.GetKeyCode("Sprint")))
+        key = Manager.Instance.Key;
+
+        if (Input.GetKey(key.GetKeyCode("Sprint")))
         {
             playerSpeed = playerSpeed * 1.5f;
             animator.SetBool("Sprint", true);
         }
-        else if (Input.GetKeyUp(key.GetKeyCode("Sprint")))
+        else
         {
             animator.SetBool("Sprint", false);
         }
-            
 
-        if (isGround)
+        Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
+
+        // 입력한 값이 있는 경우
+        if (direction.magnitude >= 0.1f)
         {
-            isDoubleJump = false;
-
-            Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
-
-            // 입력한 값이 있는 경우
-            if (direction.magnitude >= 0.1f)
+            if (isGround)
             {
+                isDoubleJump = false;
                 animator.SetBool("Walk", true);
-
-                // 입력한 값을 기준으로 회전 각도 계산
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-
-                // 현제 각도를 목표 각도로 보간
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, 0.1f);
-
-                // 목표 각도로 플레이어 회전
-                transform.rotation = Quaternion.Euler(0, angle, 0);
-
-                // 플레이어 이동 방향
-                Vector3 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
-
-                // 캐릭터 컨트롤러로 플레이어 이동
-                controller.Move(moveDirection * playerSpeed * Time.deltaTime);
-
-                // Cinemachine을 playerCollider로 잡았음. 플레이어가 회전해도 playerCollider가 회전하지 않는다.
-                playerCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else
             {
                 animator.SetBool("Walk", false);
             }
+            
+
+            // 입력한 값을 기준으로 회전 각도 계산
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+            // 현제 각도를 목표 각도로 보간
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, 0.1f);
+
+            // 목표 각도로 플레이어 회전
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+
+            // 플레이어 이동 방향
+            Vector3 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+
+            // 캐릭터 컨트롤러로 플레이어 이동
+            controller.Move(moveDirection * playerSpeed * Time.deltaTime);
+
+            // Cinemachine을 playerCollider로 잡았음. 플레이어가 회전해도 playerCollider가 회전하지 않는다.
+            playerCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
@@ -167,22 +179,33 @@ public class PlayerController : MonoBehaviour
     private void PlayerJump()
     {
         // Jump
-        if (isGround && Input.GetKeyDown(KeyCode.Space) && !animator.GetBool("Jump"))
+        if (isGround && Input.GetKeyDown(key.GetKeyCode("Jump")) && !animator.GetBool("Jump"))
         {
-
             playerVector.y += Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
             animator.SetBool("Jump", true);
         }
         // Double Jump
-        else if(animator.GetBool("Jump") && Input.GetKeyDown(KeyCode.Space) && !isDoubleJump)
+        else if(animator.GetBool("Jump") && Input.GetKeyDown(key.GetKeyCode("Jump")) && !isDoubleJump)
         {
             isDoubleJump = true;
             playerVector.y += Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
             animator.SetBool("DoubleJump", true);
         }
 
-        playerVector.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVector * Time.deltaTime);
+        if (playerVector.y > 0)
+        {
+            playerVector.y += gravityValue * Time.deltaTime;
+            controller.Move(playerVector * Time.deltaTime);
+
+            if (preVelocityY > transform.position.y)
+            {
+                // 정점
+                Debug.Log("정점 인가? " + transform.position.y);
+            }
+
+
+            preVelocityY = transform.position.y;
+        }        
     }
 
     private void PlayerAttack()

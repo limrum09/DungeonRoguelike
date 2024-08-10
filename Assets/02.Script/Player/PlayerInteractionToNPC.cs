@@ -7,20 +7,21 @@ public class PlayerInteractionToNPC : MonoBehaviour
 {
     private bool isNPCTalk;
 
-
+    private KeyCode toNPCKey;
     private void Start()
     {
+        toNPCKey = Manager.Instance.Key.GetKeyCode("ToNPC");
         isNPCTalk = false;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(toNPCKey))
         {
             isNPCTalk = true;
             Debug.Log("Is Key Down : " + isNPCTalk);
         }
 
-        if (Input.GetKeyUp(KeyCode.X))
+        if (Input.GetKeyUp(toNPCKey))
         {
             isNPCTalk = false;
             Debug.Log("Is Key Up : " + isNPCTalk);

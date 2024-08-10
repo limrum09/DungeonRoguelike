@@ -21,7 +21,6 @@ public class InputKey : MonoBehaviour
 
     public void ResetKeyCode()
     {
-        Debug.Log("Input Key : " + inputKeys.Count);
         inputKeys.Clear();
 
         Debug.Log("키 리셋");
@@ -34,7 +33,9 @@ public class InputKey : MonoBehaviour
         inputKeys.Add("Camera", KeyCode.C);
 
         inputKeys.Add("Attack", KeyCode.Z);
-        inputKeys.Add("Sprint", KeyCode.X);
+        inputKeys.Add("Sprint", KeyCode.V);
+        inputKeys.Add("ToNPC", KeyCode.X);
+        inputKeys.Add("Jump", KeyCode.Space);
 
         inputKeys.Add("ShortKey1", KeyCode.Alpha1);
         inputKeys.Add("ShortKey2", KeyCode.Alpha2);
@@ -45,13 +46,13 @@ public class InputKey : MonoBehaviour
         inputKeys.Add("ShortKey7", KeyCode.Alpha7);
         inputKeys.Add("ShortKey8", KeyCode.Alpha8);
 
-        Debug.Log("Input Key : " + inputKeys.Count);
+        Debug.Log("Count : " + inputKeys.Count);
     }
 
     public void ChangKeycode(string keyString, KeyCode code)
     {
         if((code >= KeyCode.A && code <= KeyCode.Z && code != KeyCode.W && code != KeyCode.A && code != KeyCode.S && code != KeyCode.D) || 
-            (code >= KeyCode.Alpha1 && code <= KeyCode.Alpha9))
+            (code >= KeyCode.Alpha1 && code <= KeyCode.Alpha9) || code == KeyCode.Space)
         {
             inputKeys[keyString] = code;
         }
@@ -61,31 +62,36 @@ public class InputKey : MonoBehaviour
 
     public KeyCode GetKeyCode(string keyString)
     {
-        return inputKeys[keyString];
+        //return inputKeys[keyString];
+        if (inputKeys.TryGetValue(keyString, out KeyCode keyCode))
+        {
+            return keyCode;
+        }
+        else
+        {
+            Debug.LogWarning("KeyCode not found for key: " + keyString);
+            return KeyCode.None; // Or handle as needed
+        }
     }
 
     // Json 저장을 위한 직열화
     public string SerializeShortCutKeyDictionary()
     {
-        Debug.Log("저장 됨 ?" + inputKeys.Count);
-        Debug.Log("저장 됨 ?" + inputKeys["Sprint"]);
         return JsonConvert.SerializeObject(inputKeys);
     }
 
+    // 직열화를 해서 저장한 데이터를 가져오기
     public void DeserializeShortCutKeyDictionary(string json)
     {
         var deserializedInputKeys = JsonConvert.DeserializeObject<Dictionary<string, KeyCode>>(json);
 
-        Debug.Log("저장 된 것 같은데? " + deserializedInputKeys.Count + ", Input Key : " + inputKeys.Count);
         // key-value pair가 올바르게 저장되어 있는지 확인
         if (deserializedInputKeys != null && deserializedInputKeys.Count > 0)
         {
-            Debug.Log("문제 없다?");
             inputKeys = deserializedInputKeys;
         }
         else
         {
-            Debug.Log("문제 생김");
             ResetKeyCode();
         }
     }
