@@ -226,11 +226,44 @@ public class PlayerController : MonoBehaviour
 
     public void UseActiveSkill(ActiveSkill skill)
     {
-        if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue"))
+        if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") && skill.WeaponValue != SkillWeaponValue.Public)
             return;
         isMove = skill.CanMove;
-        animator.Play(skill.AnimationName);
-        Debug.Log("스킬 " + skill.AnimationName + " 사용");
+        string aniName = skill.AnimationName;
+
+        if (skill.WeaponValue == SkillWeaponValue.Public)
+        {
+            string addString = "";
+            int rightWeaponValue = animator.GetInteger("RightWeaponValue");
+            int leftWeaponValue = animator.GetInteger("LeftWeaponValue");
+
+            if (rightWeaponValue == 1)
+            {
+                switch (leftWeaponValue)
+                {
+                    case 0:
+                        addString = "OneHand_";
+                        break;
+                    case 1:
+                        addString = "DoubleSword_";
+                        break;
+                    case 2:
+                        addString = "SwordAndSheild_";
+                        break;
+                }
+            }
+            else if (rightWeaponValue == 3)
+                addString = "THS_";
+            else if (rightWeaponValue == 4)
+                addString = "Spear_";
+            else if (rightWeaponValue == 5)
+                addString = "MagicWand_";
+
+            aniName = addString + aniName;
+        }
+
+        animator.Play(aniName);
+        Debug.Log("스킬 " + aniName + " 사용");
     }
 
     private void PlayerComboEnd()
