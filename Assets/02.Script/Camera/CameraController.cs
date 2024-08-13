@@ -27,6 +27,7 @@ public class CameraController : MonoBehaviour
         foreach(var virtualCameara in virtualCamearas)
         {
             virtualCameara.Follow = target;
+            virtualCameara.LookAt = target;
         }
     }
     private void Update()

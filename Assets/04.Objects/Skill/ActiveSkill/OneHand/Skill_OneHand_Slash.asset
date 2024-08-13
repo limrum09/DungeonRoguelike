@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
-  m_Name: Skill_TwoHand_WhirlWind
+  m_Name: Skill_OneHand_Slash
   m_EditorClassIdentifier: 
-  skillCode: WhirlWind_03
+  skillCode: Slash_1
   skillLevel: 1
-  maxLevel: 10
+  maxLevel: 5
   canMove: 1
-  skillName: "\uD774 \uC708\uB4DC"
-  weapon: 2
-  animationName: 2Hand_WhirlWind_00
-  icon: {fileID: 21300000, guid: 96cee1e0afa823349a6cd491099ef66b, type: 3}
-  skillInfo: "\uB2E4 \uAC08\uC544\uBC84\uB9B0\uB2E4."
+  skillName: 
+  weapon: 1
+  animationName: OneHand_Slash
+  icon: {fileID: 0}
+  skillInfo: 
   needPlayerLevel: 0
   conditions: []
   coolTime: 0

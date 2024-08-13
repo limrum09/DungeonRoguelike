@@ -8,6 +8,7 @@ public enum SkillWeaponValue
     Public,
     OneHandSword,
     TwoHandSword,
+    DoubleSword,
     Sheild,
     Spear,
     Magic
@@ -84,6 +85,7 @@ public class ActiveSkill : ScriptableObject
             switch (weapon)
             {
                 case SkillWeaponValue.OneHandSword:
+                case SkillWeaponValue.DoubleSword:
                     rightWeaponValue = 1;
                     break;
                 case SkillWeaponValue.TwoHandSword:
@@ -107,7 +109,7 @@ public class ActiveSkill : ScriptableObject
         {
             if (weapon == SkillWeaponValue.Sheild)
                 leftWeaponValue = 2;
-            else if (weapon == SkillWeaponValue.OneHandSword)
+            else if (weapon == SkillWeaponValue.DoubleSword)
                 leftWeaponValue = 1;
             else
                 leftWeaponValue = 0;
