@@ -41,6 +41,7 @@ public class CallEvent : MonoBehaviour
     {
         player.Ani.SetBool("Jump", false);
         player.Ani.SetBool("DoubleJump", false);
+        player.Ani.SetBool("JumpDown", false);
     }
 
     public void SkillEnd()

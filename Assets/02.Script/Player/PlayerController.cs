@@ -74,8 +74,12 @@ public class PlayerController : MonoBehaviour
         if (!PlayerInteractionStatus.instance.isDie)
         {
             isGround = groundCheck.IsGround();
+            if(isGround)
+                animator.SetBool("JumpDown", true);
+
             if (isGround && playerVector.y < 0)
             {
+                isDoubleJump = false;
                 animator.SetBool("Jump", false);
                 playerVector.y = 0f;
             }
@@ -199,6 +203,7 @@ public class PlayerController : MonoBehaviour
 
             if (preVelocityY > transform.position.y)
             {
+                animator.SetBool("JumpDown", false);
                 // 정점
                 Debug.Log("정점 인가? " + transform.position.y);
             }
