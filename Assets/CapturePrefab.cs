@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CapturePrefab : MonoBehaviour
 {
+    public Camera screenshotCamera;  // 스크린샷을 찍을 카메라
+    public int resolutionMultiplier = 2;  // 해상도 배율
     // Adjust the filename and path as needed
     public string screenShotName;
     private string screenshotFileName = "PrefabScreenshotHeads2.png";
@@ -21,26 +23,28 @@ public class CapturePrefab : MonoBehaviour
 
     void CaptureScreenshot()
     {
-        // Capture the screenshot
-        ScreenCapture.CaptureScreenshot(screenshotFileName);
+        int resWidth = Screen.width * resolutionMultiplier;
+        int resHeight = Screen.height * resolutionMultiplier;
 
-/*        string name = this.gameObject.name;
+        RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
+        screenshotCamera.targetTexture = rt;
 
-        SpriteRenderer spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null && spriteRenderer.sprite != null)
-        {
-            Texture2D texture = spriteRenderer.sprite.texture;
-            byte[] textureBytes = texture.EncodeToPNG();
-            System.IO.File.WriteAllBytes("Assets/06.Image/"+ name + ".png", textureBytes);
-        }
-        else
-        {
-            Debug.Log("Fail");
-            Debug.Log(spriteRenderer);
-            Debug.Log(spriteRenderer.sprite);
-        }
+        Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
+        screenshotCamera.Render();
 
-        Debug.Log(this.gameObject.name);*/
+        RenderTexture.active = rt;
+        screenShot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
+        screenShot.Apply();
+
+        screenshotCamera.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(rt);
+
+        byte[] bytes = screenShot.EncodeToPNG();
+        string filename = $"Screenshot_{resWidth}x{resHeight}.png";
+        System.IO.File.WriteAllBytes(filename, bytes);
+
+        Debug.Log($"Screenshot saved: {filename}");
     }
 
     void ImageCapture()

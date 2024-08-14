@@ -33,6 +33,16 @@ TagManager:
   - Mustache
   - Bow
   - Wand
+  - PlayerRespawnPoint
+  - EvilMage
+  - ShortcutKey
+  - GameUI
+  - LobbyUI
+  - StatusUI
+  - DragUI
+  - ItemIcon
+  - ToolTip
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -44,7 +54,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - MiniMap
   - 
   - 
   - 

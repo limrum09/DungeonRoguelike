@@ -15,7 +15,7 @@ MonoBehaviour:
   skillCode: UpToDown_1
   skillLevel: 1
   maxLevel: 5
-  canMove: 1
+  canMove: 0
   skillName: 
   weapon: 1
   animationName: OneHand_UptoDown

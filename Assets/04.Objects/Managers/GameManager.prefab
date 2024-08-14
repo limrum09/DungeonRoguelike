@@ -51,6 +51,7 @@ MonoBehaviour:
   itemStatus: {fileID: 4636573234975432105}
   playerSaveStatus: {fileID: 4684568839007893110}
   invenData: {fileID: 4636573234975432110}
+  STP: {fileID: -1157474820266066523, guid: 7950c789f5b769646a30a250e64fa67a, type: 3}
 --- !u!114 &4684568839007893110
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,6 @@ public class Manager : MonoBehaviour
 
     [SerializeField]
     private GameManager gameManager;
-
     public GameManager Game => gameManager;
     public SoundManager Sound => soundManager;
     public InputKey Key => inputKey;

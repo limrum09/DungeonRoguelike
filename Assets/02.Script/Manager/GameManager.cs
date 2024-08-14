@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 
     private PlayerController playerController;
 
-
     private int level;
     private int health;
     private int str;
@@ -51,6 +50,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoad;
 
         GameObject newPlayer = PlayerRespawnInRespawnPoint();
+            
 
         playerSaveStatus.FirstStart();
         invenData.InvenDataStart();

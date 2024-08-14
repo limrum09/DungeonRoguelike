@@ -41,15 +41,21 @@ public class CameraController : MonoBehaviour
 
         if(Input.GetMouseButton(1) && scrollwheel != 0)
         {
-            
-            Debug.Log("Wheel");
             if (virtualCamearas[0].gameObject.activeSelf)
             {
-                CinemachineComponentBase componentBase = virtualCamearas[0].GetCinemachineComponent(CinemachineCore.Stage.Body);
-                if (componentBase is Cinemachine3rdPersonFollow thirdPersonFollow)
+                var vFov = virtualCamearas[0].m_Lens.FieldOfView;
+/*                CinemachineComponentBase componentBase = virtualCamearas[0].GetCinemachineComponent(CinemachineCore.Stage.Body);
+                if (componentBase is CinemachineTransposer transposer)
                 {
-                    thirdPersonFollow.CameraDistance = Mathf.Clamp(thirdPersonFollow.CameraDistance - scrollwheel * 10f, minDistance, maxDistance);
-                }
+                    Vector3 currentOffset = transposer.m_FollowOffset;
+
+                    float y = Mathf.Clamp(currentOffset.y - scrollwheel * 10f, 8f, 20f);
+                    float z = Mathf.Clamp(currentOffset.z + scrollwheel * 10f, -27f, -15f);
+
+                    Vector3 newOffset = new Vector3(0, y, z);
+
+                    transposer.m_FollowOffset = newOffset;
+                }*/
             }
             else if (virtualCamearas[1].gameObject.activeSelf)
             {
