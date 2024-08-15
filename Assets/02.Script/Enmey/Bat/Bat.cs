@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bat : Enemy
 {
+    [SerializeField]
     private BatStatus batStatus;
     // Start is called before the first frame update
     protected override void Start()

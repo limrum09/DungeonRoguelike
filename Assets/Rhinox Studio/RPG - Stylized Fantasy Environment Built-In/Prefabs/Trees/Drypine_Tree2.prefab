@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1415652002591586800}
   - component: {fileID: 8296340035413538506}
   - component: {fileID: 8296340035413538507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Drypine_Tree2
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

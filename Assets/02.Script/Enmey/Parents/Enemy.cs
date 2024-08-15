@@ -26,16 +26,18 @@ public class Enemy : MonoBehaviour
         checkPlayer = true;
         hitEnemy = false;
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        target = spawnPosition;
-
         nmAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        target = spawnPosition;
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         if (!animator.GetBool("Die") && !hitEnemy)
         {
             if (!checkPlayer)
@@ -116,24 +118,10 @@ public class Enemy : MonoBehaviour
         Vector3 angleChange = rotationChange.eulerAngles;
 
         angleChange.y = Mathf.DeltaAngle(0, angleChange.y);
-
-        if (angleChange.y > 0)
-        {
-            animator.SetFloat("Rotation", -1);
-        }
-        else if (angleChange.y < 0)
-        {
-            animator.SetFloat("Rotation", 1);
-        }
-        else if (angleChange.y == 0)
-        {
-            animator.SetFloat("Rotation", 0);
-        }
     }
 
     protected virtual void Attackanimation()
     {
-        animator.SetFloat("Rotation", 0);
         animator.SetFloat("Forward", 0);
         animator.SetBool("Attack", true);
     }
@@ -147,38 +135,5 @@ public class Enemy : MonoBehaviour
     public void EnemyMoveToPlayer()
     {
         checkPlayer = false;
-    }
-
-    protected virtual void OnTriggerEnter(Collider other)
-    {
-        /*if (other.CompareTag("Player"))
-        {
-            checkPlayer = true;
-            Attackanimation();
-        }*/
-    }
-
-    protected virtual void OnTriggerStay(Collider other)
-    {
-/*        if (other.CompareTag("Player"))
-        {
-            checkPlayer = true;
-            Attackanimation();
-        }*/
-    }
-
-    protected virtual void OnTriggerExit(Collider other)
-    {
-/*        if (other.CompareTag("Player"))
-        {
-            checkPlayer = false;
-        }*/
-    }
-
-    public void EnemyHitMove()
-    {
-        Vector3 direction = -transform.forward;
-
-        nmAgent.Move(direction * 2.0f);
     }
 }

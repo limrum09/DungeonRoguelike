@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2660971757483838180}
   - component: {fileID: 7154136409465732995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8370906213960589486}
   - component: {fileID: 3107638943699534316}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6378744063619166644}
   - component: {fileID: 6289293567793793538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2259977894503450647}
   - component: {fileID: 3825157692907570017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,9 +196,9 @@ GameObject:
   - component: {fileID: 5490614152869019649}
   - component: {fileID: 3350592510513589618}
   - component: {fileID: 8366441352975437186}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Birch_Tree_A
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 5111184492437824448, guid: c07eb161ccaab094bb7f20fcfeb20a9c, type: 3}
       propertyPath: m_Name
       value: Leaves_flying
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111184492437824448, guid: c07eb161ccaab094bb7f20fcfeb20a9c, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5111184492437824477, guid: c07eb161ccaab094bb7f20fcfeb20a9c, type: 3}
       propertyPath: m_RootOrder

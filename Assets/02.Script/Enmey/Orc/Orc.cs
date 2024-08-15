@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Orc : Enemy
-{
+{   
+    [SerializeField]
     private OrcStatus orcStatus;
     protected override void Start()
     {
         base.Start();
-        orcStatus = GetComponent<OrcStatus>();
     }
 
     // Update is called once per frame

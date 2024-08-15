@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4057812846956351826}
   - component: {fileID: 2284670817902618008}
   - component: {fileID: 1641954077877987101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Big Tree_3_Red '
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,9 +116,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5992648211690361165}
   - component: {fileID: 4835831561197559446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider1
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,9 +161,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8395646295618374394}
   - component: {fileID: 5135483503868249277}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider2
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

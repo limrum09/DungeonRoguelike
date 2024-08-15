@@ -79,7 +79,8 @@ public class EnemyStatus : MonoBehaviour
             else
             {
                 EnemyHit();
-            }            
+            }
+            animator.Play("Hit");
         }
     }
 
@@ -162,11 +163,11 @@ public class EnemyStatus : MonoBehaviour
     protected void EnemyHit()
     {
         animator.SetBool("Hit", true);
+        animator.SetBool("Die", false);
 
         if(audioClips[1] != null)
         {
             audioSource.PlayOneShot(audioClips[1]);
         }
-        GetComponent<Enemy>().EnemyHitMove();
     }
 }
