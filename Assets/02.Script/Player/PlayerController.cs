@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private Transform respawnPoint;
 
     private InputKey key;
+    private Camera currentCamera;
     private bool isDoubleJump;
     public Animator Ani => animator;
 
@@ -154,10 +155,10 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Walk", false);
             }
-            
+            currentCamera = Manager.Instance.Camera.CurrentCamera;
 
             // 입력한 값을 기준으로 회전 각도 계산
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + currentCamera.transform.eulerAngles.y;
 
             // 현제 각도를 목표 각도로 보간
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, 0.1f);

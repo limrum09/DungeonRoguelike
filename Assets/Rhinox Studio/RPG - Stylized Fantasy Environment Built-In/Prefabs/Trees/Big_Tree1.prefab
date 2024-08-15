@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6452889195910861132}
   - component: {fileID: 7091810848699230871}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider0
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,9 +55,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5938495358197111023}
   - component: {fileID: 8046760626639938516}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider3
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,9 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1302862180892854557}
   - component: {fileID: 6893266914684664363}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider2
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,9 +146,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1534076536608507300}
   - component: {fileID: 1022082889575399912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider1
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,9 +194,9 @@ GameObject:
   - component: {fileID: 2646655397629788448}
   - component: {fileID: 8645649061876194755}
   - component: {fileID: 7054807831574576942}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Big_Tree1
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

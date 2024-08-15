@@ -59,8 +59,6 @@ public class GameManager : MonoBehaviour
 
     private GameObject PlayerRespawnInRespawnPoint()
     {
-        Transform respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
-
         GameObject playerObject = Instantiate(player);
         playerObject.name = "PlayerObject";
         playerObject.transform.SetParent(null);

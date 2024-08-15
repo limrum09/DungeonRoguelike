@@ -11,7 +11,6 @@ public class EnemyCanvasController : MonoBehaviour
     [SerializeField]
     private EnemyStatus enemyStatus;
     private Canvas enemyCanvas;
-    private GameObject playerCamera;
 
     private Vector2 lastHPSize;
     private float resetDamageTime;
@@ -22,7 +21,6 @@ public class EnemyCanvasController : MonoBehaviour
     void Start()
     {
         enemyCanvas = GetComponent<Canvas>();
-        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
         lastHPSize = currentHPBar.rectTransform.sizeDelta;
 
         enemyCanvas.enabled = false;
@@ -62,12 +60,15 @@ public class EnemyCanvasController : MonoBehaviour
                 enemyCanvas.enabled = false;
             }
         }
-        
+
         currentHPBar.rectTransform.sizeDelta = new Vector2((float)enemyStatus.CurrentHP / (float)enemyStatus.MaxHP * 2.5f, currentHPBar.rectTransform.sizeDelta.y);
     }
 
     private void LookCamera()
-    {        
-        this.transform.LookAt(playerCamera.transform);
+    {
+        Camera camera = Manager.Instance.Camera.CurrentCamera;
+        // 전부 완성되면 한번 정리 필요할 듯
+        enemyCanvas.worldCamera = camera;
+        this.transform.LookAt(camera.transform);
     }
 }

@@ -6,9 +6,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private Camera cameras;
+    private Camera camera;
     [SerializeField]
     private List<CinemachineVirtualCamera> virtualCamearas;
+
+    private CinemachinePOV composer;
 
     [Header("Camera Zoom Distance")]
     [SerializeField]
@@ -18,6 +20,8 @@ public class CameraController : MonoBehaviour
 
 
     private Transform target;
+
+    public Camera CurrentCamera => camera;
     public void CameraStart()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -29,6 +33,8 @@ public class CameraController : MonoBehaviour
             virtualCameara.Follow = target;
             virtualCameara.LookAt = target;
         }
+
+        composer = virtualCamearas[0].GetCinemachineComponent<CinemachinePOV>();
     }
     private void Update()
     {
@@ -37,42 +43,58 @@ public class CameraController : MonoBehaviour
             ChangeCameraView();
         }
 
+        if (Input.GetMouseButton(1))
+        {
+            CameraZoom();
+            CameraMovement();
+        }
+
+    }
+
+    private void CameraMovement()
+    {
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightAlt))
+        {
+            float axisValueX = Input.GetAxis("Mouse X");
+            float axisValueY = Input.GetAxis("Mouse Y");
+
+            composer.m_HorizontalAxis.Value += axisValueX;
+            composer.m_VerticalAxis.Value -= axisValueY;
+        }
+    }
+
+    private void CameraZoom()
+    {
         float scrollwheel = Input.GetAxis("Mouse ScrollWheel");
 
-        if(Input.GetMouseButton(1) && scrollwheel != 0)
+        if (virtualCamearas[0].gameObject.activeSelf && scrollwheel != 0)
         {
-            if (virtualCamearas[0].gameObject.activeSelf)
+            CinemachineComponentBase componentBase = virtualCamearas[0].GetCinemachineComponent(CinemachineCore.Stage.Body);
+
+            if (componentBase is CinemachineFramingTransposer Ftransposer)
             {
-                var vFov = virtualCamearas[0].m_Lens.FieldOfView;
-/*                CinemachineComponentBase componentBase = virtualCamearas[0].GetCinemachineComponent(CinemachineCore.Stage.Body);
-                if (componentBase is CinemachineTransposer transposer)
-                {
-                    Vector3 currentOffset = transposer.m_FollowOffset;
+                float distance = Ftransposer.m_CameraDistance;
 
-                    float y = Mathf.Clamp(currentOffset.y - scrollwheel * 10f, 8f, 20f);
-                    float z = Mathf.Clamp(currentOffset.z + scrollwheel * 10f, -27f, -15f);
+                distance = Mathf.Clamp(distance - scrollwheel * 10f, 8f, 40f);
 
-                    Vector3 newOffset = new Vector3(0, y, z);
-
-                    transposer.m_FollowOffset = newOffset;
-                }*/
+                Ftransposer.m_CameraDistance = distance;
             }
-            else if (virtualCamearas[1].gameObject.activeSelf)
+
+        }
+        else if (virtualCamearas[1].gameObject.activeSelf && scrollwheel != 0)
+        {
+            CinemachineComponentBase componentBase = virtualCamearas[1].GetCinemachineComponent(CinemachineCore.Stage.Body);
+            if (componentBase is CinemachineTransposer transposer)
             {
-                CinemachineComponentBase componentBase = virtualCamearas[1].GetCinemachineComponent(CinemachineCore.Stage.Body);
-                if (componentBase is CinemachineTransposer transposer)
-                {
-                    Vector3 currentOffset = transposer.m_FollowOffset;
+                Vector3 currentOffset = transposer.m_FollowOffset;
 
-                    float y = Mathf.Clamp(currentOffset.y - scrollwheel * 10f, 5f, 30f);
-                    float z = Mathf.Clamp(currentOffset.z + scrollwheel * 10f, -29f, -4f);
+                float y = Mathf.Clamp(currentOffset.y - scrollwheel * 10f, 5f, 30f);
+                float z = Mathf.Clamp(currentOffset.z + scrollwheel * 10f, -29f, -4f);
 
-                    Vector3 newOffset = new Vector3(0, y, z);
+                Vector3 newOffset = new Vector3(0, y, z);
 
-                    transposer.m_FollowOffset = newOffset;
-                }
+                transposer.m_FollowOffset = newOffset;
             }
-                
         }
     }
 
