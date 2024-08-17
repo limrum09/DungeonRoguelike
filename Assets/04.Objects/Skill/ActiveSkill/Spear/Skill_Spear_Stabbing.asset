@@ -17,7 +17,7 @@ MonoBehaviour:
   maxLevel: 5
   canMove: 0
   skillName: "\uCC0C\uB974\uAE30(\uCC3D)"
-  weapon: 4
+  weapon: 5
   animationName: Spear_Stab
   icon: {fileID: 21300000, guid: 90cdcc9532d3e7341a16ed6b1e89af67, type: 3}
   skillInfo: "\uB108\uB3C4 \uD55C\uBC29 \uB098\uB3C4 \uD55C\uBC29"
