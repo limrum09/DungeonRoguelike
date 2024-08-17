@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
+    [SerializeField]
     private SlimeStatus slimeStatus;
     protected override void Start()
     {
         base.Start();
-        slimeStatus = GetComponent<SlimeStatus>();
     }
 
     // Update is called once per frame

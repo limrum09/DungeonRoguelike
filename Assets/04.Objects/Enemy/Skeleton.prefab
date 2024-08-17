@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5993434827340010910
 Transform:
   m_ObjectHideFlags: 0
@@ -110,6 +110,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5993434827340010910}
     m_Modifications:
     - target: {fileID: 5981218249175795073, guid: 8cd1d28f32f155541b750386f6967585, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 3863949064072383647}
+    - target: {fileID: 5981218249175795073, guid: 8cd1d28f32f155541b750386f6967585, type: 3}
       propertyPath: spawnPosition
       value: 
       objectReference: {fileID: 3709168208683299373}
@@ -175,6 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b1e66934c702046b88ba00169ecef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3863949064072383647 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6283038080865931690, guid: 8cd1d28f32f155541b750386f6967585, type: 3}
+  m_PrefabInstance: {fileID: 7110714233623993653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3863949064079549283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6283038080875298390, guid: 8cd1d28f32f155541b750386f6967585, type: 3}

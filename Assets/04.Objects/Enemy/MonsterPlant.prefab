@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8169323949827108784
 Transform:
   m_ObjectHideFlags: 0
@@ -158,6 +158,10 @@ PrefabInstance:
       value: MonsterPlantPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 8343665061643646539, guid: 64d5e0f9da5475443aeeaac8ce76ee27, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 7788776316173282611}
+    - target: {fileID: 8343665061643646539, guid: 64d5e0f9da5475443aeeaac8ce76ee27, type: 3}
       propertyPath: spawnPosition
       value: 
       objectReference: {fileID: 2757150435421229901}
@@ -175,6 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de43a63871df46458f461cef4c37877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7788776316173282611 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6615515683102417061, guid: 64d5e0f9da5475443aeeaac8ce76ee27, type: 3}
+  m_PrefabInstance: {fileID: 4024039643906542998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7873039488269186387 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6528782466470901957, guid: 64d5e0f9da5475443aeeaac8ce76ee27, type: 3}
