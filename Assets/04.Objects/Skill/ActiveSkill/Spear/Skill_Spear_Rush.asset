@@ -17,7 +17,7 @@ MonoBehaviour:
   maxLevel: 10
   canMove: 1
   skillName: "\uB3CC\uC9C4(\uCC3D)"
-  weapon: 4
+  weapon: 5
   animationName: Spear_Rush
   icon: {fileID: 21300000, guid: 1921e04cf76ea3442a39233ae686def0, type: 3}
   skillInfo: "\uCC3D\uC744 \uB4E4\uACE0 \uB3CC\uC9C4\uD574 \uB9C8\uC8FC\uBCF4\uB294

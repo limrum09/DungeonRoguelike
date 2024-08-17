@@ -17,7 +17,7 @@ MonoBehaviour:
   maxLevel: 10
   canMove: 0
   skillName: 
-  weapon: 3
+  weapon: 4
   animationName: 
   icon: {fileID: 0}
   skillInfo: 
