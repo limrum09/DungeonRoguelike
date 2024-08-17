@@ -63,7 +63,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 1160
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: be5f55d5c7e64bd49a6155af7404a54c, type: 2}
   m_TargetDisplay: 0
@@ -2756,7 +2756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6766351501224771088}
   - component: {fileID: 3214660649288970115}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: MinimapPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

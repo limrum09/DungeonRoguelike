@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform target;
     protected NavMeshAgent nmAgent;
+    [SerializeField]
     protected Animator animator;
 
     [SerializeField]
@@ -30,7 +31,8 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         target = spawnPosition;
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(GameObject.FindGameObjectWithTag("Player"))
+            player = GameObject.FindGameObjectWithTag("Player").transform;
         
     }
 

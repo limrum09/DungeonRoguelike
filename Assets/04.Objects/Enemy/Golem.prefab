@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7253970494024251196
 Transform:
   m_ObjectHideFlags: 0
@@ -41,6 +41,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 7253970494024251196}
     m_Modifications:
+    - target: {fileID: 4270031612471371233, guid: 4e788bddc2ef5164b9ace93416b993f2, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 3597401976322197323}
     - target: {fileID: 4270031612471371233, guid: 4e788bddc2ef5164b9ace93416b993f2, type: 3}
       propertyPath: spawnPosition
       value: 
@@ -202,6 +206,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &3597401976322197323 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7494277440672231373, guid: 4e788bddc2ef5164b9ace93416b993f2, type: 3}
+  m_PrefabInstance: {fileID: 6479993397477435526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7111109634757201255 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4270031612471371233, guid: 4e788bddc2ef5164b9ace93416b993f2, type: 3}

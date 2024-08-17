@@ -158,6 +158,7 @@ public class EnemyStatus : MonoBehaviour
     protected void EnemyDead()
     {
         animator.SetBool("Die", true);
+        Destroy(this.transform.parent.gameObject, 2f);
     }
 
     protected void EnemyHit()
@@ -165,7 +166,7 @@ public class EnemyStatus : MonoBehaviour
         animator.SetBool("Hit", true);
         animator.SetBool("Die", false);
 
-        if(audioClips[1] != null)
+        if(audioClips[0] != null && audioClips != null)
         {
             audioSource.PlayOneShot(audioClips[1]);
         }
