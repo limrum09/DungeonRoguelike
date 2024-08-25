@@ -116,16 +116,17 @@ public class ItemStatus : MonoBehaviour
 
         if (!newArmor.ArmorItemObject)
         {
-            SetItemStatus();
-            Debug.Log("This item have not object(prefab).");
-            return;
+            Debug.Log("This item have not object(prefab). : " + newArmor.name);
         }
 
         foreach (ArmorItemInfoInItemStatus changeItemInfo in armorItems)
         {
             // 전체 카테고리와 서브 카테고리를 비교하여 확인
             if (changeItemInfo.ItemCategory == newArmor.EquipmentCategory && changeItemInfo.SubCategory == newArmor.SubCategory)
-                    changeItemInfo.armorItem = newArmor;
+            {
+                changeItemInfo.armorItem = newArmor;
+            }
+                    
         }
 
         SetItemStatus();

@@ -172,7 +172,7 @@ Transform:
   - {fileID: 8528909041567477691}
   - {fileID: 6766351501224771088}
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &954337972027280294
 Animator:
@@ -288,15 +288,16 @@ MonoBehaviour:
   animator: {fileID: 954337972027280294}
   weaponR: {fileID: 3388381284287198391}
   weaponL: {fileID: 7298386491651415254}
+  attackMesh: {fileID: 8477131707726249668}
   armors:
   - {fileID: 1021232908385250670}
   - {fileID: 1741595672694944083}
   - {fileID: 2853135146994360904}
   - {fileID: 554962834639391775}
   - {fileID: 734775971600351584}
-  - {fileID: 6023884031701393618}
-  - {fileID: 3989389555497334468}
   - {fileID: 7838582289812165667}
+  - {fileID: 3989389555497334468}
+  - {fileID: 6023884031701393618}
   armorIndexOverLapping: 0
 --- !u!114 &1938555287555864096
 MonoBehaviour:
@@ -2037,6 +2038,66 @@ Transform:
   m_Father: {fileID: 6705120069083245862}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3649423439744574071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3723444815612160873}
+  - component: {fileID: 8277466523260832318}
+  - component: {fileID: 8477131707726249668}
+  m_Layer: 0
+  m_Name: AttackWeaponMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3723444815612160873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649423439744574071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2616066365747195405}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8277466523260832318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649423439744574071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebfcc9c2d5549244b0c6c2a5abdffc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 3042582680050762677}
+--- !u!64 &8477131707726249668
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649423439744574071}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &3686252742223953014
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,7 +5048,10 @@ PrefabInstance:
       value: OneHandSword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2738667335380043039, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3723444815612160873}
   m_SourcePrefab: {fileID: 100100000, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
 --- !u!4 &2616066365747195405 stripped
 Transform:
@@ -4999,33 +5063,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3263530568783716261, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
   m_PrefabInstance: {fileID: 166511216464653074}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &2302456007892342668
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3388381284287198391}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6873096039043812860, guid: 20c5b9a4402480b4e88e930f8c26205d, type: 3}
---- !u!114 &8761754106015052069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3388381284287198391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebfcc9c2d5549244b0c6c2a5abdffc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 3042582680050762677}
 --- !u!1001 &168068705800088820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5093,6 +5130,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 69d10aab74b5f82458b26547db4a3e25, type: 3}
+--- !u!33 &5166602903752436906 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 5036832458981015646, guid: 69d10aab74b5f82458b26547db4a3e25, type: 3}
+  m_PrefabInstance: {fileID: 168068705800088820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8078523571076686607 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8235315678542270459, guid: 69d10aab74b5f82458b26547db4a3e25, type: 3}
@@ -5117,7 +5159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
   subCategory: Mouth
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 5166602903752436906}
   indexOverLapping: 2
 --- !u!1001 &954337970795360455
 PrefabInstance:
@@ -11358,8 +11400,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hair
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 2824979452952035776}
   indexOverLapping: 1
+--- !u!33 &2824979452952035776 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 1989782815056362096, guid: c293b7cbb0629744fbc875d361507ac1, type: 3}
+  m_PrefabInstance: {fileID: 4371155986504203184}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4437401842377293659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11423,6 +11470,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a091c1e0a6a2f842813bcb103372726, type: 3}
+--- !u!33 &4926938704282061089 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 8787879476510127738, guid: 3a091c1e0a6a2f842813bcb103372726, type: 3}
+  m_PrefabInstance: {fileID: 4437401842377293659}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8345129635974219396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5646117860454169055, guid: 3a091c1e0a6a2f842813bcb103372726, type: 3}
@@ -11447,7 +11499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 11400000, guid: 33a171b2456295a4e860a49d7c2bd45d, type: 2}
   subCategory: eye
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 4926938704282061089}
   indexOverLapping: 0
 --- !u!1001 &4890759022646817387
 PrefabInstance:
@@ -11539,11 +11591,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
   subCategory: Mustache
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 3297534256652324899}
   indexOverLapping: 1
 --- !u!4 &1904154553058500486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6463682586657484269, guid: 99984dc5900fd6d41add448382febc9c, type: 3}
+  m_PrefabInstance: {fileID: 4890759022646817387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &3297534256652324899 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 7934294177353294408, guid: 99984dc5900fd6d41add448382febc9c, type: 3}
   m_PrefabInstance: {fileID: 4890759022646817387}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6064742413344634046
@@ -11641,8 +11698,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
   subCategory: NinjaMask
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 7056777316930708213}
   indexOverLapping: 0
+--- !u!33 &7056777316930708213 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 3874501419702064715, guid: 319bd7b9345fe814cb1fbdad3ae7705c, type: 3}
+  m_PrefabInstance: {fileID: 6064742413344634046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6527424367474345634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11814,6 +11876,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 29096235fa56f024fa262b4ba4ba9616, type: 3}
+--- !u!33 &658094957150757220 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 6228728249911291653, guid: 29096235fa56f024fa262b4ba4ba9616, type: 3}
+  m_PrefabInstance: {fileID: 6868806059223764577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3874800857418380411 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7680018825040394778, guid: 29096235fa56f024fa262b4ba4ba9616, type: 3}
@@ -11833,7 +11900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hat
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 658094957150757220}
   indexOverLapping: 0
 --- !u!4 &4507503397024132801 stripped
 Transform:
@@ -11903,6 +11970,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 349b132d389ffb64989655d7a2c3b12e, type: 3}
+--- !u!33 &4801068167702675533 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 2867067044803973216, guid: 349b132d389ffb64989655d7a2c3b12e, type: 3}
+  m_PrefabInstance: {fileID: 7307385368504930349}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8434971188149981160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1181638395601493957, guid: 349b132d389ffb64989655d7a2c3b12e, type: 3}
@@ -11927,7 +11999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 11400000, guid: fc7dfbe3d053b004b8abf42f5cae4962, type: 2}
   subCategory: head
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 4801068167702675533}
   indexOverLapping: 0
 --- !u!1001 &7686095547056664672
 PrefabInstance:
@@ -12024,8 +12096,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorCategory: {fileID: 0}
   subCategory: Glasses
-  itemMeshFilter: {fileID: 0}
+  itemMeshFilter: {fileID: 2639163651785361857}
   indexOverLapping: 0
+--- !u!33 &2639163651785361857 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 5623393356270549409, guid: c91e15b789a11df4a920d157cf0e138c, type: 3}
+  m_PrefabInstance: {fileID: 7686095547056664672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7940633923417580489
 PrefabInstance:
   m_ObjectHideFlags: 0

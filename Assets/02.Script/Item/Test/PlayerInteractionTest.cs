@@ -12,6 +12,8 @@ public class PlayerInteractionTest : MonoBehaviour
     private GameObject weaponR;
     [SerializeField]
     private GameObject weaponL;
+    [SerializeField]
+    private MeshCollider attackMesh;
 
     [Header("Armor")]
     [SerializeField]
@@ -92,8 +94,7 @@ public class PlayerInteractionTest : MonoBehaviour
 
         if (!newWeapon.LeftWeapon && currentWeaponFilter == meshFilterWeaponR)
         {
-            MeshCollider meshCollider = weaponR.GetComponent<MeshCollider>();
-            meshCollider.sharedMesh = currentWeaponFilter.sharedMesh;
+            attackMesh.sharedMesh = currentWeaponFilter.sharedMesh;
         }
     }
      
@@ -102,32 +103,46 @@ public class PlayerInteractionTest : MonoBehaviour
         ArmorItem newArmor = armor;
 
         bool onView;
-        bool indexView;
 
         foreach (var items in armors)
         {
             if (newArmor.EquipmentCategory != items.ArmorCategory) continue;
+            if (newArmor.SubCategory != items.SubCategory) continue;
 
-            indexView = true;
-            onView = newArmor.ItemOverlapping;
+            onView = true;
+            items.overLapping = newArmor.ItemOverlapping;
 
+            // 겹쳐서 불가능한 아이템
             if (!newArmor.ItemOverlapping)
             {
                 armorIndexOverLapping = newArmor.IndexOverlapping;
+
+                OtherArmorView(newArmor, false);
             }
-            else if (newArmor.IndexOverlapping > armorIndexOverLapping)
+            else
             {
-                indexView = false;
+                OtherArmorView(newArmor, true);
+                // 겹쳐서 사용 가능한 아이템 중, 현제 사용중인 아이템의 IndexOverLapping보다 값이 큰 경우 보이지 않게한다.
+                if (newArmor.IndexOverlapping > armorIndexOverLapping)
+                {
+                     onView = false;
+                }
             }
+            
+            /*
             else if (newArmor.IndexOverlapping == armorIndexOverLapping)
             {
                 armorIndexOverLapping = 9999;
+            }*/
+
+            if (!newArmor.HaveItem)
+            {
+                onView = false;
+                OtherArmorView(newArmor, true);
             }
 
             if (newArmor.SubCategory == items.SubCategory)
             {
-                onView = indexView;
-
                 MeshFilter changeFilter = newArmor.ArmorItemObject != null ? newArmor.ArmorItemObject.GetComponent<MeshFilter>() : null;
 
                 if (changeFilter == null && newArmor.IndexOverlapping == armorIndexOverLapping)
@@ -136,9 +151,19 @@ public class PlayerInteractionTest : MonoBehaviour
                 }
 
                 items.ChangeFilter(changeFilter);
+                items.gameObject.SetActive(onView);
             }
+        }
+    }
 
-            items.gameObject.SetActive(onView);
+    private void OtherArmorView(ArmorItem armor, bool view)
+    {
+        Debug.Log("현제 아이템 : " + armor.ItemCode + ", 겹치기 가능 여부 : " + view);
+        foreach (var item in armors)
+        {
+            if (item.ArmorCategory == armor.EquipmentCategory)
+                if (item.SubCategory != armor.SubCategory && item.overLapping)
+                    item.gameObject.SetActive(view);
         }
     }
 }

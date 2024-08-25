@@ -10,6 +10,7 @@ public enum PlayerState
     Attack,
     Jump,
     Hurt,
+    Skill,
     Dead
 }
 
@@ -95,6 +96,9 @@ public class PlayerController : MonoBehaviour
                     break;
                 case PlayerState.Attack:
                     PlayerAttack();
+                    break;
+                case PlayerState.Skill:
+                    playerMove();
                     break;
             }
 
@@ -216,6 +220,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerAttack()
     {
+        isMove = false;
         if (!isCombo)
         {
             isCombo = true;
@@ -237,6 +242,7 @@ public class PlayerController : MonoBehaviour
         isMove = skill.CanMove;
         string aniName = skill.AnimationName;
 
+        // 공용 스킬일 경우 무기의 종류에 따라서 스킬의 이름의 일부분이 다르기 때문에 알맞게 추가한다.
         if (skill.WeaponValue == SkillWeaponValue.Public)
         {
             string addString = "";
@@ -269,6 +275,7 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.Play(aniName);
+        playerState = PlayerState.Skill;
         Debug.Log("스킬 " + aniName + " 사용");
     }
 

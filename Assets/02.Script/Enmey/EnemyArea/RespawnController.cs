@@ -16,6 +16,9 @@ public class RespawnController : MonoBehaviour
         if (respawnTime <= 20f)
             respawnTime = 20f;
 
+        for (int i = 0; i < respaenPoints.Count; i++)
+            if(respaenPoints[i] != null) 
+                respaenPoints[i].RespawnPointStart();
         StartCoroutine(RespawnObejct());
     }
 

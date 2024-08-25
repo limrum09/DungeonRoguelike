@@ -16,6 +16,7 @@ public class CallEvent : MonoBehaviour
     public void AttackEndEvent()
     {
         player.isCombo = false;
+        player.isMove = true;
         player.playerState = PlayerState.Idel;
         player.Ani.SetBool("IsAttack", false);
     }
@@ -44,8 +45,18 @@ public class CallEvent : MonoBehaviour
         player.Ani.SetBool("JumpDown", false);
     }
 
+    public void SkillMove(float move)
+    {
+        if (move == 1.0f)
+            player.isMove = true;
+        else
+            player.isMove = false;
+    }
+
+
     public void SkillEnd()
     {
+        player.playerState = PlayerState.Idel;
         player.isMove = true;
     }
 }

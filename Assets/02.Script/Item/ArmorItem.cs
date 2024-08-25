@@ -43,6 +43,7 @@ public class ArmorItem : ScriptableObject
     public string ItemCode => itemCode;
     public GameObject ArmorItemObject => armorItem;
     public Sprite ArmorItemSprite => armorItemSprite;
+    public bool HaveItem => armorItem != null;
 
     public EquipmentCategory EquipmentCategory => equipmentCategory;
     public string SubCategory => subCategory;

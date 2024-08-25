@@ -14,6 +14,7 @@ public class SkillBallInstantiate : MonoBehaviour
 
     public void UsingSkill()
     {
+        Vector3 skillPos = transform.rotation * Vector3.forward;
         Instantiate(skillBall, instantiatePos.transform.position, instantiatePos.transform.rotation);
     }
 }

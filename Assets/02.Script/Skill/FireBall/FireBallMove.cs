@@ -5,6 +5,7 @@ using UnityEngine;
 public class FireBallMove : MonoBehaviour
 {
     GameObject target;
+    Vector3 targetPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +13,7 @@ public class FireBallMove : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             target = GameObject.FindGameObjectWithTag("Player");
+            targetPos = target.transform.position;
         }        
     }
 
@@ -23,7 +25,7 @@ public class FireBallMove : MonoBehaviour
 
     private void BallMoveing()
     {
-        transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, 0.07f);
+        transform.position = Vector3.MoveTowards(this.transform.position, targetPos, 0.07f);
 
         Invoke("DestroyedBall", 5f);
     }
@@ -36,7 +38,7 @@ public class FireBallMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Wall"))
+        if (other.CompareTag("Player") || other.CompareTag("Ground"))
         {   
             DestroyedBall();
         }

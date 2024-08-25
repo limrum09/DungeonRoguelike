@@ -109,6 +109,7 @@ public class SaveDatabase : MonoBehaviour
             // 아이템을 장착하지 않는 경우 itemStatus.ArmorItmes[i].armorItem의 값은 null값이다.
             if(itemStatus.ArmorItems[i].armorItem != null)
             {
+                Debug.Log("Save Item : " + itemStatus.ArmorItems[i].armorItem.ItemCode);
                 saveData.armorItemCode.Add(itemStatus.ArmorItems[i].armorItem.ItemCode);
             }
         }
@@ -189,6 +190,8 @@ public class SaveDatabase : MonoBehaviour
                 {
                     // ItemCode가 일치하는 방어구 찾기
                     ArmorItem item = SearchArmorItem(saveData.armorItemCode[i]);
+
+                    Debug.Log("Load Item : " + item.ItemCode);
 
                     // GameManager의 PlayerArmorChange 호출
                     gameManager.PlayerArmorChange(item);

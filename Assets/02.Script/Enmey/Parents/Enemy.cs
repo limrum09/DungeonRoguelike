@@ -39,7 +39,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameObject.FindGameObjectWithTag("Player"))
+            player = GameObject.FindGameObjectWithTag("Player").transform;
         if (!animator.GetBool("Die") && !hitEnemy)
         {
             if (!checkPlayer)
@@ -76,6 +77,10 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Attack Player");
                 target = player;
             }
+            else
+            {
+                target = spawnPosition;
+            }
             
             checkPlayer = false;
         }
@@ -103,6 +108,7 @@ public class Enemy : MonoBehaviour
 
         Vector3 direction = target.position - this.transform.position;
         direction.Set(direction.x, 0, direction.z);
+
 
         if (direction.sqrMagnitude > 0.0001f)
         {

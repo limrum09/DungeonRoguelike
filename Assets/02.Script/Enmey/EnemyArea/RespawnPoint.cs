@@ -18,8 +18,16 @@ public class RespawnPoint : MonoBehaviour
     [SerializeField]
     private SphereCollider respawnArea;
 
+    [SerializeField]
+    private List<GameObject> respawnObjects = new List<GameObject>();
     public SphereCollider RespawnArea => respawnArea;
     private float radius => respawnArea.radius;
+
+    public void RespawnPointStart()
+    {
+        for (int i = 0; i < maxRespwanCount; i++)
+            respawnObjects.Add(null);
+    }
 
     public void RespawnObject()
     {
@@ -32,7 +40,9 @@ public class RespawnPoint : MonoBehaviour
             int respawnCount = Random.Range(minRespwanCount, maxRespwanCount);
             for (int i = currentObejctCount; i < respawnCount; i++)
             {
-                Instantiate(respawnObject, SetRandomPosition(), Quaternion.identity).transform.SetParent(this.transform);
+                GameObject respawn = Instantiate(respawnObject, SetRandomPosition(), Quaternion.identity);
+                respawn.transform.SetParent(this.transform);
+                respawnObjects[i] = respawn;
             }
         }
     }
@@ -85,23 +95,27 @@ public class RespawnPoint : MonoBehaviour
     {
         int objectCount = 0;
 
-        Vector3 capsulePos1 = transform.position;
-        capsulePos1.y = -100f;
-        Vector3 capsulePos2 = transform.position;
-        capsulePos2.y = +100f;
+        /*        Vector3 capsulePos1 = transform.position;
+                capsulePos1.y = -100f;
+                Vector3 capsulePos2 = transform.position;
+                capsulePos2.y = +100f;
 
-        // 반지름 크기의 캡슐을 그린 후, 캡슐 안에 있는 모든 collider를 받아온다.
-        Collider[] colliders = Physics.OverlapCapsule(capsulePos1, capsulePos2, radius);
+                // 반지름 크기의 캡슐을 그린 후, 캡슐 안에 있는 모든 collider를 받아온다.
+                Collider[] colliders = Physics.OverlapCapsule(capsulePos1, capsulePos2, radius);
 
-        // 받아온 collider 중 tag:Enemy의 개수를 세아린다.
-        foreach(var collider in colliders)
-        {
-            if (collider.CompareTag("Enemy"))
-            {
+                // 받아온 collider 중 tag:Enemy의 개수를 세아린다.
+                foreach(var collider in colliders)
+                {
+                    if (collider.CompareTag("Enemy"))
+                    {
+                        objectCount++;
+                    }
+
+                }*/
+
+        for (int i = 0; i < maxRespwanCount; i++)
+            if (respawnObjects[i] != null)
                 objectCount++;
-            }
-                
-        }
 
         return objectCount;
     }
