@@ -19,7 +19,7 @@ MonoBehaviour:
   skillName: 
   weapon: 1
   animationName: OneHand_Slash
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7449258d40fcb4175bfe520402fb5324, type: 3}
   skillInfo: 
   needPlayerLevel: 0
   conditions: []

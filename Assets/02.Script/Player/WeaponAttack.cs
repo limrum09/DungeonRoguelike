@@ -17,7 +17,7 @@ public class WeaponAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerController.playerState == PlayerState.Attack)
+        if(playerController.playerState == PlayerState.Attack || playerController.playerState == PlayerState.Skill)
         {
             isAttack = true;
         }

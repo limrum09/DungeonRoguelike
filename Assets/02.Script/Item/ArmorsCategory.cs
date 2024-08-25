@@ -12,13 +12,10 @@ public class ArmorsCategory : MonoBehaviour
     public MeshFilter itemMeshFilter;
     [SerializeField]
     private int indexOverLapping;
+    [SerializeField]
+    public bool overLapping;
 
     public int IndexOverLapping => indexOverLapping;
-
-    private void Start()
-    {
-        itemMeshFilter = GetComponent<MeshFilter>();
-    }
 
     public EquipmentCategory ArmorCategory => armorCategory;
     public string SubCategory => subCategory;
@@ -26,10 +23,11 @@ public class ArmorsCategory : MonoBehaviour
     public void ChangeFilter(MeshFilter changeFilter)
     {
         if (itemMeshFilter == null)
-        {
             return;
-        }
 
-        itemMeshFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
+        if(changeFilter == null)
+            itemMeshFilter.sharedMesh = null;
+        else
+            itemMeshFilter.sharedMesh = changeFilter.sharedMesh;
     }
 }

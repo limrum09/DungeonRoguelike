@@ -51,7 +51,6 @@ MonoBehaviour:
   itemStatus: {fileID: 4636573234975432105}
   playerSaveStatus: {fileID: 4684568839007893110}
   invenData: {fileID: 4636573234975432110}
-  STP: {fileID: -1157474820266066523, guid: 7950c789f5b769646a30a250e64fa67a, type: 3}
 --- !u!114 &4684568839007893110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,9 +100,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fbf7302951c6ad46a75af0d825b0dea, type: 2}
   - {fileID: 11400000, guid: 4defc1644c6f31944b5c188eb1813e66, type: 2}
   - {fileID: 11400000, guid: 8965d16b6283ea04e83a9f8f34bd799a, type: 2}
+  - {fileID: 11400000, guid: db6e978069d698248a951eb999c7cdc4, type: 2}
   - {fileID: 11400000, guid: bfa7cc8ea4e5e524db66981526e21896, type: 2}
   - {fileID: 11400000, guid: 881634bf25980c64289f16d5891a6134, type: 2}
-  - {fileID: 11400000, guid: db6e978069d698248a951eb999c7cdc4, type: 2}
   interactionTest: {fileID: 0}
 --- !u!114 &4636573234975432110
 MonoBehaviour:
