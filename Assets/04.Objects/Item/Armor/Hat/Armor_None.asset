@@ -17,5 +17,12 @@ MonoBehaviour:
   armorItemSprite: {fileID: 0}
   equipmentCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hat
-  itemOverlapping: 0
+  itemOverlapping: 1
   indexOverlapping: 0
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0
