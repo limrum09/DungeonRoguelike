@@ -9,7 +9,7 @@ public class CapturePrefab : MonoBehaviour
     public int resolutionMultiplier = 2;  // 해상도 배율
     // Adjust the filename and path as needed
     public string screenShotName;
-    private string screenshotFileName = "PrefabScreenshotHeads2.png";
+    private string screenshotFileName;
 
     void Update()
     {
@@ -41,10 +41,10 @@ public class CapturePrefab : MonoBehaviour
         Destroy(rt);
 
         byte[] bytes = screenShot.EncodeToPNG();
-        string filename = $"Screenshot_{resWidth}x{resHeight}.png";
-        System.IO.File.WriteAllBytes(filename, bytes);
+        
+        System.IO.File.WriteAllBytes(screenshotFileName, bytes);
 
-        Debug.Log($"Screenshot saved: {filename}");
+        Debug.Log($"Screenshot saved: {screenshotFileName}");
     }
 
     void ImageCapture()
