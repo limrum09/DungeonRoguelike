@@ -32,7 +32,13 @@ public class ShortKeyItem : MonoBehaviour
     [SerializeField]
     private Image skillImgeSlot;
 
+    [Header("CoolTime")]
+    [SerializeField]
+    private Image coolTimeImage;
+
     public string InputShortKey => inputShortKey;
+
+    private float coolTimer;
     // Update is called once per frame
     void Update()
     {
@@ -137,6 +143,9 @@ public class ShortKeyItem : MonoBehaviour
     private void UseSkill()
     {
         Manager.Instance.Game.PlayerController.UseActiveSkill(skill);
+
+        coolTimer = skill.skillCoolTime;
+        StartCoroutine(CoolTimer(skill.skillCoolTime));
     }
 
     private void UseItem()
@@ -185,5 +194,23 @@ public class ShortKeyItem : MonoBehaviour
     public ActiveSkill GetSkill()
     {
         return skill;
+    }
+
+    IEnumerator CoolTimer(float timer)
+    {
+        coolTimeImage.gameObject.SetActive(true);
+        coolTimeImage.fillAmount = 1.0f;
+
+        float imageCoolTime = timer;
+        while(coolTimer > 0.0f)
+        {
+            coolTimer -= Time.deltaTime;
+
+            coolTimeImage.fillAmount = coolTimer / imageCoolTime;
+
+            yield return null;
+        }
+
+        coolTimeImage.gameObject.SetActive(false);
     }
 }
