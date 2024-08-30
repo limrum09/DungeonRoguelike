@@ -60,6 +60,7 @@ public class ActiveSkill : ScriptableObject
         {
             if (coolTimer == 0.0f)
                 canUseSkill = true;
+            // 코루틴이 너무 많이 실행됨, 수정 필요
             else if (coolTimer > 0.0f)
             {
                 Debug.Log("스킬 쿨타임 중....");
