@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
 
     public void UseActiveSkill(ActiveSkill skill)
     {
-        if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") && skill.WeaponValue != SkillWeaponValue.Public)
+        if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") && skill.WeaponValue != SkillWeaponValue.Public || !skill.CanUseSkill)
             return;
         isMove = skill.CanMove;
         string aniName = skill.AnimationName;
@@ -274,6 +274,7 @@ public class PlayerController : MonoBehaviour
             aniName = addString + aniName;
         }
 
+        skill.UseSkill();
         animator.Play(aniName);
         playerState = PlayerState.Skill;
         Debug.Log("스킬 " + aniName + " 사용");

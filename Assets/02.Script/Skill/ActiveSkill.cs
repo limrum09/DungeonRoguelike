@@ -40,6 +40,9 @@ public class ActiveSkill : ScriptableObject
     [TextArea]
     [SerializeField]
     private string skillInfo;
+    private float coolTimer;
+    private bool canUseSkill = true;
+    private bool useCoroutine = false;
 
     [Header("Option")]
     [SerializeField]
@@ -51,6 +54,21 @@ public class ActiveSkill : ScriptableObject
     public int CurrentSkillLevel => skillLevel;
     public int MaxSkillLeven => maxLevel;
     public bool CanMove => canMove;
+    public bool CanUseSkill
+    {
+        get
+        {
+            if (coolTimer == 0.0f)
+                canUseSkill = true;
+            else if (coolTimer > 0.0f)
+            {
+                Debug.Log("스킬 쿨타임 중....");
+                Manager.Instance.StartCoroutine(SkillCoolTimer());
+            }                
+
+            return canUseSkill;
+        }
+    }
 
     public string SkillName => skillName;
     public SkillWeaponValue WeaponValue => weapon;
@@ -58,7 +76,7 @@ public class ActiveSkill : ScriptableObject
     public Sprite SkillIcon => icon;
     public string SkillInfo => skillInfo;
 
-    public float coolTime;
+    public float skillCoolTime;
     private float rightWeaponValue;
     private float leftWeaponValue;
 
@@ -127,5 +145,31 @@ public class ActiveSkill : ScriptableObject
         // 다른 것들 추가 필요
     }
 
+    public void UseSkill()
+    {
+        if (canUseSkill)
+        {
+            canUseSkill = false;
+            useCoroutine = true;
+            coolTimer = skillCoolTime;
+            Manager.Instance.StartCoroutine(SkillCoolTimer());
+        }
+        else
+            Debug.LogError("스킬 사용 오류....");
+    }
+
     public ActiveSkill SkillClone() => this;
+
+    IEnumerator SkillCoolTimer()
+    {
+        while(coolTimer > 0.0f)
+        {
+            coolTimer -= Time.deltaTime;
+            yield return null;
+        }
+        
+        Debug.Log("스킬 " + skillName + "쿨타임 끝!");
+        canUseSkill = true;
+        useCoroutine = false;
+    }
 }

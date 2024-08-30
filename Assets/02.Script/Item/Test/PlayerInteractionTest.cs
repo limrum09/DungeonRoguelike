@@ -112,7 +112,7 @@ public class PlayerInteractionTest : MonoBehaviour
             onView = true;
             items.overLapping = newArmor.ItemOverlapping;
 
-            // 겹쳐서 불가능한 아이템
+            // 겹쳐서 착용 불가능한 아이템
             if (!newArmor.ItemOverlapping)
             {
                 armorIndexOverLapping = newArmor.IndexOverlapping;
@@ -128,21 +128,24 @@ public class PlayerInteractionTest : MonoBehaviour
                      onView = false;
                 }
             }
-            
-            /*
-            else if (newArmor.IndexOverlapping == armorIndexOverLapping)
+
+            if (newArmor.ItemOverlapping && newArmor.IndexOverlapping == armorIndexOverLapping)
             {
                 armorIndexOverLapping = 9999;
-            }*/
+            }
 
+            // Item이 None인 경우, 아이템 착용 취소
             if (!newArmor.HaveItem)
             {
                 onView = false;
                 OtherArmorView(newArmor, true);
             }
 
+            // SubCategory가 같은 경우에만 동작
             if (newArmor.SubCategory == items.SubCategory)
             {
+                // 착용할 Item에 Meshfilter를 가지고 있다면 해당 MeshFilter를 가져온다.
+                // 없다면 교환 불가
                 MeshFilter changeFilter = newArmor.ArmorItemObject != null ? newArmor.ArmorItemObject.GetComponent<MeshFilter>() : null;
 
                 if (changeFilter == null && newArmor.IndexOverlapping == armorIndexOverLapping)
@@ -156,9 +159,10 @@ public class PlayerInteractionTest : MonoBehaviour
         }
     }
 
+    // 현제 아이템의 대단위 Category가 같고, SubCategory가 다른 아이템들의 view값에 따라 착용 여부를 결정한다.
     private void OtherArmorView(ArmorItem armor, bool view)
     {
-        Debug.Log("현제 아이템 : " + armor.ItemCode + ", 겹치기 가능 여부 : " + view);
+        // Debug.Log("현제 아이템 : " + armor.ItemCode + ", 겹치기 가능 여부 : " + view);
         foreach (var item in armors)
         {
             if (item.ArmorCategory == armor.EquipmentCategory)

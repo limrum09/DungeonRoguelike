@@ -19,3 +19,10 @@ MonoBehaviour:
   subCategory: hair
   itemOverlapping: 1
   indexOverlapping: 1
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0

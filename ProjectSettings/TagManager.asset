@@ -44,6 +44,7 @@ TagManager:
   - ToolTip
   - NPC
   - Tree
+  - RespawnEnemy
   layers:
   - Default
   - TransparentFX
@@ -53,7 +54,7 @@ TagManager:
   - UI
   - UI Part
   - Trees
-  - 
+  - Item
   - 
   - MiniMap
   - 
