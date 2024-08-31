@@ -33,6 +33,7 @@ public class UIAndSceneManager : MonoBehaviour
     public event onSelectQuestListHandler onSelectQuestListView;
 
     public InventoryButton InventoryUI => invenUI;
+    public ShortKeyManager ShortCutBox => shortCutBox;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class UIAndSceneManager : MonoBehaviour
     private void Start()
     {
         this.gameObject.GetComponent<ViewAndHideUIPanels>().ViewAndHideUIStart();
-        shortCutBox.ShortCutBoxStart();
+        
         invenUI.InvenToryStart();
         npcTalkUIController.NPCTalkControllerStart();
         settingUI.SettingControllerStart();
@@ -88,4 +89,5 @@ public class UIAndSceneManager : MonoBehaviour
     public void PlayerInQuestNPC() => npcUI.InteractionText.PlayerIn();
     public void PlayerOutQuestNPC() => npcUI.InteractionText.PlayerOut();
     public void ChangeShortCutValue(string keyString) => shortCutBox.ChangeShortKey(keyString);
+    public void LoadShortCutKeys(List<ShortCutKeySaveData> keys) => shortCutBox.ShortCutBoxStart(keys);
 }

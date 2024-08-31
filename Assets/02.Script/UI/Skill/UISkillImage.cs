@@ -11,12 +11,12 @@ public class UISkillImage : MonoBehaviour, IPointerClickHandler
     private ActiveSkill skill;
     [SerializeField]
     GameObject line;
-
+    
     private Image icon;
 
     public ActiveSkill Skill => skill;
 
-    private void Start()
+    public void SkillImageStart()
     {
         icon = GetComponent<Image>();
 
@@ -30,6 +30,7 @@ public class UISkillImage : MonoBehaviour, IPointerClickHandler
         else
         {
             icon.sprite = skill.SkillIcon;
+            skill.CheckCoolTimeOnStart();
 
             if(line != null)
             {

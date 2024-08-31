@@ -57,13 +57,10 @@ public class RespawnPoint : MonoBehaviour
         pos.y = transform.position.y;
         float areaXZ = Vector3.Distance(pos, transform.position);
 
-        Debug.Log("Respawn Position : " + (pos - transform.position) + ", Distance to center : " + areaXZ + ", Radius : " + noRespawnAreaRadius);
-
         if (areaXZ < noRespawnAreaRadius)
         {
             float posX = pos.x - transform.position.x;
             float posZ = pos.z - transform.position.z;
-            Debug.Log("AreaXZ : " + areaXZ + ", Radius : " + noRespawnAreaRadius);
             float emptyLine = noRespawnAreaRadius - areaXZ;
 
             if (Mathf.Abs(posX) > Mathf.Abs(posZ))
@@ -80,9 +77,6 @@ public class RespawnPoint : MonoBehaviour
                 else
                     pos.z -= emptyLine;
             }
-
-            Debug.Log("After Respawn Position : " + (pos - transform.position) + ", Distance to center : " + Vector3.Distance(pos, transform.position));
-            Debug.Log("Position : " + pos);
         }
 
         // 현제 terrain을 기준으로 월드 공간의 높이를 샘플링한다.
@@ -94,24 +88,6 @@ public class RespawnPoint : MonoBehaviour
     public int CheckObjectCount()
     {
         int objectCount = 0;
-
-        /*        Vector3 capsulePos1 = transform.position;
-                capsulePos1.y = -100f;
-                Vector3 capsulePos2 = transform.position;
-                capsulePos2.y = +100f;
-
-                // 반지름 크기의 캡슐을 그린 후, 캡슐 안에 있는 모든 collider를 받아온다.
-                Collider[] colliders = Physics.OverlapCapsule(capsulePos1, capsulePos2, radius);
-
-                // 받아온 collider 중 tag:Enemy의 개수를 세아린다.
-                foreach(var collider in colliders)
-                {
-                    if (collider.CompareTag("Enemy"))
-                    {
-                        objectCount++;
-                    }
-
-                }*/
 
         for (int i = 0; i < maxRespwanCount; i++)
             if (respawnObjects[i] != null)

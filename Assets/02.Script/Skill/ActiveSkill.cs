@@ -42,7 +42,7 @@ public class ActiveSkill : ScriptableObject
     private string skillInfo;
     private float coolTimer;
     private bool canUseSkill = true;
-    private bool useCoroutine = false;
+    private bool useCoroutine;
 
     [Header("Option")]
     [SerializeField]
@@ -58,14 +58,12 @@ public class ActiveSkill : ScriptableObject
     {
         get
         {
-            if (coolTimer == 0.0f)
-                canUseSkill = true;
             // 코루틴이 너무 많이 실행됨, 수정 필요
-            else if (coolTimer > 0.0f)
+            if (coolTimer > 0.0f)
             {
                 Debug.Log("스킬 쿨타임 중....");
-                Manager.Instance.StartCoroutine(SkillCoolTimer());
-            }                
+                canUseSkill = false;
+            }
 
             return canUseSkill;
         }
@@ -78,6 +76,7 @@ public class ActiveSkill : ScriptableObject
     public string SkillInfo => skillInfo;
 
     public float skillCoolTime;
+    public float CurrentRemainCoolTimer => coolTimer;
     private float rightWeaponValue;
     private float leftWeaponValue;
 
@@ -160,6 +159,12 @@ public class ActiveSkill : ScriptableObject
     }
 
     public ActiveSkill SkillClone() => this;
+
+    public void CheckCoolTimeOnStart()
+    {
+        if (coolTimer >= 0.0f)
+            Manager.Instance.StartCoroutine(SkillCoolTimer());
+    }
 
     IEnumerator SkillCoolTimer()
     {

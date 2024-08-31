@@ -8,14 +8,32 @@ public class ShortKeyManager : MonoBehaviour
     private List<ShortKeyItem> shortKeys = new List<ShortKeyItem>();
 
     private int shortkeyCnt;
+
+    public IReadOnlyList<ShortKeyItem> ShortKeys => shortKeys;
     // Start is called before the first frame update
-    public void ShortCutBoxStart()
+    public void ShortCutBoxStart(List<ShortCutKeySaveData> loadShortCut)
     {
         shortkeyCnt = shortKeys.Count;
+
         for(int i = 0; i< shortkeyCnt; i++)
         {
-            shortKeys.Add(this.transform.GetChild(i).GetComponent<ShortKeyItem>());
+            // shortKeys.Add(this.transform.GetChild(i).GetComponent<ShortKeyItem>());
             shortKeys[i].SetIndex(i, $"ShortKey{i+1}");
+
+            if(loadShortCut.Count > 0)
+            {
+                if (loadShortCut[i].isItem && loadShortCut[i].itemIndex > -1)
+                {
+                    shortKeys[i].RegisterInput(loadShortCut[i].itemIndex);
+                }
+                    
+                else if (!loadShortCut[i].isItem && loadShortCut[i].skill != null)
+                {
+                    shortKeys[i].RegisterInput(loadShortCut[i].skill);
+                }
+                
+            }
+
         }
     }
 

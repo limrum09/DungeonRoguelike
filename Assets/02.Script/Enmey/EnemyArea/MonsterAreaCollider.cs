@@ -11,6 +11,7 @@ public class MonsterAreaCollider : MonoBehaviour
 
     private void Update()
     {
+        // 편의성을 위해 만듬
         DrawDebugCube(transform.position, areaCollider.size, Color.red);
     }
 
