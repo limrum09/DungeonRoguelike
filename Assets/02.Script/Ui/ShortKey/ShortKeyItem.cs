@@ -39,6 +39,17 @@ public class ShortKeyItem : MonoBehaviour
     public string InputShortKey => inputShortKey;
 
     private float coolTimer;
+    public int ItemIndex
+    {
+        get
+        {
+            int index = itemIndex;
+            if (item == null)
+                index = -1;
+            return index;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -64,8 +75,17 @@ public class ShortKeyItem : MonoBehaviour
         SetShoryKey(key);
 
         // 저장된 단축키가 없을 경우
-        HideItem();
-        HideSkill();
+        if (skill == null)
+        {
+            HideSkill();
+            coolTimeImage.gameObject.SetActive(false);
+        }
+        // 저장된 스킬이 있는 경우
+        else
+            Viewskill(skill);
+
+        if(item == null)
+            HideItem();
     }
 
     public void SetShoryKey(string key)
@@ -81,11 +101,13 @@ public class ShortKeyItem : MonoBehaviour
 
     public void RegisterInput(ActiveSkill getSkill)
     {
+        item = null;
         ActiveSkill newSkill = getSkill.SkillClone();
 
         skill = newSkill;
 
         HideItem();
+        Debug.Log(shortkeyIndex + ", Get Skill : " + newSkill.name);
 
         if(skill != null)
         {
@@ -97,6 +119,7 @@ public class ShortKeyItem : MonoBehaviour
 
     public void RegisterInput(int index)
     {
+        skill = null;
         itemIndex = index;
 
         item = InvenData.instance.invenSlots[itemIndex];
@@ -131,6 +154,16 @@ public class ShortKeyItem : MonoBehaviour
     {
         skillImgeSlot.gameObject.SetActive(true);
         skillImgeSlot.sprite = activeSkill.SkillIcon;
+
+        // 스킬을 사용할 수 없고, 스킬의 남은 쿨타임이 0.0f보다 크다면
+        if (!skill.CanUseSkill && skill.CurrentRemainCoolTimer > 0.0f)
+        {
+            coolTimeImage.gameObject.SetActive(true);
+            coolTimer = skill.CurrentRemainCoolTimer;
+            StartCoroutine(CoolTimer(skill.skillCoolTime));
+        }
+        else
+            coolTimeImage.gameObject.SetActive(false);
     }
 
     private void ViewItem()
@@ -142,9 +175,12 @@ public class ShortKeyItem : MonoBehaviour
 
     private void UseSkill()
     {
+        if (!skill.CanUseSkill)
+            return;
+        
         Manager.Instance.Game.PlayerController.UseActiveSkill(skill);
 
-        coolTimer = skill.skillCoolTime;
+        coolTimer = skill.CurrentRemainCoolTimer;
         StartCoroutine(CoolTimer(skill.skillCoolTime));
     }
 
@@ -205,7 +241,6 @@ public class ShortKeyItem : MonoBehaviour
         while(coolTimer > 0.0f)
         {
             coolTimer -= Time.deltaTime;
-
             coolTimeImage.fillAmount = coolTimer / imageCoolTime;
 
             yield return null;

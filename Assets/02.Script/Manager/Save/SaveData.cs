@@ -20,4 +20,5 @@ public class SaveData
     public List<QuestSaveData> completedQuestSaveData = new List<QuestSaveData>();
 
     public string shortCutKeySaveData;
+    public List<ShortCutKeySaveData> shortCutButton = new List<ShortCutKeySaveData>();
 }

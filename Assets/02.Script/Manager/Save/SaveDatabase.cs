@@ -70,6 +70,7 @@ public class SaveDatabase : MonoBehaviour
         saveData.completedQuestSaveData.Clear();
 
         saveData.shortCutKeySaveData = null;
+        saveData.shortCutButton.Clear();
     }
 
     public void SaveData(string fileName)
@@ -93,6 +94,7 @@ public class SaveDatabase : MonoBehaviour
 
         itemStatus = FindObjectOfType<ItemStatus>();
 
+        // 무기 저장
         for(int i =0; i < itemStatus.WeaponItems.Count; i++)
         {
             // itemStatus.WeaponItems는 왼손과 오른손을 위해 배열의 크기가 2이다. 
@@ -104,6 +106,7 @@ public class SaveDatabase : MonoBehaviour
             }            
         }
 
+        // 방어구 저장
         for(int i = 0; i < itemStatus.ArmorItems.Count; i++)
         {
             // 아이템을 장착하지 않는 경우 itemStatus.ArmorItmes[i].armorItem의 값은 null값이다.
@@ -130,6 +133,32 @@ public class SaveDatabase : MonoBehaviour
 
         // 단축키 저장
         saveData.shortCutKeySaveData = shortKey.SerializeShortCutKeyDictionary();
+
+        ShortKeyManager shortCutKeys = UIAndSceneManager.instance.ShortCutBox;
+        // 단축키 저장
+        for (int i = 0;i < UIAndSceneManager.instance.ShortCutBox.ShortKeys.Count; i++)
+        {
+            ShortCutKeySaveData shortCutKeySaveData = new ShortCutKeySaveData();
+
+            // 단축키에 아이템이 올려져 있는 경우
+            if (shortCutKeys.ShortKeys[i].GetItem() != null)
+            {
+                shortCutKeySaveData.isItem = true;
+                shortCutKeySaveData.itemIndex = shortCutKeys.ShortKeys[i].ItemIndex;
+            }
+            // 단축키에 스킬이 올려져 있는 경우
+            else if (shortCutKeys.ShortKeys[i].GetSkill() != null)
+            {
+                shortCutKeySaveData.isItem = false;
+                shortCutKeySaveData.skill = shortCutKeys.ShortKeys[i].GetSkill();
+            }
+            //단축키에 아무 것도 없는 경우
+            else
+                shortCutKeySaveData = null;
+
+            // 값 추가
+            saveData.shortCutButton.Add(shortCutKeySaveData);
+        }
 
         // 데이터 저장
         string json = JsonUtility.ToJson(saveData);   // Json 직열화
@@ -191,8 +220,6 @@ public class SaveDatabase : MonoBehaviour
                     // ItemCode가 일치하는 방어구 찾기
                     ArmorItem item = SearchArmorItem(saveData.armorItemCode[i]);
 
-                    Debug.Log("Load Item : " + item.ItemCode);
-
                     // GameManager의 PlayerArmorChange 호출
                     gameManager.PlayerArmorChange(item);
                 }
@@ -221,6 +248,9 @@ public class SaveDatabase : MonoBehaviour
 
             // 단축키 로드
             shortKey.DeserializeShortCutKeyDictionary(saveData.shortCutKeySaveData);
+
+            // UI에 보여지는 단축키 값 로드
+            UIAndSceneManager.instance.LoadShortCutKeys(saveData.shortCutButton);
 
             QuestViewUI questViewUI = FindObjectOfType<QuestViewUI>();
             questViewUI.QuestUIStart();

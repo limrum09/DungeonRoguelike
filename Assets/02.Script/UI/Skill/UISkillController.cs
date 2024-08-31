@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UISkillController : MonoBehaviour
 {
     private ActiveSkill currentSkill;
+    [SerializeField]
+    private List<UISkillImageController> skillImageControllers;
     [Header("Skill Info")]
     [SerializeField]
     private Image skillImage;
@@ -35,6 +37,12 @@ public class UISkillController : MonoBehaviour
             skillConditionInfo.text = "";
 
             skillLevelUpBtn.interactable = false;
+        }
+
+        foreach(var skillImages in skillImageControllers)
+        {
+            if(skillImages != null)
+                skillImages.UISkillImageStart();
         }
     }
 

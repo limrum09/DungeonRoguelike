@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
 
     public void UseActiveSkill(ActiveSkill skill)
     {
-        if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") && skill.WeaponValue != SkillWeaponValue.Public || !skill.CanUseSkill)
+        if (skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") && skill.WeaponValue != SkillWeaponValue.Public)
             return;
         isMove = skill.CanMove;
         string aniName = skill.AnimationName;

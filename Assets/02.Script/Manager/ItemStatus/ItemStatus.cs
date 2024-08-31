@@ -116,7 +116,7 @@ public class ItemStatus : MonoBehaviour
 
         if (!newArmor.ArmorItemObject)
         {
-            Debug.Log("This item have not object(prefab). : " + newArmor.name);
+            // Debug.Log("This item have not object(prefab). : " + newArmor.name);
         }
 
         foreach (ArmorItemInfoInItemStatus changeItemInfo in armorItems)

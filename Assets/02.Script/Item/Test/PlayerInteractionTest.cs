@@ -40,21 +40,27 @@ public class PlayerInteractionTest : MonoBehaviour
     public void WeaponChange(WeaponItem weapon)
     {
         WeaponItem newWeapon = weapon;
+
+        // 무기가 왼손, 오른손 위치에 따라 조금 회전을 줄 필요가 있음
         ItemRotation weaponRotation = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<ItemRotation>() : null;
 
+        // Animator의 무기 모션을 확인할 값
         int weaponAniValue = newWeapon.WeaponValue;
 
+        // 한손으로 사용하는 무기가 아닌 경우
         if (!newWeapon.UseOndeHand)
         {
             leftWeaponValue = 0;
             weaponL.SetActive(false);
         }
 
+        // 오른손에 사용하는 무기
         if (!newWeapon.LeftWeapon)
         {
             weaponR.SetActive(true);
             rightWeaponValue = weaponAniValue;
 
+            // 무기에 회전을 주어야 하는 경우
             if (weaponRotation != null)
             {
                 WeaponR.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY, weaponRotation.PlayerItemRotationZ);
@@ -70,6 +76,8 @@ public class PlayerInteractionTest : MonoBehaviour
                 WeaponL.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY * -1.0f, weaponRotation.PlayerItemRotationZ + 180f);
             }
 
+            // 현제 왼손에는 검과 방패만 사용이 가능한데, 두 무기다 오른손에는 한손검만 사용한다.
+            // 이에 오른손 무기가 한손검이 아닐경우 오른손 무기를 사용할 수 없다.
             if (rightWeaponValue != 1)
             {
                 rightWeaponValue = 0;
@@ -77,23 +85,29 @@ public class PlayerInteractionTest : MonoBehaviour
             }
         }
             
-
+        // 무기 교체마다 Animator의 WeaponValue값을 변경하여 animation을 바꿔준다.
         animator.SetInteger("RightWeaponValue", rightWeaponValue);
         animator.SetInteger("LeftWeaponValue", leftWeaponValue);
 
+        // 무기바꾸면 일단 초기화
         animator.SetFloat("Forward", 0.0f);
         animator.SetFloat("Rotation", 0.0f);
         animator.SetBool("Jump", false);
         animator.SetBool("Walk", false);
         animator.SetBool("IsAttack", false);
 
+        // 무기를 장착 중이면, 현제 무기의 Mesh가져오기
         MeshFilter changeFilter = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<MeshFilter>() : null;
+        // 바궈야할 Mesh, 바꿀 무기가 왼손이면 player의 왼손 MeshFilter를 가져온다.
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;
-        Debug.Log("Change Filter : " + changeFilter + ", Current Weapon Filter : " + currentWeaponFilter);
+        
+        // 사용자에게 보여주는 Mesh
         currentWeaponFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
 
         if (!newWeapon.LeftWeapon && currentWeaponFilter == meshFilterWeaponR)
         {
+            // 실제로 몬스터와 상호작용하는 MeshCollider, 스킬을 사용할때 무기 판정 범위의 원활한 변경을 위해 따로 때에냄
+            // 공격은 무조건 오른손에 착용한 무기가 상호작용한다.
             attackMesh.sharedMesh = currentWeaponFilter.sharedMesh;
         }
     }
