@@ -16,11 +16,16 @@ MonoBehaviour:
   skillLevel: 1
   maxLevel: 5
   canMove: 0
-  skillName: 
+  skillBasicDamage: 0
+  skillLevelUpDamage: 0
+  skillPosition: {x: 0, y: 0, z: 0}
+  skillMoveRnage: 0
+  skillDamageRange: {x: 0, y: 0, z: 0}
+  skillName: "\uD68C\uC804\uBCA0\uAE30"
   weapon: 1
   animationName: OneHand_Slash
   icon: {fileID: 21300000, guid: 7449258d40fcb4175bfe520402fb5324, type: 3}
   skillInfo: 
   needPlayerLevel: 0
   conditions: []
-  coolTime: 0
+  skillCoolTime: 0
