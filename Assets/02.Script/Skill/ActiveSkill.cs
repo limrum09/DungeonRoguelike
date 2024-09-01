@@ -28,6 +28,20 @@ public class ActiveSkill : ScriptableObject
     [SerializeField]
     private bool canMove;
 
+    [Header("Skill Damage Info")]
+    [SerializeField]
+    private float skillBasicDamage;
+    [SerializeField]
+    private float skillLevelUpDamage;
+    [SerializeField]
+    private Vector3 skillPosition;
+    [SerializeField]
+    private float skillMoveRnage;
+    [SerializeField]
+    private Vector3 skillDamageRange;
+    [SerializeField]
+    private ParticleSystem skillEffect;
+
     [Header("Info")]
     [SerializeField]
     private string skillName;
@@ -40,9 +54,10 @@ public class ActiveSkill : ScriptableObject
     [TextArea]
     [SerializeField]
     private string skillInfo;
+
+
     private float coolTimer;
     private bool canUseSkill = true;
-    private bool useCoroutine;
 
     [Header("Option")]
     [SerializeField]
@@ -73,6 +88,7 @@ public class ActiveSkill : ScriptableObject
     public SkillWeaponValue WeaponValue => weapon;
     public string AnimationName => animationName;
     public Sprite SkillIcon => icon;
+    public float SkillDamage => skillBasicDamage + (skillLevelUpDamage * (float)skillLevel);
     public string SkillInfo => skillInfo;
 
     public float skillCoolTime;
@@ -150,7 +166,6 @@ public class ActiveSkill : ScriptableObject
         if (canUseSkill)
         {
             canUseSkill = false;
-            useCoroutine = true;
             coolTimer = skillCoolTime;
             Manager.Instance.StartCoroutine(SkillCoolTimer());
         }
@@ -176,6 +191,5 @@ public class ActiveSkill : ScriptableObject
         
         Debug.Log("스킬 " + skillName + "쿨타임 끝!");
         canUseSkill = true;
-        useCoroutine = false;
     }
 }
