@@ -84,6 +84,8 @@ public class ActiveSkill : ScriptableObject
         }
     }
 
+    public ParticleSystem SkillEffect => skillEffect;
+
     public string SkillName => skillName;
     public SkillWeaponValue WeaponValue => weapon;
     public string AnimationName => animationName;

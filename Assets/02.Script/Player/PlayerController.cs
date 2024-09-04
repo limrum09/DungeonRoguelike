@@ -47,12 +47,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform respawnPoint;
 
+    [Header("Skill")]
+    [SerializeField]
+    private MeshCollider playerAttackCollider;
+    [SerializeField]
+    private ParticleSystem skillEffect;
+    [SerializeField]
+    private GameObject tempObject;
+
     private InputKey key;
     private Camera currentCamera;
     private bool isDoubleJump;
     public Animator Ani => animator;
 
     private float preVelocityY;
+
+    public ParticleSystem SkillEffect => skillEffect;
 
     // Start is called before the first frame update
     public void PlayerControllerStart()
@@ -61,6 +71,7 @@ public class PlayerController : MonoBehaviour
         PlayerInRespawnPoint();
         isMove = true;
         isCombo = false;
+        skillEffect.Stop();
     }
 
     public void PlayerInRespawnPoint()
@@ -245,39 +256,58 @@ public class PlayerController : MonoBehaviour
         // 공용 스킬일 경우 무기의 종류에 따라서 스킬의 이름의 일부분이 다르기 때문에 알맞게 추가한다.
         if (skill.WeaponValue == SkillWeaponValue.Public)
         {
-            string addString = "";
-            int rightWeaponValue = animator.GetInteger("RightWeaponValue");
-            int leftWeaponValue = animator.GetInteger("LeftWeaponValue");
-
-            if (rightWeaponValue == 1)
-            {
-                switch (leftWeaponValue)
-                {
-                    case 0:
-                        addString = "OneHand_";
-                        break;
-                    case 1:
-                        addString = "DoubleSword_";
-                        break;
-                    case 2:
-                        addString = "SwordAndSheild_";
-                        break;
-                }
-            }
-            else if (rightWeaponValue == 3)
-                addString = "THS_";
-            else if (rightWeaponValue == 4)
-                addString = "Spear_";
-            else if (rightWeaponValue == 5)
-                addString = "MagicWand_";
-
-            aniName = addString + aniName;
+            aniName = PublicSrkillAnimName(aniName);
         }
 
         skill.UseSkill();
         animator.Play(aniName);
         playerState = PlayerState.Skill;
+
+        if (skill.SkillEffect != null)
+        {
+            skillEffect.Stop();
+            Destroy(skillEffect.gameObject);
+
+            skillEffect = Instantiate(skill.SkillEffect, playerAttackCollider.gameObject.transform);
+            GameObject temp = Instantiate(tempObject, playerAttackCollider.gameObject.transform);
+
+            skillEffect.transform.rotation = Quaternion.LookRotation(transform.forward);
+            temp.transform.rotation = Quaternion.LookRotation(transform.forward);
+            skillEffect.Play();
+        }
+
         Debug.Log("스킬 " + aniName + " 사용");
+    }
+
+    private string PublicSrkillAnimName(string aniName)
+    {
+        string addString = "";
+        int rightWeaponValue = animator.GetInteger("RightWeaponValue");
+        int leftWeaponValue = animator.GetInteger("LeftWeaponValue");
+
+        if (rightWeaponValue == 1)
+        {
+            switch (leftWeaponValue)
+            {
+                case 0:
+                    addString = "OneHand_";
+                    break;
+                case 1:
+                    addString = "DoubleSword_";
+                    break;
+                case 2:
+                    addString = "SwordAndSheild_";
+                    break;
+            }
+        }
+        else if (rightWeaponValue == 3)
+            addString = "THS_";
+        else if (rightWeaponValue == 4)
+            addString = "Spear_";
+        else if (rightWeaponValue == 5)
+            addString = "MagicWand_";
+
+        return addString + aniName;
     }
 
     private void PlayerComboEnd()
