@@ -58,6 +58,5 @@ public class CallEvent : MonoBehaviour
     {
         player.playerState = PlayerState.Idel;
         player.isMove = true;
-        player.SkillEffect.Stop();
     }
 }

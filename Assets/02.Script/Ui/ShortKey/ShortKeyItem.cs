@@ -177,7 +177,7 @@ public class ShortKeyItem : MonoBehaviour
     {
         if (!skill.CanUseSkill)
             return;
-        
+
         Manager.Instance.Game.PlayerController.UseActiveSkill(skill);
 
         coolTimer = skill.CurrentRemainCoolTimer;

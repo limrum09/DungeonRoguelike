@@ -36,11 +36,13 @@ public class ActiveSkill : ScriptableObject
     [SerializeField]
     private Vector3 skillPosition;
     [SerializeField]
-    private float skillMoveRnage;
+    private float skillMoveRange;
     [SerializeField]
     private Vector3 skillDamageRange;
     [SerializeField]
     private ParticleSystem skillEffect;
+    [SerializeField]
+    private float skillMaintenanceTime;
 
     [Header("Info")]
     [SerializeField]
@@ -83,7 +85,11 @@ public class ActiveSkill : ScriptableObject
             return canUseSkill;
         }
     }
+    public float SkillMaintenanceTime => skillMaintenanceTime;
 
+    public Vector3 SkillPosition => skillPosition;
+    public Vector3 SkillDamageRange => skillDamageRange;
+    public float SkillMoveRange => skillMoveRange;
     public ParticleSystem SkillEffect => skillEffect;
 
     public string SkillName => skillName;
