@@ -51,9 +51,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private MeshCollider playerAttackCollider;
     [SerializeField]
-    private ParticleSystem skillEffect;
+    private SkillEffectController skillEffectController;
     [SerializeField]
-    private GameObject tempObject;
+    private GameObject weaponPosEffect;
+    [SerializeField]
+    private GameObject centerPosEffect;
 
     private InputKey key;
     private Camera currentCamera;
@@ -62,8 +64,6 @@ public class PlayerController : MonoBehaviour
 
     private float preVelocityY;
 
-    public ParticleSystem SkillEffect => skillEffect;
-
     // Start is called before the first frame update
     public void PlayerControllerStart()
     {
@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
         PlayerInRespawnPoint();
         isMove = true;
         isCombo = false;
-        skillEffect.Stop();
     }
 
     public void PlayerInRespawnPoint()
@@ -139,11 +138,11 @@ public class PlayerController : MonoBehaviour
 
         PlayerJump();
 
+        // 방향키
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         playerSpeed = PlayerInteractionStatus.instance.PlayerSpeed;
-
         key = Manager.Instance.Key;
 
         if (Input.GetKey(key.GetKeyCode("Sprint")))
@@ -236,12 +235,6 @@ public class PlayerController : MonoBehaviour
         {
             isCombo = true;
             animator.SetBool("IsAttack", true);
-
-            // 앞으로 조금 전진
-            // Vector3 moveDirection  = transform.forward *  0.1f;
-            // controller.Move(moveDirection);
-
-            PlayerComboEnd();
         }
         
     }
@@ -263,22 +256,15 @@ public class PlayerController : MonoBehaviour
         animator.Play(aniName);
         playerState = PlayerState.Skill;
 
-        if (skill.SkillEffect != null)
+        if(skill.SkillEffect != null)
         {
-            skillEffect.Stop();
-            Destroy(skillEffect.gameObject);
-
-            skillEffect = Instantiate(skill.SkillEffect, playerAttackCollider.gameObject.transform);
-            GameObject temp = Instantiate(tempObject, playerAttackCollider.gameObject.transform);
-
-            skillEffect.transform.rotation = Quaternion.LookRotation(transform.forward);
-            temp.transform.rotation = Quaternion.LookRotation(transform.forward);
-            skillEffect.Play();
+            skillEffectController.ActiveSkillEffrct(skill);
         }
 
         Debug.Log("스킬 " + aniName + " 사용");
     }
 
+    // 공용 스킬에는 Animation의 일부 이름만 다르기에 무기에까라 알맞은 이름 삽입
     private string PublicSrkillAnimName(string aniName)
     {
         string addString = "";
@@ -309,11 +295,4 @@ public class PlayerController : MonoBehaviour
 
         return addString + aniName;
     }
-
-    private void PlayerComboEnd()
-    {
-        //isCombo = false;
-    }
-
-    
 }

@@ -16,6 +16,13 @@ MonoBehaviour:
   skillLevel: 1
   maxLevel: 10
   canMove: 1
+  skillBasicDamage: 0
+  skillLevelUpDamage: 0
+  skillPosition: {x: 0, y: -0.3, z: -0.8}
+  skillMoveRange: 0
+  skillDamageRange: {x: 0, y: 0, z: 0}
+  skillEffect: {fileID: 7608509754243305970, guid: 3a78859cfe0ca6243b0bdd5f85a9f577, type: 3}
+  skillMaintenanceTime: 0
   skillName: "\uC810\uBA78"
   weapon: 0
   animationName: Dash
@@ -23,4 +30,4 @@ MonoBehaviour:
   skillInfo: "\uC804\uBC29\uC744 \uD5A5\uD574 \uBE60\uB974\uAC8C \uC774\uB3D9\uD55C\uB2E4."
   needPlayerLevel: 0
   conditions: []
-  coolTime: 0
+  skillCoolTime: 0
