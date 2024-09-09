@@ -36,6 +36,8 @@ public class ActiveSkill : ScriptableObject
     [SerializeField]
     private Vector3 skillPosition;
     [SerializeField]
+    private Vector3 skillRotation;
+    [SerializeField]
     private float skillMoveRange;
     [SerializeField]
     private Vector3 skillDamageRange;
@@ -88,6 +90,7 @@ public class ActiveSkill : ScriptableObject
     public float SkillMaintenanceTime => skillMaintenanceTime;
 
     public Vector3 SkillPosition => skillPosition;
+    public Vector3 SkillRotation => skillRotation;
     public Vector3 SkillDamageRange => skillDamageRange;
     public float SkillMoveRange => skillMoveRange;
     public ParticleSystem SkillEffect => skillEffect;
@@ -103,7 +106,7 @@ public class ActiveSkill : ScriptableObject
     public float CurrentRemainCoolTimer => coolTimer;
     private float rightWeaponValue;
     private float leftWeaponValue;
-
+    
     public int NeedPlayerLevel => needPlayerLevel;
     public ActiveSkillCondition[] Conditions => conditions;
     public bool NeedSkillCondition {

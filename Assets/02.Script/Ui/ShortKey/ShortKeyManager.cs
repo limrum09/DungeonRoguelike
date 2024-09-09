@@ -17,7 +17,6 @@ public class ShortKeyManager : MonoBehaviour
 
         for(int i = 0; i< shortkeyCnt; i++)
         {
-            // shortKeys.Add(this.transform.GetChild(i).GetComponent<ShortKeyItem>());
             shortKeys[i].SetIndex(i, $"ShortKey{i+1}");
 
             if(loadShortCut.Count > 0)

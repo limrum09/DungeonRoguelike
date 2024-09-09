@@ -16,11 +16,19 @@ MonoBehaviour:
   skillLevel: 1
   maxLevel: 5
   canMove: 0
-  skillName: 
+  skillBasicDamage: 0
+  skillLevelUpDamage: 0
+  skillPosition: {x: 0, y: 0, z: 0}
+  skillRotation: {x: 0, y: 0, z: 0}
+  skillMoveRange: 0
+  skillDamageRange: {x: 0, y: 0, z: 0}
+  skillEffect: {fileID: 0}
+  skillMaintenanceTime: 0
+  skillName: "\uC62C\uB824\uCE58\uAE30(\uD55C\uC190\uAC80)"
   weapon: 1
   animationName: OneHand_UptoDown
   icon: {fileID: 0}
   skillInfo: 
   needPlayerLevel: 0
   conditions: []
-  coolTime: 0
+  skillCoolTime: 0
