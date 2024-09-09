@@ -19,8 +19,11 @@ MonoBehaviour:
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
-  skillMoveRnage: 0
+  skillRotation: {x: 0, y: 0, z: 0}
+  skillMoveRange: 0
   skillDamageRange: {x: 0, y: 0, z: 0}
+  skillEffect: {fileID: 1063892706703077768, guid: 901be293d9416414b91cddbe63ef7c65, type: 3}
+  skillMaintenanceTime: 3
   skillName: "\uD68C\uC804\uBCA0\uAE30"
   weapon: 1
   animationName: OneHand_Slash

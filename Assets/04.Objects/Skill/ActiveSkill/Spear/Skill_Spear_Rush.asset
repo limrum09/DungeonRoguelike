@@ -18,10 +18,12 @@ MonoBehaviour:
   canMove: 1
   skillBasicDamage: 0
   skillLevelUpDamage: 0
-  skillPosition: {x: 0, y: 0, z: 0}
-  skillMoveRnage: 0
+  skillPosition: {x: 0, y: 0, z: -0.7}
+  skillRotation: {x: 0, y: 0, z: 0}
+  skillMoveRange: 0
   skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 8467337620029057757, guid: 0959e9760d45834458e9375e0b9fe143, type: 3}
+  skillMaintenanceTime: 4.12
   skillName: "\uB3CC\uC9C4(\uCC3D)"
   weapon: 5
   animationName: Spear_Rush
