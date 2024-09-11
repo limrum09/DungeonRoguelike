@@ -35,6 +35,8 @@ public class ShortKeyItem : MonoBehaviour
     [Header("CoolTime")]
     [SerializeField]
     private Image coolTimeImage;
+    [SerializeField]
+    private TextMeshProUGUI timerText;
 
     public string InputShortKey => inputShortKey;
 
@@ -242,6 +244,7 @@ public class ShortKeyItem : MonoBehaviour
         {
             coolTimer -= Time.deltaTime;
             coolTimeImage.fillAmount = coolTimer / imageCoolTime;
+            timerText.text = Mathf.RoundToInt(coolTimer).ToString();
 
             yield return null;
         }
