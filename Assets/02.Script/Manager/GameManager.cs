@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     private bool isStart;
 
     public PlayerController PlayerController => playerController;
-    public PlayerStatus PlayerSaveStatus => playerSaveStatus;
+    public PlayerStatus PlayerCurrentStatus => playerSaveStatus;
     public InvenData InvenDatas => invenData;
 
     public int Level => level;

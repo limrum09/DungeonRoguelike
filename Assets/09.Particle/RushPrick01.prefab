@@ -53744,6 +53744,7 @@ GameObject:
   - component: {fileID: 4014977196023847442}
   - component: {fileID: 8467337620029057757}
   - component: {fileID: 7849459919943593648}
+  - component: {fileID: 2828930365196049898}
   m_Layer: 0
   m_Name: RushPrick01
   m_TagString: Untagged
@@ -57424,9 +57425,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -57607,7 +57608,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -58637,3 +58638,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2828930365196049898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7947365809191081125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f10d586f675e4408e3b37b99e2a67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

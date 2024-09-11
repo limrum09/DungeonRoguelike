@@ -45,7 +45,7 @@ public class SaveDatabase : MonoBehaviour
         achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
 
         var manager = Manager.Instance;
-        playerSaveStatus = manager.Game.PlayerSaveStatus;
+        playerSaveStatus = manager.Game.PlayerCurrentStatus;
         invenSlots = manager.Game.InvenDatas.invenSlots;
         shortKey = manager.Key;
 

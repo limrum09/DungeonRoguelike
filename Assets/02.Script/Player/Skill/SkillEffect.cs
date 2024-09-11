@@ -17,6 +17,10 @@ public class SkillEffect : MonoBehaviour
         {
             // 파티클 생성
             ParticleSystem newSkill = Instantiate(skill.SkillEffect, this.transform);
+
+            if (newSkill.GetComponent<SkillEffectDamage>() != null)
+                newSkill.GetComponent<SkillEffectDamage>().SetSkillDamage(getSkill.SkillDamage);
+
             // 정면을 바라보도록 회전 변경
             newSkill.transform.rotation = Quaternion.LookRotation(transform.forward);
             // 이펙트마다 위치 조정

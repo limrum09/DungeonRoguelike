@@ -30,9 +30,9 @@ public class ActiveSkill : ScriptableObject
 
     [Header("Skill Damage Info")]
     [SerializeField]
-    private float skillBasicDamage;
+    private int skillBasicDamage;
     [SerializeField]
-    private float skillLevelUpDamage;
+    private int skillLevelUpDamage;
     [SerializeField]
     private Vector3 skillPosition;
     [SerializeField]
@@ -99,7 +99,7 @@ public class ActiveSkill : ScriptableObject
     public SkillWeaponValue WeaponValue => weapon;
     public string AnimationName => animationName;
     public Sprite SkillIcon => icon;
-    public float SkillDamage => skillBasicDamage + (skillLevelUpDamage * (float)skillLevel);
+    public int SkillDamage => skillBasicDamage + (skillLevelUpDamage * skillLevel);
     public string SkillInfo => skillInfo;
 
     public float skillCoolTime;

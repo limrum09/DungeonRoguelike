@@ -8,6 +8,7 @@ public class WeaponAttack : MonoBehaviour
     private PlayerController playerController;
 
     private bool isAttack;
+    private int playerDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class WeaponAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerController.playerState == PlayerState.Attack || playerController.playerState == PlayerState.Skill)
+        if(playerController.playerState == PlayerState.Attack)
         {
             isAttack = true;
         }
@@ -31,7 +32,21 @@ public class WeaponAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && playerController.isCombo == true && isAttack == true)
         {
-            other.GetComponentInParent<EnemyStatus>().TakeDamage(GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerInteractionStatus>().PlayerDamage);
+            other.GetComponentInParent<EnemyStatus>().TakeDamage(SetTakePlayerDamage());
         }
+    }
+
+    private int SetTakePlayerDamage()
+    {
+        var status = PlayerInteractionStatus.instance;
+
+        playerDamage = status.PlayerDamage;
+
+        float ciriticalRange = Random.Range(0.0f, 100.0f);
+
+        if (ciriticalRange <= status.CriticalPer)
+            playerDamage += status.CriticalDamage;
+
+        return playerDamage;
     }
 }
