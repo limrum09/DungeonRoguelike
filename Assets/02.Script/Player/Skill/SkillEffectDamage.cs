@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class SkillEffectDamage : MonoBehaviour
 {
-    private int skillDamage;
+    private int skillDamage = 0;
     
     public void SetSkillDamage(int damage)
     {
         skillDamage = damage;
     }
 
+    public void TakeDamageToEnemy(GameObject other)
+    {
+        other.GetComponentInParent<EnemyStatus>().TakeDamage(SetTakeSkillDamage());
+        Debug.Log("스킬 데미지 : " + skillDamage);
+    }
+
     private void OnParticleCollision(GameObject other)
     {
+        Debug.Log("Collision");
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("스킬 데미지 콜리더");
-            other.GetComponentInParent<EnemyStatus>().TakeDamage(SetTakeSkillDamage());
+            TakeDamageToEnemy(other);
         }
     }
 

@@ -33,4 +33,4 @@ MonoBehaviour:
     \uC708\uB4DC \uD720 \uC708\uB4DC "
   needPlayerLevel: 0
   conditions: []
-  skillCoolTime: 0
+  skillCoolTime: 10
