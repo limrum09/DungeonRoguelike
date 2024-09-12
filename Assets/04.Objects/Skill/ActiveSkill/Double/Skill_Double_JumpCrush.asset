@@ -31,4 +31,4 @@ MonoBehaviour:
   skillInfo: "\uB6F0\uC5B4\uC62C\uB77C \uB0B4\uB824 \uCC0D\uB294\uB2E4."
   needPlayerLevel: 0
   conditions: []
-  skillCoolTime: 0
+  skillCoolTime: 5
