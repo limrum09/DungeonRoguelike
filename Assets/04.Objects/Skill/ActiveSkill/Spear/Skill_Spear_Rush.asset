@@ -34,4 +34,4 @@ MonoBehaviour:
   needPlayerLevel: 5
   conditions:
   - {fileID: 11400000, guid: c289343f244ae2145a363ef572d00920, type: 2}
-  skillCoolTime: 30
+  skillCoolTime: 10
