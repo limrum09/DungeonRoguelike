@@ -14,6 +14,12 @@ public enum SkillWeaponValue
     Magic
 }
 
+public enum SkillEffectPos
+{
+    Body,
+    Weapon
+}
+
 [CreateAssetMenu(menuName = "Skill/ActiveSkill", fileName = "Skill_")]
 public class ActiveSkill : ScriptableObject
 {
@@ -43,6 +49,8 @@ public class ActiveSkill : ScriptableObject
     private Vector3 skillDamageRange;
     [SerializeField]
     private ParticleSystem skillEffect;
+    [SerializeField]
+    private SkillEffectPos skillEffectPos = SkillEffectPos.Body;
     [SerializeField]
     private float skillMaintenanceTime;
 
@@ -94,6 +102,7 @@ public class ActiveSkill : ScriptableObject
     public Vector3 SkillDamageRange => skillDamageRange;
     public float SkillMoveRange => skillMoveRange;
     public ParticleSystem SkillEffect => skillEffect;
+    public SkillEffectPos SkillEffectPosition => skillEffectPos;
 
     public string SkillName => skillName;
     public SkillWeaponValue WeaponValue => weapon;

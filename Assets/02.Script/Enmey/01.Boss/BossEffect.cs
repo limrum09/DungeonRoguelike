@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class BossEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private SkillEffect prefab;
+    [SerializeField]
+    private GameObject weaponEffectPos;
+    [SerializeField]
+    private GameObject bodyEffectPos;
+    
+    public void PlayBossEffect(ActiveSkill skill)
     {
-        
-    }
+        if (skill.SkillEffect == null)
+            return;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject effectPos = null;
+
+        if (skill.SkillEffectPosition == SkillEffectPos.Body)
+            effectPos = bodyEffectPos;
+        else if (skill.SkillEffectPosition == SkillEffectPos.Weapon)
+            effectPos = weaponEffectPos;
+
+        SkillEffect newSkillEffect = Instantiate(prefab, effectPos.transform);
+
+        newSkillEffect.ActiveSkillEffect(skill);
     }
 }

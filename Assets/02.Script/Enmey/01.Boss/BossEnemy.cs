@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BossEnemy : Enemy
 {
+    [Header("Child")]
+    [SerializeField]
+    private BossEffect bossEffectPosController;
     [SerializeField]
     private List<ActiveSkill> phase2Skills;
     [SerializeField]
@@ -23,7 +26,7 @@ public class BossEnemy : Enemy
         base.Update();
     }
 
-    private void ActiveSkill()
+    private void RandomSelectActiveSkill()
     {
         
     }
@@ -35,18 +38,26 @@ public class BossEnemy : Enemy
 
     public void TempActiveSkillButton(string skillCode)
     {
-        foreach(var skill in phase2Skills)
+        List<ActiveSkill> selectList = null;
+
+        if (currnetPhase == 2)
+            selectList = phase2Skills;
+        else if (currnetPhase == 3)
+            selectList = phase3Skills;
+
+        foreach(ActiveSkill skill in selectList)
         {
             if(skill.SkillCode == skillCode)
             {
-                ActiveAnimation(skill.AnimationName);
+                PlaySelectSkillAnimation(skill.AnimationName);
+                bossEffectPosController.PlayBossEffect(skill);
                 Debug.Log("스킬 : " + skill.AnimationName + " 실행");
                 break;
             }
         }
     }
 
-    private void ActiveAnimation(string skillName)
+    private void PlaySelectSkillAnimation(string skillName)
     {
         animator.Play(skillName);
     }
