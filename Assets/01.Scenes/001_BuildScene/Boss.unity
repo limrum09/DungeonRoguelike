@@ -461,102 +461,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5192b9b4bbb4636478c1929082dd7cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &1153272421
-AudioSource:
+--- !u!114 &1153272422
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153272414}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16eea2a5c5abcc447a8f1064a16690db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 9147313614169215946, guid: c91d70345eee1d1449e3b35c024f7ea9, type: 3}
+  weaponEffectPos: {fileID: 2040837731}
+  bodyEffectPos: {fileID: 1991448197}
 --- !u!1 &1210021706
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +488,7 @@ GameObject:
   - component: {fileID: 1210021709}
   - component: {fileID: 1210021708}
   - component: {fileID: 1210021707}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +568,7 @@ Transform:
   m_GameObject: {fileID: 1210021706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1084,6 +1003,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717208498}
   m_CullTransparentMesh: 1
+--- !u!1 &1991448197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5411184574939000213, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
+  m_PrefabInstance: {fileID: 3130119401161695123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2040837731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5627203183106735379, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
+  m_PrefabInstance: {fileID: 3130119401161695123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2141375190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,13 +1157,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-      propertyPath: phase2Skills.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-      propertyPath: phase2Skills.Array.data[1]
+      propertyPath: bossEffectPosController
       value: 
-      objectReference: {fileID: 11400000, guid: b443cf661c0eb864c981db020a16c558, type: 2}
+      objectReference: {fileID: 1153272422}
     - target: {fileID: 3130119400685091536, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
       propertyPath: m_Name
       value: Dongon1_Boss_DemonKing
@@ -1282,6 +1207,10 @@ PrefabInstance:
     - target: {fileID: 3130119400685091543, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388550703922194374, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6388550703922194374, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
       propertyPath: m_ApplyRootMotion
