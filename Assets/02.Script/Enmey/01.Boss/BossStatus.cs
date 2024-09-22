@@ -11,9 +11,17 @@ public class BossStatus : EnemyStatus
         currentHP = maxHP;
         SetBossStatus();
     }
+
+    protected new void EnemyHit()
+    {
+        base.EnemyHit();
+
+        SetBossStatus();
+    }
     
     private void SetBossStatus()
     {
+        Debug.Log("보스 체력 감소");
         float hpPer = currentHP / maxHP;
 
         if(0.31f <= hpPer && hpPer <= 0.60f)

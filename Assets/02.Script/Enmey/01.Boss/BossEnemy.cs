@@ -17,7 +17,7 @@ public class BossEnemy : Enemy
     void Start()
     {
         base.Start();
-        currnetPhase = 1;
+        currnetPhase = 2;
     }
 
     // Update is called once per frame
