@@ -445,37 +445,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1153272414 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 361217592089061126, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-  m_PrefabInstance: {fileID: 3130119401161695123}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1153272418 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
   m_PrefabInstance: {fileID: 3130119401161695123}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153272414}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5192b9b4bbb4636478c1929082dd7cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1153272422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153272414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16eea2a5c5abcc447a8f1064a16690db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 9147313614169215946, guid: c91d70345eee1d1449e3b35c024f7ea9, type: 3}
-  weaponEffectPos: {fileID: 2040837731}
-  bodyEffectPos: {fileID: 1991448197}
 --- !u!1 &1210021706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,16 +983,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717208498}
   m_CullTransparentMesh: 1
---- !u!1 &1991448197 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5411184574939000213, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-  m_PrefabInstance: {fileID: 3130119401161695123}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2040837731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5627203183106735379, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-  m_PrefabInstance: {fileID: 3130119401161695123}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2141375190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,10 +1126,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-      propertyPath: bossEffectPosController
-      value: 
-      objectReference: {fileID: 1153272422}
     - target: {fileID: 3130119400685091536, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
       propertyPath: m_Name
       value: Dongon1_Boss_DemonKing
@@ -1207,14 +1173,6 @@ PrefabInstance:
     - target: {fileID: 3130119400685091543, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6388550703922194374, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-      propertyPath: m_WarningMessage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6388550703922194374, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

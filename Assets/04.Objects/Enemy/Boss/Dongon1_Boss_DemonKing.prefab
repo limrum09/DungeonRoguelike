@@ -145,6 +145,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3130119400948443600}
     - target: {fileID: 44486125923400070, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
+      propertyPath: bossEffectPosController
+      value: 
+      objectReference: {fileID: 1153272422}
+    - target: {fileID: 44486125923400070, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
       propertyPath: phase2Skills.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -205,14 +209,12 @@ PrefabInstance:
       value: Dongon1_Boss_DemonKing_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 8306557338231425969, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306557338231425969, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'demonKing_pinky01Left'\n\tTransform 'demonKing_root'\n\tTransform
-        'demonKing_handALeft'\n\tTransform 'demonKing_pinky01Left'\n\tTransform 'demonKing_upperArmLeft'\n\tTransform
-        'demonKing_pinky02Left'\n\tTransform 'demonKing_spine03'\n\tTransform 'demonKing_index01Left'\n\tTransform
-        'demonKing_thumb03Left'\n\tTransform 'demonKing_handARight'\n\tand more ...\n\tFrom
-        animation clip 'DemonKing_SenseSomethingMaint'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8306557338231425969, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -232,6 +234,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3381409041191226225, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
   m_PrefabInstance: {fileID: 3165574137425456247}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &9152522998513901462
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361217592089061126}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &1153272421
 AudioSource:
   m_ObjectHideFlags: 0
@@ -328,22 +346,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &9152522998513901462
-Rigidbody:
+--- !u!114 &1153272422
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361217592089061126}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16eea2a5c5abcc447a8f1064a16690db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 9147313614169215946, guid: c91d70345eee1d1449e3b35c024f7ea9, type: 3}
+  weaponEffectPos: {fileID: 5627203183106735379}
+  bodyEffectPos: {fileID: 5411184574939000213}
 --- !u!4 &1029246035520093628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2713134238719218123, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
@@ -392,6 +409,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentEnemy: {fileID: 3130119400148997617}
+--- !u!1 &5411184574939000213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6986775533105676770, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
+  m_PrefabInstance: {fileID: 3165574137425456247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5627203183106735379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7348106151624331620, guid: 8ec162dbd7fae984ca007830547c4229, type: 3}
+  m_PrefabInstance: {fileID: 3165574137425456247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6029766033152462388
 PrefabInstance:
   m_ObjectHideFlags: 0
