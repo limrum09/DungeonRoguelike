@@ -24,6 +24,6 @@ public class QuestListContainer : MonoBehaviour
 
     public void ShowDetailQuestView()
     {
-        UIAndSceneManager.instance.ChangeQuestDetailView(quest);
+        Manager.Instance.UIAndScene.ChangeQuestDetailView(quest);
     }
 }

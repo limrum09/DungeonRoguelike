@@ -32,11 +32,6 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
             offset = eventData.position - clickPoint;
             ui.transform.position = startinPoint + offset;
         }
-
-/*        if (isSkillDrag)
-        {
-            dragIcon.transform.position = Input.mousePosition;
-        }*/
     }
 
 /*    public void OnPointerClick(PointerEventData eventData)
@@ -81,26 +76,33 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
 
     public void OnPointerMove(PointerEventData eventData)
     {
-        var moveUI = eventData.pointerEnter;
+        var onUI = eventData.pointerEnter;
 
-
-        if (moveUI != null && moveUI.gameObject.GetComponent<InvenSlot>())
+        if (onUI != null && onUI.gameObject.GetComponent<InvenSlot>())
         {
-            invenItem = moveUI.gameObject.GetComponent<InvenSlot>();
+            GameObject invenSlotUI = onUI.gameObject;
+            invenItem = invenSlotUI.GetComponent<InvenSlot>();
+
+            Debug.Log("인벤 아이템 : " + invenItem);
+            tooltipController.ViewItemTooltip(invenItem);
+
+            Vector2 tooltipPos = new Vector2(invenSlotUI.transform.position.x + invenSlotUI.GetComponent<RectTransform>().rect.width / 2 + 10f, invenSlotUI.transform.position.y);
+            tooltip.transform.position = tooltipPos;
+            
         }
         else
         {
             invenItem = null;
         }
 
-        if(invenItem != null && string.IsNullOrEmpty(invenItem.itemName))
+        if (invenItem != null && string.IsNullOrEmpty(invenItem.itemName))
         {
             invenItem = null;
         }
 
-        tooltipController.ViewItemTooltip(invenItem);
-        Vector2 eventPos = new Vector2(eventData.position.x + 240f, eventData.position.y - 100f);
-        tooltip.transform.position = eventPos;
+        
+        /*Vector2 eventPos = new Vector2(eventData.position.x + 240f, eventData.position.y - 100f);
+        tooltip.transform.position = eventPos;*/
     }
 
     public void OnPointerUp(PointerEventData eventData)

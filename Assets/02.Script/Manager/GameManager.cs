@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         ChangeExpBar();
 
-        UIAndSceneManager.instance.LevelUPUI();
+        Manager.Instance.UIAndScene.LevelUPUI();
     }
 
     private void GetPlayerStatus()
@@ -151,12 +151,12 @@ public class GameManager : MonoBehaviour
     {
         GetPlayerStatus();
 
-        UIAndSceneManager.instance.ChangeHPBar();
+        Manager.Instance.UIAndScene.ChangeHPBar();
     }
     public void ChangeExpBar()
     {
         GetPlayerStatus();
 
-        UIAndSceneManager.instance.ChangeEXPBar();
+        Manager.Instance.UIAndScene.ChangeEXPBar();
     }
 }

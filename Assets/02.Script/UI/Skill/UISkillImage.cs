@@ -42,6 +42,6 @@ public class UISkillImage : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIAndSceneManager.instance.SelectSkill(skill);
+        Manager.Instance.UIAndScene.SelectSkill(skill);
     }
 }

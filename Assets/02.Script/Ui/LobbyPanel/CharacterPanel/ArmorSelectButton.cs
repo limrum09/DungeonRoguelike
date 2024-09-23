@@ -15,6 +15,6 @@ public class ArmorSelectButton : MonoBehaviour
 
     public void OnClickedButton()
     {
-        UIAndSceneManager.instance.ChangeEquipment(armorItem);
+        Manager.Instance.UIAndScene.ChangeEquipment(armorItem);
     }
 }

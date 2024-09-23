@@ -17,10 +17,15 @@ public class Manager : MonoBehaviour
 
     [SerializeField]
     private GameManager gameManager;
+    [SerializeField]
+    private UIAndSceneManager uiAndSceneManager;
+
     public GameManager Game => gameManager;
     public SoundManager Sound => soundManager;
     public InputKey Key => inputKey;
     public CameraController Camera => camearaController;
+
+    public UIAndSceneManager UIAndScene => uiAndSceneManager;
 
     private void Awake()
     {
@@ -53,6 +58,9 @@ public class Manager : MonoBehaviour
 
         inputKey = Instantiate(inputKey, this.transform);
         inputKey.InputKeyStart();
+
+        uiAndSceneManager = Instantiate(uiAndSceneManager, this.transform);
+        uiAndSceneManager.UIAndSceneManagerStart();
 
         saveManager = Instantiate(saveManager, this.transform);
         saveManager.SaveDatabaseStart();

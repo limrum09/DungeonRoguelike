@@ -13,14 +13,14 @@ public class NPCQuestController : MonoBehaviour
 
     public void SetNPCTalkUIValue()
     {
-        UIAndSceneManager.instance.NPCQuestTalkWithPlayer(basicScenario, questAndScenario, npcImage);
+        Manager.Instance.UIAndScene.NPCQuestTalkWithPlayer(basicScenario, questAndScenario, npcImage);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            UIAndSceneManager.instance.PlayerInQuestNPC();
+            Manager.Instance.UIAndScene.PlayerInQuestNPC();
         }
     }
 
@@ -28,7 +28,7 @@ public class NPCQuestController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            UIAndSceneManager.instance.PlayerOutQuestNPC();
+            Manager.Instance.UIAndScene.PlayerOutQuestNPC();
         }
     }
 }
