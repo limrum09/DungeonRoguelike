@@ -15,6 +15,6 @@ public class WeaponSelectButton : MonoBehaviour
 
     public void OnClickedButton()
     {
-        UIAndSceneManager.instance.ChangeEquipment(weaponItem);
+        Manager.Instance.UIAndScene.ChangeEquipment(weaponItem);
     }
 }

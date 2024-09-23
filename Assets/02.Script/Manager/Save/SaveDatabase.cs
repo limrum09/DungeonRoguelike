@@ -134,9 +134,9 @@ public class SaveDatabase : MonoBehaviour
         // 단축키 저장
         saveData.shortCutKeySaveData = shortKey.SerializeShortCutKeyDictionary();
 
-        ShortKeyManager shortCutKeys = UIAndSceneManager.instance.ShortCutBox;
+        ShortKeyManager shortCutKeys = Manager.Instance.UIAndScene.ShortCutBox;
         // 단축키 저장
-        for (int i = 0;i < UIAndSceneManager.instance.ShortCutBox.ShortKeys.Count; i++)
+        for (int i = 0;i < Manager.Instance.UIAndScene.ShortCutBox.ShortKeys.Count; i++)
         {
             ShortCutKeySaveData shortCutKeySaveData = new ShortCutKeySaveData();
 
@@ -250,7 +250,8 @@ public class SaveDatabase : MonoBehaviour
             shortKey.DeserializeShortCutKeyDictionary(saveData.shortCutKeySaveData);
 
             // UI에 보여지는 단축키 값 로드
-            UIAndSceneManager.instance.LoadShortCutKeys(saveData.shortCutButton);
+            Manager.Instance.UIAndScene.LoadShortCutKeys(saveData.shortCutButton);
+            Manager.Instance.UIAndScene.LoadSettingUIData();
 
             QuestViewUI questViewUI = FindObjectOfType<QuestViewUI>();
             questViewUI.QuestUIStart();

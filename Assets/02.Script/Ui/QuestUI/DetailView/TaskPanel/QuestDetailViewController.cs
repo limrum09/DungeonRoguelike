@@ -45,12 +45,12 @@ public class QuestDetailViewController : MonoBehaviour
         rewardContainer = CreatePool(rewardContainerPrefab, rewardContainerCount, rewardContent);
 
 
-        UIAndSceneManager.instance.onSelectQuestListView += ChangeQuestView;
+        Manager.Instance.UIAndScene.onSelectQuestListView += ChangeQuestView;
     }
 
     private void OnApplicationQuit()
     {
-        UIAndSceneManager.instance.onSelectQuestListView -= ChangeQuestView;
+        Manager.Instance.UIAndScene.onSelectQuestListView -= ChangeQuestView;
     }
 
     // Object Pool 생성

@@ -25,14 +25,14 @@ public class QuestListCheckTrackerViewButton : MonoBehaviour
             trackViewCheck = false;
             checkbuttonImage.sprite = null;
 
-            UIAndSceneManager.instance.SetTackerViewQuest(currentQuest, trackViewCheck);
+            Manager.Instance.UIAndScene.SetTackerViewQuest(currentQuest, trackViewCheck);
         }
         else
         {
             trackViewCheck = true;
             checkbuttonImage.sprite = checkImage;
 
-            UIAndSceneManager.instance.SetTackerViewQuest(currentQuest, trackViewCheck);
+            Manager.Instance.UIAndScene.SetTackerViewQuest(currentQuest, trackViewCheck);
         }
     }
 }

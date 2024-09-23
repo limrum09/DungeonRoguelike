@@ -60,7 +60,7 @@ public class SettingContorller : MonoBehaviour
             Debug.Log("Set Key Code : " + _keyCode);
             
             Manager.Instance.Key.ChangKeycode(shortCut.KeyValue, _keyCode);
-            UIAndSceneManager.instance.ChangeShortCutValue(shortCut.KeyValue);
+            Manager.Instance.UIAndScene.ChangeShortCutValue(shortCut.KeyValue);
 
             shortCut.SetPrevText();
         }

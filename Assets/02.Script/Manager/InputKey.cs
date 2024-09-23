@@ -62,7 +62,6 @@ public class InputKey : MonoBehaviour
 
     public KeyCode GetKeyCode(string keyString)
     {
-        //return inputKeys[keyString];
         if (inputKeys.TryGetValue(keyString, out KeyCode keyCode))
         {
             return keyCode;

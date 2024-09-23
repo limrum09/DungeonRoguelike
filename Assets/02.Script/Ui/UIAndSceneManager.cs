@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UIAndSceneManager : MonoBehaviour
 {
-    public static UIAndSceneManager instance;
-
     public delegate void ChangeEquipmentEvent();
     public delegate void onSelectQuestListHandler(Quest quest);
     public delegate void QuestUISucessChangeHandler(Quest quest);
@@ -34,28 +32,20 @@ public class UIAndSceneManager : MonoBehaviour
 
     public InventoryButton InventoryUI => invenUI;
     public ShortKeyManager ShortCutBox => shortCutBox;
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject); 
-        }
-    }
 
-    private void Start()
+    public void UIAndSceneManagerStart()
     {
         this.gameObject.GetComponent<ViewAndHideUIPanels>().ViewAndHideUIStart();
         
         invenUI.InvenToryStart();
         npcTalkUIController.NPCTalkControllerStart();
-        settingUI.SettingControllerStart();
+        
         skillUI.SkillUIInitialized();
+    }
+
+    public void LoadSettingUIData()
+    {
+        settingUI.SettingControllerStart();
     }
 
     public void ChangeEquipment(WeaponItem item) => Manager.Instance.Game.PlayerWeaponChange(item);

@@ -29,7 +29,7 @@ public class InvenData : MonoBehaviour
 
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
 
-        invenButton = UIAndSceneManager.instance.InventoryUI;
+        invenButton = Manager.Instance.UIAndScene.InventoryUI;
         invenContent = invenButton.Content;
 
         // 처음 시작
