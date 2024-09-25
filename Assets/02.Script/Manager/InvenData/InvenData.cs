@@ -141,6 +141,7 @@ public class InvenData : MonoBehaviour
                 {
                     invenSlots[i].itemCnt++;
                     RefreshInvenSlot(i);
+                    Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlots[i].ItemCode);
                     return;
                 }
             }
@@ -155,6 +156,7 @@ public class InvenData : MonoBehaviour
             invenSlots[nullSlotIndex] = newItem;
             invenSlots[nullSlotIndex].itemCnt = 1;
             RefreshInvenSlot(nullSlotIndex);
+            Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlots[nullSlotIndex].ItemCode);
 
             // 인벤토리가 정렬 중 일시 정렬
             if (invenButton.isSorting)
@@ -186,6 +188,7 @@ public class InvenData : MonoBehaviour
         }
     }
 
+    // 인벤슬롯 불러오기
     private void CallInvenSlot(int length)
     {        
         for (int i = 0; i < length; i++)
@@ -276,21 +279,13 @@ public class InvenData : MonoBehaviour
 
     public void UsingInvenItem(InvenItem item)
     {
-        for(int i =0; i < invenSlots.Count; i++)
+        for(int i = 0; i < invenSlots.Count; i++)
         {
             if(invenSlots[i] != null)
             {
                 if (invenSlots[i].itemName == item.itemName)
                 {
-                    invenSlots[i].itemCnt--;
-
-                    if (invenSlots[i].itemCnt <= 0)
-                    {
-                        invenSlots[i] = null;
-                    }
-
-                    RefreshInvenSlot(i);
-
+                    UsingInvenItem(i);
                     break;
                 }
             }            
@@ -309,6 +304,8 @@ public class InvenData : MonoBehaviour
                     return;
 
                 invenSlots[index].itemCnt--;
+
+                Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlot.ItemCode);
 
                 if (invenSlots[index].itemCnt <= 0)
                 {

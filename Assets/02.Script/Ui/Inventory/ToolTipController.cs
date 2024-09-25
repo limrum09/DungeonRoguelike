@@ -29,16 +29,16 @@ public class ToolTipController : MonoBehaviour
         {
             HideTooltip();
         }
-        else if (item != null && item.itemName == "")
+        else if (item != null && item.ItemName == "")
         {
             HideTooltip();
         }
         else if (item != null)
         {
             tooltipBackGround.SetActive(true);
-            itemTooltipImage.sprite = item.itemImage.sprite;
-            itemTooltipName.text = item.itemName;
-            itemTooltipInfo.text = item.itemInfomation;
+            itemTooltipImage.sprite = item.ItemImage.sprite;
+            itemTooltipName.text = item.ItemName;
+            itemTooltipInfo.text = item.ItemInformation;
         }
     }
 

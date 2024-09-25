@@ -53,8 +53,13 @@ public class GameManager : MonoBehaviour
             
 
         playerSaveStatus.FirstStart();
-        invenData.InvenDataStart();
+        
         ChangeExpBar();
+    }
+
+    public void AfterUIStartInGamemanager()
+    {
+        invenData.InvenDataStart();
     }
 
     private GameObject PlayerRespawnInRespawnPoint()

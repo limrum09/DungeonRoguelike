@@ -29,8 +29,6 @@ public class SaveDatabase : MonoBehaviour
     [SerializeField]
     private QuestDatabase achievementDatabase;
 
-    private float saveCool;
-
     public void DataSaving()
     {
         SaveData("SaveFile");
@@ -48,8 +46,6 @@ public class SaveDatabase : MonoBehaviour
         playerSaveStatus = manager.Game.PlayerCurrentStatus;
         invenSlots = manager.Game.InvenDatas.invenSlots;
         shortKey = manager.Key;
-
-        saveCool = 0f;
 
         LoadData("SaveFile");
     }

@@ -11,11 +11,18 @@ public class InvenSlot : MonoBehaviour
     private InvenItem currentItem;
 
     [Header("Item Info")]
-    public ITEMTYPE itemType;
-    public string itemName;
-    public int itemCnt;
-    public Image itemImage;
-    public string itemInfomation;
+    [SerializeField]
+    private ITEMTYPE itemType;
+    [SerializeField]
+    private string itemCode;
+    [SerializeField]
+    private string itemName;
+    [SerializeField]
+    private int itemCnt;
+    [SerializeField]
+    private Image itemImage;
+    [SerializeField]
+    private string itemInformation;
 
     [Header("Slot Object")]
     [SerializeField]
@@ -24,6 +31,12 @@ public class InvenSlot : MonoBehaviour
     private TextMeshProUGUI itemCntText;
 
     public InvenItem CurrentItem => currentItem;
+    public ITEMTYPE ItemType => itemType;
+    public string ItemCode => itemCode;
+    public string ItemName => itemName;
+    public int ItemCnt => itemCnt;
+    public Image ItemImage => itemImage;
+    public string ItemInformation => itemInformation;
 
     private bool isCntView;
     private bool isView;
@@ -45,10 +58,11 @@ public class InvenSlot : MonoBehaviour
         {
             currentItem = item;
             itemType = item.itemtype;
+            itemCode = item.ItemCode;
             itemName = item.itemName;
             itemCnt = item.itemCnt;
             itemImage.sprite = item.itemImage;
-            itemInfomation = item.itemInfo;
+            itemInformation = item.itemInfo;
 
             if (item.ItemAmount == 1) isCntView = false;
             else isCntView = true;
@@ -65,10 +79,11 @@ public class InvenSlot : MonoBehaviour
     {
         currentItem = null;
         itemType = ITEMTYPE.All;
+        itemCode = "";
         itemName = "";
         itemCnt = 0;
         itemImage.sprite = null;
-        itemInfomation = "";
+        itemInformation = "";
         RefreshSlot();
     }
      

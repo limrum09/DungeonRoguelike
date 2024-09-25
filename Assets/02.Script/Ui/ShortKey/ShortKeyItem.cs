@@ -61,7 +61,6 @@ public class ShortKeyItem : MonoBehaviour
             {
                 if (item != null)
                 {
-                    itemCnt.text = ItemCount().ToString();
                     UseItem();
                 }                    
                 else if (skill != null)
@@ -152,6 +151,11 @@ public class ShortKeyItem : MonoBehaviour
         viewPort.SetActive(false);
     }
 
+    public void RefreshItemCnt()
+    {
+        itemCnt.text = ItemCount().ToString();
+    }
+
     private void Viewskill(ActiveSkill activeSkill)
     {
         skillImgeSlot.gameObject.SetActive(true);
@@ -189,8 +193,6 @@ public class ShortKeyItem : MonoBehaviour
     private void UseItem()
     {
         InvenData.instance.UsingInvenItem(item);
-
-        itemCnt.text = ItemCount().ToString();
     }
 
     private int ItemCount()

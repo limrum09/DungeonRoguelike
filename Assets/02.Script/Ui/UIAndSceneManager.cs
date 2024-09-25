@@ -36,7 +36,8 @@ public class UIAndSceneManager : MonoBehaviour
     public void UIAndSceneManagerStart()
     {
         this.gameObject.GetComponent<ViewAndHideUIPanels>().ViewAndHideUIStart();
-        
+
+        Manager.Instance.Game.AfterUIStartInGamemanager();
         invenUI.InvenToryStart();
         npcTalkUIController.NPCTalkControllerStart();
         
