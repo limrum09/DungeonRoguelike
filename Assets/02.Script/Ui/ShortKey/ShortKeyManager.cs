@@ -29,10 +29,8 @@ public class ShortKeyManager : MonoBehaviour
                 else if (!loadShortCut[i].isItem && loadShortCut[i].skill != null)
                 {
                     shortKeys[i].RegisterInput(loadShortCut[i].skill);
-                }
-                
+                }   
             }
-
         }
     }
 
@@ -45,6 +43,19 @@ public class ShortKeyManager : MonoBehaviour
             {
                 child.SetShoryKey(keyString);
             }
+        }
+    }
+
+    public void CheckUsingShortKeyItem(string itemCode)
+    {
+        foreach(var key in shortKeys)
+        {
+            if (key.GetItem() != null)
+                if(key.GetItem().ItemCode == itemCode)
+                {
+                    key.RefreshItemCnt();
+                    break;
+                }                    
         }
     }
 

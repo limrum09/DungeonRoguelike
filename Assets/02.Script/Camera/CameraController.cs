@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private Camera camera;
+    private Camera viewCamera;
     [SerializeField]
     private List<CinemachineVirtualCamera> virtualCamearas;
 
@@ -16,12 +16,11 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     [Range(5, 15)] private float minDistance;
     [SerializeField]
-    [Range(16, 30)] private float maxDistance;
-
+    [Range(16, 40)] private float maxDistance;
 
     private Transform target;
 
-    public Camera CurrentCamera => camera;
+    public Camera CurrentCamera => viewCamera;
     public void CameraStart()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;

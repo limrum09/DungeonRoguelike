@@ -9,7 +9,7 @@ public class RespawnController : MonoBehaviour
     [SerializeField]
     private float respawnTime;
     [SerializeField]
-    private BoxCollider collider;
+    private BoxCollider boxCollider;
 
     private void Start()
     {
@@ -19,6 +19,7 @@ public class RespawnController : MonoBehaviour
         for (int i = 0; i < respaenPoints.Count; i++)
             if(respaenPoints[i] != null) 
                 respaenPoints[i].RespawnPointStart();
+
         StartCoroutine(RespawnObejct());
     }
 
@@ -27,6 +28,7 @@ public class RespawnController : MonoBehaviour
         StopCoroutine(RespawnObejct());
     }
 
+    // 일정 시간(respawnTime)마다 자동으로 CheckInArea실행
     IEnumerator RespawnObejct()
     {
         while (true)
@@ -41,9 +43,10 @@ public class RespawnController : MonoBehaviour
         }
     }
 
+    // 일정 지역안에 몬스터의 개수를 새아려서 리스폰하기
     private void CheckInArea(RespawnPoint point)
     {
-        if (collider.bounds.Contains(point.RespawnArea.bounds.min) && collider.bounds.Contains(point.RespawnArea.bounds.max))
+        if (boxCollider.bounds.Contains(point.RespawnArea.bounds.min) && boxCollider.bounds.Contains(point.RespawnArea.bounds.max))
             point.RespawnObject();
     }
 }

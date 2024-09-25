@@ -22,7 +22,7 @@ public class InventoryButton : MonoBehaviour
         foreach(Transform child in content.transform)
         {
             InvenSlot childInvenSlot = child.GetComponent<InvenSlot>();
-            if (childInvenSlot.itemType == ITEMTYPE.POTION)
+            if (childInvenSlot.ItemType == ITEMTYPE.POTION)
             {
                 childInvenSlot.gameObject.SetActive(true);
             }
@@ -40,7 +40,7 @@ public class InventoryButton : MonoBehaviour
         foreach (Transform child in content.transform)
         {
             InvenSlot childInvenSlot = child.GetComponent<InvenSlot>();
-            if (childInvenSlot.itemType == ITEMTYPE.ETC)
+            if (childInvenSlot.ItemType == ITEMTYPE.ETC)
             {
                 childInvenSlot.gameObject.SetActive(true);
             }

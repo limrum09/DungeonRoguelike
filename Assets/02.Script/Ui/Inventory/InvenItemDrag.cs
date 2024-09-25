@@ -34,13 +34,17 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         // When player clicked InvenSlot, save the InvenSlot in the mouse pointer position to the GameObject
         var clickUI = eventData.pointerEnter;
 
+        Debug.Log("Pointer Down Item : " + clickUI.gameObject.name);
+
         // if clickUI has InvenSlot componenet, clickInven has clickUI's InvenSlot
         if (clickUI != null && clickUI.GetComponent<InvenSlot>())
         {
             clickInven = clickUI.GetComponent<InvenSlot>();
+            Debug.Log("Click Inven : " + clickInven.name);
         }
         else
         {
+            Debug.Log("Don't have InvenSlot.cs");
             clickInven = null;
         }
 
@@ -50,15 +54,15 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             dragStartIndex = FindIndex(clickInven);
 
             DoubleClick();
-            if (isDoubleClick && clickInven.itemType == ITEMTYPE.POTION)
+            if (isDoubleClick && clickInven.ItemType == ITEMTYPE.POTION)
             {
                 InvenData.instance.UsingInvenItem(dragStartIndex);
             }
 
-            Debug.Log("Current Item Count : " + clickInven.itemCnt);
+            Debug.Log("Current Item Count : " + clickInven.ItemCnt);
             icon.SetActive(true);
             itemIcon.transform.position = Input.mousePosition;
-            iconImage.sprite = clickInven.itemImage.sprite;
+            iconImage.sprite = clickInven.ItemImage.sprite;
             
             
             isDrag = true;
@@ -66,6 +70,10 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         else if(clickInven == null)
         {
             Debug.Log("InvenSlot doesn't have InvenSlot.cs");
+        }
+        else
+        {
+            Debug.Log("Error");
         }
     }
 
@@ -104,7 +112,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         // input item for shortkey location
         ShortKeyItem shortKey;
-        if (dragEndUI.GetComponent<ShortKeyItem>() && clickInven.itemType == ITEMTYPE.POTION)
+        if (dragEndUI.GetComponent<ShortKeyItem>() && clickInven.ItemType == ITEMTYPE.POTION)
         {
             shortKey = dragEndUI.GetComponent<ShortKeyItem>();
         }

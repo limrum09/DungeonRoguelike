@@ -82,27 +82,20 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
         {
             GameObject invenSlotUI = onUI.gameObject;
             invenItem = invenSlotUI.GetComponent<InvenSlot>();
-
-            Debug.Log("인벤 아이템 : " + invenItem);
-            tooltipController.ViewItemTooltip(invenItem);
-
-            Vector2 tooltipPos = new Vector2(invenSlotUI.transform.position.x + invenSlotUI.GetComponent<RectTransform>().rect.width / 2 + 10f, invenSlotUI.transform.position.y);
-            tooltip.transform.position = tooltipPos;
             
+            tooltipController.ViewItemTooltip(invenItem);
+            Vector2 tooltipPos = new Vector2(invenSlotUI.transform.position.x + 480f, invenSlotUI.transform.position.y - 125f);
+            tooltip.transform.position = tooltipPos;
         }
         else
         {
             invenItem = null;
         }
 
-        if (invenItem != null && string.IsNullOrEmpty(invenItem.itemName))
+        if (invenItem != null && string.IsNullOrEmpty(invenItem.ItemName))
         {
             invenItem = null;
         }
-
-        
-        /*Vector2 eventPos = new Vector2(eventData.position.x + 240f, eventData.position.y - 100f);
-        tooltip.transform.position = eventPos;*/
     }
 
     public void OnPointerUp(PointerEventData eventData)

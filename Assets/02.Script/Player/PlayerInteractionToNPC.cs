@@ -39,7 +39,7 @@ public class PlayerInteractionToNPC : MonoBehaviour
             catch(NullReferenceException e)
             {
                 npc = null;
-                Debug.Log("This npc have not 'NPCQuestController' component");
+                Debug.Log("This npc have not 'NPCQuestController' component " + e);
             }
             
             if(npc != null)
