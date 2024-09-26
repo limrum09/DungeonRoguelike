@@ -195,6 +195,7 @@ public class ShortKeyItem : MonoBehaviour
         InvenData.instance.UsingInvenItem(item);
     }
 
+    // 인벤토리에 있는 해당하는 전체 아이템의 개수
     private int ItemCount()
     {
         int count = 0;

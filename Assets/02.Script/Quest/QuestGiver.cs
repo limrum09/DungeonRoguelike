@@ -11,7 +11,7 @@ public class QuestGiver : MonoBehaviour
     {
         foreach(var quest in quests)
         {
-            QuestSystem.instance.QuestSystemRegister(quest);
+            Manager.Instance.Quest.QuestSystemRegister(quest);
         }
     }
 }

@@ -14,7 +14,7 @@ public class QuestListViewController : MonoBehaviour
     public GameObject Content => content;
     public void ListViewStart()
     {
-        var questSystem = QuestSystem.instance;
+        var questSystem = Manager.Instance.Quest;
 
         foreach(var quest in questSystem.ActiveQeusts)
         {
@@ -36,7 +36,7 @@ public class QuestListViewController : MonoBehaviour
 
     private void OnDestroy()
     {
-        var questSystem = QuestSystem.instance;
+        var questSystem = Manager.Instance.Quest;
 
         if (questSystem)
         {

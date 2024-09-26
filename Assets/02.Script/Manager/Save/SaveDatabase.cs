@@ -75,7 +75,7 @@ public class SaveDatabase : MonoBehaviour
 
         saveData.playerSaveStatus = playerSaveStatus.GetPlayerSaveStatus();
 
-        var questSystem = QuestSystem.instance;
+        var questSystem = Manager.Instance.Quest;
 
         foreach (var activeQuest in questSystem.ActiveQeusts)
         {
@@ -186,13 +186,13 @@ public class SaveDatabase : MonoBehaviour
             foreach(var activeQuest in saveData.activeQuestSaveData)
             {
                 Quest newActiveQuest = questDatabase.FindQuestBy(activeQuest.questCode);
-                QuestSystem.instance.LoadActiveQuest(activeQuest, newActiveQuest);
+                Manager.Instance.Quest.LoadActiveQuest(activeQuest, newActiveQuest);
             }
 
             foreach (var completedQuest in saveData.completedQuestSaveData)
             {
                 Quest newCompletedQuest = questDatabase.FindQuestBy(completedQuest.questCode);
-                QuestSystem.instance.LoadCompletedQuest(completedQuest, newCompletedQuest);
+                Manager.Instance.Quest.LoadCompletedQuest(completedQuest, newCompletedQuest);
             }
 
             

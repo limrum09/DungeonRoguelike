@@ -40,7 +40,7 @@ public class NPCSelectQuest : MonoBehaviour
         questTitle.text = thisQuest.DisplayName;
 
         // QuestSystem에서 현제 퀘스트가 activeQuest인지 확인하기
-        activeQuest = QuestSystem.instance.GetActiveQuest(thisQuest);
+        activeQuest = Manager.Instance.Quest.GetActiveQuest(thisQuest);
 
         if(activeQuest != null)
         {
@@ -77,7 +77,7 @@ public class NPCSelectQuest : MonoBehaviour
         {
             if (activeQuest.State == QuestState.WaitingForCompletion)
             {
-                QuestSystem.instance.CompletedWaitingQuest(activeQuest);
+                Manager.Instance.Quest.CompletedWaitingQuest(activeQuest);
             }                
         }
     }
