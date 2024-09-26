@@ -25,7 +25,7 @@ public class QuestReport : MonoBehaviour
 
     public void ReportToQuest()
     {
-        QuestSystem.instance.QuestSystemRecieveReport(category, target, successCount);
+        Manager.Instance.Quest.QuestSystemRecieveReport(category, target, successCount);
     }
 
     private void ReportIfPassCondition(Component component)

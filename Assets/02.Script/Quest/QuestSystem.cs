@@ -10,7 +10,7 @@ public class QuestSystem : MonoBehaviour
     public delegate void QuestCanceledHandler(Quest quest);
 
 
-    public static QuestSystem instance;
+/*    public static QuestSystem instance;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class QuestSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
     [SerializeField]
     private List<Quest> activeQuests = new List<Quest>();

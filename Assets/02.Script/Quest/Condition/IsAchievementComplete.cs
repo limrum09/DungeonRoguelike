@@ -9,6 +9,6 @@ public class IsAchievementComplete : QuestCondition
     private Quest target;
     public override bool IsPass(Quest quest)
     {
-        return QuestSystem.instance.ContainsCompletedAchievements(target);
+        return Manager.Instance.Quest.ContainsCompletedAchievements(target);
     }
 }

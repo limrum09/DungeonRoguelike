@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693746984242747319}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.0900269, y: 1.9586792, z: -0.24767227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8816974dbb47d9f4992a04704473e9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questSystem: {fileID: 4966069691751810084, guid: 2e57d897ea15c56458bf077d634b2b6e, type: 3}
   saveManager: {fileID: 7868913870933743797, guid: e34cebef4e14ef340bdd27c0223a1ac2, type: 3}
   soundManager: {fileID: 5624127034649162256, guid: 6850dc25a5fccb1439414013871192ba, type: 3}
   inputKey: {fileID: 8983265941710964075, guid: 985b048288777b64b9f2df0a889a31cb, type: 3}

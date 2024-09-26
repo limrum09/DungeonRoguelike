@@ -144,7 +144,7 @@ public class NPCTalkUIController : MonoBehaviour
 
             Quest acceptionQuest = selectQuest.Quest;                   // 선택한 퀘스트
 
-            QuestSystem.instance.QuestSystemRegister(acceptionQuest);   // QuestSystem에 퀘스트를 시작하도록 추가
+            Manager.Instance.Quest.QuestSystemRegister(acceptionQuest);   // QuestSystem에 퀘스트를 시작하도록 추가
 
             NPCQUestScenarioTalkToPlayer();
         }        

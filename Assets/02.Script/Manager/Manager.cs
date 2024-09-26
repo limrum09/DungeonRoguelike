@@ -7,6 +7,8 @@ public class Manager : MonoBehaviour
     public static Manager Instance;
 
     [SerializeField]
+    private QuestSystem questSystem;
+    [SerializeField]
     private SaveDatabase saveManager;
     [SerializeField]
     private SoundManager soundManager;
@@ -20,6 +22,7 @@ public class Manager : MonoBehaviour
     [SerializeField]
     private UIAndSceneManager uiAndSceneManager;
 
+    public QuestSystem Quest => questSystem;
     public GameManager Game => gameManager;
     public SoundManager Sound => soundManager;
     public InputKey Key => inputKey;
@@ -50,6 +53,8 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        questSystem = Instantiate(questSystem, this.transform);
+
         gameManager = Instantiate(gameManager, this.transform);
         gameManager.GameManagerStart();
 
