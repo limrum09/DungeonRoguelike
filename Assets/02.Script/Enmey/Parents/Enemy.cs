@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
     protected Transform player;
     [SerializeField]
     protected Transform spawnPosition;

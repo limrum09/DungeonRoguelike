@@ -12,12 +12,6 @@ public class Golem : Enemy
         golemStatus = GetComponent<GolemStatus>();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void EnemyMove()
     {
         nmAgent.speed = golemStatus.WalkSpeed;

@@ -11,12 +11,6 @@ public class Orc : Enemy
         base.Start();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void EnemyMove()
     {
         nmAgent.speed = orcStatus.WalkSpeed;

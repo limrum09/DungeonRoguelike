@@ -11,12 +11,6 @@ public class Dragon : Enemy
         dragonStatus = GetComponent<DragonStatus>();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void EnemyMove()
     {
         nmAgent.speed = dragonStatus.WalkSpeed;
