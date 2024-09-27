@@ -6,16 +6,6 @@ public class Slime : Enemy
 {
     [SerializeField]
     private SlimeStatus slimeStatus;
-    protected override void Start()
-    {
-        base.Start();
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
 
     protected override void EnemyMove()
     {

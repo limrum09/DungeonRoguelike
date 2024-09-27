@@ -11,12 +11,6 @@ public class TurtleShell : Enemy
         turtleShellStatus = GetComponent<TurtleShellStatus>();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void EnemyMove()
     {
         nmAgent.speed = turtleShellStatus.WalkSpeed;

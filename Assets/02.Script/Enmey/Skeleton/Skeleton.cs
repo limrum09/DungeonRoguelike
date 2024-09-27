@@ -11,12 +11,6 @@ public class Skeleton : Enemy
         skeletonStatus = GetComponent<SkeletonStatus>();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void EnemyMove()
     {
         nmAgent.speed = skeletonStatus.WalkSpeed;

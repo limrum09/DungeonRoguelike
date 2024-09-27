@@ -6,29 +6,51 @@ public class BossEnemy : Enemy
 {
     [Header("Child")]
     [SerializeField]
+    private LayerMask playerLayer;
+    [SerializeField]
     private BossEffect bossEffectPosController;
     [SerializeField]
     private List<ActiveSkill> phase2Skills;
     [SerializeField]
     private List<ActiveSkill> phase3Skills;
 
+    private RaycastHit playerHit;
     private int currnetPhase;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         base.Start();
         currnetPhase = 2;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
-    private void RandomSelectActiveSkill()
+    protected override void EnemyMove()
     {
-        
+        base.EnemyMove();
+        animator.SetBool("Walk", true);
+
+        Debug.DrawRay(this.transform.position, Vector3.forward * 100f, Color.red);
+        if(Physics.Raycast(this.transform.position, Vector3.forward, out playerHit, 100f, playerLayer))
+        {
+            Debug.Log("레이 케스트에 플레어이 감지됨");
+        }
+        else
+        {
+            Debug.Log("감지 않됨");
+        }
+    }
+
+    protected override void Attackanimation()
+    {
+        base.Attackanimation();
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
+        nmAgent.speed = 7.0f;
     }
 
     public void ChangeBossPhase(int phase)
@@ -60,5 +82,16 @@ public class BossEnemy : Enemy
     private void PlaySelectSkillAnimation(string skillName)
     {
         animator.Play(skillName);
+    }
+
+    private void RandomSelectActiveSkill()
+    {
+
+    }
+
+    private void BossRun()
+    {
+        nmAgent.speed = 10.0f;
+        animator.SetBool("Run", true);
     }
 }

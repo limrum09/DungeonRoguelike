@@ -11,12 +11,6 @@ public class MonsterPlant : Enemy
         monsterPlantStatus = GetComponent<MonsterPlantStatus>();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void EnemyMove()
     {
         nmAgent.speed = monsterPlantStatus.WalkSpeed;

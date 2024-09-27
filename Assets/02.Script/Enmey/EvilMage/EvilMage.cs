@@ -11,12 +11,6 @@ public class EvilMage : Enemy
         evilMageStatus = GetComponent<EvilMageStatus>();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void EnemyMove()
     {
         nmAgent.speed = evilMageStatus.WalkSpeed;
