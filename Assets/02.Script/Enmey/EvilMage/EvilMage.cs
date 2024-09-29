@@ -11,6 +11,16 @@ public class EvilMage : Enemy
         evilMageStatus = GetComponent<EvilMageStatus>();
     }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        if (!animator.GetBool("Die") && !hitEnemy)
+        {
+            LookPlayer();
+        }
+    }
+
     protected override void EnemyMove()
     {
         nmAgent.speed = evilMageStatus.WalkSpeed;
