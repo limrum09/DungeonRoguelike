@@ -53,6 +53,8 @@ public class ActiveSkill : ScriptableObject
     private SkillEffectPos skillEffectPos = SkillEffectPos.Body;
     [SerializeField]
     private float skillMaintenanceTime;
+    [SerializeField]
+    private float skillMoveTime = 0f;
 
     [Header("Info")]
     [SerializeField]
@@ -96,6 +98,7 @@ public class ActiveSkill : ScriptableObject
         }
     }
     public float SkillMaintenanceTime => skillMaintenanceTime;
+    public float SkillMoveTime => skillMoveTime;
 
     public Vector3 SkillPosition => skillPosition;
     public Vector3 SkillRotation => skillRotation;

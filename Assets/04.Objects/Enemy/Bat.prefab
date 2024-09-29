@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3343743128678810803}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 403, y: 17.85, z: 257}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,14 +32,13 @@ Transform:
   - {fileID: 2698262307912758118}
   - {fileID: 2319503640082849265}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &108306641890857289
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 8505008262211760223}
     m_Modifications:
     - target: {fileID: 89313639, guid: 504bdf754a7f85e438adb53d4207f9f1, type: 3}
@@ -48,10 +48,6 @@ PrefabInstance:
     - target: {fileID: 2427510655388143768, guid: 504bdf754a7f85e438adb53d4207f9f1, type: 3}
       propertyPath: m_Name
       value: BatPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 2427510655388306616, guid: 504bdf754a7f85e438adb53d4207f9f1, type: 3}
-      propertyPath: m_RootOrder
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2427510655388306616, guid: 504bdf754a7f85e438adb53d4207f9f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -94,7 +90,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504bdf754a7f85e438adb53d4207f9f1, type: 3}
 --- !u!114 &108306641843814446 stripped
 MonoBehaviour:
@@ -117,17 +115,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 8505008262211760223}
     m_Modifications:
     - target: {fileID: -1544243950751123673, guid: 61a37fd88fce5cb4e99ee95aecd4a1ca, type: 3}
       propertyPath: enemy
       value: 
       objectReference: {fileID: 108306641843814446}
-    - target: {fileID: 2800485981587539385, guid: 61a37fd88fce5cb4e99ee95aecd4a1ca, type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 2800485981587539385, guid: 61a37fd88fce5cb4e99ee95aecd4a1ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -173,7 +167,9 @@ PrefabInstance:
       value: SpawnPosition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61a37fd88fce5cb4e99ee95aecd4a1ca, type: 3}
 --- !u!4 &2698262307912758118 stripped
 Transform:
