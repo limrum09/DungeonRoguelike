@@ -15,12 +15,17 @@ MonoBehaviour:
   skillCode: DownToUp_1
   skillLevel: 1
   maxLevel: 5
-  canMove: 0
+  canMove: 1
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
-  skillMoveRnage: 0
+  skillRotation: {x: 0, y: 0, z: 0}
+  skillMoveRange: 0
   skillDamageRange: {x: 0, y: 0, z: 0}
+  skillEffect: {fileID: 0}
+  skillEffectPos: 0
+  skillMaintenanceTime: 0
+  skillMoveTime: 0
   skillName: "\uAC15\uD0C0(\uD55C\uC190\uAC80)"
   weapon: 1
   animationName: OneHand_DowntoUp
