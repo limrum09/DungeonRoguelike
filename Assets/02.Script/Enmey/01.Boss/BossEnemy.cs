@@ -48,15 +48,14 @@ public class BossEnemy : Enemy
     {
         base.Update();
 
+        // 스킬 사용 중 위치를 이동하는 경우 실행
         if(movingSkill && !arrivedAtTarget && moveToTarget)
         {
             nmAgent.speed = skillMoveSpeed; // 필요한 속도 설정
-            Debug.Log("보스 위치 : " + this.transform.position);
-            Debug.Log("스킬 이동 속도 : " + skillMoveSpeed + ", 타겟 위치 : " + skillAttackTarget + ", Player 위치 : " + target.position);
             // nmAgent.SetDestination(skillAttackTarget);
 
-            //Vector3.MoveTowards(transform.position, skillAttackTarget, skillMoveSpeed * Time.deltaTime);
-            Vector3.Lerp(transform.position, skillAttackTarget, 0.1f);
+            Vector3.MoveTowards(transform.position, skillAttackTarget, skillMoveSpeed * Time.deltaTime * 3);
+            //Vector3.Lerp(transform.position, skillAttackTarget, 0.1f);
 
             CheckArrivedToTarget();
         }
@@ -64,13 +63,18 @@ public class BossEnemy : Enemy
 
     protected override void EnemyMove()
     {
+        // 보스가 스킬을 사용할 경우 움직일 수 없음
         if (!BossMoving)
             return;
         base.EnemyMove();
+
+        // 달리는 로직 개선 필요
         animator.SetBool("Walk", true);
 
+        // 플레어이와의 거리
         float distanceToPlayer = Vector3.Distance(this.transform.position, target.transform.position);
 
+        // 보스가 플레이어와 일정거리 떨어져 있을 경우 달린다
         if (distanceToPlayer >= 30f)
         {
             Invoke("BossRun", 3f);
@@ -89,11 +93,13 @@ public class BossEnemy : Enemy
         nmAgent.speed = 1.0f;
     }
 
+    // 페이즈 교체
     public void ChangeBossPhase(int phase)
     {
         currnetPhase = phase;
     }
 
+    // 임시, 삭제 필요
     public void TempActiveSkillButton(string skillCode)
     {
         List<ActiveSkill> selectList = null;
@@ -109,7 +115,6 @@ public class BossEnemy : Enemy
             {
                 PlaySelectSkillAnimation(skill.AnimationName);
                 bossEffectPosController.PlayBossEffect(skill);
-                Debug.Log("스킬 : " + skill.AnimationName + " 실행");
                 break;
             }
         }
@@ -120,6 +125,7 @@ public class BossEnemy : Enemy
         animator.Play(skillName);
     }
 
+    #region Aniamtion Event
     public void StartPlayingSkill()
     {
         BossMoving = false;
@@ -138,13 +144,13 @@ public class BossEnemy : Enemy
     {
         moveToTarget = false;
         skillAttackTarget = this.transform.position;
-        nmAgent.speed = 1.0f;
-        Debug.Log("---------------------------");
+        nmAgent.speed = 7.0f;
     }
+    #endregion
 
     private void BossRun()
     {
-        nmAgent.speed = 1.0f;
+        nmAgent.speed = 14.0f;
         animator.SetBool("Walk", false);
         animator.SetBool("Run", true);
     }
@@ -156,6 +162,7 @@ public class BossEnemy : Enemy
         animator.SetBool("Run", false);
     }
 
+    // 스킬 사용 시, 타켓에 도착했는지 확인
     private void CheckArrivedToTarget()
     {
         // 도착 판단 거리 임계값
@@ -167,6 +174,7 @@ public class BossEnemy : Enemy
         }
     }
 
+    // 도착 햇을 경우
     private void OnArrival()
     {
         movingSkill = false;
@@ -174,6 +182,7 @@ public class BossEnemy : Enemy
         nmAgent.ResetPath();
     }
 
+    // 랜덤 스킬 사용 코루틴
     private IEnumerator RandomActiveSkill()
     {
         while (true)
@@ -183,6 +192,7 @@ public class BossEnemy : Enemy
                 selectActionSkill = false;
                 List<ActiveSkill> selectList = null;
 
+                // 현제 페이즈에 따른 스킬 선택
                 if (currnetPhase == 1)
                     selectList = phase1Skills;
                 else if (currnetPhase == 2)
@@ -190,46 +200,53 @@ public class BossEnemy : Enemy
                 else if (currnetPhase == 3)
                     selectList = phase3Skills;
 
-                Debug.Log("스킬 사용 판단, 현제 페이즈 : " + currnetPhase);
+                // 스킬 발동 확율
                 if (Random.Range(0, 9) <= 7)
                 {
                     ActiveSkill randomSkill = null;
-
-                    Debug.Log("현제 페이즈 스킬 개수 : " + selectList.Count);
-
+                    
+                    // 스킬의 개수가 0이 아니면 스킬을 선택
                     if (selectList.Count == 0)
                         break;
                     else if (selectList.Count == 1)
                         randomSkill = selectList[0];
                     else if (selectList.Count >= 2)
-                        randomSkill = selectList[Random.Range(0, selectList.Count - 1)];
+                        randomSkill = selectList[Random.Range(0, selectList.Count)];
 
-                    Debug.Log("스킬 검색 완료 : " + randomSkill.name);
-
+                    // 사용할 스킬이 있다면 스킬 사용
                     if (randomSkill != null)
                     {
-                        Debug.Log("스킬 사용");
+                        // 에니메이션
                         PlaySelectSkillAnimation(randomSkill.AnimationName);
+
+                        //이펙트
                         bossEffectPosController.PlayBossEffect(randomSkill);
 
+                        // 스킬 사용 여부 확인
+                        selectActionSkill = true;
+
+                        // 스킬 사용 중 움직이 수 있는지 확인
                         movingSkill = randomSkill.CanMove;
                         skillMoveTimeToTarget = randomSkill.SkillMoveTime;
-                        selectActionSkill = true;   
                     }   
                 }
 
+                // 스킬이 선택되고, 움직이는 스킬일 경우
                 if (selectActionSkill && movingSkill)
                 {
-                    Debug.Log("스킬 사용하면 몇번 작동함? ");
+                    // 타켓에 도착 했는지 유무 : false
                     arrivedAtTarget = false;
+
+                    // 타켓 위치 정의
                     Vector3 normalizedDirectionToTarget = (target.position - this.transform.position).normalized;
                     skillAttackTarget = target.position - (normalizedDirectionToTarget * (attackAreaRadius / 3));
 
+                    // '타켓과거 거리 / 소모하는 시간'으로 속도를 정함
                     float distanceToTarget = Vector3.Distance(transform.position, skillAttackTarget);
                     skillMoveSpeed = distanceToTarget / skillMoveTimeToTarget;
                 }
             }
-
+            // 일정 시간마다 반복
             yield return new WaitForSecondsRealtime(5f);
         }
     }

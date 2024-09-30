@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
+  m_Name: Skill_PowerUp
+  m_EditorClassIdentifier: 
+  skillCode: 
+  skillLevel: 0
+  maxLevel: 0
+  canMove: 0
+  skillBasicDamage: 0
+  skillLevelUpDamage: 0
+  skillPosition: {x: 0, y: 0, z: 0}
+  skillRotation: {x: 0, y: 0, z: 0}
+  skillMoveRange: 0
+  skillDamageRange: {x: 0, y: 0, z: 0}
+  skillEffect: {fileID: 0}
+  skillEffectPos: 0
+  skillMaintenanceTime: 0
+  skillMoveTime: 0
+  skillName: 
+  weapon: 0
+  animationName: 
+  icon: {fileID: 0}
+  skillInfo: 
+  needPlayerLevel: 0
+  conditions: []
+  skillCoolTime: 0
