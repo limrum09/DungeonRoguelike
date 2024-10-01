@@ -1594,6 +1594,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
+      propertyPath: phase2Skills.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
       propertyPath: phase1Skills.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: b443cf661c0eb864c981db020a16c558, type: 2}
@@ -1601,6 +1605,18 @@ PrefabInstance:
       propertyPath: phase1Skills.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: b443cf661c0eb864c981db020a16c558, type: 2}
+    - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
+      propertyPath: phase2Skills.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b443cf661c0eb864c981db020a16c558, type: 2}
+    - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
+      propertyPath: phase2Skills.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe20a577c93dfac4eae80515ba027bf5, type: 2}
+    - target: {fileID: 3130119400148997617, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
+      propertyPath: phase2Skills.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe20a577c93dfac4eae80515ba027bf5, type: 2}
     - target: {fileID: 3130119400685091536, guid: 502931e41a3933944a75b9cb87ba65ee, type: 3}
       propertyPath: m_Name
       value: Dongon1_Boss_DemonKing
