@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_PowerUp
   m_EditorClassIdentifier: 
-  skillCode: 
-  skillLevel: 0
-  maxLevel: 0
+  skillCode: Boss_Power_Up
+  skillLevel: 1
+  maxLevel: 1
   canMove: 0
   skillBasicDamage: 0
   skillLevelUpDamage: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   skillMoveTime: 0
   skillName: 
   weapon: 0
-  animationName: 
+  animationName: Boss_Power_Up
   icon: {fileID: 0}
   skillInfo: 
   needPlayerLevel: 0

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_OneHand_DownToUp
   m_EditorClassIdentifier: 
-  skillCode: DownToUp_1
+  skillCode: Boss_DownToUp_1
   skillLevel: 1
   maxLevel: 5
-  canMove: 1
+  canMove: 0
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}

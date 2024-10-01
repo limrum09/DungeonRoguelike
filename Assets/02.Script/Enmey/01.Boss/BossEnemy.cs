@@ -29,6 +29,7 @@ public class BossEnemy : Enemy
     private bool arrivedAtTarget;
 
     private bool moveToTarget;
+    private bool isWalk;
 
     private Vector3 skillAttackTarget;
     // Start is called before the first frame update
@@ -38,6 +39,7 @@ public class BossEnemy : Enemy
         currnetPhase = 2;
         BossMoving = true;
         moveToTarget = false;
+        isWalk = true;
 
         nmAgent.speed = 1.0f;
         StartCoroutine(RandomActiveSkill());
@@ -69,7 +71,8 @@ public class BossEnemy : Enemy
         base.EnemyMove();
 
         // 달리는 로직 개선 필요
-        animator.SetBool("Walk", true);
+        if(isWalk)
+            animator.SetBool("Walk", true);
 
         // 플레어이와의 거리
         float distanceToPlayer = Vector3.Distance(this.transform.position, target.transform.position);
@@ -150,6 +153,7 @@ public class BossEnemy : Enemy
 
     private void BossRun()
     {
+        isWalk = false;
         nmAgent.speed = 14.0f;
         animator.SetBool("Walk", false);
         animator.SetBool("Run", true);
@@ -157,6 +161,7 @@ public class BossEnemy : Enemy
 
     private void BossWalk()
     {
+        isWalk = true;
         nmAgent.speed = 1.0f;
         animator.SetBool("Walk", true);
         animator.SetBool("Run", false);
@@ -174,7 +179,7 @@ public class BossEnemy : Enemy
         }
     }
 
-    // 도착 햇을 경우
+    // 타겟에게 도착 했을 경우
     private void OnArrival()
     {
         movingSkill = false;
