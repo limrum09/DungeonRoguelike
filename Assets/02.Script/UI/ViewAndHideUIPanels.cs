@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ViewAndHideUIPanels : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ViewAndHideUIPanels : MonoBehaviour
     GameObject lobbyUI;
     [SerializeField]
     GameObject shortcutkeyUI;
+    [SerializeField]
+    GameObject profileUI;
     [SerializeField]
     GameObject inventoryUI;
     [SerializeField]
@@ -84,6 +87,26 @@ public class ViewAndHideUIPanels : MonoBehaviour
         }
     }
 
+    public void CheckCurrentScene() => CorrectUIForScene();
+
+    private void CorrectUIForScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if(sceneName == "Lobby")
+        {
+            lobbyUI.SetActive(true);
+            profileUI.SetActive(false);
+            shortcutkeyUI.SetActive(false);
+        }
+        else
+        {
+            lobbyUI.SetActive(false);
+            profileUI.SetActive(true);
+            shortcutkeyUI.SetActive(true);
+        }
+    }
+
     private void ToggleUI(GameObject ui, bool topView)
     {
         if (ui.activeSelf)
@@ -94,6 +117,33 @@ public class ViewAndHideUIPanels : MonoBehaviour
         {
             ViewUI(ui, topView);
         }
+    }
+
+    // GameUI에 SiblingLastIndex(제일 마지막에 실행한, 가장 앞에 보이는)인 UI를 넘겨준다.
+    private GameObject HideLastIndexUI()
+    {
+        GameObject lastUI = null;
+        int lastIndex = -999;
+
+        // GameUI List의 UI들의 정보
+        foreach (var ui in GameUI)
+        {
+            // UI가 켜져있다면 실행
+            if (ui.activeSelf)
+            {
+                // 부모 Object의 Index값 받기
+                int siblingIndex = ui.transform.parent.GetSiblingIndex();
+
+                // 가장 높은 Index값 정하기
+                if (siblingIndex > lastIndex)
+                {
+                    lastIndex = siblingIndex;
+                    lastUI = ui;
+                }
+            }
+        }
+
+        return lastUI;
     }
 
     // OptionUI에서 SettingUI를 실행
@@ -139,32 +189,5 @@ public class ViewAndHideUIPanels : MonoBehaviour
     public void OUTLobbyScene()
     {
         lobbyUI.SetActive(false);
-    }
-
-    // GameUI에 SiblingLastIndex(제일 마지막에 실행한, 가장 앞에 보이는)인 UI를 넘겨준다.
-    private GameObject HideLastIndexUI()
-    {
-        GameObject lastUI = null;
-        int lastIndex = -999;
-
-        // GameUI List의 UI들의 정보
-        foreach(var ui in GameUI)
-        {
-            // UI가 켜져있다면 실행
-            if (ui.activeSelf)
-            {
-                // 부모 Object의 Index값 받기
-                int siblingIndex = ui.transform.parent.GetSiblingIndex();
-
-                // 가장 높은 Index값 정하기
-                if(siblingIndex > lastIndex)
-                {
-                    lastIndex = siblingIndex;
-                    lastUI = ui;
-                }
-            }
-        }
-
-        return lastUI;
     }
 }

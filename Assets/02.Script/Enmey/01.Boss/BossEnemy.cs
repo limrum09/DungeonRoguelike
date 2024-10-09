@@ -53,6 +53,7 @@ public class BossEnemy : Enemy
         // 스킬 사용 중 위치를 이동하는 경우 실행
         if(movingSkill && !arrivedAtTarget && moveToTarget)
         {
+            Debug.Log("나... 달리니?");
             nmAgent.speed = skillMoveSpeed; // 필요한 속도 설정
             // nmAgent.SetDestination(skillAttackTarget);
 
@@ -69,6 +70,8 @@ public class BossEnemy : Enemy
         if (!BossMoving)
             return;
         base.EnemyMove();
+
+        Debug.Log("적 이동");
 
         // 달리는 로직 개선 필요
         if(isWalk)
@@ -131,10 +134,13 @@ public class BossEnemy : Enemy
     #region Aniamtion Event
     public void StartPlayingSkill()
     {
+        Debug.Log("보스 스킬 시작");
+        nmAgent.ResetPath();
         BossMoving = false;
     }
     public void EndPlayingSkill()
     {
+        Debug.Log("보스 스킬 종료");
         BossMoving = true;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIAndSceneManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class UIAndSceneManager : MonoBehaviour
     public delegate void onSelectQuestListHandler(Quest quest);
     public delegate void QuestUISucessChangeHandler(Quest quest);
 
+    [Header("InGame")]
+    [SerializeField]
+    private LobbyButtonManager lobbyUI;
     [SerializeField]
     private ShortKeyManager shortCutBox;
     [SerializeField]
@@ -15,7 +19,7 @@ public class UIAndSceneManager : MonoBehaviour
     [SerializeField]
     private StatusUIManager statusUI;
     [SerializeField]
-    private UIProfile uiProfile;
+    private UIProfile uIProfile;
     [SerializeField]
     private QuestViewUI questUI;
     [SerializeField]
@@ -27,11 +31,16 @@ public class UIAndSceneManager : MonoBehaviour
     [SerializeField]
     private UISkillController skillUI;
 
+    [Header("Other")]
+    [SerializeField]
+    private ViewAndHideUIPanels viewAndHideUIPanles;
+
     public ChangeEquipmentEvent onChangeEquipment;
     public event onSelectQuestListHandler onSelectQuestListView;
 
     public InventoryButton InventoryUI => invenUI;
     public ShortKeyManager ShortCutBox => shortCutBox;
+    public ViewAndHideUIPanels viewAndHide => viewAndHideUIPanles;
 
     public void UIAndSceneManagerStart()
     {
@@ -42,38 +51,51 @@ public class UIAndSceneManager : MonoBehaviour
         npcTalkUIController.NPCTalkControllerStart();
         
         skillUI.SkillUIInitialized();
+        lobbyUI.LobbyUIStart();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void LoadSettingUIData()
+    private void OnDestroy()
     {
-        settingUI.SettingControllerStart();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void ChangeEquipment(WeaponItem item) => Manager.Instance.Game.PlayerWeaponChange(item);
-    public void ChangeEquipment(ArmorItem item) => Manager.Instance.Game.PlayerArmorChange(item);
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("씬 로드 완료");
+        lobbyUI.LobbyUIActiveFalse();
+        viewAndHide.CheckCurrentScene();
+        Manager.Instance.Game.PlayerController.PlayerInRespawnPoint();
+    }
+
+    public void ChnageSelectScene(string sceneName)
+    {
+        Manager.Instance.Game.PlayerController.SceneChanging();
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void ChangeHPBar() 
     {
-        uiProfile.SetHPBar();
+        uIProfile.SetHPBar();
         statusUI.SetStatusUIText();
     }
     public void ChangeEXPBar()
     {
-        uiProfile.SetExpBar();
+        uIProfile.SetExpBar();
         statusUI.SetStatusUIText();
     }
 
     public void LevelUPUI()
     {
-        uiProfile.SetExpBar();
+        uIProfile.SetExpBar();
         statusUI.SetStatusUIText();
         statusUI.ViewAndHideStateButton();
     }
-
-    public void ChangeQuestDetailView(Quest quest)
-    {
-        onSelectQuestListView?.Invoke(quest);
-    }
-
+    public void LoadSettingUIData() => settingUI.SettingControllerStart();
+    public void ChangeEquipment(WeaponItem item) => Manager.Instance.Game.PlayerWeaponChange(item);
+    public void ChangeEquipment(ArmorItem item) => Manager.Instance.Game.PlayerArmorChange(item);
+    public void ChangeQuestDetailView(Quest quest) => onSelectQuestListView?.Invoke(quest);
     public void SelectSkill(ActiveSkill skill) => skillUI.SelectSkill(skill);
     public void SetTackerViewQuest(Quest quest, bool isOn) => questUI.SetTrackerViewQuest(quest, isOn);
     public void NPCQuestTalkWithPlayer(Scenario basicScenario, List<QuestAndScenario> questAndScenario, Sprite npcImage) => npcTalkUIController.GetQuestAndScenario(basicScenario ,questAndScenario, npcImage);

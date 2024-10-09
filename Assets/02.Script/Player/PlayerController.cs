@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     public Animator Ani => animator;
 
     private float preVelocityY;
+    private bool sceneChagne;
 
     // Start is called before the first frame update
     public void PlayerControllerStart()
@@ -71,20 +72,32 @@ public class PlayerController : MonoBehaviour
         PlayerInRespawnPoint();
         isMove = true;
         isCombo = false;
+        sceneChagne = false;
     }
+
+    public void SceneChanging() => sceneChagne = true;
 
     public void PlayerInRespawnPoint()
     {
         respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
         transform.position = respawnPoint.position;
         controller.transform.position = respawnPoint.position;
+
+        playerVector = Vector3.zero;
+        playerVector.y = 0f;
+
+        Debug.Log("플레이어 리스폰");
+        Debug.Log("리스폰 포인트 위치 : " + respawnPoint.position + ", 플레이어 위치 : " + transform.position + ", 컨트롤러 위치 : " + controller.transform.position);
+
+        sceneChagne = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!PlayerInteractionStatus.instance.isDie)
+        if (!PlayerInteractionStatus.instance.isDie && !sceneChagne)
         {
+            Debug.Log("플레이어 위치 : " + transform.position);
             isGround = groundCheck.IsGround();
             if(isGround)
                 animator.SetBool("JumpDown", true);
@@ -96,20 +109,29 @@ public class PlayerController : MonoBehaviour
                 playerVector.y = 0f;
             }
 
-            switch (playerState)
+            /*            switch (playerState)
+                        {
+                            case PlayerState.Idel:
+                                playerMove();
+                                break;
+                            case PlayerState.Move:
+                                playerMove();
+                                break;
+                            case PlayerState.Attack:
+                                PlayerAttack();
+                                break;
+                            case PlayerState.Skill:
+                                playerMove();
+                                break;
+                        }*/
+            // 추가: 중력 및 위치 변경이 중복으로 발생하는지 확인
+            if (playerState == PlayerState.Move || playerState == PlayerState.Idel)
             {
-                case PlayerState.Idel:
-                    playerMove();
-                    break;
-                case PlayerState.Move:
-                    playerMove();
-                    break;
-                case PlayerState.Attack:
-                    PlayerAttack();
-                    break;
-                case PlayerState.Skill:
-                    playerMove();
-                    break;
+                playerMove();
+            }
+            else if (playerState == PlayerState.Attack)
+            {
+                PlayerAttack();
             }
 
             // EventSystem.current.IsPointerOverGameObject() <= UI 클릭시 호출
@@ -197,35 +219,26 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerJump()
     {
-        // Jump
+        // 일반 점프
+        Debug.Log("Ground : " + isGround);
+        Debug.Log("점프 키 : " + Input.GetKeyDown(key.GetKeyCode("Jump")));
+        Debug.Log("점프 에니메이션 : " + animator.GetBool("Jump"));
         if (isGround && Input.GetKeyDown(key.GetKeyCode("Jump")) && !animator.GetBool("Jump"))
         {
-            playerVector.y += Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
+            playerVector.y = Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
             animator.SetBool("Jump", true);
         }
-        // Double Jump
-        else if(animator.GetBool("Jump") && Input.GetKeyDown(key.GetKeyCode("Jump")) && !isDoubleJump)
+        // 더블 점프
+        else if (animator.GetBool("Jump") && Input.GetKeyDown(key.GetKeyCode("Jump")) && !isDoubleJump)
         {
             isDoubleJump = true;
-            playerVector.y += Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
+            playerVector.y = Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
             animator.SetBool("DoubleJump", true);
         }
 
-        if (playerVector.y > 0)
-        {
-            playerVector.y += gravityValue * Time.deltaTime;
-            controller.Move(playerVector * Time.deltaTime);
-
-            if (preVelocityY > transform.position.y)
-            {
-                animator.SetBool("JumpDown", false);
-                // 정점
-                Debug.Log("정점 인가? " + transform.position.y);
-            }
-
-
-            preVelocityY = transform.position.y;
-        }        
+        // 중력
+        playerVector.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVector * Time.deltaTime);
     }
 
     private void PlayerAttack()

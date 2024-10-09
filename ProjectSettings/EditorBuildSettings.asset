@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/001_BuildScene/Lobby.unity
     guid: 8e5d35f8ba6e7a64bbc915e3272f4d96
+  - enabled: 1
+    path: Assets/01.Scenes/001_BuildScene/Dongon1.unity
+    guid: 55f2e54edbe290147b144b69cbfb32fb
+  - enabled: 1
+    path: Assets/01.Scenes/001_BuildScene/Boss.unity
+    guid: 5e92b34ad9ae6b04abb3515d8763d82b
   m_configObjects: {}

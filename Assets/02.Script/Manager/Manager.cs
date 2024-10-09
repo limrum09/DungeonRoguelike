@@ -72,5 +72,7 @@ public class Manager : MonoBehaviour
 
         camearaController = Instantiate(camearaController, this.transform);
         camearaController.CameraStart();
+
+        uiAndSceneManager.viewAndHide.CheckCurrentScene();
     }
 }
