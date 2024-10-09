@@ -133,7 +133,6 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Debug.Log("가까움");
             return;
         }
             

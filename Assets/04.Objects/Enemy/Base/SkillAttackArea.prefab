@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3079367965017158727}
   - component: {fileID: 8106080154627800123}
-  - component: {fileID: 2593632601212114351}
+  - component: {fileID: 1216827749192215693}
   m_Layer: 0
   m_Name: SkillAttackArea
   m_TagString: Untagged
@@ -52,9 +52,9 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3
+  m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2593632601212114351
+--- !u!114 &1216827749192215693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 113939800606682920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e52a3056f6daf45a00fdd72b8a308e, type: 3}
+  m_Script: {fileID: 11500000, guid: 98a06c1dbb9414a40ad808cb0181535d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
