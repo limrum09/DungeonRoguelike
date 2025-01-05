@@ -46,20 +46,4 @@ public class CapturePrefab : MonoBehaviour
 
         Debug.Log($"Screenshot saved: {screenshotFileName}");
     }
-
-    void ImageCapture()
-    {
-        Texture2D prefabTexture = AssetPreview.GetAssetPreview(this.gameObject);
-        if(prefabTexture != null)
-        {
-            Debug.Log("Capture");
-            byte[] textureBytes = prefabTexture.EncodeToPNG();
-            System.IO.File.WriteAllBytes("Assets/06.Image/" + name + ".png", textureBytes);
-        }
-        else
-        {
-            Debug.Log("Fail");
-        }
-        
-    }
 }

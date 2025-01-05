@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Weapon_Shield09
   m_EditorClassIdentifier: 
   itemCode: Shield09
-  weaponItem: {fileID: 2988531262444648025, guid: 1f95bf1c903595848ad17a3df565c829, type: 3}
-  weaponItemSprite: {fileID: -1902189224, guid: 071ef495b2186104d893ca64b2f1d111, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: e28434374cfbb2d4c80815dca9085a71, type: 2}
-  useOneHand: 1
-  leftWeapon: 1
-  weaponAnimator: {fileID: 9100000, guid: 93f9d004253b1fe408f248fde8606ec3, type: 2}
-  weaponValue: 2
+  itemName: 
+  equipmentItem: {fileID: 2988531262444648025, guid: 1f95bf1c903595848ad17a3df565c829, type: 3}
+  itemSprite: {fileID: -1902189224, guid: 071ef495b2186104d893ca64b2f1d111, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 500
   itemDamage: 0
   itemCriticalDamage: 0
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 0
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: e28434374cfbb2d4c80815dca9085a71, type: 2}
+  useOneHand: 1
+  leftWeapon: 1
+  weaponValue: 2

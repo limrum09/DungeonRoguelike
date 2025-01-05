@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23f85405a33ac94ea29301eaac19b5a, type: 3}
+  m_Name: SceneInfo_Dongeon1
+  m_EditorClassIdentifier: 
+  sceneAsset: {fileID: 102900000, guid: 55f2e54edbe290147b144b69cbfb32fb, type: 3}
+  sceneInfoSprite: {fileID: 21300000, guid: 7859de329188f4220ad2fc0c40139874, type: 3}
+  sceneTitle: "\uCD08\uC6D0\uC9C0\uB300"
+  sceneInfo: 

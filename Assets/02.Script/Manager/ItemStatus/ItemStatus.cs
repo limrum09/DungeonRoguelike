@@ -22,12 +22,19 @@ public class ItemStatus : MonoBehaviour
     [SerializeField]
     private float itemCoolTime;
 
+    [Header("Script")]
     [SerializeField]
     private List<WeaponItemInfoInItemStatus> weaponItems;
     [SerializeField]
     private List<ArmorItemInfoInItemStatus> armorItems;
     [SerializeField]
     private PlayerInteractionTest interactionTest;
+
+    [Header("None Weapon")]
+    [SerializeField]
+    private WeaponItem rightNone;
+    [SerializeField]
+    private WeaponItem leftNone;
 
 
     public int ItemHP { get { return itemHp; } set { itemHp = value; } }
@@ -68,23 +75,12 @@ public class ItemStatus : MonoBehaviour
         interactionTest.PlayerInterationStart();
     }
 
-    private void Start()
-    {
-        string path = Path.Combine(Application.persistentDataPath, "SaveFile");
-
-        if (!File.Exists(path))
-        {
-         
-            // Have not Load File
-        }
-    }
-
     // 무기 변경 시, 무기 저장 및 스탯 변경
     public void ChangeWeaponItem(WeaponItem weapon)
     {
         WeaponItem newWeapon = weapon;
 
-        Debug.Log("New Weapon : " + newWeapon);
+        Manager.Instance.UIAndScene.Notion.SetNotionText($"{newWeapon.ItemName}으로 무기 변경");
         // 새로 가져온 아이템을 player가 장착하기
         interactionTest.WeaponChange(newWeapon);
 
@@ -92,15 +88,23 @@ public class ItemStatus : MonoBehaviour
         if (!newWeapon.LeftWeapon)
         {
             weaponItems[0].weaponItem = newWeapon;
-            // 두손 이상 사용하는 무기
-            if (!newWeapon.UseOndeHand)
+            // 두손 이상 사용하는 무기 || 오른손 무기가 완드일 경우
+            if (!newWeapon.UseOndeHand || newWeapon.WeaponValue == 5)
             {
-                weaponItems[1].weaponItem = null;
+                // 왼손 무기 None
+                weaponItems[1].weaponItem = leftNone;
             }
         }
         else
         {
             weaponItems[1].weaponItem = newWeapon;
+
+            // 왼손의 무기가 '검' 또는 '방패' 일 경우, 오른손에 '검'이 아닌 다른 것이 들려있다면, 오른손의 무기 값에 null을 넣는다.
+            if (newWeapon.WeaponValue == 1 || newWeapon.WeaponValue == 2)
+                if (weaponItems[0].weaponItem != null)
+                    if (weaponItems[0].weaponItem.WeaponValue != 1)
+                        // 오른손 무기 None
+                        weaponItems[0].weaponItem = rightNone;
         }
 
         SetItemStatus();
@@ -114,9 +118,9 @@ public class ItemStatus : MonoBehaviour
         // 새로 가져온 Item을 플레이어가 착용하기
         interactionTest.ArmorChange(newArmor);
 
-        if (!newArmor.ArmorItemObject)
+        if (!newArmor.ItemObject)
         {
-            // Debug.Log("This item have not object(prefab). : " + newArmor.name);
+            // Debug.LogError("This item have not object(prefab). : " + newArmor.name);
         }
 
         foreach (ArmorItemInfoInItemStatus changeItemInfo in armorItems)

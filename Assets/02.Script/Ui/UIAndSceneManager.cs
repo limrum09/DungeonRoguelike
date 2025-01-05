@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum SceneNames
+{
+    Login = 0,
+    Lobby,
+    Dongon1,
+    Boss
+}
 public class UIAndSceneManager : MonoBehaviour
 {
     public delegate void ChangeEquipmentEvent();
@@ -23,6 +30,8 @@ public class UIAndSceneManager : MonoBehaviour
     [SerializeField]
     private QuestViewUI questUI;
     [SerializeField]
+    private AchievementUI achievementUI;
+    [SerializeField]
     private NPCTalkUIController npcTalkUIController;
     [SerializeField]
     private NPCUI npcUI;
@@ -30,49 +39,67 @@ public class UIAndSceneManager : MonoBehaviour
     private SettingContorller settingUI;
     [SerializeField]
     private UISkillController skillUI;
+    [SerializeField]
+    private LoddingUIController loddingUI;
+    [SerializeField]
+    private EquipmentSelectPanelController equipmentSelectUI;
+    [SerializeField]
+    private RankingViewer rankingViewer;
 
     [Header("Other")]
     [SerializeField]
     private ViewAndHideUIPanels viewAndHideUIPanles;
+    [SerializeField]
+    private GameNotionController gameNotion;
 
     public ChangeEquipmentEvent onChangeEquipment;
     public event onSelectQuestListHandler onSelectQuestListView;
 
+    public AchievementUI AchievementUI => achievementUI;
     public InventoryButton InventoryUI => invenUI;
     public ShortKeyManager ShortCutBox => shortCutBox;
     public ViewAndHideUIPanels viewAndHide => viewAndHideUIPanles;
+    public LoddingUIController LoddingUI => loddingUI;
+    public EquipmentSelectPanelController EquipmentSelectUI => equipmentSelectUI;
+    public GameNotionController Notion => gameNotion;
 
     public void UIAndSceneManagerStart()
     {
         this.gameObject.GetComponent<ViewAndHideUIPanels>().ViewAndHideUIStart();
 
-        Manager.Instance.Game.AfterUIStartInGamemanager();
+        Manager.Instance.Game.AfterUIStartInGameManager();
         invenUI.InvenToryStart();
         npcTalkUIController.NPCTalkControllerStart();
+
+        equipmentSelectUI.EquipmentSelectPanelStart();
         
         skillUI.SkillUIInitialized();
         lobbyUI.LobbyUIStart();
+        loddingUI.gameObject.SetActive(false);
+        rankingViewer.RankingStart();
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += SceneLoadEnd;
     }
 
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= SceneLoadEnd;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void SceneLoadEnd(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("씬 로드 완료");
-        lobbyUI.LobbyUIActiveFalse();
+        Debug.LogWarning("씬 로드 완료");
+        
         viewAndHide.CheckCurrentScene();
         Manager.Instance.Game.PlayerController.PlayerInRespawnPoint();
     }
 
-    public void ChnageSelectScene(string sceneName)
+    public void LoadScene(SceneNames sceneName) => LoadScene(sceneName.ToString());
+
+    public void LoadScene(string sceneName)
     {
         Manager.Instance.Game.PlayerController.SceneChanging();
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadAsyncScene(sceneName));
     }
 
     public void ChangeHPBar() 
@@ -103,4 +130,27 @@ public class UIAndSceneManager : MonoBehaviour
     public void PlayerOutQuestNPC() => npcUI.InteractionText.PlayerOut();
     public void ChangeShortCutValue(string keyString) => shortCutBox.ChangeShortKey(keyString);
     public void LoadShortCutKeys(List<ShortCutKeySaveData> keys) => shortCutBox.ShortCutBoxStart(keys);
+
+    IEnumerator LoadAsyncScene(string loadSceneName)
+    {
+        loddingUI.gameObject.SetActive(true);
+        loddingUI.LoddingUIStart();
+
+        // 씬이 로드된 정도를 확인한다.
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadSceneName);
+
+        Manager.Instance.Save.DataSaving();
+        yield return new WaitForSeconds(1.0f);
+
+        Manager.Instance.Save.LoadData("SaveFile");
+        yield return new WaitForSeconds(1.0f);
+
+        loddingUI.LoddingRateValue("던전 찾는 중...", 60.0f);
+
+        // 씬이 로드가 완료가 되면 isDone이 true값을 바환한다.
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
 }

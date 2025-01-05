@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Armor_AC08_NinjaMask04
   m_EditorClassIdentifier: 
   itemCode: NinjaMask04
-  armorItem: {fileID: 3274853897898219635, guid: 2c0f0a835500a6f4c8ad4cba1f34f0c6, type: 3}
-  armorItemSprite: {fileID: 2022471198, guid: 28207216bc6ac4e47856cab795893fc9, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
-  subCategory: NinjaMask
-  itemOverlapping: 0
-  indexOverlapping: 0
+  itemName: 
+  equipmentItem: {fileID: 3274853897898219635, guid: 2c0f0a835500a6f4c8ad4cba1f34f0c6, type: 3}
+  itemSprite: {fileID: 2022471198, guid: 28207216bc6ac4e47856cab795893fc9, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0
@@ -26,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 20
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
+  subCategory: NinjaMask
+  itemOverlapping: 0
+  indexOverlapping: 0

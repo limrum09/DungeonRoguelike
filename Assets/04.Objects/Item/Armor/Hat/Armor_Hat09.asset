@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Armor_Hat09
   m_EditorClassIdentifier: 
   itemCode: Hat09
-  armorItem: {fileID: 8431428084990774834, guid: 53c19dad35689734498dcb3c4b92c695, type: 3}
-  armorItemSprite: {fileID: 1701260932, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  itemName: 
+  equipmentItem: {fileID: 8431428084990774834, guid: 53c19dad35689734498dcb3c4b92c695, type: 3}
+  itemSprite: {fileID: 1701260932, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0
   equipmentCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hat
   itemOverlapping: 0

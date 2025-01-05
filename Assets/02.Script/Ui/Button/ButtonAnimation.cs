@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonAnimation : MonoBehaviour
@@ -17,6 +18,18 @@ public class ButtonAnimation : MonoBehaviour
         menuEvent = GetComponent<LobbyMenuEvent>();
 
         button.onClick.AddListener(LobbyMenuButtonClick);
+
+        SceneManager.sceneLoaded += InitializedButtonAniStatus;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= InitializedButtonAniStatus;
+    }
+
+    public void InitializedButtonAniStatus(Scene scene, LoadSceneMode mode)
+    {
+        btnAnimator.SetBool("MenuButtonClick", false);
     }
 
     public void LobbyMenuButtonClick()

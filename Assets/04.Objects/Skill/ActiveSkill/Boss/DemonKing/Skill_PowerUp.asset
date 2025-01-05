@@ -15,15 +15,14 @@ MonoBehaviour:
   skillCode: Boss_Power_Up
   skillLevel: 1
   maxLevel: 1
-  canMove: 0
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
   skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
   skillDamageRange: {x: 0, y: 0, z: 0}
-  skillEffect: {fileID: 0}
-  skillEffectPos: 0
+  skillEffect: {fileID: 19800004, guid: eade464a77cb192478405c4489c281b2, type: 3}
+  skillEffectPos: 2
   skillMaintenanceTime: 0
   skillMoveTime: 0
   skillName: 
@@ -31,6 +30,9 @@ MonoBehaviour:
   animationName: Boss_Power_Up
   icon: {fileID: 0}
   skillInfo: 
+  canMove: 0
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 0

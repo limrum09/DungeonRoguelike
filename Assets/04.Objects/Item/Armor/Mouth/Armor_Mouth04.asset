@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Armor_Mouth04
   m_EditorClassIdentifier: 
   itemCode: Mouth04
-  armorItem: {fileID: 5584349780241525517, guid: 4a530b1d015bfa946a7682fd4223eb75, type: 3}
-  armorItemSprite: {fileID: -129063659, guid: 36451a3563fc0544b8470324380d91f8, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
-  subCategory: Mouth
-  itemOverlapping: 1
-  indexOverlapping: 2
+  itemName: 
+  equipmentItem: {fileID: 5584349780241525517, guid: 4a530b1d015bfa946a7682fd4223eb75, type: 3}
+  itemSprite: {fileID: -129063659, guid: 36451a3563fc0544b8470324380d91f8, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0
@@ -26,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 0
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
+  subCategory: Mouth
+  itemOverlapping: 1
+  indexOverlapping: 2

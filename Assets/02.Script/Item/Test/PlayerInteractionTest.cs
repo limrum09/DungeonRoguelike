@@ -42,7 +42,7 @@ public class PlayerInteractionTest : MonoBehaviour
         WeaponItem newWeapon = weapon;
 
         // 무기가 왼손, 오른손 위치에 따라 조금 회전을 줄 필요가 있음
-        ItemRotation weaponRotation = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<ItemRotation>() : null;
+        ItemRotation weaponRotation = newWeapon.ItemObject != null ? newWeapon.ItemObject.GetComponent<ItemRotation>() : null;
 
         // Animator의 무기 모션을 확인할 값
         int weaponAniValue = newWeapon.WeaponValue;
@@ -65,6 +65,9 @@ public class PlayerInteractionTest : MonoBehaviour
             {
                 WeaponR.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY, weaponRotation.PlayerItemRotationZ);
             }
+
+            if (newWeapon.WeaponValue == 5)
+                weaponL.SetActive(false);
         }            
         else
         {
@@ -97,7 +100,7 @@ public class PlayerInteractionTest : MonoBehaviour
         animator.SetBool("IsAttack", false);
 
         // 무기를 장착 중이면, 현제 무기의 Mesh가져오기
-        MeshFilter changeFilter = newWeapon.WeaponItemObject != null ? newWeapon.WeaponItemObject.GetComponent<MeshFilter>() : null;
+        MeshFilter changeFilter = newWeapon.ItemObject != null ? newWeapon.ItemObject.GetComponent<MeshFilter>() : null;
         // 바궈야할 Mesh, 바꿀 무기가 왼손이면 player의 왼손 MeshFilter를 가져온다.
         MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;
         
@@ -160,7 +163,7 @@ public class PlayerInteractionTest : MonoBehaviour
             {
                 // 착용할 Item에 Meshfilter를 가지고 있다면 해당 MeshFilter를 가져온다.
                 // 없다면 교환 불가
-                MeshFilter changeFilter = newArmor.ArmorItemObject != null ? newArmor.ArmorItemObject.GetComponent<MeshFilter>() : null;
+                MeshFilter changeFilter = newArmor.ItemObject != null ? newArmor.ItemObject.GetComponent<MeshFilter>() : null;
 
                 if (changeFilter == null && newArmor.IndexOverlapping == armorIndexOverLapping)
                 {

@@ -7,7 +7,11 @@ public class SettingContorller : MonoBehaviour
     [SerializeField]
     private List<ShortCutValue> shortCut;
     [SerializeField]
+    private List<SliderValue> soundSliders;
+    [SerializeField]
     private RectTransform contentRect;
+
+    public IReadOnlyList<SliderValue> SoundSliders => soundSliders;
 
     public void SettingControllerStart()
     {
@@ -16,12 +20,15 @@ public class SettingContorller : MonoBehaviour
             shortCut[i].SetPrevText();
             shortCut[i].StartShortCutKey();
         }
+
+        for (int i = 0; i < soundSliders.Count; i++)
+            Manager.Instance.Sound.SetSoundSlider(soundSliders[i]);
     }
     public void ChangeSliderValue(SliderValue slider)
     {
         AudioType getAudioType = slider.Audio;
         MasterVolumeType masterVolumeType = slider.MasterVolume;
-        float volume = slider.Slider.value;
+        float volume = slider.Slider;
 
         var sound = Manager.Instance.Sound;
 

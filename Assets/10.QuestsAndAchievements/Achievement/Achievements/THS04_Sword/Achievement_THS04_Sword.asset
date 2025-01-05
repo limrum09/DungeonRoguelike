@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0edace4b70aa24ba4405523ded26d0, type: 3}
+  m_Name: Achievement_THS04_Sword
+  m_EditorClassIdentifier: 
+  questCode: THS04_Sword
+  category: {fileID: 11400000, guid: d022e4465de60e543a90de11315cdeb9, type: 2}
+  icon: {fileID: 0}
+  codeName: Kill_Golem
+  displayName: "\uACE8\uB7A8 \uC0AC\uB0E5\uAFBC 1"
+  desctiption: "\uACE8\uB7A8 \uCC98\uCE58\uD558\uAE30 1"
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: 61df8a4cc1fa83143848f925ac195ad5, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 7d2b268167498054cafa3562bca2ea5a, type: 2}
+  autoComplete: 1
+  isCancelable: 0
+  isSavable: 1
+  acceptionCondition: []
+  cancelCondition: []

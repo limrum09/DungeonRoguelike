@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Weapon_OHS14_Hammer
   m_EditorClassIdentifier: 
   itemCode: OHS14_Hammer_Right
-  weaponItem: {fileID: 3241812588950912295, guid: 5c46bff3855bdcc40b8264ba30b041df, type: 3}
-  weaponItemSprite: {fileID: -671536220, guid: 8d65b3e958df9694383798a0b4da07a5, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
-  useOneHand: 1
-  leftWeapon: 0
-  weaponAnimator: {fileID: 9100000, guid: 404144ff63a285643bc7481d053110a3, type: 2}
-  weaponValue: 1
+  itemName: 
+  equipmentItem: {fileID: 3241812588950912295, guid: 5c46bff3855bdcc40b8264ba30b041df, type: 3}
+  itemSprite: {fileID: 1891560707, guid: 0fc8d4fce356e1541b8e2618a6927f72, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 500
   itemCriticalDamage: 200
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 15
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
+  useOneHand: 1
+  leftWeapon: 0
+  weaponValue: 1

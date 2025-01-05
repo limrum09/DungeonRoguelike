@@ -45,6 +45,7 @@ TagManager:
   - NPC
   - Tree
   - RespawnEnemy
+  - CameraRayPos
   layers:
   - Default
   - TransparentFX

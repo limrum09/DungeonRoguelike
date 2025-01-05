@@ -19,6 +19,8 @@ public class ViewAndHideUIPanels : MonoBehaviour
     [SerializeField]
     GameObject questViewUI;
     [SerializeField]
+    GameObject achievementUI;
+    [SerializeField]
     GameObject NPCUI;
     [SerializeField]
     GameObject skillUI;
@@ -26,11 +28,14 @@ public class ViewAndHideUIPanels : MonoBehaviour
     GameObject settingUI;
     [SerializeField]
     GameObject optionUI;
+    [SerializeField]
+    GameObject rankUI;
 
     private GameObject lastUI;
     private InputKey key;
 
     private List<GameObject> GameUI;
+    private List<GameObject> InteractionUI;
 
     public void ViewAndHideUIStart()
     {
@@ -38,8 +43,16 @@ public class ViewAndHideUIPanels : MonoBehaviour
             inventoryUI,
             statusUI,
             questViewUI,
+            achievementUI,
             settingUI,
             skillUI
+        };
+
+        InteractionUI = new List<GameObject>
+        {
+            lobbyUI,
+            profileUI,
+            shortcutkeyUI,
         };
 
         foreach(var ui in GameUI)
@@ -93,17 +106,26 @@ public class ViewAndHideUIPanels : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if(sceneName == "Lobby")
+        foreach (var ui in InteractionUI)
+            ui.SetActive(false);
+
+        if(sceneName == "Login")
         {
+            Manager.Instance.canUseShortcutKey = false;
+        }
+        else if(sceneName == "Lobby")
+        {
+            // Lobby Menu 보여야함
             lobbyUI.SetActive(true);
-            profileUI.SetActive(false);
-            shortcutkeyUI.SetActive(false);
+            shortcutkeyUI.SetActive(true);
+            Manager.Instance.canUseShortcutKey = true;
         }
         else
         {
-            lobbyUI.SetActive(false);
+            // Lobby Menu 안보여야함
             profileUI.SetActive(true);
             shortcutkeyUI.SetActive(true);
+            Manager.Instance.canUseShortcutKey = true;
         }
     }
 
@@ -142,6 +164,9 @@ public class ViewAndHideUIPanels : MonoBehaviour
                 }
             }
         }
+
+        if (rankUI.activeSelf)
+            lastUI = rankUI;
 
         return lastUI;
     }

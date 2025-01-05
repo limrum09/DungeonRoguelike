@@ -15,6 +15,7 @@ public class SkillEffect : MonoBehaviour
 
         if (skill.SkillEffect != null)
         {
+            Debug.Log("파티클 생성");
             // 파티클 생성
             ParticleSystem newSkill = Instantiate(skill.SkillEffect, this.transform);
 

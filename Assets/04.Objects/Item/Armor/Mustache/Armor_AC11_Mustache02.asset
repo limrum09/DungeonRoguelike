@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Armor_AC11_Mustache02
   m_EditorClassIdentifier: 
   itemCode: AC11_Mustache02
-  armorItem: {fileID: 2055434298909850732, guid: e60a99f2b921f724fb4f95174b6bf8c2, type: 3}
-  armorItemSprite: {fileID: -1204921173, guid: 28207216bc6ac4e47856cab795893fc9, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
-  subCategory: Mustache
-  itemOverlapping: 1
-  indexOverlapping: 1
+  itemName: 
+  equipmentItem: {fileID: 2055434298909850732, guid: e60a99f2b921f724fb4f95174b6bf8c2, type: 3}
+  itemSprite: {fileID: -1204921173, guid: 28207216bc6ac4e47856cab795893fc9, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0
@@ -26,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 0
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: e7328d313dcdaf741a91790f33292388, type: 2}
+  subCategory: Mustache
+  itemOverlapping: 1
+  indexOverlapping: 1

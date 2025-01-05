@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0edace4b70aa24ba4405523ded26d0, type: 3}
+  m_Name: Achievement_Spear02
+  m_EditorClassIdentifier: 
+  questCode: Spear02
+  category: {fileID: 11400000, guid: 4ff17c1979074814db4be72721fa63de, type: 2}
+  icon: {fileID: 0}
+  codeName: "\uAE30\uBCF8 \uC774\uB3D9"
+  displayName: "500\uBCF4 \uC774\uB3D9\uD574\uBCF4\uC138\uC694"
+  desctiption: "500\uBCF4 \uC774\uB3D9"
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: 422804ab2660f1149bfc7a63e6b8435b, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 5a1a6f09db9c1c64993ac4b16d165ef2, type: 2}
+  autoComplete: 1
+  isCancelable: 0
+  isSavable: 1
+  acceptionCondition: []
+  cancelCondition: []

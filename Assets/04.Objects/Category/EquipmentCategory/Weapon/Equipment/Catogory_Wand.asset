@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2377003de01e9ad4ca7b249173616af3, type: 3}
   m_Name: Catogory_Wand
   m_EditorClassIdentifier: 
-  catogory: 
+  catogory: "\uC644\uB4DC"

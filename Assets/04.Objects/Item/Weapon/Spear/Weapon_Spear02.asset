@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Weapon_Spear02
   m_EditorClassIdentifier: 
   itemCode: Spear02
-  weaponItem: {fileID: 8478494216828451305, guid: 4f59329ddc05365469d54abf48e255c3, type: 3}
-  weaponItemSprite: {fileID: 654705734, guid: 0ab9775a8d9e25749ac79cef9413abc9, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: 155110a73134fde45ae3f2c0c1e87ead, type: 2}
-  useOneHand: 0
-  leftWeapon: 0
-  weaponAnimator: {fileID: 9100000, guid: 62f9ce182e8cdf547b48e85e6eb8140b, type: 2}
-  weaponValue: 4
+  itemName: 
+  equipmentItem: {fileID: 8478494216828451305, guid: 4f59329ddc05365469d54abf48e255c3, type: 3}
+  itemSprite: {fileID: -741377703, guid: 44d06c1bcff09f644801c8c616dc4b2d, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 400
   itemCriticalDamage: 100
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 10
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: 155110a73134fde45ae3f2c0c1e87ead, type: 2}
+  useOneHand: 0
+  leftWeapon: 0
+  weaponValue: 4

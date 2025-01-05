@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Weapon_OHS06_Sword
   m_EditorClassIdentifier: 
   itemCode: OHS06_Sword_Left
-  weaponItem: {fileID: 1932760096162739868, guid: e65c75b997a6a664297587e210878bea, type: 3}
-  weaponItemSprite: {fileID: -1175661981, guid: 8d65b3e958df9694383798a0b4da07a5, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
-  useOneHand: 1
-  leftWeapon: 1
-  weaponAnimator: {fileID: 9100000, guid: 816fe5e9e6cacda4583bbd2dd1226764, type: 2}
-  weaponValue: 1
+  itemName: 
+  equipmentItem: {fileID: 1932760096162739868, guid: e65c75b997a6a664297587e210878bea, type: 3}
+  itemSprite: {fileID: -795273996, guid: 0fc8d4fce356e1541b8e2618a6927f72, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 200
   itemCriticalDamage: 100
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 0
   itemSpeed: 15
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
+  useOneHand: 1
+  leftWeapon: 1
+  weaponValue: 1

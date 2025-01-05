@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum MasterVolumeType
-{
-    None,
-    BGM,
-    SFX
-}
 public class SliderValue : MonoBehaviour
 {
     [SerializeField]
@@ -20,5 +14,20 @@ public class SliderValue : MonoBehaviour
 
     public AudioType Audio => audioType;
     public MasterVolumeType MasterVolume => masterVolume;
-    public Slider Slider => slider;
+    public float Slider => slider.value;
+
+    public SoundSliderData SoundValueSave()
+    {
+        return new SoundSliderData
+        {
+            masterType = this.masterVolume.ToString(),
+            audioType = this.audioType.ToString(),
+            value = this.slider.value
+        };
+    }
+
+    public void SetSldierValueToLoad(float setValue)
+    {
+        slider.value = setValue;
+    }
 }

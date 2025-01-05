@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void PlayerMove();
+
     [SerializeField]
     private GameObject player;
 
@@ -43,21 +45,23 @@ public class GameManager : MonoBehaviour
     public int CurrentExp => currentExp;
     public int BonusState => bonusState;
 
+
+    public event PlayerMove playerMoveInGame;
     public void GameManagerStart()
     {
         isStart = true;
 
-        SceneManager.sceneLoaded += OnSceneLoad;
-
         GameObject newPlayer = PlayerRespawnInRespawnPoint();
-            
-
-        playerSaveStatus.FirstStart();
         
         ChangeExpBar();
     }
 
-    public void AfterUIStartInGamemanager()
+    public void PlayerMoveTransform()
+    {
+        playerMoveInGame?.Invoke();
+    }
+
+    public void AfterUIStartInGameManager()
     {
         invenData.InvenDataStart();
     }
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject playerObject = Instantiate(player);
         playerObject.name = "PlayerObject";
-        playerObject.transform.SetParent(null);
+//        playerObject.transform.SetParent(null);
 
         playerController = playerObject.GetComponent<PlayerController>();
         playerController.PlayerControllerStart();
@@ -74,16 +78,6 @@ public class GameManager : MonoBehaviour
         itemStatus.InteractionTest(playerObject.GetComponent<PlayerInteractionTest>());
 
         return playerObject;
-    }
-
-    private void OnApplicationQuit()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoad;
-    }
-
-    private void OnSceneLoad(Scene scene, LoadSceneMode mode)
-    {
-        
     }
 
     public void InitializeGameManager()
@@ -105,6 +99,7 @@ public class GameManager : MonoBehaviour
 
         ChangeExpBar();
 
+        BackendRank.Instance.RankInsert();
         Manager.Instance.UIAndScene.LevelUPUI();
     }
 

@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public enum MasterVolumeType
+{
+    None = 0,
+    BGM,
+    SFX
+}
 public enum AudioType
 {
-    PlayerAttack,
+    PlayerAttack = 0,
     PlayerFoot,
     PlayerSkill,
     UIClick,
@@ -31,6 +36,10 @@ public class SoundManager : MonoBehaviour
     public float masterVolumeSFX;
     public float masterVolumeBGM;
 
+    [SerializeField]
+    private List<SliderValue> soundSliders = new List<SliderValue>();
+
+    public IReadOnlyList<SliderValue> SoundSliders => soundSliders;
     public void SoundManagerStart()
     {
         var root = this.gameObject;
@@ -56,8 +65,16 @@ public class SoundManager : MonoBehaviour
 
         if (bgmClips != null)
         {
+            GameObject newSoundObject = new GameObject();
+            newSoundObject.name = "BGMAudio";
+            newSoundObject.transform.SetParent(root.transform, false);
 
+            newSoundObject.AddComponent<AudioSource>();
+            bgmAudio = newSoundObject.GetComponent<AudioSource>();
+            bgmAudio.loop = true;
         }
+
+        soundSliders.Clear();
     }
 
     // 전부 초기화
@@ -96,6 +113,7 @@ public class SoundManager : MonoBehaviour
     {
         if(audioType == AudioType.UIClick || audioType == AudioType.UIClose || audioType == AudioType.UIOpen)
         {
+            Debug.Log("소리 : " + value + ", 마스터 소리 : " + masterVolumeSFX);
             AudioSource playAudio1 = audios[(int)AudioType.UIClick];
             AudioSource playAudio2 = audios[(int)AudioType.UIClose];
             AudioSource playAudio3 = audios[(int)AudioType.UIOpen];
@@ -120,6 +138,45 @@ public class SoundManager : MonoBehaviour
         }
         else if (masterVolume == MasterVolumeType.SFX)
             masterVolumeSFX = value;
+    }
+
+    public void SetSoundSlider(SliderValue slider)
+    {
+        soundSliders.Add(slider);
+    }
+
+    /// <summary>
+    /// audioType값을 받아, 해당 값이랑 일치하는 Audiotype이 soundSliders에 있다면
+    /// 해당 Slider의 값을 변경 후, 전체적인 Sound 변경
+    /// </summary>
+    /// <param name="audioType"></param>
+    /// <param name="soundValue"></param>
+    public void SetSoundVolumeValueToLoad(string masterType, string audioType, float soundValue)
+    {
+        try
+        {
+            AudioType setAudioType = EnumUntil<AudioType>.Parse(audioType);
+            string audioTypeString = setAudioType.ToString();
+
+            MasterVolumeType setMasterType = EnumUntil<MasterVolumeType>.Parse(masterType);
+            string masterTypeString = setMasterType.ToString();
+
+            foreach (var slider in soundSliders)
+            {
+                if (audioTypeString.Equals(slider.Audio.ToString()) && setMasterType == MasterVolumeType.None)
+                {
+                    slider.SetSldierValueToLoad(soundValue);
+                    return;
+                }
+                else if (slider.MasterVolume == MasterVolumeType.BGM)
+                    slider.SetSldierValueToLoad(soundValue);
+                else if (slider.MasterVolume == MasterVolumeType.SFX)
+                    slider.SetSldierValueToLoad(soundValue);
+            }
+        }
+        catch {
+
+        };
     }
 
     // 이름과 위치로 AudioClip을 가져옴
@@ -156,5 +213,17 @@ public class SoundManager : MonoBehaviour
 
         // 오디오 재생
         playAudio.PlayOneShot(audioClip);
+    }
+}
+
+[System.Serializable]
+public class SoundSliderData{
+    public string masterType;
+    public string audioType;
+    public float value;
+
+    public void Reset()
+    {
+        value = 1.0f;
     }
 }
