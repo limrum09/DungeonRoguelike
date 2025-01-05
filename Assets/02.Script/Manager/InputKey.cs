@@ -7,7 +7,7 @@ using UnityEngine;
 public class InputKey : MonoBehaviour
 {
     private Dictionary<string, KeyCode> inputKeys = new Dictionary<string, KeyCode>();
-    // Start is called before the first frame update
+    
     public void InputKeyStart()
     {
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
@@ -62,6 +62,9 @@ public class InputKey : MonoBehaviour
 
     public KeyCode GetKeyCode(string keyString)
     {
+        if (!Manager.Instance.canUseShortcutKey)
+            return KeyCode.None;
+
         if (inputKeys.TryGetValue(keyString, out KeyCode keyCode))
         {
             return keyCode;
@@ -69,7 +72,8 @@ public class InputKey : MonoBehaviour
         else
         {
             Debug.LogWarning("KeyCode not found for key: " + keyString);
-            return KeyCode.None; // Or handle as needed
+            // 필요에 따라 처리해도됨
+            return KeyCode.None;
         }
     }
 

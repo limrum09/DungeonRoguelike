@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7980136384926662148}
   - component: {fileID: 4154179495378362627}
   - component: {fileID: 549901949576930483}
+  - component: {fileID: -74099377613448530}
   m_Layer: 7
   m_Name: Birch_tree_B (2)
   m_TagString: Tree
@@ -26,6 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366439093494252572}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,7 +37,6 @@ Transform:
   - {fileID: 3544381795253614074}
   - {fileID: 8684566016317002895}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7980136384926662148
 MeshFilter:
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1495328752607380860, guid: 79197d112de8ca14f896eefeef5c8ccd, type: 3}
+  - {fileID: 2100000, guid: 58bad9dbfa851074abcbeb87c76d1587, type: 2}
   - {fileID: 2100000, guid: 2cfcc6f02e35f774b8c0af5fd5d333da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -107,6 +108,18 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4154179495378362627}
   m_Enabled: 1
+--- !u!114 &-74099377613448530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366439093494252572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a308955f71af4d46b7f9804513141dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4995200204957627054
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,13 +144,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4995200204957627054}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.008726465, w: 0.999962}
   m_LocalPosition: {x: 0.01, y: 2.14, z: -0.023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7154590812032223402}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1}
 --- !u!136 &4513203886958160445
 CapsuleCollider:
@@ -147,8 +160,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4995200204957627054}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.2
   m_Height: 6
   m_Direction: 1
@@ -177,13 +199,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123495015560999323}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.008726465, w: 0.999962}
   m_LocalPosition: {x: 0.01, y: 2.14, z: -0.023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7154590812032223402}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1}
 --- !u!136 &3297154456261284616
 CapsuleCollider:
@@ -193,8 +215,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123495015560999323}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.2
   m_Height: 6
   m_Direction: 1
@@ -204,7 +235,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 7154590812032223402}
     m_Modifications:
     - target: {fileID: 5111184492437824448, guid: c07eb161ccaab094bb7f20fcfeb20a9c, type: 3}
@@ -264,7 +295,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07eb161ccaab094bb7f20fcfeb20a9c, type: 3}
 --- !u!4 &5236041511825435436 stripped
 Transform:

@@ -179,7 +179,6 @@ public class Quest : ScriptableObject
     private void OnSuccesschange(Task task, int currentSuccess, int successCount) 
     {
         onTaskSuccessChanged?.Invoke(this, task, currentSuccess, successCount);
-        // UIAndSceneManager.instance.QuestviewChange(this);
     }
 
     public QuestSaveData QuestSave()

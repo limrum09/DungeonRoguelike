@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private SkillEffectController skillEffectController;
     [SerializeField]
+    private TargetingSkillSetPosition targetingSkill;
+    [SerializeField]
     private GameObject weaponPosEffect;
     [SerializeField]
     private GameObject centerPosEffect;
@@ -62,101 +64,210 @@ public class PlayerController : MonoBehaviour
     private bool isDoubleJump;
     public Animator Ani => animator;
 
+    private float sceneLoadTimer;
     private float preVelocityY;
     private bool sceneChagne;
+    private bool sceneChangeComplete;
 
     // Start is called before the first frame update
     public void PlayerControllerStart()
     {
         controller = GetComponent<CharacterController>();
+
         PlayerInRespawnPoint();
         isMove = true;
         isCombo = false;
         sceneChagne = false;
+        sceneChangeComplete = false;
     }
 
-    public void SceneChanging() => sceneChagne = true;
+    public void SceneChanging()
+    {
+        sceneChangeComplete = false;
+        sceneChagne = true;
+
+        playerState = PlayerState.Idel;
+        animator.SetBool("Walk", false);
+        animator.SetBool("Sprint", false);
+        animator.SetBool("Jump", false);
+        playerVector = Vector3.zero;
+    }
 
     public void PlayerInRespawnPoint()
     {
         respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
-        transform.position = respawnPoint.position;
-        controller.transform.position = respawnPoint.position;
+        sceneChangeComplete = true;
+        sceneLoadTimer = 0.0f;
+    }
 
-        playerVector = Vector3.zero;
-        playerVector.y = 0f;
+    public void InputActiveSkill(ActiveSkill skill)
+    {
+        if ((skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") || skill.LeftWeaponValue != animator.GetInteger("LeftWeaponValue")) && skill.WeaponValue != SkillWeaponValue.Public)
+            return;
 
-        Debug.Log("플레이어 리스폰");
-        Debug.Log("리스폰 포인트 위치 : " + respawnPoint.position + ", 플레이어 위치 : " + transform.position + ", 컨트롤러 위치 : " + controller.transform.position);
+        if (!skill.NeedLevelCondition || !skill.NeedSkillCondition)
+            return;
 
+        skill.UseSkill();
+        isMove = skill.CanMove;
+        animator.SetBool("IsSkill", true);
+
+        if (skill.Targeting)
+        {
+            targetingSkill.StartTargeting(skill);
+        }
+        else
+        {
+             skillEffectController.ActiveSkillEffect(skill);
+        }
+
+        SkillAnimation(skill);
+    }
+
+    public void SkillAnimation(ActiveSkill skill)
+    {
+        string aniName = skill.AnimationName;
+
+        // 공용 스킬일 경우 무기의 종류에 따라서 스킬의 이름의 일부분이 다르기 때문에 알맞게 추가한다.
+        if (skill.WeaponValue == SkillWeaponValue.Public)
+        {
+            aniName = PublicSrkillAnimName(aniName);
+        }
+
+        animator.Play(aniName);
+        playerState = PlayerState.Skill;
+
+        Debug.Log("스킬 " + aniName + " 사용");
+    }
+
+    public void ActionTargetingSkill(ActiveSkill skill, Transform tf)
+    {
+        skillEffectController.ActiveSkillEffect(skill, tf);
+    }
+
+    // 화면 클릭시, 회전
+    public void RotatePlayerToMousePos(Transform getTf)
+    {
+        Vector3 targetPosition = getTf.position;
+        Vector3 direction = (targetPosition - transform.position).normalized;
+
+        // 플레이어가 Y축으로만 회전 하는지 확인
+        direction.y = 0;
+
+        if (direction.sqrMagnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
+        }
+    }
+
+    public void EndSkill()
+    {
+        animator.SetBool("IsSkill", false);
+        isMove = true;
+        playerState = PlayerState.Idel;
+    }
+
+    public void LoddingEnd()
+    {
+        // 최종적으로 로딩 종료
         sceneChagne = false;
+        Manager.Instance.UIAndScene.LoddingUI.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!PlayerInteractionStatus.instance.isDie && !sceneChagne)
+        // 씬 전환 중
+        if (sceneChagne)
         {
-            Debug.Log("플레이어 위치 : " + transform.position);
-            isGround = groundCheck.IsGround();
-            if(isGround)
-                animator.SetBool("JumpDown", true);
+            SceneLoadCompleteCheck();
+            return;
+        }
 
-            if (isGround && playerVector.y < 0)
-            {
-                isDoubleJump = false;
-                animator.SetBool("Jump", false);
-                playerVector.y = 0f;
-            }
-
-            /*            switch (playerState)
-                        {
-                            case PlayerState.Idel:
-                                playerMove();
-                                break;
-                            case PlayerState.Move:
-                                playerMove();
-                                break;
-                            case PlayerState.Attack:
-                                PlayerAttack();
-                                break;
-                            case PlayerState.Skill:
-                                playerMove();
-                                break;
-                        }*/
-            // 추가: 중력 및 위치 변경이 중복으로 발생하는지 확인
-            if (playerState == PlayerState.Move || playerState == PlayerState.Idel)
-            {
-                playerMove();
-            }
-            else if (playerState == PlayerState.Attack)
-            {
-                PlayerAttack();
-            }
-
-            // EventSystem.current.IsPointerOverGameObject() <= UI 클릭시 호출
-            if (!EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)))
-            {
-                playerState = PlayerState.Attack;
-                isCombo = false;
-            }
+        if (!PlayerInteractionStatus.instance.isDie)
+        {
+            GroundCheck();
+            PlayerStateCheck();
+            PlayerInputCheck();
         }
         else
         {
-            animator.SetBool("Jump", false);
-            animator.SetBool("DoubleJump", false);
-            animator.SetBool("Walk", false);
-            animator.SetBool("IsAttack", false);
+            PlayerDead();
+        }        
+    }
 
-            animator.SetBool("Die", true);
+    private void SceneLoadCompleteCheck()
+    {
+        // 씬 전환 완료, 이후 1초동안 리스폰 위치로 플레이어 강제 이동
+        if (sceneChangeComplete)
+        {
+            transform.position = respawnPoint.position;
+            controller.transform.position = respawnPoint.position;
+
+            sceneLoadTimer += Time.deltaTime;
+
+            Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 가는 중...!", 75.0f);
+
+            if (sceneLoadTimer >= 1.5f)
+            {
+                Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 도착!", 100.0f);
+            }
         }
-        
+    }
+
+    private void GroundCheck()
+    {
+        isGround = groundCheck.IsGround();
+        if (isGround)
+            animator.SetBool("JumpDown", true);
+
+        if (isGround && playerVector.y < 0)
+        {
+            isDoubleJump = false;
+            animator.SetBool("Jump", false);
+            playerVector.y = 0f;
+        }
+    }
+
+    private void PlayerStateCheck()
+    {
+        // 추가 확인 필요 : 중력 및 위치 변경이 중복으로 발생하는지 확인
+        if (playerState == PlayerState.Move || playerState == PlayerState.Idel || playerState == PlayerState.Skill)
+        {
+            playerMove();
+        }
+        else if (playerState == PlayerState.Attack)
+        {
+            PlayerAttack();
+        }
+    }
+
+    private void PlayerInputCheck()
+    {
+        // EventSystem.current.IsPointerOverGameObject() <= UI 클릭시 호출
+        if (!EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)))
+        {
+            playerState = PlayerState.Attack;
+            isCombo = false;
+        }
+    }
+
+    private void PlayerDead()
+    {
+        animator.SetBool("Jump", false);
+        animator.SetBool("DoubleJump", false);
+        animator.SetBool("Walk", false);
+        animator.SetBool("IsAttack", false);
+        animator.SetBool("Die", true);
     }
 
     private void playerMove()
     {
-        if (!isMove)
+        if (!isMove || sceneChagne)
             return;
+
+        key = Manager.Instance.Key;
 
         PlayerJump();
 
@@ -165,8 +276,8 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         playerSpeed = PlayerInteractionStatus.instance.PlayerSpeed;
-        key = Manager.Instance.Key;
 
+        // 달리기
         if (Input.GetKey(key.GetKeyCode("Sprint")))
         {
             playerSpeed = playerSpeed * 1.5f;
@@ -210,6 +321,8 @@ public class PlayerController : MonoBehaviour
 
             // Cinemachine을 playerCollider로 잡았음. 플레이어가 회전해도 playerCollider가 회전하지 않는다.
             playerCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            Manager.Instance.Game.PlayerMoveTransform();
         }
         else
         {
@@ -220,9 +333,6 @@ public class PlayerController : MonoBehaviour
     private void PlayerJump()
     {
         // 일반 점프
-        Debug.Log("Ground : " + isGround);
-        Debug.Log("점프 키 : " + Input.GetKeyDown(key.GetKeyCode("Jump")));
-        Debug.Log("점프 에니메이션 : " + animator.GetBool("Jump"));
         if (isGround && Input.GetKeyDown(key.GetKeyCode("Jump")) && !animator.GetBool("Jump"))
         {
             playerVector.y = Mathf.Sqrt(jumpHeigt * -3.0f * gravityValue);
@@ -250,35 +360,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsAttack", true);
         }
         
-    }
-
-    public void UseActiveSkill(ActiveSkill skill)
-    {
-        if ((skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") || skill.LeftWeaponValue != animator.GetInteger("LeftWeaponValue")) && skill.WeaponValue != SkillWeaponValue.Public)
-            return;
-
-        if (!skill.NeedLevelCondition || !skill.NeedSkillCondition)
-            return;
-
-        isMove = skill.CanMove;
-        string aniName = skill.AnimationName;
-
-        // 공용 스킬일 경우 무기의 종류에 따라서 스킬의 이름의 일부분이 다르기 때문에 알맞게 추가한다.
-        if (skill.WeaponValue == SkillWeaponValue.Public)
-        {
-            aniName = PublicSrkillAnimName(aniName);
-        }
-
-        skill.UseSkill();
-        animator.Play(aniName);
-        playerState = PlayerState.Skill;
-
-        if(skill.SkillEffect != null)
-        {
-            skillEffectController.ActiveSkillEffrct(skill);
-        }
-
-        Debug.Log("스킬 " + aniName + " 사용");
     }
 
     // 공용 스킬에는 Animation의 일부 이름만 다르기에 무기에까라 알맞은 이름 삽입
@@ -312,4 +393,9 @@ public class PlayerController : MonoBehaviour
 
         return addString + aniName;
     }
+/*
+    private IEnumerator AnimationEvent()
+    {
+
+    }*/
 }

@@ -73,7 +73,7 @@ public class PlayerStatus : MonoBehaviour
         Manager.Instance.Game.InitializeGameManager();
     }
 
-    public void FirstStart()
+    private void FirstStart()
     {
         level = 1;
         health = 5;

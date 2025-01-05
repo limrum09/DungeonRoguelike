@@ -57,6 +57,9 @@ public class ShortKeyItem : MonoBehaviour
     {
         if(item != null || skill != null)
         {
+            if (string.IsNullOrEmpty(inputShortKey))
+                return;
+
             if (Input.GetKeyDown(Manager.Instance.Key.GetKeyCode(inputShortKey)))
             {
                 if (item != null)
@@ -184,9 +187,8 @@ public class ShortKeyItem : MonoBehaviour
         if (!skill.CanUseSkill)
             return;
 
-        Manager.Instance.Game.PlayerController.UseActiveSkill(skill);
+        Manager.Instance.Game.PlayerController.InputActiveSkill(skill);
 
-        coolTimer = skill.CurrentRemainCoolTimer;
         StartCoroutine(CoolTimer(skill.skillCoolTime));
     }
 
@@ -241,6 +243,7 @@ public class ShortKeyItem : MonoBehaviour
     {
         coolTimeImage.gameObject.SetActive(true);
         coolTimeImage.fillAmount = 1.0f;
+        coolTimer = skill.CurrentRemainCoolTimer;
 
         float imageCoolTime = timer;
         while(coolTimer > 0.0f)

@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Armor_Eye02
   m_EditorClassIdentifier: 
   itemCode: Eye02
-  armorItem: {fileID: 3287808535629663597, guid: 288707548eca3234c878e631a7a164f8, type: 3}
-  armorItemSprite: {fileID: 302766029, guid: 36451a3563fc0544b8470324380d91f8, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: 33a171b2456295a4e860a49d7c2bd45d, type: 2}
-  subCategory: eye
-  itemOverlapping: 1
-  indexOverlapping: 0
+  itemName: 
+  equipmentItem: {fileID: 3287808535629663597, guid: 288707548eca3234c878e631a7a164f8, type: 3}
+  itemSprite: {fileID: 302766029, guid: 36451a3563fc0544b8470324380d91f8, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0
@@ -26,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 0
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: 33a171b2456295a4e860a49d7c2bd45d, type: 2}
+  subCategory: eye
+  itemOverlapping: 1
+  indexOverlapping: 0

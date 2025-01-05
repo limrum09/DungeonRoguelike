@@ -9,23 +9,6 @@ public class QuestSystem : MonoBehaviour
     public delegate void QuestCompletedHandler(Quest quest);
     public delegate void QuestCanceledHandler(Quest quest);
 
-
-/*    public static QuestSystem instance;
-
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }*/
-
     [SerializeField]
     private List<Quest> activeQuests = new List<Quest>();
     [SerializeField]
@@ -56,7 +39,17 @@ public class QuestSystem : MonoBehaviour
     {
         var newQuest = quest.Clone();
 
-        if(newQuest is Quest)
+        // 업적인 경우
+        if(newQuest is Achievement)
+        {
+            newQuest.onCompleted += OnAchievementCompleted;
+
+            activeAchievement.Add(newQuest);
+
+            newQuest.QuestRegisterd();
+            onAchievementRegisterd?.Invoke(newQuest);
+        }
+        else
         {
             newQuest.onCompleted += OnQuestCompleted;
             newQuest.onCanceled += OnQuestCancel;
@@ -65,16 +58,6 @@ public class QuestSystem : MonoBehaviour
 
             newQuest.QuestRegisterd();
             onQuestRegisterd?.Invoke(newQuest);
-        }
-        // 업적인 경우
-        else
-        {
-            newQuest.onCanceled += OnAchievementCompleted;
-
-            activeAchievement.Add(newQuest);
-
-            newQuest.QuestRegisterd();
-            onAchievementRegisterd?.Invoke(newQuest);
         }
 
         return newQuest;
@@ -146,13 +129,13 @@ public class QuestSystem : MonoBehaviour
         var newQuest = quest.Clone();
         newQuest.LoadQuest(saveData);
 
-        if (newQuest is Quest)
+        if (newQuest is Achievement)
         {
-            completedQuests.Add(newQuest);
+            completedAchievements.Add(newQuest);
         }
         else
         {
-            completedAchievements.Add(newQuest);
+            completedQuests.Add(newQuest);
         }
     }
 

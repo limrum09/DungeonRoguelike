@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Armor_Head04_Purple
   m_EditorClassIdentifier: 
   itemCode: Head04_Purple
-  armorItem: {fileID: 4378253043447684798, guid: bbe35b3b6cef5654f8df38b66e1bba42, type: 3}
-  armorItemSprite: {fileID: 633294542, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  itemName: 
+  equipmentItem: {fileID: 4378253043447684798, guid: bbe35b3b6cef5654f8df38b66e1bba42, type: 3}
+  itemSprite: {fileID: 633294542, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0
   equipmentCategory: {fileID: 11400000, guid: fc7dfbe3d053b004b8abf42f5cae4962, type: 2}
   subCategory: head
   itemOverlapping: 1

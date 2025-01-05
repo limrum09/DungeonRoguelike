@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Armor_AC06_Crown02
   m_EditorClassIdentifier: 
   itemCode: AC06_Crown02
-  armorItem: {fileID: 7485566422671488874, guid: 75a4bcc53a9937845a40e4da19deabd1, type: 3}
-  armorItemSprite: {fileID: -642091409, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  itemName: 
+  equipmentItem: {fileID: 7485566422671488874, guid: 75a4bcc53a9937845a40e4da19deabd1, type: 3}
+  itemSprite: {fileID: -642091409, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  achievement: {fileID: 11400000, guid: b64f958165e7e6b44bcee3207a497791, type: 2}
+  condition: {fileID: 11400000, guid: 7fb3158c4bf319c4488fbca93d8389b3, type: 2}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0
   equipmentCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hat
   itemOverlapping: 1

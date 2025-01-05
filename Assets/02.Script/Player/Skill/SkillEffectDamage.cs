@@ -19,7 +19,7 @@ public class SkillEffectDamage : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Collision");
+        Debug.Log("Collision : " + other.name);
         if (other.CompareTag("Enemy"))
         {
             TakeDamageToEnemy(other);
@@ -36,14 +36,9 @@ public class SkillEffectDamage : MonoBehaviour
 
         if (critical <= status.CriticalPer)
         {
-            int attackDamages = status.PlayerDamage + status.CriticalDamage;
-            int damageMag = attackDamages / status.PlayerDamage;
+            int skillCriticalDamage = status.CriticalDamage;
 
-            int skillCriticalDamage = skillDamage * damageMag;
-
-            Debug.Log("Critical Mag : " + damageMag);
-
-            skillDamage += skillCriticalDamage;
+            returnDamage += skillCriticalDamage;
         }
 
         return returnDamage;

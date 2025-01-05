@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359b75cdeb3cb2e4c80884cc8e516b73, type: 3}
+  m_Name: Task_KillGolem30
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: d022e4465de60e543a90de11315cdeb9, type: 2}
+  codeName: "\uACE8\uB818 30 \uB9C8\uB9AC \uCC98\uCE58"
+  description: "\uACE8\uB818 30 \uB9C8\uB9AC\uB97C \uCC98\uCE58\uD558\uB77C"
+  action: {fileID: 11400000, guid: a8269568953652340bd9b3756066c491, type: 2}
+  targets:
+  - {fileID: 11400000, guid: 4832b0364fc847043a7f89f42df6e8ae, type: 2}
+  needSuccessValue: 30
+  canReceiveReportsDuringCompletion: 0

@@ -18,6 +18,10 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     [Range(16, 40)] private float maxDistance;
 
+    [Header("Child Scripts")]
+    [SerializeField]
+    private TransparentInCameraView cameraView;
+
     private Transform target;
 
     public Camera CurrentCamera => viewCamera;
@@ -34,6 +38,8 @@ public class CameraController : MonoBehaviour
         }
 
         composer = virtualCamearas[0].GetCinemachineComponent<CinemachinePOV>();
+
+        cameraView.TransParentInCameraStart(target);
     }
     private void Update()
     {

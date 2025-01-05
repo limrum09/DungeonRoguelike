@@ -8,4 +8,9 @@ public class TempButton : MonoBehaviour
     {
         Manager.Instance.Key.ResetKeyCode();
     }
+
+    public void TempGetExpUP()
+    {
+        Manager.Instance.Game.PlayerCurrentStatus.GetExp(5000);
+    }
 }

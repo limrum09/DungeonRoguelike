@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6043668801184962057}
   - component: {fileID: 1153507004582721899}
   - component: {fileID: 613839223360001316}
-  - component: {fileID: 5260943579485398944}
-  m_Layer: 0
+  - component: {fileID: 5326901090561940075}
+  m_Layer: 3
   m_Name: BigRock2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4899838084862135796}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6043668801184962057
 MeshFilter:
@@ -104,16 +104,25 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1153507004582721899}
   m_Enabled: 1
---- !u!65 &5260943579485398944
-BoxCollider:
+--- !u!64 &5326901090561940075
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4899838084862135796}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25.312025, y: 5.6669436, z: 12.087833}
-  m_Center: {x: -0.33027267, y: 1.6236447, z: -1.41623}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6941436199325133989, guid: e6cca5c98dceaa442a465287b0da5145, type: 3}

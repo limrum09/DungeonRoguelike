@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6242057809781055208}
   - component: {fileID: 6176939099645879315}
   - component: {fileID: 7506927590635376857}
-  - component: {fileID: 5591151073842519165}
-  m_Layer: 0
+  - component: {fileID: 6465500331897908703}
+  m_Layer: 3
   m_Name: LittleRock0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7506927590635376856}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6242057809781055208
 MeshFilter:
@@ -104,16 +104,25 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6176939099645879315}
   m_Enabled: 1
---- !u!65 &5591151073842519165
-BoxCollider:
+--- !u!64 &6465500331897908703
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7506927590635376856}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7695864, y: 0.75091875, z: 1.9073873}
-  m_Center: {x: -0.023941278, y: 0.18963432, z: -0.017046422}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2604107814706398812, guid: e6cca5c98dceaa442a465287b0da5145, type: 3}

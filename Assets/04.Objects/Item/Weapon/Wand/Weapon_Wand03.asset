@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Weapon_Wand03
   m_EditorClassIdentifier: 
   itemCode: Wand03
-  weaponItem: {fileID: 7112451126930258141, guid: af3e1859fd1294d4f95d562b68ebf2a8, type: 3}
-  weaponItemSprite: {fileID: 1092734557, guid: fb6ba1341e65e9d4f824ce198fe6618b, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: b32db9aff9bf74949a9d43869d54994f, type: 2}
-  useOneHand: 1
-  leftWeapon: 0
-  weaponAnimator: {fileID: 9100000, guid: 6935e9cee0008c84ab47a99f5de90a8a, type: 2}
-  weaponValue: 5
+  itemName: "\uC2DC\uD2B8\uB9B0 \uC644\uB4DC"
+  equipmentItem: {fileID: 7112451126930258141, guid: af3e1859fd1294d4f95d562b68ebf2a8, type: 3}
+  itemSprite: {fileID: 1290002707, guid: 9753dda9079ba044f8e33f52b62a5908, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 100
   itemDamage: 200
   itemCriticalDamage: 200
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 30
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: b32db9aff9bf74949a9d43869d54994f, type: 2}
+  useOneHand: 1
+  leftWeapon: 0
+  weaponValue: 5

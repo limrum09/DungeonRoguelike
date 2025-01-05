@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Weapon_THS04_Sword
   m_EditorClassIdentifier: 
   itemCode: THS04_Sword
-  weaponItem: {fileID: 1698111414270081819, guid: 2011fbe5aa194b24ab991c262b80e92c, type: 3}
-  weaponItemSprite: {fileID: 1500046252, guid: c72c70788502cdf46a57a56bc42a0a9b, type: 3}
-  equipmentCategory: {fileID: 11400000, guid: 487f657f9a8842d44b36de642f70e8b0, type: 2}
-  useOneHand: 0
-  leftWeapon: 0
-  weaponAnimator: {fileID: 9100000, guid: 7036c7c7403a3444abd50831be479bcd, type: 2}
-  weaponValue: 3
+  itemName: 
+  equipmentItem: {fileID: 1698111414270081819, guid: 2011fbe5aa194b24ab991c262b80e92c, type: 3}
+  itemSprite: {fileID: 1991957541, guid: fa870c187e6f54a41a733072e2bfa639, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 100
   itemDamage: 200
   itemCriticalDamage: 300
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 20
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: 487f657f9a8842d44b36de642f70e8b0, type: 2}
+  useOneHand: 0
+  leftWeapon: 0
+  weaponValue: 3

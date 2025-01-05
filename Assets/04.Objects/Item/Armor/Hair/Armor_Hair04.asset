@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Armor_Hair04
   m_EditorClassIdentifier: 
   itemCode: Hair04
-  armorItem: {fileID: 3803285941263477451, guid: 71742d6dfc5a1b64387cfb4751203a19, type: 3}
-  armorItemSprite: {fileID: -210837600, guid: c4eb18a42df35a74f89eef00a9c7521b, type: 3}
+  itemName: 
+  equipmentItem: {fileID: 3803285941263477451, guid: 71742d6dfc5a1b64387cfb4751203a19, type: 3}
+  itemSprite: {fileID: -210837600, guid: c4eb18a42df35a74f89eef00a9c7521b, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0
   equipmentCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hair
   itemOverlapping: 1

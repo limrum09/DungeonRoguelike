@@ -16,8 +16,13 @@ public enum SkillWeaponValue
 
 public enum SkillEffectPos
 {
+    RightHand,
+    LeftHand,
+    Weapon,
+    Top,
+    Chest,
     Body,
-    Weapon
+    Ground
 }
 
 [CreateAssetMenu(menuName = "Skill/ActiveSkill", fileName = "Skill_")]
@@ -31,8 +36,6 @@ public class ActiveSkill : ScriptableObject
     private int skillLevel;
     [SerializeField]
     private int maxLevel;
-    [SerializeField]
-    private bool canMove;
 
     [Header("Skill Damage Info")]
     [SerializeField]
@@ -68,6 +71,12 @@ public class ActiveSkill : ScriptableObject
     [TextArea]
     [SerializeField]
     private string skillInfo;
+    [SerializeField]
+    private bool canMove;
+    [SerializeField]
+    private bool targeting;
+    [SerializeField]
+    private bool isViewRotation;
 
 
     private float coolTimer;
@@ -87,10 +96,11 @@ public class ActiveSkill : ScriptableObject
     {
         get
         {
+            canUseSkill = true;
             // 코루틴이 너무 많이 실행됨, 수정 필요
             if (coolTimer > 0.0f)
             {
-                Debug.Log("스킬 쿨타임 중....");
+                Debug.Log(skillName + "스킬 쿨타임 중....");
                 canUseSkill = false;
             }
 
@@ -115,6 +125,10 @@ public class ActiveSkill : ScriptableObject
     public string SkillInfo => skillInfo;
 
     public float skillCoolTime;
+    public bool Targeting => targeting;
+    public bool ViewRotation => isViewRotation;
+
+
     public float CurrentRemainCoolTimer => coolTimer;
     private float rightWeaponValue;
     private float leftWeaponValue;

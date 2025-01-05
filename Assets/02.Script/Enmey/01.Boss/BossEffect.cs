@@ -7,23 +7,61 @@ public class BossEffect : MonoBehaviour
     [SerializeField]
     private SkillEffect prefab;
     [SerializeField]
-    private GameObject weaponEffectPos;
+    private Transform weaponEffectRightHandPos;
     [SerializeField]
-    private GameObject bodyEffectPos;
+    private Transform weaponEffectLeftHandPos;
+    [SerializeField]
+    private Transform weaponEffectPos;
+    [SerializeField]
+    private Transform topEffectPos;
+    [SerializeField]
+    private Transform chestEffectPos;
+    [SerializeField]
+    private Transform bodyEffectPos;
+    [SerializeField]
+    private Transform groundEffectPos;
     
     public void PlayBossEffect(ActiveSkill skill)
     {
         if (skill.SkillEffect == null)
             return;
 
-        GameObject effectPos = null;
+        Transform effectPos = null;
 
-        if (skill.SkillEffectPosition == SkillEffectPos.Body)
-            effectPos = bodyEffectPos;
+        Debug.Log("스킬 이펙트 생성 시작");
+
+/*        if (skill.SkillEffectPosition == SkillEffectPos.Body)
+            effectPos.transform.position = bodyEffectPos.position;
         else if (skill.SkillEffectPosition == SkillEffectPos.Weapon)
-            effectPos = weaponEffectPos;
+            effectPos.transform.position = weaponEffectPos.position;*/
 
-        SkillEffect newSkillEffect = Instantiate(prefab, effectPos.transform);
+        switch (skill.SkillEffectPosition)
+        {
+            case SkillEffectPos.RightHand:
+                effectPos = weaponEffectRightHandPos;
+                break;
+            case SkillEffectPos.LeftHand:
+                effectPos = weaponEffectLeftHandPos;
+                break;
+            case SkillEffectPos.Weapon:
+                effectPos = weaponEffectPos;
+                break;
+            case SkillEffectPos.Top:
+                effectPos = topEffectPos;
+                break;
+            case SkillEffectPos.Chest:
+                effectPos = chestEffectPos;
+                break;
+            case SkillEffectPos.Body:
+                effectPos = bodyEffectPos;
+                break;
+            case SkillEffectPos.Ground:
+                effectPos = groundEffectPos;
+                break;
+        }
+
+        SkillEffect newSkillEffect = Instantiate(prefab, effectPos);
+        Debug.Log(newSkillEffect.name + "을 " + effectPos + " 위치에 생성");
 
         newSkillEffect.ActiveSkillEffect(skill);
     }

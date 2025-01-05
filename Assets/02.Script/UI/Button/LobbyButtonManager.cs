@@ -14,6 +14,10 @@ public class LobbyButtonManager : MonoBehaviour
     [SerializeField]
     private ButtonAnimation lobbyMenuButton;
 
+    [Header("Dongeon Select Panel")]
+    [SerializeField]
+    private List<DongeonPanelController> dongeons;
+
     private List<GameObject> buttonUIs;
 
     public void LobbyUIStart()
@@ -27,14 +31,9 @@ public class LobbyButtonManager : MonoBehaviour
 
         foreach (var panel in buttonUIs)
             panel.SetActive(false);
-    }
 
-    public void LobbyUIActiveFalse()
-    {
-        foreach (var panel in buttonUIs)
-            panel.SetActive(false);
-
-        lobbyMenuButton.LobbyMenuButtonClick();
+        foreach (var dongeon in dongeons)
+            dongeon.DongeonPanelStart();
     }
 
     public void ViewUI(GameObject ui)

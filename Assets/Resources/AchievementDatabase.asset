@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ecfa1084352974fa7eb8941ab1d2f2, type: 3}
   m_Name: AchievementDatabase
   m_EditorClassIdentifier: 
-  quests: []
+  quests:
+  - {fileID: 11400000, guid: b64f958165e7e6b44bcee3207a497791, type: 2}
+  - {fileID: 11400000, guid: c558f9914c70d8c4ba991e1a87b826b5, type: 2}
+  - {fileID: 11400000, guid: e26dcddaa221310479ef7fb2cba8032e, type: 2}
+  - {fileID: 11400000, guid: 17cf9d6335e1fe5429ee50eba876069f, type: 2}
+  - {fileID: 11400000, guid: af029da22a21779419c5fe6b09d60d0b, type: 2}
+  - {fileID: 11400000, guid: ef209815404885b4a980c2e0070d62ff, type: 2}
+  - {fileID: 11400000, guid: b1cb06945223d7649b9d341065ed6a14, type: 2}

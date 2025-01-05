@@ -7,6 +7,11 @@ public class CallEvent : MonoBehaviour
     [SerializeField]
     private PlayerController player;
 
+    public void CallEventStart()
+    {
+        player = Manager.Instance.Game.PlayerController;
+    }
+
     public void MoveForward()
     {
         Vector3 moveDirection = transform.forward * 0.1f;
@@ -58,5 +63,6 @@ public class CallEvent : MonoBehaviour
     {
         player.playerState = PlayerState.Idel;
         player.isMove = true;
+        Debug.Log("Current State : " + player.playerState);
     }
 }

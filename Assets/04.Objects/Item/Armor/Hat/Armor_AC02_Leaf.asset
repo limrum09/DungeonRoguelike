@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Armor_AC02_Leaf
   m_EditorClassIdentifier: 
   itemCode: AC02_Leaf
-  armorItem: {fileID: 2193658558950196739, guid: ebfaa0da77f00ab468c9d6130fd57477, type: 3}
-  armorItemSprite: {fileID: -1228812536, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  itemName: 
+  equipmentItem: {fileID: 2193658558950196739, guid: ebfaa0da77f00ab468c9d6130fd57477, type: 3}
+  itemSprite: {fileID: -1228812536, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0
   equipmentCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hat
   itemOverlapping: 1

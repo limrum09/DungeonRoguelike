@@ -15,7 +15,6 @@ MonoBehaviour:
   skillCode: Boss_Phase2_JumpCrush
   skillLevel: 1
   maxLevel: 1
-  canMove: 1
   skillBasicDamage: 500
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
@@ -23,7 +22,7 @@ MonoBehaviour:
   skillMoveRange: 0
   skillDamageRange: {x: 4, y: 4, z: 4}
   skillEffect: {fileID: 0}
-  skillEffectPos: 0
+  skillEffectPos: 4
   skillMaintenanceTime: 0
   skillMoveTime: 2.2
   skillName: "\uBCF4\uC2A4_\uD398\uC774\uC9882_\uB6F0\uC5B4\uC11C \uB0B4\uB824\uCC0D\uAE30"
@@ -31,6 +30,9 @@ MonoBehaviour:
   animationName: Jump_Rolling_Crush
   icon: {fileID: 0}
   skillInfo: 
+  canMove: 1
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 0

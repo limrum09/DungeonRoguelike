@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0edace4b70aa24ba4405523ded26d0, type: 3}
+  m_Name: Achievement_OHS13_Axe_Right
+  m_EditorClassIdentifier: 
+  questCode: OHS13_Axe_Right
+  category: {fileID: 11400000, guid: d022e4465de60e543a90de11315cdeb9, type: 2}
+  icon: {fileID: 0}
+  codeName: Kill Orc 1
+  displayName: "\uC624\uD06C \uC0AC\uB0E5\uAFBC 1"
+  desctiption: "\uC624\uD06C \uCC98\uCE58\uD558\uAE30 1"
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: 464d016df37ecce428ee88c3eb75f750, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 926784f65452972498818f645b4b93ac, type: 2}
+  autoComplete: 1
+  isCancelable: 0
+  isSavable: 1
+  acceptionCondition:
+  - {fileID: 11400000, guid: 140ced2476f2fbe45899a95313ecaa99, type: 2}
+  cancelCondition: []

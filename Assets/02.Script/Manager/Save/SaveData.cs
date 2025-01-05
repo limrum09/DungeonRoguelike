@@ -6,10 +6,7 @@ using UnityEngine;
 public class SaveData 
 {
     public int inventoryCount;
-    public List<int> slotIndexs = new List<int>();
-    public List<int> itemCnts = new List<int>();
-    public List<string> itemCodes = new List<string>();
-    // public Dictionary<int, InvenItem> invenData = new Dictionary<int, InvenItem>();
+    public List<InventorySaveData> invenSaveData = new List<InventorySaveData>();
 
     public List<string> weaponItemCode = new List<string>();
     public List<string> armorItemCode = new List<string>();
@@ -18,7 +15,10 @@ public class SaveData
 
     public List<QuestSaveData> activeQuestSaveData = new List<QuestSaveData>();
     public List<QuestSaveData> completedQuestSaveData = new List<QuestSaveData>();
+    public List<QuestSaveData> activeAchievementSavaData = new List<QuestSaveData>();
+    public List<QuestSaveData> completedAchievementSaveData = new List<QuestSaveData>();
 
     public string shortCutKeySaveData;
     public List<ShortCutKeySaveData> shortCutButton = new List<ShortCutKeySaveData>();
+    public List<SoundSliderData> soundData = new List<SoundSliderData>();
 }

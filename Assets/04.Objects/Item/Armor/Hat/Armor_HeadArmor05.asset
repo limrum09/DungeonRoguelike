@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Armor_HeadArmor05
   m_EditorClassIdentifier: 
   itemCode: HeadArmor05
-  armorItem: {fileID: 642318848164513854, guid: 11791e37d4f6a19409575f00f2bd7bf2, type: 3}
-  armorItemSprite: {fileID: -946363516, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  itemName: 
+  equipmentItem: {fileID: 642318848164513854, guid: 11791e37d4f6a19409575f00f2bd7bf2, type: 3}
+  itemSprite: {fileID: -946363516, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
+  achievement: {fileID: 0}
+  condition: {fileID: 0}
+  itemHp: 0
+  itemDamage: 0
+  itemCriticalDamage: 0
+  itemSheild: 0
+  itemCriticalPer: 0
+  itemSpeed: 0
+  itemCoolTime: 0
   equipmentCategory: {fileID: 11400000, guid: bddb845f136bb9146afeea0c30bbe72e, type: 2}
   subCategory: hat
   itemOverlapping: 0
