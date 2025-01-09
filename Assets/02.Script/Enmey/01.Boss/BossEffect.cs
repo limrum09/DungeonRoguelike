@@ -19,6 +19,8 @@ public class BossEffect : MonoBehaviour
     [SerializeField]
     private Transform bodyEffectPos;
     [SerializeField]
+    private Transform footEffectPos;
+    [SerializeField]
     private Transform groundEffectPos;
     
     public void PlayBossEffect(ActiveSkill skill)
@@ -54,6 +56,9 @@ public class BossEffect : MonoBehaviour
                 break;
             case SkillEffectPos.Body:
                 effectPos = bodyEffectPos;
+                break;
+            case SkillEffectPos.Foot:
+                effectPos = footEffectPos;
                 break;
             case SkillEffectPos.Ground:
                 effectPos = groundEffectPos;

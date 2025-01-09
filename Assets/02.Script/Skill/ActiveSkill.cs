@@ -22,6 +22,7 @@ public enum SkillEffectPos
     Top,
     Chest,
     Body,
+    Foot,
     Ground
 }
 
