@@ -23,7 +23,7 @@ MonoBehaviour:
   skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 19800004, guid: eade464a77cb192478405c4489c281b2, type: 3}
   skillEffectPos: 2
-  skillMaintenanceTime: 0
+  skillMaintenanceTime: 5
   skillMoveTime: 0
   skillName: 
   weapon: 0

@@ -65206,7 +65206,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.3333333
+  - time: 2.3166666
     functionName: EndPlayingSkill
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 5192b9b4bbb4636478c1929082dd7cef, type: 3}
