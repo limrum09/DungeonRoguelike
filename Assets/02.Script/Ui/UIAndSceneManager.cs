@@ -28,6 +28,8 @@ public class UIAndSceneManager : MonoBehaviour
     [SerializeField]
     private UIProfile uIProfile;
     [SerializeField]
+    private BuffUIController buffUI;
+    [SerializeField]
     private QuestViewUI questUI;
     [SerializeField]
     private AchievementUI achievementUI;
@@ -55,6 +57,7 @@ public class UIAndSceneManager : MonoBehaviour
     public ChangeEquipmentEvent onChangeEquipment;
     public event onSelectQuestListHandler onSelectQuestListView;
 
+    public BuffUIController BuffUI => buffUI;
     public AchievementUI AchievementUI => achievementUI;
     public InventoryButton InventoryUI => invenUI;
     public ShortKeyManager ShortCutBox => shortCutBox;
@@ -66,6 +69,8 @@ public class UIAndSceneManager : MonoBehaviour
     public void UIAndSceneManagerStart()
     {
         this.gameObject.GetComponent<ViewAndHideUIPanels>().ViewAndHideUIStart();
+
+        buffUI.BuffUIControllerStart();
 
         Manager.Instance.Game.AfterUIStartInGameManager();
         invenUI.InvenToryStart();
@@ -88,17 +93,18 @@ public class UIAndSceneManager : MonoBehaviour
 
     private void SceneLoadEnd(Scene scene, LoadSceneMode mode)
     {
-        Debug.LogWarning("씬 로드 완료");
+        Debug.Log("씬 로드 완료");
         
         viewAndHide.CheckCurrentScene();
-        Manager.Instance.Game.PlayerController.PlayerInRespawnPoint();
     }
 
+    // 씬 로드 시작, SceneNames로 입력이 들어오면 string으로 전화하여 LoadScene(string sceneName)호출
     public void LoadScene(SceneNames sceneName) => LoadScene(sceneName.ToString());
-
+    // 씬 로드 시작
     public void LoadScene(string sceneName)
     {
         Manager.Instance.Game.PlayerController.SceneChanging();
+        // 씬을 로딩하는 코루틴 실행
         StartCoroutine(LoadAsyncScene(sceneName));
     }
 

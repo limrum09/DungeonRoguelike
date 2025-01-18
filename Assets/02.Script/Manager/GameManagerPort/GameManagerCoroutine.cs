@@ -6,6 +6,11 @@ public class GameManagerCoroutine : MonoBehaviour
 {
     public List<string> buffStrings = new List<string>();
 
+    public void ListInitialized()
+    {
+        buffStrings.Clear();
+    }
+
     public void PlayerBuffPotion(InvenItem item)
     {
         if (item == null || string.IsNullOrEmpty(item.ItemName))
@@ -17,9 +22,12 @@ public class GameManagerCoroutine : MonoBehaviour
         string buffName = item.ItemName;
 
         if (buffStrings.Contains(buffName))
+        {
             return;
+        }
         
         buffStrings.Add(buffName);
+        Manager.Instance.UIAndScene.BuffUI.PlayerGetBuff(item);
 
         StartCoroutine(UsingBuffItem(item));
     }
@@ -32,7 +40,7 @@ public class GameManagerCoroutine : MonoBehaviour
         gameManager.GetBuffSpeed(speed);
     }
 
-    public IEnumerator UsingBuffItem(InvenItem potion)
+    private IEnumerator UsingBuffItem(InvenItem potion)
     {
         InvenItem newItem = potion;
         var player = PlayerInteractionStatus.instance;
@@ -57,7 +65,11 @@ public class GameManagerCoroutine : MonoBehaviour
             healSpeedTime = newItem.HealSpeedTime;
 
             if (healSpeedTime == 0.0f)
+            {
+                Debug.Log("반복 시간 0초");
+                isSustain = false;
                 player.HealCurrentHP(hpHeal);
+            }                
         }
 
         GetPlayerBuffValue(increaseDamage, increaseSpeed);
@@ -70,10 +82,11 @@ public class GameManagerCoroutine : MonoBehaviour
             buffTime -= Time.deltaTime;
             healTimer += Time.deltaTime;
 
-            if(healTimer >= healSpeedTime)
+            if(healTimer >= healSpeedTime && isSustain)
             {
                 healTimer = 0.0f;
                 player.HealCurrentHP(hpHeal);
+                Debug.Log("체력 회복");
             }
 
             yield return null;
@@ -84,6 +97,20 @@ public class GameManagerCoroutine : MonoBehaviour
         notionString = $"{newItem.ItemName}의 효과가 사라졌습니다.";
         notion.SetNotionText(notionString);
 
-        buffStrings.Remove(newItem.name);
+        // 버프 제거
+        if (!buffStrings.Remove(newItem.ItemName))
+        {
+            Debug.LogError($"buffStrings에서 {newItem.ItemName} 제거 실패. 현재 리스트 값:");
+            foreach (var buff in buffStrings)
+            {
+                Debug.Log($"buffStrings: {buff}");
+            }
+        }
+        Manager.Instance.UIAndScene.BuffUI.PlayerRemoveBuff(newItem);
+    }
+
+    private void OnApplicationQuit()
+    {
+        buffStrings.Clear();
     }
 }

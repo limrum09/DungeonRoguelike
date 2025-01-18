@@ -286,14 +286,20 @@ public class InvenData : MonoBehaviour
             {
                 if (invenSlots[i].ItemName == itemName)
                 {
-                    UsingInvenItem(i);
+                    ConsumeInvenItem(i);
                     break;
                 }
             }            
         }
     }
 
-    public void UsingInvenItem(int index)
+    /// <summary>
+    /// count에 특변한 값이 들어가지 않으면, player가 아이템을 사용한 것으로 간주
+    /// count의 값이 0보다 큰 경우, 아이템을 여러개 버리거나 판매한다고 간주
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="count"></param>
+    public void ConsumeInvenItem(int index, int count = -1)
     {
         if (IsValidIndex(index))
         {
@@ -304,8 +310,18 @@ public class InvenData : MonoBehaviour
                 if (invenSlots[index].ItemCnt == 0)
                     return;
 
-                invenSlots[index].GetItemCount(-1);
+                if(count == -1)
+                {
+                    invenSlots[index].GetItemCount(-1);
+                    // 아이템 사용
+                    invenSlots[index].UsingItem();
+                }
+                else if(count >= 0)
+                {
+                    invenSlots[index].GetItemCount(-count);
+                }
 
+                // 단축키에 아이템 있을 시, 개수 감소
                 Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlot.ItemCode);
 
                 if (invenSlots[index].ItemCnt <= 0)

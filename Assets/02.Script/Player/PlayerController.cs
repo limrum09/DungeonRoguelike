@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour
     private float sceneLoadTimer;
     private float preVelocityY;
     private bool sceneChagne;
-    private bool sceneChangeComplete;
 
     // Start is called before the first frame update
     public void PlayerControllerStart()
@@ -78,14 +77,14 @@ public class PlayerController : MonoBehaviour
         isMove = true;
         isCombo = false;
         sceneChagne = false;
-        sceneChangeComplete = false;
     }
 
     public void SceneChanging()
     {
-        sceneChangeComplete = false;
-        sceneChagne = true;
+        PlayerInRespawnPoint();
 
+        isGround = false;
+        isMove = false;
         playerState = PlayerState.Idel;
         animator.SetBool("Walk", false);
         animator.SetBool("Sprint", false);
@@ -96,10 +95,11 @@ public class PlayerController : MonoBehaviour
     public void PlayerInRespawnPoint()
     {
         respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
-        sceneChangeComplete = true;
+        sceneChagne = true;
         sceneLoadTimer = 0.0f;
     }
 
+    #region UsingActiveSkill
     public void InputActiveSkill(ActiveSkill skill)
     {
         if ((skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") || skill.LeftWeaponValue != animator.GetInteger("LeftWeaponValue")) && skill.WeaponValue != SkillWeaponValue.Public)
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
         skillEffectController.ActiveSkillEffect(skill, tf);
     }
 
-    // 화면 클릭시, 회전
+    // 타켓팅 스킬 사용 중, 화면 클릭 시 회전
     public void RotatePlayerToMousePos(Transform getTf)
     {
         Vector3 targetPosition = getTf.position;
@@ -167,12 +167,13 @@ public class PlayerController : MonoBehaviour
         isMove = true;
         playerState = PlayerState.Idel;
     }
+    #endregion
 
-    public void LoddingEnd()
+
+    // 로딩 UI 까지 없어지고 난 후, 플레이어 움직이기
+    public void PlayerCanMove()
     {
-        // 최종적으로 로딩 종료
-        sceneChagne = false;
-        Manager.Instance.UIAndScene.LoddingUI.gameObject.SetActive(false);
+        isMove = true;
     }
 
     // Update is called once per frame
@@ -199,20 +200,27 @@ public class PlayerController : MonoBehaviour
 
     private void SceneLoadCompleteCheck()
     {
+        if (!sceneChagne)
+            return;
+
         // 씬 전환 완료, 이후 1초동안 리스폰 위치로 플레이어 강제 이동
-        if (sceneChangeComplete)
+        respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
+
+        // CharacterController를 비활성화 후 위치 설정
+        controller.enabled = false;
+        transform.position = respawnPoint.position;
+        controller.transform.position = respawnPoint.position;
+        controller.enabled = true;
+
+        sceneLoadTimer += Time.deltaTime;
+
+        Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 가는 중...!", 75.0f);
+
+        if (sceneLoadTimer >= 1.5f)
         {
-            transform.position = respawnPoint.position;
-            controller.transform.position = respawnPoint.position;
-
-            sceneLoadTimer += Time.deltaTime;
-
-            Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 가는 중...!", 75.0f);
-
-            if (sceneLoadTimer >= 1.5f)
-            {
-                Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 도착!", 100.0f);
-            }
+            // 값이 100이 되어야, LoddingUI가 종료됨
+            Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 도착!", 100.0f);
+            sceneChagne = false;
         }
     }
 

@@ -33,7 +33,7 @@ public class InvenItem : ScriptableObject
 
     [Header("HP & MP")]
     [SerializeField]
-    private bool isSustain;
+    private bool isSustain;         // 즉발성, 체력을 한번만 회복(false), 체력 여러번 회복(true)
     [SerializeField]
     private float healSpeedTime;
     [SerializeField]
@@ -69,6 +69,18 @@ public class InvenItem : ScriptableObject
     public void GetItemCount() => itemCnt++;
     public void GetItemCount(int i) => itemCnt += i;
     public void SetItemCount(int i) => itemCnt = i;
+
+    public void UsingItem()
+    {
+        Debug.Log("아이템 사용");
+        if (increaseDamage >= 0.0f || increaseSpeed > 0.0f || isSustain)
+            Manager.Instance.Game.GetBuffItem(this);
+        else if (!isSustain)
+        {
+            PlayerInteractionStatus.instance.HealCurrentHP(hpHeal);
+            return;
+        }
+    }
 
     public InvenItem Clone()
     {
