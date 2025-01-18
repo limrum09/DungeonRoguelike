@@ -14,27 +14,61 @@ public enum ITEMTYPE
 [CreateAssetMenu(fileName = "InvenItem", menuName = "Scriptable Object/Item")]
 public class InvenItem : ScriptableObject
 {
+    [Header("Info")]
     public ITEMTYPE itemtype;
     [SerializeField]
     private string itemCode;
-    public string itemName;
-    public string itemInfo;
-    public Sprite itemImage;
-    public int itemCnt;
+    [SerializeField]
+    private string itemName;
+    [SerializeField]
+    private string itemInfo;
+    [SerializeField]
+    private Sprite itemImage;
+    [SerializeField]
+    private int itemCnt;
     [SerializeField]
     private int amount;
-    public bool isMax;
+    [SerializeField]
+    private bool isMax;
 
-    public int hpHeal;
-    public int mpHeal;
-    public int increaseDamage;
-    public float increaseSpeed;
+    [Header("HP & MP")]
+    [SerializeField]
+    private bool isSustain;
+    [SerializeField]
+    private float healSpeedTime;
+    [SerializeField]
+    private int hpHeal;
+    [SerializeField]
+    private int mpHeal;
 
-    public float durationTime;
+    [Header("Buff")]
+    [SerializeField]
+    private int increaseDamage;
+    [SerializeField]
+    private float increaseSpeed;
+    [SerializeField]
+    private float durationTime;
 
     public string ItemCode => itemCode;
+    public string ItemName => itemName;
+    public string ItemInfo => itemInfo;
+    public Sprite ItemImage => itemImage;
+    public int ItemCnt => itemCnt;
     public bool IsMax() => itemCnt >= amount;
     public int ItemAmount => amount;
+
+    public bool IsSustain => isSustain;
+    public float HealSpeedTime => healSpeedTime;
+    public int HPHealValue => hpHeal;
+    public int MPHealValue => mpHeal;
+
+    public int InCreaseDamageValue => increaseDamage;
+    public float InCreaseSpeedValue => increaseSpeed;
+    public float DurationTime => durationTime;
+
+    public void GetItemCount() => itemCnt++;
+    public void GetItemCount(int i) => itemCnt += i;
+    public void SetItemCount(int i) => itemCnt = i;
 
     public InvenItem Clone()
     {

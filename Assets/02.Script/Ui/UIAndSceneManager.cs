@@ -110,7 +110,7 @@ public class UIAndSceneManager : MonoBehaviour
     public void ChangeEXPBar()
     {
         uIProfile.SetExpBar();
-        statusUI.SetStatusUIText();
+        statusUI.SetExpUIText();
     }
 
     public void LevelUPUI()
@@ -142,7 +142,7 @@ public class UIAndSceneManager : MonoBehaviour
         Manager.Instance.Save.DataSaving();
         yield return new WaitForSeconds(1.0f);
 
-        Manager.Instance.Save.LoadData("SaveFile");
+        Manager.Instance.Save.LoadData();
         yield return new WaitForSeconds(1.0f);
 
         loddingUI.LoddingRateValue("던전 찾는 중...", 60.0f);

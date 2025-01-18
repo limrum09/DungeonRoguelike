@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
     private int str;
     private int dex;
     private int luk;
-    private int bonusState;
+    private int bonusStatus;
+
+    private int buffDamage;
+    private float buffSpeed;
 
     private int exp;
     private int currentExp;
@@ -41,9 +44,9 @@ public class GameManager : MonoBehaviour
     public int Str => str;
     public int Dex => dex;
     public int Luk => luk;
+    public int BonusStatus => bonusStatus;
     public int Exp => exp;
     public int CurrentExp => currentExp;
-    public int BonusState => bonusState;
 
 
     public event PlayerMove playerMoveInGame;
@@ -51,9 +54,19 @@ public class GameManager : MonoBehaviour
     {
         isStart = true;
 
+        buffDamage = 0;
+        buffSpeed = 0;
+
         GameObject newPlayer = PlayerRespawnInRespawnPoint();
-        
-        ChangeExpBar();
+
+        playerSaveStatus.OnStatusChanged += SetStatusChanged;
+        playerSaveStatus.OnExpChanged += SetExpChanged;
+    }
+
+    private void OnDestroy()
+    {
+        playerSaveStatus.OnStatusChanged -= SetStatusChanged;
+        playerSaveStatus.OnExpChanged -= SetExpChanged;
     }
 
     public void PlayerMoveTransform()
@@ -70,7 +83,6 @@ public class GameManager : MonoBehaviour
     {
         GameObject playerObject = Instantiate(player);
         playerObject.name = "PlayerObject";
-//        playerObject.transform.SetParent(null);
 
         playerController = playerObject.GetComponent<PlayerController>();
         playerController.PlayerControllerStart();
@@ -80,54 +92,61 @@ public class GameManager : MonoBehaviour
         return playerObject;
     }
 
-    public void InitializeGameManager()
-    {
-        isStart = true;
-
-        ChangePlayerStatus();
-        ChangeExpBar();
-    }
-
-    public void ChangeCurrentExp()
-    {
-        ChangeExpBar();
-    }
-
-    public void LevelUP()
+    private void LevelUP()
     {
         PlayerInteractionStatus.instance.CurrentHP = PlayerInteractionStatus.instance.MaxHP;
-
-        ChangeExpBar();
-
         BackendRank.Instance.RankInsert();
         Manager.Instance.UIAndScene.LevelUPUI();
     }
 
-    private void GetPlayerStatus()
+    public void SetExpChanged(int getExp, int getMaxExp, int getLevel)
     {
-        level = playerSaveStatus.Level;
-        health = playerSaveStatus.Health;
-        str = playerSaveStatus.Str;
-        dex = playerSaveStatus.Dex;
-        luk = playerSaveStatus.Luk;
-        bonusState = playerSaveStatus.BonusStatus;
+        if(level < getLevel)
+        {
+            level = getLevel;
+            LevelUP();
+        }
 
-        exp = playerSaveStatus.Exp;
-        currentExp = playerSaveStatus.CurrentExp;
+        currentExp = getExp;
+        exp = getMaxExp;
+
+        Manager.Instance.UIAndScene.ChangeEXPBar();
+    }
+
+    public void SetStatusChanged(string status, int value)
+    {
+        switch (status)
+        {
+            case "str":
+                str = value;
+                break;
+            case "dex":
+                dex = value;
+                break;
+            case "luk":
+                luk = value;
+                break;
+            case "health":
+                health = value;
+                break;
+            case "bonus":
+                bonusStatus = value;
+                break;
+        }
+
+        ChangePlayerStatus();
     }
 
     public void ChangePlayerStatus()
     {
         var player = PlayerInteractionStatus.instance;
 
-        GetPlayerStatus();
-
         player.MaxHP = (health * 20) + (str * 5) + itemStatus.ItemHP;
-        player.PlayerDamage = (str * 4) + (dex * 1) + itemStatus.ItemDamage;
+        player.PlayerDamage = (str * 4) + (dex * 1) + itemStatus.ItemDamage + buffDamage;
         player.Sheild = (health * 2) + (str * 1) + (dex * 1) + itemStatus.ItemSheid;
         player.CriticalDamage = (int)(((str * 4) + (dex * 1) + itemStatus.ItemDamage + itemStatus.ItemCriticalDamage) * (100 + (luk * 2))) / 100;
         player.CriticalPer = (float)(luk * 0.5) + (float)(dex * 0.2) + itemStatus.ItemCriticalPer;
-        player.PlayerSpeed = (float)9.75 + (float)(dex * 0.02) + (float)(str * 0.03) + itemStatus.ItemSpeed;
+        player.PlayerSpeed = (float)9.75 + (float)(dex * 0.02) + (float)(str * 0.03) + itemStatus.ItemSpeed + buffSpeed;
         player.SkillCoolTime = (float)9.8 + (float)((str + dex + health + luk) * 0.01) + itemStatus.ItemCoolTime;
 
         if (level == 1 && isStart)
@@ -149,14 +168,18 @@ public class GameManager : MonoBehaviour
     public void PlayerArmorChange(ArmorItem item) => itemStatus.ChangeArmorItem(item);
     public void ChangeHPBar()
     {
-        GetPlayerStatus();
-
         Manager.Instance.UIAndScene.ChangeHPBar();
     }
-    public void ChangeExpBar()
-    {
-        GetPlayerStatus();
 
-        Manager.Instance.UIAndScene.ChangeEXPBar();
+    public void GetBuffDamage(int getDamage)
+    {
+        buffDamage += getDamage;
+        ChangePlayerStatus();
+    }
+
+    public void GetBuffSpeed(float getSpeed)
+    {
+        buffSpeed += getSpeed;
+        ChangePlayerStatus();
     }
 }

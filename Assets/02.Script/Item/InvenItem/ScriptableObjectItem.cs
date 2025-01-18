@@ -11,6 +11,9 @@ public class ScriptableObjectItem : MonoBehaviour
         if (other.CompareTag("PlayerComponent"))
         {
             InvenData.instance.CheckItem(item);
+            PlayerGetPotion();
         }
     }
+
+    protected virtual void PlayerGetPotion() { }
 }

@@ -29,20 +29,30 @@ public class PlayerInteractionTest : MonoBehaviour
     public GameObject WeaponR => weaponR;
     public GameObject WeaponL => weaponL;
 
+    private List<GameObject> weaponRChilds = new List<GameObject>();
+    private List<GameObject> weaponLChilds = new List<GameObject>();
+
     public void PlayerInterationStart()
     {
         armorIndexOverLapping = 9999;
 
         meshFilterWeaponR = weaponR.gameObject.GetComponent<MeshFilter>();
         meshFilterWeaponL = weaponL.gameObject.GetComponent<MeshFilter>();
+
+        int count = 0;
+
+        count = weaponR.transform.childCount;
+        for (int i = 0; i < count; i++)
+            weaponRChilds.Add(weaponR.transform.GetChild(i).gameObject);
+
+        count = weaponL.transform.childCount;
+        for (int i = 0; i < count; i++)
+            weaponLChilds.Add(weaponL.transform.GetChild(i).gameObject);
     }
 
     public void WeaponChange(WeaponItem weapon)
     {
         WeaponItem newWeapon = weapon;
-
-        // 무기가 왼손, 오른손 위치에 따라 조금 회전을 줄 필요가 있음
-        ItemRotation weaponRotation = newWeapon.ItemObject != null ? newWeapon.ItemObject.GetComponent<ItemRotation>() : null;
 
         // Animator의 무기 모션을 확인할 값
         int weaponAniValue = newWeapon.WeaponValue;
@@ -59,29 +69,34 @@ public class PlayerInteractionTest : MonoBehaviour
         {
             weaponR.SetActive(true);
             rightWeaponValue = weaponAniValue;
+            string weaponName = newWeapon.ItemObject != null ? newWeapon.ItemObject.name : "None";
 
-            // 무기에 회전을 주어야 하는 경우
-            if (weaponRotation != null)
+            foreach (var childWeapon in weaponRChilds)
             {
-                WeaponR.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY, weaponRotation.PlayerItemRotationZ);
+                if (string.Equals(weaponName, childWeapon.name))
+                    childWeapon.SetActive(true);
+                else if (childWeapon.activeSelf)
+                    childWeapon.SetActive(false);
             }
-
-            if (newWeapon.WeaponValue == 5)
-                weaponL.SetActive(false);
         }            
         else
         {
             weaponL.SetActive(true);
             leftWeaponValue = weaponAniValue;
 
-            if (weaponRotation != null)
+            string weaponName = newWeapon.ItemObject != null ? newWeapon.ItemObject.name : "None";
+
+            foreach (var childWeapon in weaponLChilds)
             {
-                WeaponL.transform.localRotation = Quaternion.Euler(weaponRotation.PlayerItemRotationX, weaponRotation.PlayerItemRotationY * -1.0f, weaponRotation.PlayerItemRotationZ + 180f);
+                if (string.Equals(weaponName, childWeapon.name))
+                    childWeapon.SetActive(true);
+                else if (childWeapon.activeSelf)
+                    childWeapon.SetActive(false);
             }
 
             // 현제 왼손에는 검과 방패만 사용이 가능한데, 두 무기다 오른손에는 한손검만 사용한다.
             // 이에 오른손 무기가 한손검이 아닐경우 오른손 무기를 사용할 수 없다.
-            if (rightWeaponValue != 1)
+            if (rightWeaponValue != 1 && !weaponName.Contains("None"))
             {
                 rightWeaponValue = 0;
                 weaponR.SetActive(false);
@@ -98,21 +113,6 @@ public class PlayerInteractionTest : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Walk", false);
         animator.SetBool("IsAttack", false);
-
-        // 무기를 장착 중이면, 현제 무기의 Mesh가져오기
-        MeshFilter changeFilter = newWeapon.ItemObject != null ? newWeapon.ItemObject.GetComponent<MeshFilter>() : null;
-        // 바궈야할 Mesh, 바꿀 무기가 왼손이면 player의 왼손 MeshFilter를 가져온다.
-        MeshFilter currentWeaponFilter = newWeapon.LeftWeapon ? meshFilterWeaponL : meshFilterWeaponR;
-        
-        // 사용자에게 보여주는 Mesh
-        currentWeaponFilter.sharedMesh = changeFilter != null ? changeFilter.sharedMesh : null;
-
-        if (!newWeapon.LeftWeapon && currentWeaponFilter == meshFilterWeaponR)
-        {
-            // 실제로 몬스터와 상호작용하는 MeshCollider, 스킬을 사용할때 무기 판정 범위의 원활한 변경을 위해 따로 때에냄
-            // 공격은 무조건 오른손에 착용한 무기가 상호작용한다.
-            attackMesh.sharedMesh = currentWeaponFilter.sharedMesh;
-        }
     }
      
     public void ArmorChange(ArmorItem armor)

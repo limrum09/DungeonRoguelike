@@ -59,10 +59,10 @@ public class InvenSlot : MonoBehaviour
             currentItem = item;
             itemType = item.itemtype;
             itemCode = item.ItemCode;
-            itemName = item.itemName;
-            itemCnt = item.itemCnt;
-            itemImage.sprite = item.itemImage;
-            itemInformation = item.itemInfo;
+            itemName = item.ItemName;
+            itemCnt = item.ItemCnt;
+            itemImage.sprite = item.ItemImage;
+            itemInformation = item.ItemInfo;
 
             if (item.ItemAmount == 1) isCntView = false;
             else isCntView = true;

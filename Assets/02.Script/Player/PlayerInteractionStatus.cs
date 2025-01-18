@@ -70,6 +70,16 @@ public class PlayerInteractionStatus : MonoBehaviour
         isDie = false;
     }
 
+    public void HealCurrentHP(int value)
+    {
+        currentHP += value;
+
+        if (currentHP >= maxHP)
+            currentHP = maxHP;
+
+        Manager.Instance.Game.ChangeHPBar();
+    }
+
     public void TakeDamage(int damage)
     {
         if (!isDie)

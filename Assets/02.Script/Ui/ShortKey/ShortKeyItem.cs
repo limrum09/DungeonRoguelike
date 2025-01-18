@@ -178,7 +178,7 @@ public class ShortKeyItem : MonoBehaviour
     private void ViewItem()
     {
         viewPort.SetActive(true);
-        itemIcon.sprite = item.itemImage;
+        itemIcon.sprite = item.ItemImage;
         itemCnt.text = ItemCount().ToString();
     }
 
@@ -201,13 +201,14 @@ public class ShortKeyItem : MonoBehaviour
     private int ItemCount()
     {
         int count = 0;
+        string itemName = item.ItemName;
 
         foreach(var inven in InvenData.instance.invenSlots)
         {
             if(inven != null && item != null)
             {
-                if (inven.itemName == item.itemName)
-                    count += inven.itemCnt;
+                if (inven.ItemName == itemName)
+                    count += inven.ItemCnt;
             }
         }
 

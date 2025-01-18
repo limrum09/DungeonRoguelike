@@ -48,7 +48,7 @@ public class AchievementDetailView : MonoBehaviour
             }
             else if(reward is InvenItemReward invenReward)
             {
-                rewards.text += $"아이템 {invenReward.Item.itemName} {invenReward.Count}개 획득";
+                rewards.text += $"아이템 {invenReward.Item.ItemName} {invenReward.Count}개 획득";
             }
             else
             {

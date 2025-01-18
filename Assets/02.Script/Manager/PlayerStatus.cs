@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    public event Action<string, int> OnStatusChanged;  // Action<status type, status>
+    public event Action<int, int, int> OnExpChanged;     // Action<current exp, level>
+
     [SerializeField]
     private int level;
     [SerializeField]
@@ -20,18 +24,6 @@ public class PlayerStatus : MonoBehaviour
     private int exp;
     [SerializeField]
     private int currentExp;
-    [SerializeField]
-    private int currentHP;
-
-    public int Level => level;
-    public int Health => health;
-    public int Str => str;
-    public int Dex => dex;
-    public int Luk => luk;
-    public int BonusStatus => bonusState;
-    public int Exp => exp;
-    public int CurrentExp => currentExp;
-    public int CurrentHP => currentHP;
 
     public PlayerStatusSaveData GetPlayerSaveStatus()
     {
@@ -68,12 +60,17 @@ public class PlayerStatus : MonoBehaviour
         this.exp = saveData.exp;
         this.currentExp = saveData.currentExp;
 
-        this.currentHP = saveData.currentHp;
+        PlayerInteractionStatus.instance.CurrentHP = saveData.currentHp;
 
-        Manager.Instance.Game.InitializeGameManager();
+        OnStatusChanged?.Invoke("health", health);
+        OnStatusChanged?.Invoke("str", str);
+        OnStatusChanged?.Invoke("dex", dex);
+        OnStatusChanged?.Invoke("luk", luk);
+        OnStatusChanged?.Invoke("bonus", bonusState);
+        OnExpChanged?.Invoke(currentExp, exp, level);
     }
 
-    private void FirstStart()
+    public void FirstStart()
     {
         level = 1;
         health = 5;
@@ -85,46 +82,41 @@ public class PlayerStatus : MonoBehaviour
         exp = 200;
         currentExp = 0;
 
-        Manager.Instance.Game.InitializeGameManager();
+        OnStatusChanged?.Invoke("health", health);
+        OnStatusChanged?.Invoke("str", str);
+        OnStatusChanged?.Invoke("dex", dex);
+        OnStatusChanged?.Invoke("luk", luk);
+        OnStatusChanged?.Invoke("bonus", bonusState);
+        OnExpChanged?.Invoke(currentExp, exp, level);
     }
 
     public void StatusUP(string status)
     {
-        bool useState = false;
+        if (bonusState <= 0)
+            return;
 
-        if (bonusState >= 1)
+        switch (status)
         {
-            switch (status)
-            {
-                case "health":
-                    health++;
-                    useState = true;
-                    break;
-                case "str":
-                    str++;
-                    useState = true;
-                    break;
-                case "dex":
-                    dex++;
-                    useState = true;
-                    break;
-                case "luk":
-                    luk++;
-                    useState = true;
-                    break;
-                default:
-                    useState = false;
-                    break;
-            }
-
-            if (useState)
-            {
-                bonusState--;
-                Manager.Instance.Game.ChangePlayerStatus();
-            }
-            else
-                Debug.Log("Can't use bonus status");
+            case "health":
+                health++;
+                OnStatusChanged?.Invoke("health", health);
+                break;
+            case "str":
+                str++;
+                OnStatusChanged?.Invoke("str", str);
+                break;
+            case "dex":
+                dex++;
+                OnStatusChanged?.Invoke("dex", dex);
+                break;
+            case "luk":
+                luk++;
+                OnStatusChanged?.Invoke("luk", luk);
+                break;
         }
+
+        bonusState--;
+        OnStatusChanged?.Invoke("bonus", bonusState);
     }
 
     public void GetExp(int getExp)
@@ -136,14 +128,13 @@ public class PlayerStatus : MonoBehaviour
             while (currentExp >= exp)
             {
                 currentExp -= exp;
-
                 exp = exp + (level * 50) + 150;
-
                 level++;
                 bonusState += 5;
+                OnStatusChanged?.Invoke("bonus", bonusState);
             }
 
-            Manager.Instance.Game.LevelUP();
+            OnExpChanged?.Invoke(currentExp, exp, level);
         }
     }
 

@@ -139,7 +139,7 @@ public class InvenData : MonoBehaviour
                 // 같은 아이템이 있는 경우
                 if(invenSlots[i].ItemCode == newItem.ItemCode && !invenSlots[i].IsMax())
                 {
-                    invenSlots[i].itemCnt++;
+                    invenSlots[i].GetItemCount();
                     RefreshInvenSlot(i);
                     Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlots[i].ItemCode);
                     return;
@@ -154,7 +154,7 @@ public class InvenData : MonoBehaviour
         if (nullSlotIndex != -1)
         {
             invenSlots[nullSlotIndex] = newItem;
-            invenSlots[nullSlotIndex].itemCnt = 1;
+            invenSlots[nullSlotIndex].SetItemCount(1);
             RefreshInvenSlot(nullSlotIndex);
             Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlots[nullSlotIndex].ItemCode);
 
@@ -199,7 +199,7 @@ public class InvenData : MonoBehaviour
             {
                 invenSlot.RemoveSlot();
             }
-            else if(invenSlots[i] != null && invenSlots[i].itemCnt != 0)
+            else if(invenSlots[i] != null && invenSlots[i].ItemCnt != 0)
             {
                 invenSlot.SetSlotItem(invenSlots[i]);
                 invenSlot.ViewAndHideInvenSlot(true);
@@ -243,12 +243,12 @@ public class InvenData : MonoBehaviour
     private void CombinePotionCount(int lastIndex, int currentIndex)
     {
         int ItemAmount = invenSlots[currentIndex].ItemAmount;
-        int currentIndexItemCount = invenSlots[currentIndex].itemCnt;
+        int currentIndexItemCount = invenSlots[currentIndex].ItemCnt;
 
         // 드레그한 위치의 포션의 개수가 Amount보다 적을 시, 동작
         if (currentIndexItemCount < ItemAmount)
         {
-            int lastIndexItemCount = invenSlots[lastIndex].itemCnt;
+            int lastIndexItemCount = invenSlots[lastIndex].ItemCnt;
             int itemSum = lastIndexItemCount + currentIndexItemCount;
 
             // 현제 두 포션의 개수의 합이 Amount보다 많을 시, true. 예) Amount가 99라면 합이 최소 100은 어야 true.
@@ -257,7 +257,7 @@ public class InvenData : MonoBehaviour
                 lastIndexItemCount = itemSum - ItemAmount;
                 currentIndexItemCount = ItemAmount;
 
-                invenSlots[lastIndex].itemCnt = lastIndexItemCount;
+                invenSlots[lastIndex].SetItemCount(lastIndexItemCount);
             }
             else
             {
@@ -266,7 +266,7 @@ public class InvenData : MonoBehaviour
                 invenSlots[lastIndex] = null;
             }
 
-            invenSlots[currentIndex].itemCnt = currentIndexItemCount;
+            invenSlots[currentIndex].SetItemCount(currentIndexItemCount);
         }
     }
 
@@ -279,11 +279,12 @@ public class InvenData : MonoBehaviour
 
     public void UsingInvenItem(InvenItem item)
     {
+        string itemName = item.ItemName;
         for(int i = 0; i < invenSlots.Count; i++)
         {
             if(invenSlots[i] != null)
             {
-                if (invenSlots[i].itemName == item.itemName)
+                if (invenSlots[i].ItemName == itemName)
                 {
                     UsingInvenItem(i);
                     break;
@@ -300,14 +301,14 @@ public class InvenData : MonoBehaviour
 
             if (invenSlot.CurrentItem != null)
             {
-                if (invenSlots[index].itemCnt == 0)
+                if (invenSlots[index].ItemCnt == 0)
                     return;
 
-                invenSlots[index].itemCnt--;
+                invenSlots[index].GetItemCount(-1);
 
                 Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlot.ItemCode);
 
-                if (invenSlots[index].itemCnt <= 0)
+                if (invenSlots[index].ItemCnt <= 0)
                 {
                     invenSlots[index] = null;
                 }
