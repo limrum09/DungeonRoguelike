@@ -79,6 +79,9 @@ public class Manager : MonoBehaviour
         uIAndSceneManager = Instantiate(uIAndSceneManager, this.transform);
         uIAndSceneManager.UIAndSceneManagerStart();
 
+        userInfo = Instantiate(userInfo, this.transform);
+        userInfo.GetUserInfoFromBackend();
+
         saveManager = Instantiate(saveManager, this.transform);
         saveManager.SaveDatabaseStart();
 
@@ -88,9 +91,6 @@ public class Manager : MonoBehaviour
         uIAndSceneManager.viewAndHide.CheckCurrentScene();
 
         transparentManager = Instantiate(transparentManager, this.transform);
-
-        userInfo = Instantiate(userInfo, this.transform);
-        userInfo.GetUserInfoFromBackend();
 
         Resources.UnloadUnusedAssets();
     }

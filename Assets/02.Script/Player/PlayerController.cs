@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         // 씬 전환 중
         if (sceneChagne)

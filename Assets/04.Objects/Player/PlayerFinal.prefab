@@ -318,8 +318,6 @@ MonoBehaviour:
   targetingSkill: {fileID: 4960624620284619368}
   weaponPosEffect: {fileID: 100075559}
   centerPosEffect: {fileID: 1997007598158867893}
-  stepQuest: {fileID: 1974994871164104918}
-  jumpQuest: {fileID: 2764814372841224194}
 --- !u!114 &3503929093125470125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,8 +352,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 954337972027280294}
-  weaponR: {fileID: 3388381284287198391}
-  weaponL: {fileID: 7298386491651415254}
+  weaponR: {fileID: 9200494381091985971}
+  weaponL: {fileID: 8790458229549238694}
   attackMesh: {fileID: 8477131707726249668}
   armors:
   - {fileID: 1021232908385250670}
@@ -5384,7 +5382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3263530568783716261, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3263530568783716261, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
       propertyPath: m_TagString
@@ -5401,11 +5399,6 @@ PrefabInstance:
 --- !u!4 &2616066365747195405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2738667335380043039, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
-  m_PrefabInstance: {fileID: 166511216464653074}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3388381284287198391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3263530568783716261, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
   m_PrefabInstance: {fileID: 166511216464653074}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &168068705800088820
@@ -13496,7 +13489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 827500848075308831, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 827500848075308831, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}
       propertyPath: m_TagString
@@ -13507,11 +13500,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}
---- !u!1 &7298386491651415254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 827500848075308831, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}
-  m_PrefabInstance: {fileID: 7940633923417580489}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7927113200981771884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 13527358370522533, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}

@@ -38,7 +38,7 @@ public class BackendRank : MonoBehaviour
 
         // 랭킹 데이터
         Param param = new Param();
-        param.Add("Level", Manager.Instance.Game.PlayerCurrentStatus.Level);
+        param.Add("Level", Manager.Instance.Game.Level);
 
         Backend.GameData.GetMyData(Constants.USER_DATA_TABLE, new Where(), callback => {
             if (callback.IsSuccess())

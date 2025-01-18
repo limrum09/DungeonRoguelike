@@ -32,7 +32,7 @@ public class SaveDatabase : MonoBehaviour
 
     public void DataSaving()
     {
-        SaveData("SaveFile", 10);
+        SaveData(10);
     }
 
     public void SaveDatabaseStart()
@@ -51,7 +51,7 @@ public class SaveDatabase : MonoBehaviour
         invenSlots = manager.Game.InvenDatas.invenSlots;
         shortKey = manager.Key;
 
-        LoadData("SaveFile");;
+        LoadData();
     }
 
     private void Initialzed()
@@ -75,7 +75,7 @@ public class SaveDatabase : MonoBehaviour
         saveData.soundData.Clear();
     }
 
-    public void SaveData(string fileName, int maxRepeatCount)
+    public void SaveData(int maxRepeatCount)
     {
         if (maxRepeatCount <= 0)
             return;
@@ -140,7 +140,7 @@ public class SaveDatabase : MonoBehaviour
                 // 저장되는 ItemCode, itemCnt, index는 서로 다른 배열에 값을 저장된다.
                 // 서로 다른 배열의 같은 index값을 가진다. (저장시 i의 값에 저장된다.)
                 InventorySaveData newData = new InventorySaveData();
-                newData.itemnCnt = invenSlots[i].itemCnt;
+                newData.itemnCnt = invenSlots[i].ItemCnt;
                 newData.itemCode = invenSlots[i].ItemCode;
                 newData.index = i;
 
@@ -190,7 +190,7 @@ public class SaveDatabase : MonoBehaviour
         string json = JsonUtility.ToJson(saveData);   // Json 직열화
 
         // 파일 경로 설정
-        string path = Path.Combine(Application.persistentDataPath, fileName);
+        string path = Path.Combine(Application.persistentDataPath, UserInfo.UserData.gamerId);
 
         // 파일에 Json 문자열 저장
         File.WriteAllText(path, json);
@@ -198,7 +198,7 @@ public class SaveDatabase : MonoBehaviour
         Param param = new Param();
 
         param.Add("JsonSaveData", json);
-        param.Add("Level", Manager.Instance.Game.PlayerCurrentStatus.Level);
+        param.Add("Level", Manager.Instance.Game.Level);
 
         BackendReturnObject bro = Backend.GameData.GetMyData(Constants.USER_DATA_TABLE, new Where());
 
@@ -214,7 +214,7 @@ public class SaveDatabase : MonoBehaviour
             case "Repeat":
             case "repeat":
                 Debug.LogError("연결 재시도");
-                SaveData(fileName, maxRepeatCount - 1);
+                SaveData(maxRepeatCount - 1);
                 break;
             case "Success":
             case "success":
@@ -248,11 +248,9 @@ public class SaveDatabase : MonoBehaviour
     }
 
 
-    public void LoadData(string fileName)
+    public void LoadData()
     {
         Debug.Log("Load Data");
-
-        string path = Path.Combine(Application.persistentDataPath, fileName);
 
         bool getSaveDataToBackendServer = false;
 
@@ -286,6 +284,8 @@ public class SaveDatabase : MonoBehaviour
                 catch (System.Exception e)
                 {
                     Debug.Log("Json 데이터 피팅 실패 : " + e);
+
+                    string path = Path.Combine(Application.persistentDataPath, UserInfo.UserData.gamerId);
 
                     if (File.Exists(path) && !getSaveDataToBackendServer)
                     {
@@ -369,7 +369,7 @@ public class SaveDatabase : MonoBehaviour
                 // Item DB에서 Code가 맞은 아이템을 찾아 clone으로 복사
                 loadItem = SearchInvenItem(saveData.invenSaveData[i].itemCode).Clone();
                 // 찾은 Item의 개수 변경
-                loadItem.itemCnt = saveData.invenSaveData[i].itemnCnt;
+                loadItem.SetItemCount(saveData.invenSaveData[i].itemnCnt);
                 // 저장되어 있는 index를 가져와서 invenSlots의 index 추가
                 invenSlots[i] = loadItem;
 

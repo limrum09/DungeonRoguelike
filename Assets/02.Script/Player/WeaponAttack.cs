@@ -13,6 +13,7 @@ public class WeaponAttack : MonoBehaviour
     void Start()
     {
         isAttack = false;
+        playerController = Manager.Instance.Game.PlayerController;
     }
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class WeaponAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && playerController.isCombo == true && isAttack == true)
+        if (other.CompareTag("Enemy") && isAttack == true)
         {
             other.GetComponentInParent<EnemyStatus>().TakeDamage(SetTakePlayerDamage());
         }
