@@ -24,6 +24,6 @@ MonoBehaviour:
   healSpeedTime: 0
   hpHeal: 0
   mpHeal: 0
-  increaseDamage: 10000
+  increaseDamage: 1000
   increaseSpeed: 0
   durationTime: 10

@@ -56,7 +56,7 @@ public class InvenItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             DoubleClick();
             if (isDoubleClick && clickInven.ItemType == ITEMTYPE.POTION)
             {
-                InvenData.instance.UsingInvenItem(dragStartIndex);
+                InvenData.instance.ConsumeInvenItem(dragStartIndex);
             }
 
             Debug.Log("Current Item Count : " + clickInven.ItemCnt);

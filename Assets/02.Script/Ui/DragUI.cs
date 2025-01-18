@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, IPointerUpHandler, IDragHandler
+public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, IPointerUpHandler, IDragHandler, IPointerExitHandler
 {
     [SerializeField]
     private GameObject tooltip;
@@ -67,17 +67,19 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
             invenItem = invenSlotUI.GetComponent<InvenSlot>();
             
             tooltipController.ViewItemTooltip(invenItem);
-            Vector2 tooltipPos = new Vector2(invenSlotUI.transform.position.x + 480f, invenSlotUI.transform.position.y - 125f);
+            Vector2 tooltipPos = new Vector2(invenSlotUI.transform.position.x + 240f, invenSlotUI.transform.position.y - 65f);
             tooltip.transform.position = tooltipPos;
         }
         else
         {
             invenItem = null;
+            tooltipController.ViewItemTooltip(invenItem);
         }
 
         if (invenItem != null && string.IsNullOrEmpty(invenItem.ItemName))
         {
             invenItem = null;
+            tooltipController.ViewItemTooltip(invenItem);
         }
     }
 
@@ -85,5 +87,11 @@ public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler, I
     {
         ui = null;
         isDrag = false;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        invenItem = null;
+        tooltipController.ViewItemTooltip(invenItem);
     }
 }

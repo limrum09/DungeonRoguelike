@@ -117,6 +117,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
         {
             // Lobby Menu 보여야함
             lobbyUI.SetActive(true);
+            profileUI.SetActive(true);
             shortcutkeyUI.SetActive(true);
             Manager.Instance.canUseShortcutKey = true;
         }

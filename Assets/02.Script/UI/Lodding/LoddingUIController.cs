@@ -41,7 +41,7 @@ public class LoddingUIController : MonoBehaviour
         string selectLoddingTip = imagesAndTips.Tips[textIndex];
 
         loddingImage.sprite = selectLoddingSprite;
-        loddingTipText.text = "[   ]" + selectLoddingTip;
+        loddingTipText.text = selectLoddingTip;
 
         loddingInfoText.text = "유저 정보 확인 중...!";
         loddingRatingPerText.text = "( " + Mathf.RoundToInt(loddingRating) + " / 100 )";
@@ -60,11 +60,12 @@ public class LoddingUIController : MonoBehaviour
             StartCoroutine(LoddingComplete());
     }
 
+    // 씬 로드가 완료되면 LoddingUI를 1.5초동안 투명하게 만들기
     IEnumerator LoddingComplete()
     {
         float timer = loddingTimer;
 
-        while(timer > 0)
+        while (timer > 0)
         {
             timer -= Time.deltaTime;
 
@@ -74,7 +75,7 @@ public class LoddingUIController : MonoBehaviour
         }
 
         group.alpha = 0;
-
-        Manager.Instance.Game.PlayerController.LoddingEnd();
+        this.gameObject.SetActive(false);
+        Manager.Instance.Game.PlayerController.PlayerCanMove();
     }
 }

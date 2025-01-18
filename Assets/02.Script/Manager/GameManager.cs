@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private PlayerStatus playerSaveStatus;
     [SerializeField]
     private InvenData invenData;
+    [SerializeField]
+    private GameManagerCoroutine gameManagerCoroutine;
 
     private PlayerController playerController;
 
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         isStart = true;
 
+        gameManagerCoroutine.ListInitialized();
         buffDamage = 0;
         buffSpeed = 0;
 
@@ -168,9 +171,14 @@ public class GameManager : MonoBehaviour
     public void PlayerArmorChange(ArmorItem item) => itemStatus.ChangeArmorItem(item);
     public void ChangeHPBar()
     {
+        // HPBar와 전체적인 값을 변경시킨다.
         Manager.Instance.UIAndScene.ChangeHPBar();
     }
 
+    public void GetBuffItem(InvenItem item)
+    {
+        gameManagerCoroutine.PlayerBuffPotion(item);
+    }
     public void GetBuffDamage(int getDamage)
     {
         buffDamage += getDamage;
