@@ -20,8 +20,10 @@ MonoBehaviour:
   itemCnt: 0
   amount: 99
   isMax: 0
+  isSustain: 0
+  healSpeedTime: 0
   hpHeal: 0
   mpHeal: 0
-  increaseDamage: 1000
+  increaseDamage: 100
   increaseSpeed: 0
   durationTime: 180

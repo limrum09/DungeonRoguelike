@@ -26,7 +26,7 @@ public class UIProfile : MonoBehaviour
         maxHPText.text = maxHP.ToString();
         currentHPText.text = currentHP.ToString();
 
-        currentHPBar.rectTransform.sizeDelta = new Vector2((float)currentHP/ (float)maxHP * 230f, currentHPBar.rectTransform.sizeDelta.y);
+        currentHPBar.rectTransform.sizeDelta = new Vector2((float)currentHP/ (float)maxHP * 500f, currentHPBar.rectTransform.sizeDelta.y);
     }
 
     public void SetExpBar()

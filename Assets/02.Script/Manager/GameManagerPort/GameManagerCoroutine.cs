@@ -64,6 +64,8 @@ public class GameManagerCoroutine : MonoBehaviour
         {
             healSpeedTime = newItem.HealSpeedTime;
 
+            Debug.Log("힐 속도 : " + healSpeedTime);
+
             if (healSpeedTime == 0.0f)
             {
                 Debug.Log("반복 시간 0초");
