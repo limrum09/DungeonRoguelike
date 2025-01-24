@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossEnemy : Enemy
 {
+    [SerializeField]
+    private BossStatus status;
     [Header("Child")]
     [SerializeField]
     private LayerMask playerLayer;

@@ -32,11 +32,6 @@ public class BossEffect : MonoBehaviour
 
         Debug.Log("스킬 이펙트 생성 시작");
 
-/*        if (skill.SkillEffectPosition == SkillEffectPos.Body)
-            effectPos.transform.position = bodyEffectPos.position;
-        else if (skill.SkillEffectPosition == SkillEffectPos.Weapon)
-            effectPos.transform.position = weaponEffectPos.position;*/
-
         switch (skill.SkillEffectPosition)
         {
             case SkillEffectPos.RightHand:

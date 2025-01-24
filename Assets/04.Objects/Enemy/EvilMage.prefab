@@ -111,6 +111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EvilMagePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3284327623702887146, guid: 858dd493f7e497a4e992fb2d1e11ad4e, type: 3}
+      propertyPath: m_TagString
+      value: EvilMage
+      objectReference: {fileID: 0}
     - target: {fileID: 3284327623703373514, guid: 858dd493f7e497a4e992fb2d1e11ad4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

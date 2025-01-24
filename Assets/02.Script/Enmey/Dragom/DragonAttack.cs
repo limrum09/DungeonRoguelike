@@ -17,7 +17,7 @@ public class DragonAttack : EnemyAttack
 
     private void OnParticleCollision(GameObject other)
     {
-        ParticleCollisionEvent[] collisionEvents = new ParticleCollisionEvent[ps.main.maxParticles];
+        List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
         int collisionNum = ps.GetCollisionEvents(other, collisionEvents);
 
         if (other.CompareTag("PlayerComponent"))
@@ -62,6 +62,5 @@ public class DragonAttack : EnemyAttack
                 }
             }
         }
-        // other.GetComponent<PlayerStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
     }
 }

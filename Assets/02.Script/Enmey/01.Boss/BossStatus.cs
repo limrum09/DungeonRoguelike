@@ -6,6 +6,7 @@ public class BossStatus : EnemyStatus
 {
     [SerializeField]
     private BossCheckPhase checkPhase;
+
     private void Awake()
     {
         currentHP = maxHP;

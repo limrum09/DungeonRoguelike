@@ -34,7 +34,7 @@ namespace Unity.Services.Analytics
         async void Start()
         {
             await UnityServices.InitializeAsync();
-            await AnalyticsService.Instance.CheckForRequiredConsents();
+            //await AnalyticsService.Instance.CheckForRequiredConsents();
 
             Debug.Log($"Started UGS Analytics Sample with user ID: {AnalyticsService.Instance.GetAnalyticsUserID()}");
         }
