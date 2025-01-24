@@ -48,7 +48,6 @@ public class GameManagerCoroutine : MonoBehaviour
 
         string notionString;
 
-        float timer = 0.0f;
         float healTimer = 0.0f;
 
         float buffTime = newItem.DurationTime;

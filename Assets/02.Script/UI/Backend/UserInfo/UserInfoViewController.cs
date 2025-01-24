@@ -73,6 +73,7 @@ public class UserInfoViewController : MonoBehaviour
 
     public void OnClickUpdateNicknameBtn()
     {
+        // 넥네임 변경 도중, 버튼을 중복으로 누를 수 없도록 조치
         nicknameUpdateOKBtn.interactable = false;
         nicknameUpdateCancelBtn.interactable = false;
 
@@ -83,6 +84,7 @@ public class UserInfoViewController : MonoBehaviour
     {
         string updateNickname = inputUpdateNickname.text;
 
+        // 닉네임 업데이트
         Backend.BMember.UpdateNickname(updateNickname, callback =>
         {
             nicknameUpdateCancelBtn.interactable = true;

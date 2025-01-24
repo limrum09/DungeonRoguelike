@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class TransparentObject : MonoBehaviour
 {
-    private MeshRenderer renderer;
+    private MeshRenderer rendererCheck;
 
     private void Awake()
     {
-        renderer = GetComponent<MeshRenderer>();
+        rendererCheck = GetComponent<MeshRenderer>();
     }
 
     public void SetObjectTransparent(float mode, int _renderQueue, float _distnace, float maxDistance, float minDistance)
@@ -26,7 +26,7 @@ public class TransparentObject : MonoBehaviour
     // mode = 1 : 투명, 0 : 불투명
     public void SetObjectTransparent(float mode ,int _renderQueue)
     {
-        foreach (Material material in renderer.materials)
+        foreach (Material material in rendererCheck.materials)
         {
             // 나뭇잎 일 경우, 안보이게 해야하는데, 불가능한가?
             if (material.name.Contains("Leaves"))

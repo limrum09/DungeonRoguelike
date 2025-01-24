@@ -9,7 +9,7 @@ public class TargetingSkillSetPosition : MonoBehaviour
     [SerializeField]
     private GameObject skillIndexObject;    // 타켓팅 시, 마우스 위치를 알려준다. 
 
-    private Camera camera;                  // 현제 카메라
+    private Camera playerCamera;                  // 현제 카메라
     private bool isTarget;
     private float skillRange;
     private float skillTimer;
@@ -20,7 +20,7 @@ public class TargetingSkillSetPosition : MonoBehaviour
     public void StartTargeting(ActiveSkill _skill)
     {
         skill = _skill;
-        camera = Manager.Instance.Camera.CurrentCamera;
+        playerCamera = Manager.Instance.Camera.CurrentCamera;
         skillIndexObject.gameObject.SetActive(true);
         isTarget = true;
         skillRange = _skill.SkillMoveRange;
@@ -30,7 +30,7 @@ public class TargetingSkillSetPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Manager.Instance.Camera.CurrentCamera;
+        playerCamera = Manager.Instance.Camera.CurrentCamera;
         skillIndexObject.gameObject.SetActive(false);
         isTarget = false;
         skill = null;
@@ -56,7 +56,7 @@ public class TargetingSkillSetPosition : MonoBehaviour
 
     private void UpdateSkillIndexObejctPos()
     {
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         var player = Manager.Instance.Game.PlayerController;
 
         if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
