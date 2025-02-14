@@ -10,27 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
-  m_Name: Skill_OneHand_DownToUp
+  m_Name: BossSkill_JumpCrush
   m_EditorClassIdentifier: 
-  skillCode: Boss_DownToUp_1
+  skillCode: Boss_Phase2_JumpCrush
   skillLevel: 1
-  maxLevel: 5
-  canMove: 0
-  skillBasicDamage: 0
+  maxLevel: 1
+  skillBasicDamage: 1200
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
   skillRotation: {x: 0, y: 0, z: 0}
-  skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
-  skillEffect: {fileID: 0}
-  skillEffectPos: 0
-  skillMaintenanceTime: 0
+  skillMoveRange: 30
+  skillDamageRange: {x: 10, y: 10, z: 10}
+  skillEffect: {fileID: 198345217066185332, guid: 3a31ad0cbed607d4abdf9dba1186d166, type: 3}
+  skillEffectPos: 7
+  skillMaintenanceTime: 10
   skillMoveTime: 0
-  skillName: "\uAC15\uD0C0(\uD55C\uC190\uAC80)"
-  weapon: 1
-  animationName: OneHand_DowntoUp
+  skillName: "[\uBCF4\uC2A4]\uB300\uC9C0 \uBD80\uC218"
+  weapon: 0
+  animationName: Jump_Rolling_Crush
   icon: {fileID: 0}
   skillInfo: 
+  canMove: 1
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 0

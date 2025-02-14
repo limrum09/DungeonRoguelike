@@ -49,7 +49,7 @@ public class EnemyStatus : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    protected void Awake()
+    protected virtual void Awake()
     {
         SetStatus(maxHP, attackDamage, attackSpeed, walkSpeed);
         currentHP = MaxHP;

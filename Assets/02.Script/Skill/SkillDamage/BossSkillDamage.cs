@@ -4,30 +4,51 @@ using UnityEngine;
 
 public class BossSkillDamage : SkillDamage
 {
-    [SerializeField]
+    [Header("Normal")]
     private float damageTimer;
     [SerializeField]
-    private float durationTime;
+    private float damageDelayTimer;
+    [SerializeField]
+    private int attackCnt = 1;
 
-    private float durationTimer = 0.0f;
+    [Header("DOT")]
+    [SerializeField]
+    private bool isDot = false;
+    [SerializeField]
+    private float dotTime = 0.0f;
+    private float dotTimer;
+
+
     private bool isAttack = false;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("PlayerComponent"))
         {
-            damageTimer += Time.deltaTime;
+            if (isDot)
+                dotTimer += Time.deltaTime;
 
-            if (damageTimer <= 0)
+            if(attackCnt > 0)
+                damageTimer += Time.deltaTime;
+
+            if (damageTimer <= -0.5f)
                 damageTimer = 0.0f;
 
-            if (durationTimer <= 0.0f)
-                durationTimer = 0.0f;
-
-            if(damageTimer >= durationTime && !isAttack)
+            // 도트 피해
+            if(isDot && dotTimer >= dotTime)
             {
-                durationTimer = 0.0f;
+                dotTimer = 0.0f;
+            }
+
+            // 일반 피해
+            if(damageTimer >= damageDelayTimer && !isAttack && attackCnt > 0)
+            {
+                damageTimer = 0.0f;
                 SetEnemySkillDamage();
-                isAttack = true;
+                attackCnt--;
+
+                if(attackCnt <= 0)
+                    isAttack = true;
 
                 PlayerInteractionStatus.instance.TakeDamage(skillDamage);
             }
