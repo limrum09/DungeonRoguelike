@@ -20,8 +20,6 @@ public class BossEnemy : Enemy
 
 
     private int currnetPhase;
-    private float walkSpeed;
-    private float runSpeed;
     private float skillMoveTimeToTarget;
     private float skillMoveSpeed;
 
@@ -55,14 +53,19 @@ public class BossEnemy : Enemy
         // 스킬 사용 중 위치를 이동하는 경우 실행
         if(movingSkill && !arrivedAtTarget && moveToTarget)
         {
-            Debug.Log("나... 달리니?");
             nmAgent.speed = skillMoveSpeed; // 필요한 속도 설정
-            // nmAgent.SetDestination(skillAttackTarget);
 
-            Vector3.MoveTowards(transform.position, skillAttackTarget, skillMoveSpeed * Time.deltaTime * 3);
-            //Vector3.Lerp(transform.position, skillAttackTarget, 0.1f);
+            transform.position = Vector3.MoveTowards(transform.position, skillAttackTarget, skillMoveSpeed * Time.deltaTime * 3);
 
             CheckArrivedToTarget();
+        }
+        else
+        {
+            if(checkMosterArea && !checkPlayer)
+            {
+                if (target != player)
+                    target = player;
+            }
         }
     }
 
@@ -73,23 +76,22 @@ public class BossEnemy : Enemy
             return;
         base.EnemyMove();
 
-        Debug.Log("적 이동");
-
-        // 달리는 로직 개선 필요
-        if(isWalk)
-            animator.SetBool("Walk", true);
-
         // 플레어이와의 거리
         float distanceToPlayer = Vector3.Distance(this.transform.position, target.transform.position);
 
         // 보스가 플레이어와 일정거리 떨어져 있을 경우 달린다
         if (distanceToPlayer >= 30f)
         {
-            Invoke("BossRun", 3f);
+            if(isWalk)
+                Invoke("BossRun", 3f);
         }
-        else if(distanceToPlayer <= 10f)
+        else if(distanceToPlayer <= 20f)
         {
-            BossWalk();
+            if (!isWalk)
+            {
+                BossWalk();
+                CancelInvoke("BossRun");
+            }
         }
     }
 
@@ -226,22 +228,36 @@ public class BossEnemy : Enemy
                     else if (selectList.Count >= 2)
                         randomSkill = selectList[Random.Range(0, selectList.Count)];
 
-                    // 사용할 스킬이 있다면 스킬 사용
-                    if (randomSkill != null)
+                    
+                    if(randomSkill != null)
                     {
-                        // 에니메이션
-                        PlaySelectSkillAnimation(randomSkill.AnimationName);
+                        Vector3 normalizedDirectionToTarget = (target.position - this.transform.position).normalized;
+                        skillAttackTarget = target.position - (normalizedDirectionToTarget * (attackAreaRadius / 3));
 
-                        //이펙트
-                        bossEffectPosController.PlayBossEffect(randomSkill);
+                        float distanceToTarget = Vector3.Distance(transform.position, skillAttackTarget);
 
-                        // 스킬 사용 여부 확인
-                        selectActionSkill = true;
+                        // 스킬 움직임 범위보다 캐릭터가 멀리있다면, 스킬을 사용하지 않음
+                        if (distanceToTarget > randomSkill.SkillMoveRange)
+                        {
+                            randomSkill = null;
+                        }
+                        // 범위안에 있어, 스킬 사용
+                        else
+                        {
+                            // 에니메이션
+                            PlaySelectSkillAnimation(randomSkill.AnimationName);
 
-                        // 스킬 사용 중 움직이 수 있는지 확인
-                        movingSkill = randomSkill.CanMove;
-                        skillMoveTimeToTarget = randomSkill.SkillMoveTime;
-                    }   
+                            //이펙트
+                            bossEffectPosController.PlayBossEffect(randomSkill);
+
+                            // 스킬 사용 여부 확인
+                            selectActionSkill = true;
+
+                            // 스킬 사용 중 움직이 수 있는지 확인
+                            movingSkill = randomSkill.CanMove;
+                            skillMoveTimeToTarget = randomSkill.SkillMoveTime;
+                        }
+                    }
                 }
 
                 // 스킬이 선택되고, 움직이는 스킬일 경우

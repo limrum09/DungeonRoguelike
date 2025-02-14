@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
-  m_Name: Skill_PowerUp
+  m_Name: BossSkill_OneHand_DownToUp
   m_EditorClassIdentifier: 
-  skillCode: Boss_Power_Up
+  skillCode: Boss_DownToUp_1
   skillLevel: 1
-  maxLevel: 1
-  skillBasicDamage: 0
+  maxLevel: 5
+  skillBasicDamage: 400
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
   skillRotation: {x: 0, y: 0, z: 0}
-  skillMoveRange: 0
+  skillMoveRange: 3
   skillDamageRange: {x: 0, y: 0, z: 0}
-  skillEffect: {fileID: 19800004, guid: eade464a77cb192478405c4489c281b2, type: 3}
-  skillEffectPos: 2
-  skillMaintenanceTime: 5
+  skillEffect: {fileID: 4193660840820342590, guid: cfea361e58203c24eb4062ed84201e0e, type: 3}
+  skillEffectPos: 0
+  skillMaintenanceTime: 2
   skillMoveTime: 0
-  skillName: 
-  weapon: 0
-  animationName: Boss_Power_Up
+  skillName: "[\uBCF4\uC2A4]\uAC15\uD0C0"
+  weapon: 1
+  animationName: OneHand_DowntoUp
   icon: {fileID: 0}
   skillInfo: 
   canMove: 0

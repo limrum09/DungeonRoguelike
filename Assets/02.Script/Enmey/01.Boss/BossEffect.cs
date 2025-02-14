@@ -56,12 +56,13 @@ public class BossEffect : MonoBehaviour
                 effectPos = footEffectPos;
                 break;
             case SkillEffectPos.Ground:
+                groundEffectPos.position = new Vector3(this.transform.position.x, 0f, this.transform.position.z);
                 effectPos = groundEffectPos;
                 break;
         }
 
         SkillEffect newSkillEffect = Instantiate(prefab, effectPos);
-        Debug.Log(newSkillEffect.name + "을 " + effectPos + " 위치에 생성");
+        Debug.Log(prefab.name+ "을 " + effectPos + " 위치에 생성");
 
         newSkillEffect.ActiveSkillEffect(skill);
     }

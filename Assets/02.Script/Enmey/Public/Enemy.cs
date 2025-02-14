@@ -22,8 +22,9 @@ public class Enemy : MonoBehaviour
     protected bool useSkill;
     public bool hitEnemy;
 
-    private bool checkMosterArea;
+    protected bool checkMosterArea;
     protected float attackAreaRadius;
+    protected bool isAttack;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
         checkPlayer = true;
         hitEnemy = false;
         useSkill = false;
+        isAttack = false;
 
         nmAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour
 
         attackAreaRadius = attackAreaCollider.radius;
 
-        if(GameObject.FindGameObjectWithTag("Player"))
+        if (GameObject.FindGameObjectWithTag("Player"))
             player = GameObject.FindGameObjectWithTag("Player").transform;
         
     }
@@ -47,8 +49,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (GameObject.FindGameObjectWithTag("Player"))
+        if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
+
         if (!animator.GetBool("Die") && !hitEnemy)
         {
             if (!checkPlayer)
@@ -148,6 +151,7 @@ public class Enemy : MonoBehaviour
     {
         checkPlayer = true;
         Attackanimation();
+        LookPlayer();
     }
 
     public void EnemyMoveToPlayer()
