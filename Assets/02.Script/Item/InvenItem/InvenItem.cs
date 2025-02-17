@@ -30,6 +30,8 @@ public class InvenItem : ScriptableObject
     private int amount;
     [SerializeField]
     private bool isMax;
+    [SerializeField]
+    private int price;
 
     [Header("HP & MP")]
     [SerializeField]
@@ -56,6 +58,7 @@ public class InvenItem : ScriptableObject
     public int ItemCnt => itemCnt;
     public bool IsMax() => itemCnt >= amount;
     public int ItemAmount => amount;
+    public int ItemPrice => price;
 
     public bool IsSustain => isSustain;
     public float HealSpeedTime => healSpeedTime;
@@ -66,8 +69,18 @@ public class InvenItem : ScriptableObject
     public float InCreaseSpeedValue => increaseSpeed;
     public float DurationTime => durationTime;
 
-    public void GetItemCount() => itemCnt++;
-    public void GetItemCount(int i) => itemCnt += i;
+    public void AddItemCount() => itemCnt++;
+    public void AddItemCount(int i)
+    {
+        itemCnt += i;
+
+        if(ItemCnt > amount)
+        {
+            int overCnt = itemCnt - amount;
+            itemCnt = amount;
+            InvenData.instance.AddItem(Resources.Load<InvenItemDatabase>("InvenItemDatabase").FindItemBy(ItemCode), overCnt);
+        }
+    }
     public void SetItemCount(int i) => itemCnt = i;
 
     public void UsingItem()

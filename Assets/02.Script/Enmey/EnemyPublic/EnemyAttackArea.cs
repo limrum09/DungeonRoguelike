@@ -25,7 +25,7 @@ public class EnemyAttackArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            enemy.EnemyMoveToPlayer();
+            enemy.EnemyLostPlayer();
         }
     }
 }

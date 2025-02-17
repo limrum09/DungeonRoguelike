@@ -18,45 +18,48 @@ public class UIAndSceneManager : MonoBehaviour
 
     [Header("InGame")]
     [SerializeField]
-    private LobbyButtonManager lobbyUI;
+    private LobbyButtonManager lobbyUI;     // 로비UI
     [SerializeField]
-    private ShortKeyManager shortCutBox;
+    private ShortKeyManager shortCutBox;    // 단출키 박스
     [SerializeField]
-    private InventoryButton invenUI;
+    private InventoryButton invenUI;        // 인벤토리 UI
     [SerializeField]
-    private StatusUIManager statusUI;
+    private StatusUIManager statusUI;       // 능력치 UI
     [SerializeField]
-    private UIProfile uIProfile;
+    private UIProfile uIProfile;            // 프로필 UI
     [SerializeField]
-    private BuffUIController buffUI;
+    private BuffUIController buffUI;        // 버프 UI
     [SerializeField]
-    private QuestViewUI questUI;
+    private QuestViewUI questUI;            // 퀘스트 UI
     [SerializeField]
-    private AchievementUI achievementUI;
+    private AchievementUI achievementUI;    // 업적 UI
     [SerializeField]
-    private NPCTalkUIController npcTalkUIController;
+    private NPCTalkUIController npcTalkUIController;    // NPC 대화 UI 컨트롤러
     [SerializeField]
-    private NPCUI npcUI;
+    private NPCUI npcUI;                    // NPC UI
     [SerializeField]
-    private SettingContorller settingUI;
+    private SettingContorller settingUI;    // 설정 UI
     [SerializeField]
-    private UISkillController skillUI;
+    private UISkillController skillUI;      // 스킬 UI
     [SerializeField]
-    private LoddingUIController loddingUI;
+    private LoddingUIController loddingUI;  // 씬 변경시 보이는 로딩 이미지
     [SerializeField]
-    private EquipmentSelectPanelController equipmentSelectUI;
+    private EquipmentSelectPanelController equipmentSelectUI;   // Lobby에 보이는 장비 선택 UI
     [SerializeField]
-    private RankingViewer rankingViewer;
+    private RankingViewer rankingViewer;    // 랭킹 UI
+    [SerializeField]
+    private StoreUIController storeUI;
 
     [Header("Other")]
     [SerializeField]
-    private ViewAndHideUIPanels viewAndHideUIPanles;
+    private ViewAndHideUIPanels viewAndHideUIPanles;    // UI Panel을 숨기거나 보이도록 하는 컨트롤러
     [SerializeField]
-    private GameNotionController gameNotion;
+    private GameNotionController gameNotion;            // 왼쪽 하단에 보이는 게임 노션
 
-    public ChangeEquipmentEvent onChangeEquipment;
-    public event onSelectQuestListHandler onSelectQuestListView;
+    public ChangeEquipmentEvent onChangeEquipment;      // 장비 변경시 호출되는 이벤트
+    public event onSelectQuestListHandler onSelectQuestListView;    // 퀘스트 UI에서 현제 퀘스트나 완료된 퀘스트의 디테일한 내용을 보기위해 List에서 퀘스트를 선택하면 호출되는 이벤트
 
+    // 프로퍼티
     public BuffUIController BuffUI => buffUI;
     public AchievementUI AchievementUI => achievementUI;
     public InventoryButton InventoryUI => invenUI;
@@ -65,7 +68,9 @@ public class UIAndSceneManager : MonoBehaviour
     public LoddingUIController LoddingUI => loddingUI;
     public EquipmentSelectPanelController EquipmentSelectUI => equipmentSelectUI;
     public GameNotionController Notion => gameNotion;
+    public StoreUIController StoreUI => storeUI;
 
+    // UI 초기화
     public void UIAndSceneManagerStart()
     {
         this.gameObject.GetComponent<ViewAndHideUIPanels>().ViewAndHideUIStart();
@@ -82,6 +87,7 @@ public class UIAndSceneManager : MonoBehaviour
         lobbyUI.LobbyUIStart();
         loddingUI.gameObject.SetActive(false);
         rankingViewer.RankingStart();
+        StoreUI.StoreUIStart();
 
         SceneManager.sceneLoaded += SceneLoadEnd;
     }
@@ -91,6 +97,8 @@ public class UIAndSceneManager : MonoBehaviour
         SceneManager.sceneLoaded -= SceneLoadEnd;
     }
 
+    #region Scene Load Functions
+    // 씬 로드 끝나면 호출
     private void SceneLoadEnd(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("씬 로드 완료");
@@ -107,7 +115,31 @@ public class UIAndSceneManager : MonoBehaviour
         // 씬을 로딩하는 코루틴 실행
         StartCoroutine(LoadAsyncScene(sceneName));
     }
+    IEnumerator LoadAsyncScene(string loadSceneName)
+    {
+        loddingUI.gameObject.SetActive(true);
+        loddingUI.LoddingUIStart();
 
+        // 씬이 로드된 정도를 확인한다.
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadSceneName);
+
+        Manager.Instance.Save.DataSaving();
+        yield return new WaitForSeconds(1.0f);
+
+        Manager.Instance.Save.LoadData();
+        yield return new WaitForSeconds(1.0f);
+
+        loddingUI.LoddingRateValue("던전 찾는 중...", 60.0f);
+
+        // 씬이 로드가 완료가 되면 isDone이 true값을 바환한다.
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+    #endregion
+
+    #region External Call Functions
     public void ChangeHPBar() 
     {
         uIProfile.SetHPBar();
@@ -136,27 +168,5 @@ public class UIAndSceneManager : MonoBehaviour
     public void PlayerOutQuestNPC() => npcUI.InteractionText.PlayerOut();
     public void ChangeShortCutValue(string keyString) => shortCutBox.ChangeShortKey(keyString);
     public void LoadShortCutKeys(List<ShortCutKeySaveData> keys) => shortCutBox.ShortCutBoxStart(keys);
-
-    IEnumerator LoadAsyncScene(string loadSceneName)
-    {
-        loddingUI.gameObject.SetActive(true);
-        loddingUI.LoddingUIStart();
-
-        // 씬이 로드된 정도를 확인한다.
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadSceneName);
-
-        Manager.Instance.Save.DataSaving();
-        yield return new WaitForSeconds(1.0f);
-
-        Manager.Instance.Save.LoadData();
-        yield return new WaitForSeconds(1.0f);
-
-        loddingUI.LoddingRateValue("던전 찾는 중...", 60.0f);
-
-        // 씬이 로드가 완료가 되면 isDone이 true값을 바환한다.
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
+    #endregion
 }

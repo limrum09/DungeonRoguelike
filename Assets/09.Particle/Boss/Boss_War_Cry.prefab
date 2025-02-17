@@ -14450,7 +14450,7 @@ GameObject:
   - component: {fileID: 8603834473585574361}
   - component: {fileID: 7349993185798123910}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: DamageArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14507,5 +14507,6 @@ MonoBehaviour:
   skill: {fileID: 11400000, guid: fe20a577c93dfac4eae80515ba027bf5, type: 2}
   damageDelayTimer: 2.57
   attackCnt: 1
+  isEnterToDamage: 0
   isDot: 0
   dotTime: 0

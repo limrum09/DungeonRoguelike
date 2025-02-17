@@ -55,7 +55,7 @@ public class EnemyStatus : MonoBehaviour
         currentHP = MaxHP;
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();

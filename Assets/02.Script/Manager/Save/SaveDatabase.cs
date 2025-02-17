@@ -133,6 +133,7 @@ public class SaveDatabase : MonoBehaviour
 
         // 현제 인벤토리의 크기를 저장
         saveData.inventoryCount = invenSlots.Count;
+        saveData.invenGlodCount = InvenData.instance.InvenGoldCointCount;
         for (int i = 0; i < saveData.inventoryCount; i++)
         {
             if(invenSlots[i] != null)
@@ -361,6 +362,7 @@ public class SaveDatabase : MonoBehaviour
 
         // 인벤토리 초가화
         InvenData.instance.Initialzed(saveData.inventoryCount);
+        InvenData.instance.ChangeGlodValue(saveData.invenGlodCount);
         for (int i = 0; i < saveData.invenSaveData.Count; i++)
         {
             if (!string.IsNullOrEmpty(saveData.invenSaveData[i].itemCode))

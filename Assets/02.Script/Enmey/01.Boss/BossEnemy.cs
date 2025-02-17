@@ -5,31 +5,27 @@ using UnityEngine;
 public class BossEnemy : Enemy
 {
     [SerializeField]
-    private BossStatus status;
+    private BossStatus status;                  // 보스 스텟
     [Header("Child")]
     [SerializeField]
-    private LayerMask playerLayer;
+    private BossEffect bossEffectPosController; // 스킬 이펙트 컨트롤러
     [SerializeField]
-    private BossEffect bossEffectPosController;
+    private List<ActiveSkill> phase1Skills;     // 1페이즈 스킬
     [SerializeField]
-    private List<ActiveSkill> phase1Skills;
+    private List<ActiveSkill> phase2Skills;     // 2페이즈 스킬
     [SerializeField]
-    private List<ActiveSkill> phase2Skills;
-    [SerializeField]
-    private List<ActiveSkill> phase3Skills;
+    private List<ActiveSkill> phase3Skills;     // 3페이즈 스킬
 
+    private int currnetPhase;                   // 현제 페이즈
+    private float skillMoveTimeToTarget;        // 이동하는 스킬 사용 시, 타겟까지 도착하는데 소요하는 시간
+    private float skillMoveSpeed;               // 이동하는 스킬 사용 시, 스킬 속도
 
-    private int currnetPhase;
-    private float skillMoveTimeToTarget;
-    private float skillMoveSpeed;
-
-    private bool selectActionSkill = false;
-    private bool BossMoving;
-    private bool movingSkill;
-    private bool arrivedAtTarget;
-
-    private bool moveToTarget;
-    private bool isWalk;
+    private bool selectActionSkill = false;     // Active Skill이 선택되었는지 확인
+    private bool BossMoving;                    // 스킬이 아닌, 일반 이동(걷기 또는 달리기)에 사용하는 변수
+    private bool moveToTarget;                  // 이동하는 스킬일 경우 사용, 값이 true일 때부터 이동 시작. (스킬 사용과 동시에 이동하지 않는 경우가 있기에 필요하다)
+    private bool movingSkill;                   // 이동하는 스킬인지 코루틴에서 제일 먼저 확인
+    private bool arrivedAtTarget;               // 타겟에 도착했는지 확인
+    private bool isWalk;                        // 걷고 있는지 달리고 있는지 확인
 
     private Vector3 skillAttackTarget;
     // Start is called before the first frame update
@@ -109,45 +105,20 @@ public class BossEnemy : Enemy
         currnetPhase = phase;
     }
 
-    // 임시, 삭제 필요
-    public void TempActiveSkillButton(string skillCode)
-    {
-        List<ActiveSkill> selectList = null;
-
-        if (currnetPhase == 2)
-            selectList = phase2Skills;
-        else if (currnetPhase == 3)
-            selectList = phase3Skills;
-
-        foreach(ActiveSkill skill in selectList)
-        {
-            if(skill.SkillCode == skillCode)
-            {
-                PlaySelectSkillAnimation(skill.AnimationName);
-                bossEffectPosController.PlayBossEffect(skill);
-                break;
-            }
-        }
-    }
-
-    private void PlaySelectSkillAnimation(string skillName)
-    {
-        animator.Play(skillName);
-    }
-
-    #region Aniamtion Event
+    #region Call Envet, Aniamtion Event
+    // 스킬 사용 시 호출, 일반적인 이동(걷기 또는 달리기) 제한
     public void StartPlayingSkill()
     {
-        Debug.Log("보스 스킬 시작");
+        // 목적지 리셋
         nmAgent.ResetPath();
         BossMoving = false;
     }
     public void EndPlayingSkill()
     {
-        Debug.Log("보스 스킬 종료");
         BossMoving = true;
     }
 
+    // 이동 스킬이 있는 경우 Animation Event에서 호출
     public void StartMoveToTarget()
     {
         moveToTarget = true;
@@ -161,6 +132,7 @@ public class BossEnemy : Enemy
     }
     #endregion
 
+    #region Walk or Run Animation
     private void BossRun()
     {
         isWalk = false;
@@ -176,7 +148,9 @@ public class BossEnemy : Enemy
         animator.SetBool("Walk", true);
         animator.SetBool("Run", false);
     }
+    #endregion
 
+    #region Select random skill and skil move
     // 스킬 사용 시, 타켓에 도착했는지 확인
     private void CheckArrivedToTarget()
     {
@@ -195,6 +169,12 @@ public class BossEnemy : Enemy
         movingSkill = false;
         // 경로 리셋
         nmAgent.ResetPath();
+    }
+
+    // 애니메이션 실행
+    private void PlaySelectSkillAnimation(string skillName)
+    {
+        animator.Play(skillName);
     }
 
     // 랜덤 스킬 사용 코루틴
@@ -231,17 +211,15 @@ public class BossEnemy : Enemy
                     
                     if(randomSkill != null)
                     {
-                        Vector3 normalizedDirectionToTarget = (target.position - this.transform.position).normalized;
-                        skillAttackTarget = target.position - (normalizedDirectionToTarget * (attackAreaRadius / 3));
-
-                        float distanceToTarget = Vector3.Distance(transform.position, skillAttackTarget);
+                        // 보스오 Player사이의 거리 계산
+                        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
                         // 스킬 움직임 범위보다 캐릭터가 멀리있다면, 스킬을 사용하지 않음
-                        if (distanceToTarget > randomSkill.SkillMoveRange)
+                        if (distanceToPlayer > randomSkill.SkillMoveRange)
                         {
                             randomSkill = null;
                         }
-                        // 범위안에 있어, 스킬 사용
+                        // 범위안에 있을 시, 스킬 사용
                         else
                         {
                             // 에니메이션
@@ -279,4 +257,5 @@ public class BossEnemy : Enemy
             yield return new WaitForSecondsRealtime(5f);
         }
     }
+    #endregion
 }
