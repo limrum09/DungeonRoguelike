@@ -17,6 +17,7 @@ public class BossDetecting : MonoBehaviour
         StartCoroutine(AutoDetectPlayer());
     }
 
+    // 일정 범위 안에 플레이어가 있는지 확인
     private float CheckPlayerInBossArea()
     {
         float detectTime = 3.0f;
@@ -44,6 +45,7 @@ public class BossDetecting : MonoBehaviour
         return detectTime;
     }
 
+    // 일정 시간마다 CheckPlayerInBossArea를 호출하는 코루틴
     private IEnumerator AutoDetectPlayer()
     {
         while (true)

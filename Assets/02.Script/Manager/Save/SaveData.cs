@@ -6,6 +6,7 @@ using UnityEngine;
 public class SaveData 
 {
     public int inventoryCount;
+    public int invenGlodCount;
     public List<InventorySaveData> invenSaveData = new List<InventorySaveData>();
 
     public List<string> weaponItemCode = new List<string>();

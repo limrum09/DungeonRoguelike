@@ -20,7 +20,7 @@ public class InvenItemReward : Reward
 
         for(int i = 0; i < count; i++)
         {
-            InvenData.instance.CheckItem(getItem);
+            InvenData.instance.AddItem(getItem);
         }
 
         Debug.Log("Get Item : " + item.name + ", Item Count : " + count);

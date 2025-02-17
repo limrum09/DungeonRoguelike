@@ -6,25 +6,24 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    protected Transform player;
+    protected Transform player;                     // Enemy가 따라가는 Plyaer
     [SerializeField]
-    protected Transform spawnPosition;
+    protected Transform spawnPosition;              // Enemy 스폰 포인트
     [SerializeField]
-    protected Transform target;
-    protected NavMeshAgent nmAgent;
+    protected Transform target;                     // Enemy 목표, player나 spawnPosition 둘 중 하나만 선택 된다.
+    protected NavMeshAgent nmAgent;                 // Nav Mesh Agent, 장해물 피해서 따라가는 component
     [SerializeField]
     protected Animator animator;
     [SerializeField]
-    protected SphereCollider attackAreaCollider;
+    protected SphereCollider attackAreaCollider;    // 공격 범위 Collider
 
     [SerializeField]
-    protected bool checkPlayer;
-    protected bool useSkill;
-    public bool hitEnemy;
+    protected bool checkPlayer;                     // 플레이어를 찾았는지 확인
+    protected bool useSkill;                        // 스킬 사용하는지 확인(주로 원거리들)
+    public bool hitEnemy;                           // 공격하는지 확인
 
-    protected bool checkMosterArea;
-    protected float attackAreaRadius;
-    protected bool isAttack;
+    protected bool checkMosterArea;                 // Monster Area안에 있으야지만 Player를 쫒아가서 공격한다. 해당 지역을 벗어나면 공격을 중단하고 다시 spawnPosition으로 이동한다.
+    protected float attackAreaRadius;               // 공격 범위
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -33,7 +32,6 @@ public class Enemy : MonoBehaviour
         checkPlayer = true;
         hitEnemy = false;
         useSkill = false;
-        isAttack = false;
 
         nmAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -41,6 +39,7 @@ public class Enemy : MonoBehaviour
 
         attackAreaRadius = attackAreaCollider.radius;
 
+        // player를 찾아서 값을 준다.
         if (GameObject.FindGameObjectWithTag("Player"))
             player = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -61,48 +60,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void StaySpawnPosition()
-    {
-        animator.SetBool("Attack", false);
-        animator.SetFloat("Forward", 0);
-    }
-
-    public void CheckMonsterArea(bool isArea)
-    {
-        checkMosterArea = isArea;
-        if (!isArea)
-        {
-            target = spawnPosition;
-        }
-    }
-
-    public void DetectPlayer(bool detect)
-    {
-        Debug.Log("Detect : " + detect + ", Check :" + checkMosterArea);
-        if (detect)
-        {
-            Debug.Log("Detect Player! " + checkMosterArea);
-            if (checkMosterArea)
-            {
-                Debug.Log("Attack Player");
-                target = player;
-            }
-            else
-            {
-                target = spawnPosition;
-            }
-            
-            checkPlayer = false;
-        }
-        else
-        {
-            Debug.Log("Lost Player");
-            target = spawnPosition;
-            checkPlayer = true;
-        }
-    }
-
-    // Follow the Player
+    // 플레이어 따라가기
     protected virtual void EnemyMove()
     {
         animator.SetBool("Attack", false);
@@ -112,14 +70,16 @@ public class Enemy : MonoBehaviour
         Vector3 normalizedDirectionToTarget = (target.position - this.transform.position).normalized;
         Vector3 targetPosition = target.position - ( normalizedDirectionToTarget * attackAreaRadius );
 
+        // 호출마다 목적지를 변경, (몬스터 속도가 빠르면 못따라갈 수 있음, 필요시 변경)
         nmAgent.SetDestination(targetPosition);
     }
 
-    // Rotate to Player
+    // 플레이어 바라보기
     protected virtual void LookPlayer()
     {
         nmAgent.updateRotation = false;
 
+        // 플레이어 방향 설정
         Vector3 direction = target.position - this.transform.position;
         direction.Set(direction.x, 0, direction.z);
 
@@ -147,6 +107,56 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Attack", true);
     }
 
+    // 스폰 포인트에 있는 경우 에니메이션
+    public void StaySpawnPosition()
+    {
+        animator.SetBool("Attack", false);
+        animator.SetFloat("Forward", 0);
+    }
+
+    #region Monster Detect Area
+    // 몬스터가 일정 지역을 벗어난 경우 호출
+    public void CheckMonsterArea(bool isArea)
+    {
+        checkMosterArea = isArea;
+        if (!isArea)
+        {
+            target = spawnPosition;
+        }
+    }
+
+    public void DetectPlayer(bool detect)
+    {
+        // 플레이어 감지
+        if (detect)
+        {
+            // Monster 공격 가능 지역에 있는지 확인
+            if (checkMosterArea)
+            {
+                // 공격 가능 지역이면 플레이어를 쫒아간다
+                target = player;
+            }
+            // Monster 지역에서 벗어남
+            else
+            {
+                // 지역에서 벗어나면 스폰 포인트로 target을 변경하고 몬스터가 돌아가도록 설정
+                target = spawnPosition;
+            }
+
+            checkPlayer = false;
+        }
+        // 플레이어가 없음
+        else
+        {
+            // 플레이어가 없으면 스폰 포인트로 이동
+            target = spawnPosition;
+            checkPlayer = true;
+        }
+    }
+    #endregion
+
+    #region Check Monster Attack
+    // Enemy의 Trigger 범위안세 플레어가 들어오거나(Enter) 멈춰있다면(Stay) 호출
     public void EnemyAttack()
     {
         checkPlayer = true;
@@ -154,11 +164,14 @@ public class Enemy : MonoBehaviour
         LookPlayer();
     }
 
-    public void EnemyMoveToPlayer()
+    // Enmey의 Trigger 범위에서 플레이어가 빠져 나간 경우 호출
+    public void EnemyLostPlayer()
     {
         checkPlayer = false;
     }
+    #endregion
 
+    // Skill Attack Area에서 스킬 사용 유무 확인
     public void SkillPlayState(bool state)
     {
         useSkill = state;

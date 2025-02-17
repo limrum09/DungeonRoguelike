@@ -94,9 +94,11 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerInRespawnPoint()
     {
+        controller.enabled = false;
         respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
         sceneChagne = true;
         sceneLoadTimer = 0.0f;
+        controller.enabled = true;
     }
 
     #region UsingActiveSkill

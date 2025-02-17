@@ -24,7 +24,7 @@ MonoBehaviour:
   skillEffect: {fileID: 198345217066185332, guid: 3a31ad0cbed607d4abdf9dba1186d166, type: 3}
   skillEffectPos: 7
   skillMaintenanceTime: 10
-  skillMoveTime: 0
+  skillMoveTime: 3
   skillName: "[\uBCF4\uC2A4]\uB300\uC9C0 \uBD80\uC218"
   weapon: 0
   animationName: Jump_Rolling_Crush
