@@ -85,7 +85,6 @@ public class InvenItem : ScriptableObject
 
     public void UsingItem()
     {
-        Debug.Log("아이템 사용");
         if (increaseDamage >= 0.0f || increaseSpeed > 0.0f || isSustain)
             Manager.Instance.Game.GetBuffItem(this);
         else if (!isSustain)

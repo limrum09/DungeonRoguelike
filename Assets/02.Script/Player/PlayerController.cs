@@ -96,81 +96,13 @@ public class PlayerController : MonoBehaviour
     {
         controller.enabled = false;
         respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
+        transform.position = respawnPoint.position;
+        controller.transform.position = respawnPoint.position;
         sceneChagne = true;
         sceneLoadTimer = 0.0f;
         controller.enabled = true;
+        Debug.Log("플레이어 리스폰 지역" + respawnPoint.transform.position);
     }
-
-    #region UsingActiveSkill
-    public void InputActiveSkill(ActiveSkill skill)
-    {
-        if ((skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") || skill.LeftWeaponValue != animator.GetInteger("LeftWeaponValue")) && skill.WeaponValue != SkillWeaponValue.Public)
-            return;
-
-        if (!skill.NeedLevelCondition || !skill.NeedSkillCondition)
-            return;
-
-        skill.UseSkill();
-        isMove = skill.CanMove;
-        animator.SetBool("IsSkill", true);
-
-        if (skill.Targeting)
-        {
-            targetingSkill.StartTargeting(skill);
-        }
-        else
-        {
-             skillEffectController.ActiveSkillEffect(skill);
-        }
-
-        SkillAnimation(skill);
-    }
-
-    public void SkillAnimation(ActiveSkill skill)
-    {
-        string aniName = skill.AnimationName;
-
-        // 공용 스킬일 경우 무기의 종류에 따라서 스킬의 이름의 일부분이 다르기 때문에 알맞게 추가한다.
-        if (skill.WeaponValue == SkillWeaponValue.Public)
-        {
-            aniName = PublicSrkillAnimName(aniName);
-        }
-
-        animator.Play(aniName);
-        playerState = PlayerState.Skill;
-
-        Debug.Log("스킬 " + aniName + " 사용");
-    }
-
-    public void ActionTargetingSkill(ActiveSkill skill, Transform tf)
-    {
-        skillEffectController.ActiveSkillEffect(skill, tf);
-    }
-
-    // 타켓팅 스킬 사용 중, 화면 클릭 시 회전
-    public void RotatePlayerToMousePos(Transform getTf)
-    {
-        Vector3 targetPosition = getTf.position;
-        Vector3 direction = (targetPosition - transform.position).normalized;
-
-        // 플레이어가 Y축으로만 회전 하는지 확인
-        direction.y = 0;
-
-        if (direction.sqrMagnitude > 0.1f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
-        }
-    }
-
-    public void EndSkill()
-    {
-        animator.SetBool("IsSkill", false);
-        isMove = true;
-        playerState = PlayerState.Idel;
-    }
-    #endregion
-
 
     // 로딩 UI 까지 없어지고 난 후, 플레이어 움직이기
     public void PlayerCanMove()
@@ -179,7 +111,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // 씬 전환 중
         if (sceneChagne)
@@ -226,17 +158,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void GroundCheck()
+    private void PlayerInputCheck()
     {
-        isGround = groundCheck.IsGround();
-        if (isGround)
-            animator.SetBool("JumpDown", true);
-
-        if (isGround && playerVector.y < 0)
+        // EventSystem.current.IsPointerOverGameObject() <= UI 클릭시 호출
+        if (!EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)))
         {
-            isDoubleJump = false;
-            animator.SetBool("Jump", false);
-            playerVector.y = 0f;
+            playerState = PlayerState.Attack;
+            isCombo = false;
         }
     }
 
@@ -251,25 +179,6 @@ public class PlayerController : MonoBehaviour
         {
             PlayerAttack();
         }
-    }
-
-    private void PlayerInputCheck()
-    {
-        // EventSystem.current.IsPointerOverGameObject() <= UI 클릭시 호출
-        if (!EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)))
-        {
-            playerState = PlayerState.Attack;
-            isCombo = false;
-        }
-    }
-
-    private void PlayerDead()
-    {
-        animator.SetBool("Jump", false);
-        animator.SetBool("DoubleJump", false);
-        animator.SetBool("Walk", false);
-        animator.SetBool("IsAttack", false);
-        animator.SetBool("Die", true);
     }
 
     private void playerMove()
@@ -361,6 +270,20 @@ public class PlayerController : MonoBehaviour
         controller.Move(playerVector * Time.deltaTime);
     }
 
+    private void GroundCheck()
+    {
+        isGround = groundCheck.IsGround();
+        if (isGround)
+            animator.SetBool("JumpDown", true);
+
+        if (isGround && playerVector.y < 0)
+        {
+            isDoubleJump = false;
+            animator.SetBool("Jump", false);
+            playerVector.y = 0f;
+        }
+    }
+
     private void PlayerAttack()
     {
         isMove = false;
@@ -368,8 +291,85 @@ public class PlayerController : MonoBehaviour
         {
             isCombo = true;
             animator.SetBool("IsAttack", true);
+        }   
+    }
+
+    private void PlayerDead()
+    {
+        animator.SetBool("Jump", false);
+        animator.SetBool("DoubleJump", false);
+        animator.SetBool("Walk", false);
+        animator.SetBool("IsAttack", false);
+        animator.SetBool("Die", true);
+    }
+
+    #region UsingActiveSkill
+    public void InputActiveSkill(ActiveSkill skill)
+    {
+        if ((skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") || skill.LeftWeaponValue != animator.GetInteger("LeftWeaponValue")) && skill.WeaponValue != SkillWeaponValue.Public)
+            return;
+
+        if (!skill.NeedLevelCondition || !skill.NeedSkillCondition)
+            return;
+
+        skill.UseSkill();
+        isMove = skill.CanMove;
+        animator.SetBool("IsSkill", true);
+
+        if (skill.Targeting)
+        {
+            targetingSkill.StartTargeting(skill);
         }
-        
+        else
+        {
+            skillEffectController.ActiveSkillEffect(skill);
+        }
+
+        SkillAnimation(skill);
+    }
+
+    public void SkillAnimation(ActiveSkill skill)
+    {
+        string aniName = skill.AnimationName;
+
+        // 공용 스킬일 경우 무기의 종류에 따라서 스킬의 이름의 일부분이 다르기 때문에 알맞게 추가한다.
+        if (skill.WeaponValue == SkillWeaponValue.Public)
+        {
+            aniName = PublicSrkillAnimName(aniName);
+        }
+
+        animator.Play(aniName);
+        playerState = PlayerState.Skill;
+
+        Debug.Log("스킬 " + aniName + " 사용");
+    }
+
+    public void ActionTargetingSkill(ActiveSkill skill, Transform tf)
+    {
+        skillEffectController.ActiveSkillEffect(skill, tf);
+    }
+
+    // 타켓팅 스킬 사용 중, 화면 클릭 시 회전
+    public void RotatePlayerToMousePos(Transform getTf)
+    {
+        Vector3 targetPosition = getTf.position;
+        Vector3 direction = (targetPosition - transform.position).normalized;
+
+        // 플레이어가 Y축으로만 회전 하는지 확인
+        direction.y = 0;
+
+        if (direction.sqrMagnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
+        }
+    }
+
+    public void EndSkill()
+    {
+        animator.SetBool("IsSkill", false);
+        isMove = true;
+        playerState = PlayerState.Idel;
     }
 
     // 공용 스킬에는 Animation의 일부 이름만 다르기에 무기에까라 알맞은 이름 삽입
@@ -403,9 +403,5 @@ public class PlayerController : MonoBehaviour
 
         return addString + aniName;
     }
-/*
-    private IEnumerator AnimationEvent()
-    {
-
-    }*/
+    #endregion
 }

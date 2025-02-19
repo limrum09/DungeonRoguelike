@@ -11,6 +11,8 @@ public class StoreUIController : MonoBehaviour
     [Header("Transform")]
     [SerializeField]
     private Transform playerSaleItemTf;
+    [SerializeField]
+    private RectTransform playerSaleItemRectTf;
 
     [Header("Panel")]
     [SerializeField]
@@ -36,7 +38,15 @@ public class StoreUIController : MonoBehaviour
         storeUI.SetActive(false);
     }
 
-    public void OpenStoreUI()
+    public void SetStoreState(bool state)
+    {
+        storeUI.SetActive(state);
+
+        if(state)
+            SetStoreUI();
+    }
+
+    public void SetStoreUI()
     {
         var inven = InvenData.instance.invenSlots;
         int j = 0;
@@ -53,6 +63,10 @@ public class StoreUIController : MonoBehaviour
         {
             items[i].gameObject.SetActive(false);
         }
+
+        Vector2 tempSize = playerSaleItemRectTf.sizeDelta;
+        tempSize.y = j * 70f;
+        playerSaleItemRectTf.sizeDelta = tempSize;
     }
 
     public void OpenItemPurchasePanel(InvenItem item) => purchasePanel.OpenPurchasePanel(item);

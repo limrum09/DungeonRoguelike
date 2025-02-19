@@ -9,7 +9,10 @@ public class StoreNPCController : MonoBehaviour
     {
         if (other.CompareTag("PlayerComponent"))
         {
-
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Manager.Instance.UIAndScene.StoreUI.SetStoreState(true);
+            }
         }
     }
 
@@ -17,7 +20,7 @@ public class StoreNPCController : MonoBehaviour
     {
         if (other.CompareTag("PlayerComponent"))
         {
-
+            Manager.Instance.UIAndScene.StoreUI.SetStoreState(false);
         }
     }
 }

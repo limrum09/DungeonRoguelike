@@ -4544,9 +4544,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoginUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2412459140771248962, guid: 196101f045f05fa449816bfd88a8890d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 4070684909151670982, guid: 196101f045f05fa449816bfd88a8890d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 4086326827891186328, guid: 196101f045f05fa449816bfd88a8890d, type: 3}
       propertyPath: m_AnchorMax.y

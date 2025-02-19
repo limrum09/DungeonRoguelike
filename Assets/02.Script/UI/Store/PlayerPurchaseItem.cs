@@ -35,16 +35,13 @@ public class PlayerPurchaseItem : MonoBehaviour
 
     public void ItemImageClick()
     {
-        Debug.Log("일단 클릭, purchase");
         // 이전에 클릭한 시간보다 현제 시간과의 차이가 0.25f보다 작다면 더블클릭을 한 것으로 간주
         if ((Time.time - clickTime) < 0.25f)
         {
-            Debug.Log("더블클릭 성공, purchase");
             Manager.Instance.UIAndScene.StoreUI.OpenItemPurchasePanel(item);
         }
         else
         {
-            Debug.Log("더블클릭 실패");
             // 더블클릭이 아니면 현제 시간으로 덮어 씌운다
             clickTime = Time.time;
         }
