@@ -98,10 +98,9 @@ public class ActiveSkill : ScriptableObject
         get
         {
             canUseSkill = true;
-            // 코루틴이 너무 많이 실행됨, 수정 필요
             if (coolTimer > 0.0f)
             {
-                Debug.Log(skillName + "스킬 쿨타임 중....");
+                Manager.Instance.UIAndScene.Notion.SetNotionText($"{skillName} 쿨타임...{(int)coolTimer}초");
                 canUseSkill = false;
             }
 
@@ -227,7 +226,6 @@ public class ActiveSkill : ScriptableObject
             yield return null;
         }
         
-        Debug.Log("스킬 " + skillName + "쿨타임 끝!");
         canUseSkill = true;
     }
 }

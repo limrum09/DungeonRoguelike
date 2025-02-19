@@ -42,6 +42,7 @@ public class SalePanel : MonoBehaviour
 
         InvenData.instance.ConsumeInvenItem(itemIndex, itemCount);
         InvenData.instance.ChangeGlodValue(itemPrice);
+        Manager.Instance.UIAndScene.StoreUI.SetStoreUI();
 
         CloseSale();
     }

@@ -174,7 +174,7 @@ public class InvenData : MonoBehaviour
         if (nullSlotIndex != -1)
         {
             invenSlots[nullSlotIndex] = newItem;
-            invenSlots[nullSlotIndex].SetItemCount(1);
+            invenSlots[nullSlotIndex].AddItemCount(getItemCnt);
             RefreshInvenSlot(nullSlotIndex);
             Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlots[nullSlotIndex].ItemCode);
 

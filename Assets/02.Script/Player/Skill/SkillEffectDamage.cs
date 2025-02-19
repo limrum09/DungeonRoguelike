@@ -26,14 +26,19 @@ public class SkillEffectDamage : MonoBehaviour
         }
     }
 
+    // 스킬 데미지 계산
     private int SetTakeSkillDamage()
     {
+        // 플레이어의 스테이터스 가져오기
         var status = PlayerInteractionStatus.instance;
 
+        // 기본 데미지
         int returnDamage = skillDamage + status.PlayerDamage;
 
+        // 크리티컬 확율
         float critical = Random.Range(0.0f, 100.0f);
 
+        // 크리티컬 데미지
         if (critical <= status.CriticalPer)
         {
             int skillCriticalDamage = status.CriticalDamage;

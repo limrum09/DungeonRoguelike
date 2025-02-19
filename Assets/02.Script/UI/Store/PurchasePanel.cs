@@ -40,13 +40,15 @@ public class PurchasePanel : MonoBehaviour
             return;
         }
         
-        if(!InvenData.instance.ChangeGlodValue(itemCount * item.ItemPrice))
+        if(!InvenData.instance.ChangeGlodValue(-(itemCount * item.ItemPrice)))
         {
             scarcehGoldPanel.SetActive(true);
             return;
         }
 
         InvenData.instance.AddItem(item, itemCount);
+        Manager.Instance.UIAndScene.StoreUI.SetStoreUI();
+
         ClosePurchase();
     }
 

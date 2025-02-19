@@ -20,6 +20,7 @@ MonoBehaviour:
   itemCnt: 0
   amount: 99
   isMax: 0
+  price: 100
   isSustain: 0
   healSpeedTime: 0
   hpHeal: 0
