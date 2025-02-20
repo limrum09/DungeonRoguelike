@@ -32,7 +32,7 @@ public class ActiveSkill : ScriptableObject
     [Header("Saveing Data")]
     // 에니메이션 이름_무기 번호
     [SerializeField]
-    private string skillCode;
+    private string skillCode;       // 스킬 코드
     [SerializeField]
     private int skillLevel;
     [SerializeField]
