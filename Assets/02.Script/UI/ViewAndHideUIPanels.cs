@@ -111,7 +111,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
 
         if(sceneName == "Login")
         {
-            Manager.Instance.canUseShortcutKey = false;
+            Manager.Instance.canInputKey = false;
         }
         else if(sceneName == "Lobby")
         {
@@ -119,14 +119,14 @@ public class ViewAndHideUIPanels : MonoBehaviour
             lobbyUI.SetActive(true);
             profileUI.SetActive(true);
             shortcutkeyUI.SetActive(true);
-            Manager.Instance.canUseShortcutKey = true;
+            Manager.Instance.canInputKey = true;
         }
         else
         {
             // Lobby Menu 안보여야함
             profileUI.SetActive(true);
             shortcutkeyUI.SetActive(true);
-            Manager.Instance.canUseShortcutKey = true;
+            Manager.Instance.canInputKey = true;
         }
     }
 

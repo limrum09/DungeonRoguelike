@@ -42,7 +42,6 @@ public class NPCBasicTalkPanel : MonoBehaviour
         // NPC가 가지고있는 퀘스트 만큼 선택지를 만든다.
         foreach(var questAndScenario in questAndScenarios)
         {
-            Debug.Log("Quest And Scenario : " + questAndScenario);
             NPCSelectQuest newSelectQuest = Instantiate(npcSelectQuestPrefab, content);
             newSelectQuest.GetQuestAndScenario(questAndScenario);
         }

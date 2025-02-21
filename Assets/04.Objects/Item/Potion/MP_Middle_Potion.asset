@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
-  m_Name: HP_Middle_Potion
+  m_Name: MP_Middle_Potion
   m_EditorClassIdentifier: 
   itemtype: 1
-  itemCode: P001002
-  itemName: HP_Middle_Potion
-  itemInfo: "\uC911\uAE09 \uCCB4\uB825 \uD68C\uBCF5 \uD3EC\uC158\uC774\uB2E4."
-  itemImage: {fileID: -709921062, guid: efe9e2e989b5ee740a0272c07f3db41b, type: 3}
+  itemCode: P002002
+  itemName: MP_Middle_Potion
+  itemInfo: "\uC911\uAE09 \uC774\uB3D9\uC18D\uB3C4 \uC0C1\uC2B9 \uBB3C\uC57D\uC774\uB2E4."
+  itemImage: {fileID: -1852401015, guid: a1bce08b9322bdb4591d0d9257ec02a5, type: 3}
   itemCnt: 0
   amount: 99
   isMax: 0
-  isSustain: 1
-  healSpeedTime: 5
-  hpHeal: 100
+  price: 250
+  isSustain: 0
+  healSpeedTime: 0
+  hpHeal: 0
   mpHeal: 0
   increaseDamage: 0
-  increaseSpeed: 0
-  durationTime: 30
+  increaseSpeed: 5
+  durationTime: 60

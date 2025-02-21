@@ -18,23 +18,21 @@ public class PlayerInteractionToNPC : MonoBehaviour
         if (Input.GetKeyDown(toNPCKey))
         {
             isNPCTalk = true;
-            Debug.Log("Is Key Down : " + isNPCTalk);
         }
 
         if (Input.GetKeyUp(toNPCKey))
         {
             isNPCTalk = false;
-            Debug.Log("Is Key Up : " + isNPCTalk);
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("NPC") && isNPCTalk)
         {
-            NPCQuestController npc = null;
+            NPCBasic npc = null;
             try
             {
-                npc = other.GetComponent<NPCQuestController>();
+                npc = other.GetComponent<NPCBasic>();
             }
             catch(NullReferenceException e)
             {
@@ -44,7 +42,7 @@ public class PlayerInteractionToNPC : MonoBehaviour
             
             if(npc != null)
             {
-                npc.SetNPCTalkUIValue();
+                npc.NPCTalk();
 
                 isNPCTalk = false;
             }

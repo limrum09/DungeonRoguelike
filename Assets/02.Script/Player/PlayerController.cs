@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
     public Animator Ani => animator;
 
     private float sceneLoadTimer;
-    private float preVelocityY;
     private bool sceneChagne;
+    private bool isKeyInput;
 
     // Start is called before the first frame update
     public void PlayerControllerStart()
@@ -124,12 +124,23 @@ public class PlayerController : MonoBehaviour
         {
             GroundCheck();
             PlayerStateCheck();
-            PlayerInputCheck();
+            isKeyInput = true;
         }
         else
         {
             PlayerDead();
+            isKeyInput = false;
         }        
+    }
+
+    private void Update()
+    {
+        if (isKeyInput)
+        {
+            PlayerJump();
+            PlayerAttackCheck();
+            PlayerSprintCheck();
+        }
     }
 
     private void SceneLoadCompleteCheck()
@@ -137,10 +148,12 @@ public class PlayerController : MonoBehaviour
         if (!sceneChagne)
             return;
 
+        isKeyInput = false;
         // 씬 전환 완료, 이후 1초동안 리스폰 위치로 플레이어 강제 이동
         respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnPoint").transform;
 
         // CharacterController를 비활성화 후 위치 설정
+        // 활성화 되어있으면 순간적으로 위치만 바뀌고 prefab에 입력되어있는 position으로 이동함
         controller.enabled = false;
         transform.position = respawnPoint.position;
         controller.transform.position = respawnPoint.position;
@@ -150,18 +163,37 @@ public class PlayerController : MonoBehaviour
 
         Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 가는 중...!", 75.0f);
 
+        // 씬 로드가 완료되고 1.5초 뒤에 플레이어 이동가능
+        // 스폰 포인트가 대체로 공중에 떠있기 때문에 플레이어가 떨어지는 시간이 필요함
         if (sceneLoadTimer >= 1.5f)
         {
             // 값이 100이 되어야, LoddingUI가 종료됨
             Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("던전 도착!", 100.0f);
             sceneChagne = false;
+            isKeyInput = true;
         }
     }
 
-    private void PlayerInputCheck()
+    private void PlayerSprintCheck()
+    {
+        // 달리기
+        if (Input.GetKey(key.GetKeyCode("Sprint")))
+        {
+            playerSpeed = playerSpeed * 1.5f;
+            animator.SetBool("Sprint", true);
+        }
+        else
+        {
+            animator.SetBool("Sprint", false);
+        }
+    }
+
+    private void PlayerAttackCheck()
     {
         // EventSystem.current.IsPointerOverGameObject() <= UI 클릭시 호출
-        if (!EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)))
+        // UI를 클릭하지 않고, 점프상태가 아닌 경우
+        bool isAttack = !EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(key.GetKeyCode("Attack")) || Input.GetMouseButtonDown(0));
+        if (isAttack)
         {
             playerState = PlayerState.Attack;
             isCombo = false;
@@ -188,24 +220,11 @@ public class PlayerController : MonoBehaviour
 
         key = Manager.Instance.Key;
 
-        PlayerJump();
-
         // 방향키
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         playerSpeed = PlayerInteractionStatus.instance.PlayerSpeed;
-
-        // 달리기
-        if (Input.GetKey(key.GetKeyCode("Sprint")))
-        {
-            playerSpeed = playerSpeed * 1.5f;
-            animator.SetBool("Sprint", true);
-        }
-        else
-        {
-            animator.SetBool("Sprint", false);
-        }
 
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
 

@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class StoreNPCController : NPCBasic
 {
-    private void OnTriggerStay(Collider other)
+    public override void NPCTalk()
     {
-        if (other.CompareTag("PlayerComponent"))
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                Manager.Instance.UIAndScene.StoreUI.SetStoreState(true);
-            }
-        }
+        base.NPCTalk();
+        Manager.Instance.UIAndScene.StoreUI.SetStoreState();
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlayerComponent"))
+        base.OnTriggerExit(other);
+        if (other.CompareTag("Player"))
         {
             Manager.Instance.UIAndScene.StoreUI.SetStoreState(false);
         }

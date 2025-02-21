@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4434274122465289606}
   - component: {fileID: 1904252554612625740}
   - component: {fileID: -5570485192019595943}
+  - component: {fileID: 102128800406585586}
   m_Layer: 0
   m_Name: THS06_Sword
   m_TagString: Untagged
@@ -100,6 +101,28 @@ MonoBehaviour:
   playerItemRotationX: 0
   playerItemRotationY: 0
   playerItemRotationZ: 0
+  boxCollider: {fileID: 0}
+--- !u!65 &102128800406585586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102949386010456217}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.5, z: 1}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1001 &5122625569005835771
 PrefabInstance:
   m_ObjectHideFlags: 0

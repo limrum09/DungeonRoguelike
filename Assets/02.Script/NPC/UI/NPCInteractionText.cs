@@ -10,6 +10,8 @@ public class NPCInteractionText : MonoBehaviour
     private Image icon;
     [SerializeField]
     private TextMeshProUGUI interactionText;
+    [SerializeField]
+    private NPCTalkUIController npcTalk;
 
     private void Start()
     {
@@ -26,5 +28,6 @@ public class NPCInteractionText : MonoBehaviour
     {
         icon.gameObject.SetActive(false);
         interactionText.gameObject.SetActive(false);
+        npcTalk.CloseQuestUI();
     }
 }

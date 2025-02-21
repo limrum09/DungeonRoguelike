@@ -12,8 +12,6 @@ public class PlayerInteractionTest : MonoBehaviour
     private GameObject weaponR;
     [SerializeField]
     private GameObject weaponL;
-    [SerializeField]
-    private MeshCollider attackMesh;
 
     [Header("Armor")]
     [SerializeField]
@@ -23,8 +21,6 @@ public class PlayerInteractionTest : MonoBehaviour
 
     private int rightWeaponValue;
     private int leftWeaponValue;
-    private MeshFilter meshFilterWeaponR;
-    private MeshFilter meshFilterWeaponL;
 
     public GameObject WeaponR => weaponR;
     public GameObject WeaponL => weaponL;
@@ -35,9 +31,6 @@ public class PlayerInteractionTest : MonoBehaviour
     public void PlayerInterationStart()
     {
         armorIndexOverLapping = 9999;
-
-        meshFilterWeaponR = weaponR.gameObject.GetComponent<MeshFilter>();
-        meshFilterWeaponL = weaponL.gameObject.GetComponent<MeshFilter>();
 
         int count = 0;
 

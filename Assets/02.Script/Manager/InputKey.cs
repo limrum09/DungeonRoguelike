@@ -51,7 +51,8 @@ public class InputKey : MonoBehaviour
 
     public void ChangKeycode(string keyString, KeyCode code)
     {
-        if((code >= KeyCode.A && code <= KeyCode.Z && code != KeyCode.W && code != KeyCode.A && code != KeyCode.S && code != KeyCode.D) || 
+        bool isNotWASD = (code != KeyCode.W && code != KeyCode.A && code != KeyCode.S && code != KeyCode.D);
+        if ((code >= KeyCode.A && code <= KeyCode.Z && isNotWASD) || 
             (code >= KeyCode.Alpha1 && code <= KeyCode.Alpha9) || code == KeyCode.Space)
         {
             inputKeys[keyString] = code;
@@ -62,7 +63,7 @@ public class InputKey : MonoBehaviour
 
     public KeyCode GetKeyCode(string keyString)
     {
-        if (!Manager.Instance.canUseShortcutKey)
+        if (!Manager.Instance.canInputKey)
             return KeyCode.None;
 
         if (inputKeys.TryGetValue(keyString, out KeyCode keyCode))

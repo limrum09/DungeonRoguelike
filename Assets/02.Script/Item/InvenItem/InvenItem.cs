@@ -21,6 +21,7 @@ public class InvenItem : ScriptableObject
     [SerializeField]
     private string itemName;
     [SerializeField]
+    [TextArea]
     private string itemInfo;
     [SerializeField]
     private Sprite itemImage;

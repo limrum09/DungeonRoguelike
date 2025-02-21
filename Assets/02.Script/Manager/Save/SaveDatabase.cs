@@ -133,7 +133,7 @@ public class SaveDatabase : MonoBehaviour
 
         // 현제 인벤토리의 크기를 저장
         saveData.inventoryCount = invenSlots.Count;
-        saveData.invenGlodCount = InvenData.instance.InvenGoldCointCount;
+        saveData.invenGlodCount = InvenData.instance.InvenGoldCoinCount;
         for (int i = 0; i < saveData.inventoryCount; i++)
         {
             if(invenSlots[i] != null)
@@ -398,7 +398,7 @@ public class SaveDatabase : MonoBehaviour
 
         manager.UIAndScene.LoddingUI.LoddingRateValue("유저 정보 확인 중...!", 40);
 
-        manager.canUseShortcutKey = true;
+        manager.canInputKey = true;
         Debug.Log("사용자 데이터 로드 완료");
     }
 

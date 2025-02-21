@@ -38,7 +38,7 @@ public class Manager : MonoBehaviour
 
     public UIAndSceneManager UIAndScene => uIAndSceneManager;
 
-    public bool canUseShortcutKey;
+    public bool canInputKey;
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
-        canUseShortcutKey = false;
+        canInputKey = false;
 
         questSystem = Instantiate(questSystem, this.transform);
 
