@@ -42,6 +42,15 @@ public class NPCTalkUIController : MonoBehaviour
         }
     }
 
+    public void CloseQuestUI()
+    {
+        npcBasicScenarioPanel.gameObject.SetActive(false);
+        npcScenarioPanel.gameObject.SetActive(false);
+        playerScenarioPanel.gameObject.SetActive(false);
+
+        isTalkUI = false;
+    }
+
     public void NPCBasicScenario()
     {
         npcBasicScenarioPanel.gameObject.SetActive(true);   // 기본적으로 NPC가 말하는 UI

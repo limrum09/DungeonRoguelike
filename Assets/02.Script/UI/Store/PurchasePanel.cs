@@ -48,6 +48,7 @@ public class PurchasePanel : MonoBehaviour
 
         InvenData.instance.AddItem(item, itemCount);
         Manager.Instance.UIAndScene.StoreUI.SetStoreUI();
+        Manager.Instance.UIAndScene.StoreUI.RefreshGoldCoinValue();
 
         ClosePurchase();
     }

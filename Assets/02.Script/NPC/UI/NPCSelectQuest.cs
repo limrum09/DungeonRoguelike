@@ -78,7 +78,7 @@ public class NPCSelectQuest : MonoBehaviour
             if (activeQuest.State == QuestState.WaitingForCompletion)
             {
                 Manager.Instance.Quest.CompletedWaitingQuest(activeQuest);
-            }                
+            }
         }
     }
 }

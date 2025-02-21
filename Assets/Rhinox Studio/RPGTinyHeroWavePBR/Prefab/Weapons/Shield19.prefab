@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 267856835049773421}
   - component: {fileID: 2617551354425355687}
   - component: {fileID: 4211783043107791141}
+  - component: {fileID: 1191012948976795269}
   m_Layer: 0
   m_Name: Shield19
   m_TagString: Untagged
@@ -101,6 +102,28 @@ MonoBehaviour:
   playerItemRotationX: 0
   playerItemRotationY: 90
   playerItemRotationZ: -270
+  boxCollider: {fileID: 1191012948976795269}
+--- !u!65 &1191012948976795269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4563155115249372274}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.69214475, y: 0.79051435, z: 0.15506311}
+  m_Center: {x: 0, y: 0.024135336, z: 0.114495434}
 --- !u!1001 &726863173130047725
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,21 +11,24 @@ public class NPCQuestController : NPCBasic
     [SerializeField]
     private List<QuestAndScenario> questAndScenario;
 
-    public void SetNPCTalkUIValue()
+    public override void NPCTalk()
     {
+        base.NPCTalk();
         Manager.Instance.UIAndScene.NPCQuestTalkWithPlayer(basicScenario, questAndScenario, npcImage);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
+        base.OnTriggerEnter(other);
         if (other.CompareTag("Player"))
         {
             Manager.Instance.UIAndScene.PlayerInQuestNPC();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
+        base.OnTriggerExit(other);
         if (other.CompareTag("Player"))
         {
             Manager.Instance.UIAndScene.PlayerOutQuestNPC();

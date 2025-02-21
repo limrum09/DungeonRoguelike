@@ -15,13 +15,16 @@ MonoBehaviour:
   itemtype: 1
   itemCode: P002003
   itemName: MP_Small_Potion
-  itemInfo: "\uD558\uAE09 \uB9C8\uB825 \uD68C\uBCF5 \uD45C\uC158\uC774\uB2E4."
-  itemImage: {fileID: 1575890033, guid: c26ccf27369ae93439f8950b97590f83, type: 3}
+  itemInfo: "\uD558\uAE09 \uC774\uB3D9\uC18D\uB3C4 \uC0C1\uC2B9 \uBB3C\uC57D\uC774\uB2E4."
+  itemImage: {fileID: -1852401015, guid: a1bce08b9322bdb4591d0d9257ec02a5, type: 3}
   itemCnt: 0
   amount: 99
   isMax: 0
+  price: 100
+  isSustain: 0
+  healSpeedTime: 0
   hpHeal: 0
-  mpHeal: 1000
+  mpHeal: 0
   increaseDamage: 0
-  increaseSpeed: 0
-  durationTime: 0
+  increaseSpeed: 5
+  durationTime: 20

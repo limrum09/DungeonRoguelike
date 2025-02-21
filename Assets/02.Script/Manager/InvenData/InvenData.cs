@@ -22,7 +22,7 @@ public class InvenData : MonoBehaviour
     private int invenCount;
 
     public InventoryButton InvenButton => invenButton;
-    public int InvenGoldCointCount => goldCoinCount;
+    public int InvenGoldCoinCount => goldCoinCount;
 
     public void InvenDataStart()
     {

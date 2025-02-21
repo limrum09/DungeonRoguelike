@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4919734284347911397}
   - component: {fileID: 7179475638155139119}
   - component: {fileID: 587292881465207721}
+  - component: {fileID: -7545906755720958139}
   m_Layer: 0
   m_Name: OHS05_Sword
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8692619622981138938}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4919734284347911397
 MeshFilter:
@@ -99,3 +100,25 @@ MonoBehaviour:
   playerItemRotationX: 0
   playerItemRotationY: 0
   playerItemRotationZ: 0
+  boxCollider: {fileID: -7545906755720958139}
+--- !u!65 &-7545906755720958139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692619622981138938}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 1.8, z: 0.4}
+  m_Center: {x: 0, y: 0.5, z: 0}

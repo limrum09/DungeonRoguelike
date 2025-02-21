@@ -6,10 +6,10 @@ public class OptionUIController : MonoBehaviour
 {
     private void OnEnable()
     {
-        Manager.Instance.canUseShortcutKey = false;
+        Manager.Instance.canInputKey = false;
     }
     private void OnDisable()
     {
-        Manager.Instance.canUseShortcutKey = true;
+        Manager.Instance.canInputKey = true;
     }
 }

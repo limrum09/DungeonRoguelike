@@ -5,9 +5,14 @@ using UnityEngine;
 public class NPCBasic : MonoBehaviour
 {
     [SerializeField]
-    ParticleSystem aura;
+    protected ParticleSystem aura;
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void NPCTalk()
+    {
+        Manager.Instance.canInputKey = false;
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerComponent"))
         {
@@ -18,21 +23,21 @@ public class NPCBasic : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("PlayerComponent"))
         {
+            Manager.Instance.canInputKey = true;
             if (aura != null)
             {
                 aura.Stop();
                 aura.gameObject.SetActive(false);
             }
-            Manager.Instance.UIAndScene.StoreUI.SetStoreState(false);
         }
     }
 }

@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
-  m_Name: Berserk_Small_Potion
+  m_Name: MP_Big_Potion
   m_EditorClassIdentifier: 
   itemtype: 1
-  itemCode: P003003
-  itemName: Berserk_Small_Potion
-  itemInfo: "\uD558\uAE09 \uACF5\uACA9\uB825 \uC99D\uAC00 \uD3EC\uC158\uC774\uB2E4."
-  itemImage: {fileID: -896516523, guid: c26ccf27369ae93439f8950b97590f83, type: 3}
+  itemCode: P002001
+  itemName: MP_Big_Potion
+  itemInfo: "\uC0C1\uAE09 \uC774\uB3D9\uC18D\uB3C4 \uC0C1\uC2B9 \uBB3C\uC57D\uC774\uB2E4."
+  itemImage: {fileID: -1852401015, guid: a1bce08b9322bdb4591d0d9257ec02a5, type: 3}
   itemCnt: 0
   amount: 99
   isMax: 0
-  price: 1000
+  price: 700
   isSustain: 0
   healSpeedTime: 0
   hpHeal: 0
   mpHeal: 0
-  increaseDamage: 100
-  increaseSpeed: 0
+  increaseDamage: 0
+  increaseSpeed: 5
   durationTime: 180
