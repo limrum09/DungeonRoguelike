@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        checkMosterArea = false;
+        checkMosterArea = true;
         checkPlayer = true;
         hitEnemy = false;
         useSkill = false;

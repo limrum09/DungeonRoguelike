@@ -377,10 +377,13 @@ public class PlayerController : MonoBehaviour
         // 플레이어가 Y축으로만 회전 하는지 확인
         direction.y = 0;
 
+        Debug.Log("위치 확인 : " + targetPosition + ", 방향 확인 : " + direction);
+
         if (direction.sqrMagnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
+            Debug.Log("회전 : " + targetRotation);
         }
     }
 

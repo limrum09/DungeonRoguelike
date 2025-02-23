@@ -9,21 +9,63 @@ public class SkillEffectController : MonoBehaviour
     [SerializeField]
     private List<SkillEffect> skillEffects;
 
+    [Header("Effect Position")]
+    [SerializeField]
+    private Transform bodyTf;
+    [SerializeField]
+    private Transform chestTf;
+    [SerializeField]
+    private Transform rightHandTf;
+    [SerializeField]
+    private Transform leftHandTf;
+    [SerializeField]
+    private Transform footTf;
+    [SerializeField]
+    private Transform groundTf;
+    [SerializeField]
+    private Transform nonTargetingMagicTf;
+
     // 한번에 여러개의 이펙트를 사용할 수 있기에 자식으로 따로 만듬
     public void ActiveSkillEffect(ActiveSkill skill, Transform tf = null)
     {
         if (skill == null)
             return;
 
+        SkillEffect newSkillEffect = null;
+
         if (!skill.Targeting)
         {
-            SkillEffect newSkillEffect = Instantiate(prefab, this.gameObject.transform);
-            newSkillEffect.ActiveSkillEffect(skill);
+            Transform instantiateTf = this.gameObject.transform;
+
+            switch (skill.SkillEffectPosition)
+            {
+                case SkillEffectPos.Body :
+                    instantiateTf = bodyTf;
+                    break;
+                case SkillEffectPos.Chest:
+                    instantiateTf = chestTf;
+                    break;
+                case SkillEffectPos.Foot:
+                    instantiateTf = footTf;
+                    break;
+                case SkillEffectPos.Ground:
+                    instantiateTf = groundTf;
+                    break;
+                case SkillEffectPos.LeftHand:
+                    instantiateTf = leftHandTf;
+                    break;
+                case SkillEffectPos.RightHand:
+                    instantiateTf = rightHandTf;
+                    break;
+                case SkillEffectPos.Weapon:
+                    instantiateTf = rightHandTf;
+                    break;
+            }
+
+            newSkillEffect = Instantiate(prefab, instantiateTf);
         }
         else
-        {
-            SkillEffect newSkillEffect = null;
-            Debug.Log("생성");
+        { 
 
             // ViewRotation이 false인 경우, tf의 위치로 newSkillEffect 옮기기 (불기둥 등)
             if (!skill.ViewRotation)
@@ -31,28 +73,15 @@ public class SkillEffectController : MonoBehaviour
                 newSkillEffect = Instantiate(prefab);
 
                 newSkillEffect.transform.position = tf.position;
-
-                newSkillEffect.ActiveSkillEffect(skill);
             }
             // 아이스 스피어 등
             else
             {
-                newSkillEffect = Instantiate(prefab, this.gameObject.transform);
-
-                // +만으로는 반대로 찍히면 캐릭터와 충돌, 좌표보고 -+ 하기
-                newSkillEffect.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-
-                // 방향 찾기
-                Vector3 direction = (tf.position - newSkillEffect.transform.position).normalized;
-
-                if (direction.sqrMagnitude > 0.01f)
-                {
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    // newSkillEffect.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15f);
-                    // newSkillEffect.transform.rotation = Quaternion.LookRotation(direction);
-                }
+                newSkillEffect = Instantiate(prefab, nonTargetingMagicTf);
             }
-            newSkillEffect.ActiveSkillEffect(skill);
         }
+
+        if(newSkillEffect != null)
+            newSkillEffect.ActiveSkillEffect(skill);
     }
 }

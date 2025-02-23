@@ -19,26 +19,7 @@ public class LobbyTerrainController : MonoBehaviour
     {
         for (int i = 0; i < 9; i++)
             terrains[i].SetIndex(i);
-        // terrainSize = tempTerrain.terrainData.size;
-        //terrainSize = new Vector3(100f, 0f, 100f);
-        // SetTerrainArray();
-
     }
-/*
-    private void SetTerrainArray()
-    {
-        int cnt = 0;
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                terrainArray[i, j] = terrains[cnt];
-
-                Debug.Log("지형 개수 : " + (cnt + 1) + "지형 값 : " + i + ", " + j);
-                cnt++;
-            }
-        }
-    }*/
 
     // Terrain의 Trigger에서 호출
     public void MoveTerrain(Terrain currentTerrain)
@@ -107,7 +88,7 @@ public class LobbyTerrainController : MonoBehaviour
                     {
                         terrains[index - 9] = tempTerrains[i];
                         Vector3 currentPos = tempTerrains[i].transform.position;
-                        Vector3 terrainMovePos = new Vector3(currentPos.x + 600f, currentPos.y + 0f, currentPos.z + 0f);
+                        Vector3 terrainMovePos = new Vector3(currentPos.x + 300f, currentPos.y + 0f, currentPos.z + 0f);
 
                         Debug.Log("Index : " + dir);
                         Debug.Log("이동 오브젝트 순서 : " + i + ", 현제 위치 : " + currentPos + ", 이동 위치 : " + terrainMovePos);
@@ -127,7 +108,7 @@ public class LobbyTerrainController : MonoBehaviour
                     {
                         terrains[index + 9] = tempTerrains[i];
                         Vector3 currentPos = tempTerrains[i].transform.position;
-                        Vector3 terrainMovePos = new Vector3(currentPos.x - 600f, currentPos.y + 0f, currentPos.z + 0f);
+                        Vector3 terrainMovePos = new Vector3(currentPos.x - 300f, currentPos.y + 0f, currentPos.z + 0f);
 
                         Debug.Log("Index : " + dir);
                         Debug.Log("이동 오브젝트 순서 : " + i + ", 현제 위치 : " + currentPos + ", 이동 위치 : " + terrainMovePos);
@@ -149,7 +130,7 @@ public class LobbyTerrainController : MonoBehaviour
                     {
                         terrains[i + 2] = tempTerrains[i];
                         Vector3 currentPos = tempTerrains[i].transform.position;
-                        Vector3 terrainMovePos = new Vector3(currentPos.x + 0f, currentPos.y + 0f, currentPos.z - 600f);
+                        Vector3 terrainMovePos = new Vector3(currentPos.x + 0f, currentPos.y + 0f, currentPos.z - 300f);
 
                         Debug.Log("Index : " + dir);
                         Debug.Log("이동 오브젝트 순서 : " + i + ", 현제 위치 : " + currentPos + ", 이동 위치 : " + terrainMovePos);
@@ -170,7 +151,7 @@ public class LobbyTerrainController : MonoBehaviour
                     {
                         terrains[i - 2] = tempTerrains[i];
                         Vector3 currentPos = tempTerrains[i].transform.position;
-                        Vector3 terrainMovePos = new Vector3(currentPos.x + 0f, currentPos.y + 0f, currentPos.z + 600f);
+                        Vector3 terrainMovePos = new Vector3(currentPos.x + 0f, currentPos.y + 0f, currentPos.z + 300f);
 
                         Debug.Log("Index : " + dir);
                         Debug.Log("이동 오브젝트 순서 : " + i + ", 현제 위치 : " + currentPos + ", 이동 위치 : " + terrainMovePos);
