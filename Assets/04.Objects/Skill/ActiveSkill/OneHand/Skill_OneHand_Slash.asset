@@ -15,20 +15,24 @@ MonoBehaviour:
   skillCode: Slash_1
   skillLevel: 1
   maxLevel: 5
-  canMove: 0
-  skillBasicDamage: 0
-  skillLevelUpDamage: 0
-  skillPosition: {x: 0, y: 0, z: 0}
+  skillBasicDamage: 100
+  skillLevelUpDamage: 50
+  skillPosition: {x: 0, y: 0.1, z: 0}
   skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
   skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 1063892706703077768, guid: 901be293d9416414b91cddbe63ef7c65, type: 3}
-  skillMaintenanceTime: 3
+  skillEffectPos: 5
+  skillMaintenanceTime: 2
+  skillMoveTime: 0
   skillName: "\uD68C\uC804\uBCA0\uAE30"
   weapon: 1
   animationName: OneHand_Slash
   icon: {fileID: 21300000, guid: 7449258d40fcb4175bfe520402fb5324, type: 3}
-  skillInfo: 
+  skillInfo: "\uD68C\uC804\uBC30\uAE30\uB2E4"
+  canMove: 0
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
-  skillCoolTime: 0
+  skillCoolTime: 3

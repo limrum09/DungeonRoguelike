@@ -18,6 +18,7 @@ public class EnemyAttack : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        other.GetComponentInParent<PlayerInteractionStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
+        if (other.CompareTag("Player"))
+            other.GetComponentInParent<PlayerInteractionStatus>().TakeDamage(this.GetComponentInParent<EnemyStatus>().AttackDamage);
     }
 }

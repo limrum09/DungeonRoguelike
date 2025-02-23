@@ -17,12 +17,12 @@ MonoBehaviour:
   maxLevel: 5
   skillBasicDamage: 100
   skillLevelUpDamage: 20
-  skillPosition: {x: 0, y: 0, z: 4}
+  skillPosition: {x: 0, y: 0, z: 0}
   skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 15
   skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 198433943929519872, guid: e7f9d4e3fb3b3ff479f31e75f6db8337, type: 3}
-  skillEffectPos: 1
+  skillEffectPos: 0
   skillMaintenanceTime: 5
   skillMoveTime: 0
   skillName: "\uC544\uC774\uC2A4 \uC2A4\uD53C\uC5B4"

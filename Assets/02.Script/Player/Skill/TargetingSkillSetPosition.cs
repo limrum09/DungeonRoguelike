@@ -8,6 +8,8 @@ public class TargetingSkillSetPosition : MonoBehaviour
     private LayerMask groundLayer;          // 땅의 레이어 
     [SerializeField]
     private GameObject skillIndexObject;    // 타켓팅 시, 마우스 위치를 알려준다. 
+    [SerializeField]
+    private PlayerController player;
 
     private Camera playerCamera;                  // 현제 카메라
     private bool isTarget;
@@ -57,7 +59,6 @@ public class TargetingSkillSetPosition : MonoBehaviour
     private void UpdateSkillIndexObejctPos()
     {
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        var player = Manager.Instance.Game.PlayerController;
 
         if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
         {

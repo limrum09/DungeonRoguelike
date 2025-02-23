@@ -4913,7 +4913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b22354ef7e12754cadedb858b1197e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 2828930365196049898}
+  parent: {fileID: 0}
 --- !u!1 &1996625698722927895
 GameObject:
   m_ObjectHideFlags: 0
@@ -29432,8 +29432,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8751564751313424482}
-  - component: {fileID: 105788368919979353}
   - component: {fileID: 3643300480713312314}
+  - component: {fileID: 9019916557444640899}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -29456,8 +29456,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4014977196023847442}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!136 &105788368919979353
-CapsuleCollider:
+--- !u!114 &3643300480713312314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058762195367022820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526503e6b4b1bd4478183ed5d69b7bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 11400000, guid: a553a0357c7c22748bc35c12a322266c, type: 2}
+  damageDelayTime: 0
+  loofTime: 0.5
+  attackCnt: 200
+  isEnterToDamage: 0
+--- !u!65 &9019916557444640899
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -29474,26 +29491,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3643300480713312314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5058762195367022820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526503e6b4b1bd4478183ed5d69b7bbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: a553a0357c7c22748bc35c12a322266c, type: 2}
-  damageTimer: 0
-  durationTime: 0
 --- !u!1 &5339522922807904451
 GameObject:
   m_ObjectHideFlags: 0
@@ -54005,7 +54005,6 @@ GameObject:
   - component: {fileID: 4014977196023847442}
   - component: {fileID: 8467337620029057757}
   - component: {fileID: 7849459919943593648}
-  - component: {fileID: 2828930365196049898}
   m_Layer: 0
   m_Name: RushPrick01
   m_TagString: Untagged
@@ -58916,15 +58915,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2828930365196049898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7947365809191081125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64f10d586f675e4408e3b37b99e2a67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
