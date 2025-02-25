@@ -10,8 +10,6 @@ public class LobbyButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject EquipmentSelectPanel;
     [SerializeField]
-    private GameObject GameOutPanel;
-    [SerializeField]
     private ButtonAnimation lobbyMenuButton;
 
     [Header("Dongeon Select Panel")]
@@ -26,7 +24,6 @@ public class LobbyButtonManager : MonoBehaviour
         {
             SelectDongonPanel,
             EquipmentSelectPanel,
-            GameOutPanel
         };
 
         foreach (var panel in buttonUIs)
