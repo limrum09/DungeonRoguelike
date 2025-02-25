@@ -22,7 +22,7 @@ MonoBehaviour:
   skillMoveRange: 0
   skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 0}
-  skillEffectPos: 5
+  skillEffectPos: 0
   skillMaintenanceTime: 0
   skillMoveTime: 0
   skillName: "\uC62C\uB824\uCE58\uAE30(\uD55C\uC190\uAC80)"
