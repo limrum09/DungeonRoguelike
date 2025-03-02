@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "InvenItemDatabase", menuName = "GameManager/Database/InvenItemDatabase")]
 public class InvenItemDatabase : ScriptableObject
@@ -14,6 +16,7 @@ public class InvenItemDatabase : ScriptableObject
 
     public InvenItem FindItemBy(string invenItemCodeName) => invenItem.FirstOrDefault(x => x.ItemCode == invenItemCodeName);
 
+#if UNITY_EDITOR
     [ContextMenu("FindInvenItem")] 
     private void FindInvenItem()
     {
@@ -39,4 +42,5 @@ public class InvenItemDatabase : ScriptableObject
             AssetDatabase.SaveAssets();
         }
     }
+#endif
 }

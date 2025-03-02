@@ -3,7 +3,9 @@ guid: e23f85405a33ac94ea29301eaac19b5a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sceneAsset: {instanceID: 0}
+  - sceneInfoSprite: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

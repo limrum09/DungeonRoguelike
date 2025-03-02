@@ -10,7 +10,7 @@ public class InvenData : MonoBehaviour
     public List<InvenItem> invenSlots = new List<InvenItem>();
 
     [SerializeField]
-    private InventoryButton invenButton;
+    private InventoryController invenController;
     [SerializeField]
     private GameObject invenContent;
     [SerializeField]
@@ -20,8 +20,6 @@ public class InvenData : MonoBehaviour
 
 
     private int invenCount;
-
-    public InventoryButton InvenButton => invenButton;
     public int InvenGoldCoinCount => goldCoinCount;
 
     public void InvenDataStart()
@@ -33,8 +31,8 @@ public class InvenData : MonoBehaviour
 
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
 
-        invenButton = Manager.Instance.UIAndScene.InventoryUI;
-        invenContent = invenButton.Content;
+        invenController = Manager.Instance.UIAndScene.InventoryUI;
+        invenContent = invenController.Content;
         goldCoinCount = 0;
 
         // 처음 시작
@@ -116,7 +114,10 @@ public class InvenData : MonoBehaviour
     // 인벤토리 개수 증가
     public void AddInventorySlotCount()
     {
-        for (int i = 0; i < 6; i++)
+        if (invenCount >= 100)
+            return;
+
+        for (int i = 0; i < 4; i++)
         {
             invenSlots.Add(null);
 
@@ -179,7 +180,7 @@ public class InvenData : MonoBehaviour
             Manager.Instance.UIAndScene.ShortCutBox.CheckUsingShortKeyItem(invenSlots[nullSlotIndex].ItemCode);
 
             // 인벤토리가 정렬 중 일시 정렬
-            if (invenButton.isSorting)
+            if (invenController.isSorting)
             {
                 ItemSort(invenSlots[nullSlotIndex]);
             }
@@ -335,11 +336,11 @@ public class InvenData : MonoBehaviour
 
         if (item.itemtype == ITEMTYPE.POTION)
         {
-            invenButton.PostionSortButton();
+            invenController.PostionSortButton();
         }
         else if (item.itemtype == ITEMTYPE.ETC)
         {
-            invenButton.ETCSortButton();
+            invenController.ETCSortButton();
         }
     }
 

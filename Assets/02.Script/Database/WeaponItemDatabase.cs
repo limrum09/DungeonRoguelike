@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "WeaponItemDatabase", menuName = "GameManager/Database/WeaponItemDatabase")]
 public class WeaponItemDatabase : ScriptableObject
@@ -13,7 +15,7 @@ public class WeaponItemDatabase : ScriptableObject
     public IReadOnlyList<WeaponItem> WeaponItems => weaponItem;
 
     public WeaponItem FindItemBy(string weaponItemCodeName) => weaponItem.FirstOrDefault(x => x.ItemCode == weaponItemCodeName);
-
+#if UNITY_EDITOR
     [ContextMenu("FindWeaponItem")] 
     private void FindWeaponItem()
     {
@@ -39,4 +41,5 @@ public class WeaponItemDatabase : ScriptableObject
             AssetDatabase.SaveAssets();
         }
     }
+#endif
 }
