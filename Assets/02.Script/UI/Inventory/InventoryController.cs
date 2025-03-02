@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryButton : MonoBehaviour
+public class InventoryController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject content;
+    private GameObject invenContent;
 
-    public GameObject Content => content;
-
+    public GameObject Content => invenContent;
     public bool isSorting;
     // Start is called before the first frame update
     public void InvenToryStart()
@@ -19,7 +18,7 @@ public class InventoryButton : MonoBehaviour
 
     public void PostionSortButton()
     {
-        foreach(Transform child in content.transform)
+        foreach (Transform child in invenContent.transform)
         {
             InvenSlot childInvenSlot = child.GetComponent<InvenSlot>();
             if (childInvenSlot.ItemType == ITEMTYPE.POTION)
@@ -37,7 +36,7 @@ public class InventoryButton : MonoBehaviour
 
     public void ETCSortButton()
     {
-        foreach (Transform child in content.transform)
+        foreach (Transform child in invenContent.transform)
         {
             InvenSlot childInvenSlot = child.GetComponent<InvenSlot>();
             if (childInvenSlot.ItemType == ITEMTYPE.ETC)
@@ -55,12 +54,17 @@ public class InventoryButton : MonoBehaviour
 
     public void AllButton()
     {
-        foreach (Transform child in content.transform)
+        foreach (Transform child in invenContent.transform)
         {
             InvenSlot childInvenSlot = child.GetComponent<InvenSlot>();
             childInvenSlot.gameObject.SetActive(true);
         }
 
         isSorting = false;
+    }
+
+    public void AddInventoryCount()
+    {
+        Manager.Instance.Game.InvenDatas.AddInventorySlotCount();
     }
 }

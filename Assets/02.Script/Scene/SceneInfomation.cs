@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SceneInfo", menuName = "Scriptable Object/SceneAsset")]
 public class SceneInfomation : ScriptableObject
 {
     [SerializeField]
-    private SceneAsset sceneAsset;
+    private string sceenName;
     [SerializeField]
     private Sprite sceneInfoSprite;
     [SerializeField]
@@ -19,5 +18,5 @@ public class SceneInfomation : ScriptableObject
     public Sprite SceneInfoSprite => sceneInfoSprite;
     public string SceneTitle => sceneTitle;
     public string SceneInfo => sceneInfo;
-    public string SceneName => sceneAsset.name;
+    public string SceneName => sceenName;
 }

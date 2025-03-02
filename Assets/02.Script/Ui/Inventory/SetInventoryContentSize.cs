@@ -20,7 +20,7 @@ public class SetInventoryContentSize : MonoBehaviour
 
     public void ResetContentSize()
     {
-        invenLineCount = content.gameObject.transform.childCount / 6;
+        invenLineCount = content.gameObject.transform.childCount / 4;
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(content);
 

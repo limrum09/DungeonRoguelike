@@ -22,7 +22,7 @@ public class UIAndSceneManager : MonoBehaviour
     [SerializeField]
     private ShortKeyManager shortCutBox;    // 단출키 박스
     [SerializeField]
-    private InventoryButton invenUI;        // 인벤토리 UI
+    private InventoryController invenUI;        // 인벤토리 UI
     [SerializeField]
     private StatusUIManager statusUI;       // 능력치 UI
     [SerializeField]
@@ -62,7 +62,7 @@ public class UIAndSceneManager : MonoBehaviour
     // 프로퍼티
     public BuffUIController BuffUI => buffUI;
     public AchievementUI AchievementUI => achievementUI;
-    public InventoryButton InventoryUI => invenUI;
+    public InventoryController InventoryUI => invenUI;
     public ShortKeyManager ShortCutBox => shortCutBox;
     public ViewAndHideUIPanels viewAndHide => viewAndHideUIPanles;
     public LoddingUIController LoddingUI => loddingUI;

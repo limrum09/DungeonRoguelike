@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23f85405a33ac94ea29301eaac19b5a, type: 3}
   m_Name: SceneInfo_Dongeon2
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 0}
-  sceneInfoSprite: {fileID: 0}
-  sceneTitle: 
+  sceenName: Boss
+  sceneInfoSprite: {fileID: 21300000, guid: d77571e140f0144daaad2a7e4ba19c7c, type: 3}
+  sceneTitle: "\uBCF4\uC2A4"
   sceneInfo: 

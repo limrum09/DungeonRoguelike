@@ -325,7 +325,16 @@ public class PlayerController : MonoBehaviour
     #region UsingActiveSkill
     public void InputActiveSkill(ActiveSkill skill)
     {
-        if ((skill.RightWeaponValue != animator.GetInteger("RightWeaponValue") || skill.LeftWeaponValue != animator.GetInteger("LeftWeaponValue")) && skill.WeaponValue != SkillWeaponValue.Public)
+        bool rightWeaponnotMathch = skill.RightWeaponValue != animator.GetInteger("RightWeaponValue");
+        bool leftWeaponNotMatch = skill.LeftWeaponValue != animator.GetInteger("LeftWeaponValue");
+
+        // 한손검 스킬이고 왼팔에 착용중인 무기가 방패일 시, 한손검 스킬 사용 가능
+        if(skill.WeaponValue == SkillWeaponValue.OneHandSword && animator.GetInteger("LeftWeaponValue") == 2)
+        {
+            leftWeaponNotMatch = false;
+        }
+
+        if ((rightWeaponnotMathch || leftWeaponNotMatch) && skill.WeaponValue != SkillWeaponValue.Public)
             return;
 
         if (!skill.NeedLevelCondition || !skill.NeedSkillCondition)
