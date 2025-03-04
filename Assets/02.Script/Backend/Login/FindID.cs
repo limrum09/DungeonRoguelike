@@ -14,6 +14,13 @@ public class FindID : LoginBase
 
     [SerializeField]
     private Button findIdBtn;
+
+
+    public void OnSelect()
+    {
+        eMailInputField.Select();
+    }
+
     public void OnFindIdButtonClick()
     {
         // 연타 방지
@@ -32,6 +39,16 @@ public class FindID : LoginBase
         SetMessageOnly("이메일로 아이디 보내는 중...");
 
         FindCustomID();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && this.gameObject.activeSelf)
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+            if (next != null)
+                next.Select();
+        }
     }
 
     private void FindCustomID()

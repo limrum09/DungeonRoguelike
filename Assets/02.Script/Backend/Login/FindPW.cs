@@ -19,6 +19,11 @@ public class FindPW : LoginBase
     [SerializeField]
     private Button findPwBtn;
 
+    public void OnSelect()
+    {
+        idInputField.Select();
+    }
+
     public void OnFindPWButtonClick()
     {
         findPwBtn.interactable = false;
@@ -38,6 +43,16 @@ public class FindPW : LoginBase
 
         // 비밀번호 찾기
         FindCustomPassword();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && this.gameObject.activeSelf)
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+            if (next != null)
+                next.Select();
+        }
     }
 
     private void FindCustomPassword()

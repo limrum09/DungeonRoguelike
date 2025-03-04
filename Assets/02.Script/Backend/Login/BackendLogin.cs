@@ -22,6 +22,13 @@ public class BackendLogin : LoginBase
 
 
     private bool isLogin;
+
+
+    public void OnSelect()
+    {
+        inputFieldID.Select();
+    }
+
     public void OnLoginButtonClick()
     {
         isLogin = false;
@@ -39,6 +46,21 @@ public class BackendLogin : LoginBase
         StartCoroutine(LoginProcess());
 
         ResponseLogin(inputFieldID.text, inputFieldPW.text);
+    }
+
+    private void Start()
+    {
+        inputFieldID.Select();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && this.gameObject.activeSelf)
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+            if (next != null)
+                next.Select();
+        }
     }
 
     private void StopLoddingCoroutine()

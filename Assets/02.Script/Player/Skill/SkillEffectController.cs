@@ -61,7 +61,6 @@ public class SkillEffectController : MonoBehaviour
                     instantiateTf = rightHandTf;
                     break;
             }
-
             newSkillEffect = Instantiate(prefab, instantiateTf);
         }
         else
