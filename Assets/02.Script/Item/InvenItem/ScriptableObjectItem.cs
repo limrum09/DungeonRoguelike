@@ -5,6 +5,8 @@ using UnityEngine;
 public class ScriptableObjectItem : MonoBehaviour
 {
     public InvenItem item;
+    [SerializeField]
+    private GameObject itemMesh;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,5 +17,12 @@ public class ScriptableObjectItem : MonoBehaviour
         }
     }
 
-    protected virtual void PlayerGetPotion() { }
+    protected virtual void PlayerGetPotion() {
+        Destroy(this.gameObject);
+    }
+
+    protected virtual void Update()
+    {
+        itemMesh.transform.Rotate(Vector3.forward * 40f * Time.deltaTime);
+    }
 }

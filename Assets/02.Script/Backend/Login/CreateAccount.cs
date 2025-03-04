@@ -27,6 +27,11 @@ public class CreateAccount : LoginBase
     [SerializeField]
     private Button createAccountBtn;
 
+    public void OnSelect()
+    {
+        idInputField.Select();
+    }
+
     public void OnCreateActtounButtonClick()
     {
         ResetUI(idImage, pwImage, confirmPwImage, e_MailImage);
@@ -57,6 +62,16 @@ public class CreateAccount : LoginBase
 
         // 계정 생성 시도
         CustomSignUp();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && this.gameObject.activeSelf)
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+            if (next != null)
+                next.Select();
+        }
     }
 
     private void CustomSignUp()

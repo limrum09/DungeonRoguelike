@@ -1,11 +1,19 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LoginBase : MonoBehaviour
 {
+    protected EventSystem system;
+
     [SerializeField]
     private TextMeshProUGUI textMessage;
+
+    protected void Awake()
+    {
+        system = EventSystem.current;
+    }
 
     /// <summary>
     /// 매개변수로 넘어온 모든 필드 이미지 색상 하얀색으로 초기화

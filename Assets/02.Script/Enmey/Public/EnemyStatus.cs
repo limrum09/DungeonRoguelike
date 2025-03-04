@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyStatus : MonoBehaviour
 {
+    [Header("Status")]
     [SerializeField]
     protected int maxHP;
     [SerializeField]
@@ -16,6 +17,14 @@ public class EnemyStatus : MonoBehaviour
     protected float walkSpeed;
     [SerializeField]
     protected int exp;
+
+    [Header("Drop Info")]
+    [SerializeField]
+    private ScriptableObjectItem[] dropitem;
+    [SerializeField]
+    private float dropPer;
+
+    [Header("Audio")]
     [SerializeField]
     protected AudioClip[] audioClips;
 
@@ -158,6 +167,7 @@ public class EnemyStatus : MonoBehaviour
     protected void EnemyDead()
     {
         animator.SetBool("Die", true);
+        ItemDrop();
         Destroy(this.transform.parent.gameObject, 2f);
     }
 
@@ -169,6 +179,23 @@ public class EnemyStatus : MonoBehaviour
         if(audioClips[0] != null && audioClips != null)
         {
             audioSource.PlayOneShot(audioClips[1]);
+        }
+    }
+
+    protected void ItemDrop()
+    {
+        Debug.Log("아이템 드랍 확인");
+        if(dropitem.Length > 0)
+        {
+            Debug.Log("생성 가능한 아이템 확인 완료");
+            if (Random.Range(0.0f, 1.0f) <= dropPer)
+            {
+                Debug.Log("아이템 생성");
+                int index = Random.Range(0, dropitem.Length - 1);
+                Vector3 dropPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+
+                Instantiate(dropitem[index], dropPos, Quaternion.Euler(-90f, 0f, 0f));
+            }
         }
     }
 }

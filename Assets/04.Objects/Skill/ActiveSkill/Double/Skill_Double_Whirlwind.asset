@@ -15,15 +15,16 @@ MonoBehaviour:
   skillCode: WhirlWind_11
   skillLevel: 1
   maxLevel: 5
-  canMove: 1
-  skillBasicDamage: 0
-  skillLevelUpDamage: 0
+  skillBasicDamage: 300
+  skillLevelUpDamage: 100
   skillPosition: {x: 0, y: 0, z: 0}
   skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
   skillDamageRange: {x: 0, y: 0, z: 0}
-  skillEffect: {fileID: 0}
-  skillMaintenanceTime: 0
+  skillEffect: {fileID: 857840077812061369, guid: 8c4a8766b16160e45b304e99a3a6257b, type: 3}
+  skillEffectPos: 0
+  skillMaintenanceTime: 6.5
+  skillMoveTime: 0
   skillName: "\uD720 \uC708\uB4DC(\uC591\uC190\uAC80)"
   weapon: 3
   animationName: DoubleSword_WhirlWind_01
@@ -31,6 +32,9 @@ MonoBehaviour:
   skillInfo: "\uD720 \uC708\uB4DC \uD720 \uC708\uB4DC \uD720 \uC708\uB4DC \uD720
     \uC708\uB4DC \uD720 \uC708\uB4DC \uD720 \uC708\uB4DC \uD720 \uC708\uB4DC \uD720
     \uC708\uB4DC \uD720 \uC708\uB4DC "
+  canMove: 1
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 10
