@@ -5,14 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerComponent
-  - Sheild
-  - OneHandSword
-  - TwoHandSword
-  - Spear
-  - Hat
-  - HairPart
-  - Head
-  - HeadArmor
   - Ground
   - TYPEWEAPONR
   - TYPEWEAPONL
@@ -31,8 +23,6 @@ TagManager:
   - RemainFlame
   - Eyebrow
   - Mustache
-  - Bow
-  - Wand
   - PlayerRespawnPoint
   - EvilMage
   - ShortcutKey
@@ -46,6 +36,15 @@ TagManager:
   - Tree
   - RespawnEnemy
   - CameraRayPos
+  - Water
+  - OneHandSword
+  - TwoHandSword
+  - HairPart
+  - Wand
+  - Sheild
+  - Bow
+  - Spear
+  - Head
   layers:
   - Default
   - TransparentFX

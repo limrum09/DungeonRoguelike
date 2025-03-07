@@ -110,6 +110,17 @@ public class PlayerController : MonoBehaviour
         isMove = true;
     }
 
+    public void StartSwim()
+    {
+        animator.SetBool("Swim", true);
+    }
+
+    public void EndSwim()
+    {
+        animator.SetBool("SwimMove", false);
+        animator.SetBool("Swim", false);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

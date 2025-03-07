@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6803996803722044913}
@@ -56,7 +56,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3696562945941974772
 MonoBehaviour:
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: b8f8bbcdab7b9324daca6ad6ee6143ce, type: 2}
   itemMesh: {fileID: 661090035290082703}
+  getItemEffect: {fileID: 4033678051070841649, guid: abd48f5b47f451745b957ab7a3d51ca3, type: 3}
 --- !u!1 &661090035290082703
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +277,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 12, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 5.2499995}
+  m_LocalScale: {x: 6, y: 6, z: 5.2499995}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 456368}

@@ -121,7 +121,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 15, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 6, y: 6, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6140356542987338527}
@@ -317,7 +317,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5193270339416679572
 MonoBehaviour:
@@ -333,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11c8810ac0986944da14660d6ae7ab6a, type: 2}
   itemMesh: {fileID: 2043248755766356354}
+  getItemEffect: {fileID: 4033678051070841649, guid: abd48f5b47f451745b957ab7a3d51ca3, type: 3}
 --- !u!1001 &2059532815022393090
 PrefabInstance:
   m_ObjectHideFlags: 0
