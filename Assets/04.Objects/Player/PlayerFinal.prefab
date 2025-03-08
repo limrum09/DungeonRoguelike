@@ -1230,6 +1230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8528909041567477691}
   - component: {fileID: 3746791924252830356}
+  - component: {fileID: 205627539666496902}
   m_Layer: 0
   m_Name: PlayerCollider
   m_TagString: Player
@@ -1276,6 +1277,20 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &205627539666496902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958786055646627667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0ebc5e760f32446962eed2085a97e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3042582680050762677}
+  weapon: {fileID: 6287826997770287232}
 --- !u!1 &1997007598158867893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,10 +1345,10 @@ MonoBehaviour:
   chestTf: {fileID: 1997007598158867892}
   rightHandTf: {fileID: 3027433988753190228}
   leftHandTf: {fileID: 4382345711205049087}
-  weaponTf: {fileID: 0}
   footTf: {fileID: 3242329581889060220}
   groundTf: {fileID: 0}
   nonTargetingMagicTf: {fileID: 5257899899540268038}
+  targetingTf: {fileID: 6519094396616000669}
 --- !u!114 &4960624620284619368
 MonoBehaviour:
   m_ObjectHideFlags: 0

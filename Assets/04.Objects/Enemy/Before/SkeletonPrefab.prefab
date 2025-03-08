@@ -1897,9 +1897,9 @@ MonoBehaviour:
   walkSpeed: 10
   exp: 0
   dropitem:
-  - {fileID: -8214309563088951412, guid: 5414db3f673f4244aa0abcf511287777, type: 3}
   - {fileID: 7022054125832437721, guid: 5f39772f2fc6f3444bded18fcbf11120, type: 3}
   - {fileID: 3696562945941974772, guid: c3d848d507c324f4bbf367a757117e8b, type: 3}
+  - {fileID: 4160963373202460585, guid: 3ed4e59533b9a034b92b147743afe6a5, type: 3}
   dropPer: 1
   audioClips: []
 --- !u!114 &6493019258528778578

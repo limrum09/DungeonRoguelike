@@ -24,6 +24,8 @@ public class SkillEffectController : MonoBehaviour
     private Transform groundTf;
     [SerializeField]
     private Transform nonTargetingMagicTf;
+    [SerializeField]
+    private Transform targetingTf;
 
     // 한번에 여러개의 이펙트를 사용할 수 있기에 자식으로 따로 만듬
     public void ActiveSkillEffect(ActiveSkill skill, Transform tf = null)
@@ -65,13 +67,12 @@ public class SkillEffectController : MonoBehaviour
         }
         else
         { 
-
             // ViewRotation이 false인 경우, tf의 위치로 newSkillEffect 옮기기 (불기둥 등)
             if (!skill.ViewRotation)
             {
                 newSkillEffect = Instantiate(prefab);
 
-                newSkillEffect.transform.position = tf.position;
+                newSkillEffect.transform.position = targetingTf.position;
             }
             // 아이스 스피어 등
             else

@@ -56,7 +56,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-6831413246593660558
 MonoBehaviour:
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 4a01a0996da8c214a91c8c88722fd069, type: 2}
   itemMesh: {fileID: 3130092435736238764}
+  getItemEffect: {fileID: 4033678051070841649, guid: abd48f5b47f451745b957ab7a3d51ca3, type: 3}
 --- !u!1 &3130092435736238764
 GameObject:
   m_ObjectHideFlags: 0

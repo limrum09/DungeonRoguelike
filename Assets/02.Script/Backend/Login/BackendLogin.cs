@@ -61,6 +61,11 @@ public class BackendLogin : LoginBase
             if (next != null)
                 next.Select();
         }
+
+        if((Input.GetKey(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))&& this.gameObject.activeSelf)
+        {
+            OnLoginButtonClick();
+        }
     }
 
     private void StopLoddingCoroutine()
