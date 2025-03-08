@@ -20,10 +20,7 @@ public class CallEvent : MonoBehaviour
 
     public void AttackEndEvent()
     {
-        player.isCombo = false;
-        player.isMove = true;
-        player.playerState = PlayerState.Idel;
-        player.Ani.SetBool("IsAttack", false);
+        player.CallEndAttackEvent();
     }
 
     public void AttackSound(string weapon)

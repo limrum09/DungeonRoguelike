@@ -61,21 +61,39 @@ public class PlayerController : MonoBehaviour
 
     private InputKey key;
     private Camera currentCamera;
-    private bool isDoubleJump;
-    public Animator Ani => animator;
-
-    private float sceneLoadTimer;
+    private bool isDoubleJump;    
     private bool sceneChagne;
     private bool isKeyInput;
+    private bool isUsingTargetingSkill;
+    private float sceneLoadTimer;
+    private float attackStartTime;
+
+    private Vector3 mouseClickPos;
+    private Ray cameraRay;
+    private LayerMask groundLayer;
+    public Animator Ani => animator;
+    public bool CanUseSkill
+    {
+        get
+        {
+            bool returnValue;
+            returnValue = (!animator.GetBool("Jump") && !animator.GetBool("Swim") && !animator.GetBool("Die"));
+
+            return returnValue;
+        }
+    }
+    
 
     // Start is called before the first frame update
     public void PlayerControllerStart()
     {
         controller = GetComponent<CharacterController>();
+        groundLayer = LayerMask.GetMask("Ground");
 
         PlayerInRespawnPoint();
         isMove = true;
         isCombo = false;
+        isUsingTargetingSkill = false;
         sceneChagne = false;
     }
 
@@ -89,6 +107,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Walk", false);
         animator.SetBool("Sprint", false);
         animator.SetBool("Jump", false);
+        animator.SetBool("Swim", false);
+        animator.SetBool("SwimMove", false);
         playerVector = Vector3.zero;
     }
 
@@ -102,6 +122,12 @@ public class PlayerController : MonoBehaviour
         sceneLoadTimer = 0.0f;
         controller.enabled = true;
         Debug.Log("플레이어 리스폰 지역" + respawnPoint.transform.position);
+    }
+
+    public void CallEndAttackEvent()
+    {
+        if(Time.time - attackStartTime >= 0.2f)
+            PlayerEndAttack();
     }
 
     // 로딩 UI 까지 없어지고 난 후, 플레이어 움직이기
@@ -151,6 +177,9 @@ public class PlayerController : MonoBehaviour
             PlayerJump();
             PlayerAttackCheck();
             PlayerSprintCheck();
+
+            if (Time.time - attackStartTime >= 1.0f)
+                PlayerEndAttack();
         }
     }
 
@@ -201,13 +230,35 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerAttackCheck()
     {
+        bool checkAnimator = !animator.GetBool("Jump") && !animator.GetBool("Swim");
         // EventSystem.current.IsPointerOverGameObject() <= UI 클릭시 호출
         // UI를 클릭하지 않고, 점프상태가 아닌 경우
-        bool isAttack = !EventSystem.current.IsPointerOverGameObject() && !animator.GetBool("Jump") && (Input.GetKeyDown(key.GetKeyCode("Attack")) || Input.GetMouseButtonDown(0));
+        bool isMouseAttack = !EventSystem.current.IsPointerOverGameObject() && checkAnimator && Input.GetMouseButtonDown(0);
+        bool isAttack = false;
+
+        if (isMouseAttack)
+        {
+            currentCamera = Manager.Instance.Camera.CurrentCamera;
+            cameraRay = currentCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(cameraRay, out RaycastHit hit, Mathf.Infinity, groundLayer))
+            {
+                mouseClickPos = new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z);
+            }
+        }
+
+         isAttack = (isMouseAttack || Input.GetKeyDown(key.GetKeyCode("Attack"))) && checkAnimator;
+
         if (isAttack)
         {
+            attackStartTime = Time.time;
             playerState = PlayerState.Attack;
             isCombo = false;
+        }
+
+        if (playerState == PlayerState.Attack && checkAnimator && !isUsingTargetingSkill)
+        {
+            RotatePlayerToMousePos(mouseClickPos);
         }
     }
 
@@ -218,7 +269,7 @@ public class PlayerController : MonoBehaviour
         {
             playerMove();
         }
-        else if (playerState == PlayerState.Attack)
+        else if (playerState == PlayerState.Attack && !animator.GetBool("Swim"))
         {
             PlayerAttack();
         }
@@ -251,6 +302,8 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Walk", false);
             }
+            animator.SetBool("SwimMove", true);
+
             currentCamera = Manager.Instance.Camera.CurrentCamera;
 
             // 입력한 값을 기준으로 회전 각도 계산
@@ -276,6 +329,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("Walk", false);
+            animator.SetBool("SwimMove", false);
         }
     }
 
@@ -322,6 +376,14 @@ public class PlayerController : MonoBehaviour
             isCombo = true;
             animator.SetBool("IsAttack", true);
         }   
+    }
+
+    private void PlayerEndAttack()
+    {
+        isCombo = false;
+        isMove = true;
+        playerState = PlayerState.Idel;
+        animator.SetBool("IsAttack", false);
     }
 
     private void PlayerDead()
@@ -389,29 +451,46 @@ public class PlayerController : MonoBehaviour
     }
 
     // 타켓팅 스킬 사용 중, 화면 클릭 시 회전
-    public void RotatePlayerToMousePos(Transform getTf)
+    public void RotatePlayerToMousePos(Vector3 getTf)
     {
-        Vector3 targetPosition = getTf.position;
-        Vector3 direction = (targetPosition - transform.position).normalized;
+        Vector3 direction = (getTf - transform.position).normalized;
 
         // 플레이어가 Y축으로만 회전 하는지 확인
         direction.y = 0;
 
-        Debug.Log("위치 확인 : " + targetPosition + ", 방향 확인 : " + direction);
+        //Debug.Log("위치 확인 : " + getTf + ", 방향 확인 : " + direction);
 
-        if (direction.sqrMagnitude > 0.1f)
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        // 매 프레임 최대 회전 각도를 지정합니다.
+        float maxDegreesDelta = rotationSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxDegreesDelta);
+
+        Debug.Log("회전 값 : " + targetRotation + ", 방향 : " + direction);
+
+        /*if (direction.sqrMagnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
-            Debug.Log("회전 : " + targetRotation);
-        }
+        }*/
     }
 
-    public void EndSkill()
+    public void StartTargetingSkill()
+    {
+        isUsingTargetingSkill = true;
+    }
+
+    public void EndTagetingSkill()
     {
         animator.SetBool("IsSkill", false);
         isMove = true;
         playerState = PlayerState.Idel;
+
+        Invoke("EndTargetingSkillValue", 0.25f);
+    }
+
+    private void EndTargetingSkillValue()
+    {
+        isUsingTargetingSkill = false;
     }
 
     // 공용 스킬에는 Animation의 일부 이름만 다르기에 무기에까라 알맞은 이름 삽입

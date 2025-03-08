@@ -187,6 +187,9 @@ public class ShortKeyItem : MonoBehaviour
         if (!skill.CanUseSkill)
             return;
 
+        if (!Manager.Instance.Game.PlayerController.CanUseSkill)
+            return;
+
         Manager.Instance.Game.PlayerController.InputActiveSkill(skill);
 
         StartCoroutine(CoolTimer(skill.skillCoolTime));

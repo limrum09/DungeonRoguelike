@@ -27,6 +27,7 @@ public class TargetingSkillSetPosition : MonoBehaviour
         isTarget = true;
         skillRange = _skill.SkillMoveRange;
         skillTimer = 3.0f;
+        Manager.Instance.Game.PlayerController.StartTargetingSkill();
     }
 
     // Start is called before the first frame update
@@ -44,13 +45,14 @@ public class TargetingSkillSetPosition : MonoBehaviour
     {
         if (isTarget)
         {
-            UpdateSkillIndexObejctPos();
-
             // 왼쪽 마우스 버튼 클릭시, 해당 위치로 skill정보와 위치값 전송
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log("스킬 사용------------");
                 CheckTargetingPosition();
             }
+
+            UpdateSkillIndexObejctPos();
 
             skillTimer -= Time.deltaTime;
         }
@@ -80,7 +82,9 @@ public class TargetingSkillSetPosition : MonoBehaviour
             // 스킬 사용 위치 업데이트
             skillIndexObject.transform.position = tempskillPosition;
 
-            player.RotatePlayerToMousePos(skillIndexObject.transform);
+            player.RotatePlayerToMousePos(skillIndexObject.transform.position);
+
+            Debug.Log("스킬 이밎 위치 : " + skillIndexObject.transform.position);
         }
 
         // 스킬 타이머가 0이 되면 스킬 사용 취소
@@ -102,6 +106,8 @@ public class TargetingSkillSetPosition : MonoBehaviour
         skillIndexObject.SetActive(false);
         isTarget = false;
         skill = null;
-        Manager.Instance.Game.PlayerController.EndSkill();
+        Manager.Instance.Game.PlayerController.EndTagetingSkill();
+
+        Debug.Log("스킬 종료 이후 이미지 위치 : " + skillIndexObject.transform.position);
     }
 }

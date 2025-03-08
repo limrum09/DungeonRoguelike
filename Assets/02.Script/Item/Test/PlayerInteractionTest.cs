@@ -169,6 +169,18 @@ public class PlayerInteractionTest : MonoBehaviour
         }
     }
 
+    public void StartSwim()
+    {
+        weaponR.SetActive(false);
+        WeaponL.SetActive(false);
+    }
+
+    public void EndSwim()
+    {
+        weaponR.SetActive(true);
+        WeaponL.SetActive(true);
+    }
+
     // 현제 아이템의 대단위 Category가 같고, SubCategory가 다른 아이템들의 view값에 따라 착용 여부를 결정한다.
     private void OtherArmorView(ArmorItem armor, bool view)
     {

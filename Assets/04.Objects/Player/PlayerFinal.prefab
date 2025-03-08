@@ -1290,6 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3042582680050762677}
+  weapon: {fileID: 6287826997770287232}
 --- !u!1 &1997007598158867893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1348,7 @@ MonoBehaviour:
   footTf: {fileID: 3242329581889060220}
   groundTf: {fileID: 0}
   nonTargetingMagicTf: {fileID: 5257899899540268038}
+  targetingTf: {fileID: 6519094396616000669}
 --- !u!114 &4960624620284619368
 MonoBehaviour:
   m_ObjectHideFlags: 0
