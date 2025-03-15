@@ -22,7 +22,7 @@ public class UIAndSceneManager : MonoBehaviour
     [SerializeField]
     private ShortKeyManager shortCutBox;    // 단출키 박스
     [SerializeField]
-    private InventoryController invenUI;        // 인벤토리 UI
+    private InventoryController invenUI;    // 인벤토리 UI
     [SerializeField]
     private StatusUIManager statusUI;       // 능력치 UI
     [SerializeField]
@@ -92,6 +92,10 @@ public class UIAndSceneManager : MonoBehaviour
         SceneManager.sceneLoaded += SceneLoadEnd;
     }
 
+    public void ClickGameEndButton()
+    {
+        Manager.Instance.GameEnd();
+    }
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= SceneLoadEnd;

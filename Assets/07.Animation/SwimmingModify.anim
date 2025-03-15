@@ -13024,7 +13024,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.23333335
+        time: 0.23333333
         value: 0.06616691
         inSlope: -0.0019834936
         outSlope: -0.0019834936
@@ -64756,7 +64756,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.23333335
+        time: 0.23333333
         value: 0.06616691
         inSlope: -0.0019834936
         outSlope: -0.0019834936
@@ -102221,4 +102221,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.33333334
+    functionName: SwimSound
+    data: Swimming
+    objectReferenceParameter: {fileID: 11500000, guid: 4fb1ae51ad4a4f444abaefb701bb13c3, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

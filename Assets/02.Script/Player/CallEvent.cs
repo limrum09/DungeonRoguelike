@@ -35,6 +35,19 @@ public class CallEvent : MonoBehaviour
         Manager.Instance.Sound.SetAudioAudioPath(AudioType.PlayerFoot, path);
     }
 
+    public void SwimSound(string swim)
+    {
+        Debug.Log("수영");
+        string path = "Foot/" + swim;
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.PlayerAttack, path);
+    }
+
+    public void SkillSound(string skill)
+    {
+        string path = "Skill/" + skill;
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.PlayerAttack, path);
+    }
+
     public void DieEnd()
     {
         player.Ani.SetBool("Die", false);

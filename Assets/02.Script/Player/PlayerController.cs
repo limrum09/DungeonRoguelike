@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     private bool sceneChagne;
     private bool isKeyInput;
     private bool isUsingTargetingSkill;
+    private bool isSwim;
     private float sceneLoadTimer;
     private float attackStartTime;
 
@@ -95,6 +96,7 @@ public class PlayerController : MonoBehaviour
         isCombo = false;
         isUsingTargetingSkill = false;
         sceneChagne = false;
+        isSwim = false;
     }
 
     public void SceneChanging()
@@ -103,6 +105,7 @@ public class PlayerController : MonoBehaviour
 
         isGround = false;
         isMove = false;
+        isSwim = false;
         playerState = PlayerState.Idel;
         animator.SetBool("Walk", false);
         animator.SetBool("Sprint", false);
@@ -138,12 +141,14 @@ public class PlayerController : MonoBehaviour
 
     public void StartSwim()
     {
+        isSwim = true;
         animator.SetBool("Swim", true);
     }
 
     public void EndSwim()
     {
-        animator.SetBool("SwimMove", false);
+        isSwim = false;
+        animator.SetBool("SwimMove", true);
         animator.SetBool("Swim", false);
     }
 
@@ -245,20 +250,19 @@ public class PlayerController : MonoBehaviour
             {
                 mouseClickPos = new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z);
             }
+
+            RotatePlayerToMousePos(mouseClickPos);
         }
 
-         isAttack = (isMouseAttack || Input.GetKeyDown(key.GetKeyCode("Attack"))) && checkAnimator;
+        bool isKeyBoardAttack = Input.GetKeyDown(key.GetKeyCode("Attack"));
+
+        isAttack = (isMouseAttack ||  isKeyBoardAttack) && checkAnimator;
 
         if (isAttack)
         {
             attackStartTime = Time.time;
             playerState = PlayerState.Attack;
             isCombo = false;
-        }
-
-        if (playerState == PlayerState.Attack && checkAnimator && !isUsingTargetingSkill)
-        {
-            RotatePlayerToMousePos(mouseClickPos);
         }
     }
 
@@ -302,7 +306,9 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Walk", false);
             }
-            animator.SetBool("SwimMove", true);
+
+            if(isSwim)
+                animator.SetBool("SwimMove", true);
 
             currentCamera = Manager.Instance.Camera.CurrentCamera;
 
@@ -457,22 +463,14 @@ public class PlayerController : MonoBehaviour
 
         // 플레이어가 Y축으로만 회전 하는지 확인
         direction.y = 0;
-
-        //Debug.Log("위치 확인 : " + getTf + ", 방향 확인 : " + direction);
-
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        // 매 프레임 최대 회전 각도를 지정합니다.
-        float maxDegreesDelta = rotationSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxDegreesDelta);
-
-        Debug.Log("회전 값 : " + targetRotation + ", 방향 : " + direction);
-
-        /*if (direction.sqrMagnitude > 0.1f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
-        }*/
-
+        // 입력한 값을 기준으로 회전 각도 계산
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + currentCamera.transform.eulerAngles.y;
+        // 현제 각도를 목표 각도로 보간
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, 0.005f);
+        // 목표 각도로 플레이어 회전
+        transform.rotation = Quaternion.Euler(0, angle, 0);
+        // 카메라 고정
+        playerCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void StartTargetingSkill()
