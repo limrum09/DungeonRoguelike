@@ -1542,6 +1542,8 @@ MonoBehaviour:
   attackSpeed: 5
   walkSpeed: 10
   exp: 0
+  dropitem: []
+  dropPer: 0
   audioClips: []
 --- !u!114 &3983735538642761398
 MonoBehaviour:
@@ -2632,7 +2634,7 @@ PrefabInstance:
       objectReference: {fileID: 3983735538642761398}
     - target: {fileID: 1010114177095755461, guid: 5b254a20ee88cdb4082748293e58939d, type: 3}
       propertyPath: m_Radius
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1153696101999835565, guid: 5b254a20ee88cdb4082748293e58939d, type: 3}
       propertyPath: m_RootOrder

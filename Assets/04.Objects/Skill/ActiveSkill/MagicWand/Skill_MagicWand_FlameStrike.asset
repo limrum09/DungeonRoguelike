@@ -28,7 +28,7 @@ MonoBehaviour:
   skillName: "\uBD88 \uAE30\uB465"
   weapon: 6
   animationName: FlameStrike01
-  icon: {fileID: 21300000, guid: f13707f7827ff4419b9381e3834bc23c, type: 3}
+  icon: {fileID: 21300000, guid: 957e25ea2c2492e49b55898eada28bf4, type: 3}
   skillInfo: "\uBD88 \uAE30\uB465"
   canMove: 0
   targeting: 1

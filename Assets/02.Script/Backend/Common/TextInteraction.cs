@@ -17,20 +17,20 @@ public class TextInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        text.fontSize = 36;
+        text.fontSize = 26;
         text.fontStyle = FontStyles.Normal;
         onUITextClickEvent?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        text.fontSize = 42;
+        text.fontSize = 32;
         text.fontStyle = FontStyles.Bold;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        text.fontSize = 36;
+        text.fontSize = 26;
         text.fontStyle = FontStyles.Normal;
     }
 }

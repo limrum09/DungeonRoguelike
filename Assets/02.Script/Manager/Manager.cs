@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -93,6 +91,13 @@ public class Manager : MonoBehaviour
         transparentManager = Instantiate(transparentManager, this.transform);
 
         Resources.UnloadUnusedAssets();
+    }
+
+    public void GameEnd()
+    {
+        saveManager.SaveData(10);
+
+        Application.Quit();
     }
 }
 
