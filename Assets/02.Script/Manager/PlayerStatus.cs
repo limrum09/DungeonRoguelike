@@ -7,6 +7,7 @@ public class PlayerStatus : MonoBehaviour
 {
     public event Action<string, int> OnStatusChanged;  // Action<status type, status>
     public event Action<int, int, int> OnExpChanged;     // Action<current exp, level>
+    public event Action<int> OnSkillPointChanged;
 
     [SerializeField]
     private int level;
@@ -24,6 +25,8 @@ public class PlayerStatus : MonoBehaviour
     private int exp;
     [SerializeField]
     private int currentExp;
+    [SerializeField]
+    private int skillPoint;
 
     public PlayerStatusSaveData GetPlayerSaveStatus()
     {
@@ -37,7 +40,8 @@ public class PlayerStatus : MonoBehaviour
             bonusState = this.bonusState,
             exp = this.exp,
             currentExp = this.currentExp,
-            currentHp = PlayerInteractionStatus.instance.CurrentHP
+            currentHp = PlayerInteractionStatus.instance.CurrentHP,
+            skillPoint = this.skillPoint
         };
     }
 
@@ -56,6 +60,7 @@ public class PlayerStatus : MonoBehaviour
         this.dex = saveData.dex;
         this.luk = saveData.luk;
         this.bonusState = saveData.bonusState;
+        this.skillPoint = saveData.skillPoint;
 
         this.exp = saveData.exp;
         this.currentExp = saveData.currentExp;
@@ -68,6 +73,7 @@ public class PlayerStatus : MonoBehaviour
         OnStatusChanged?.Invoke("luk", luk);
         OnStatusChanged?.Invoke("bonus", bonusState);
         OnExpChanged?.Invoke(currentExp, exp, level);
+        OnSkillPointChanged?.Invoke(skillPoint);
     }
 
     public void FirstStart()
@@ -88,6 +94,7 @@ public class PlayerStatus : MonoBehaviour
         OnStatusChanged?.Invoke("luk", luk);
         OnStatusChanged?.Invoke("bonus", bonusState);
         OnExpChanged?.Invoke(currentExp, exp, level);
+        OnSkillPointChanged?.Invoke(skillPoint);
     }
 
     public void StatusUP(string status)
@@ -131,6 +138,7 @@ public class PlayerStatus : MonoBehaviour
                 exp = exp + (level * 50) + 150;
                 level++;
                 bonusState += 5;
+                skillPoint += 1;
                 OnStatusChanged?.Invoke("bonus", bonusState);
             }
 
@@ -138,4 +146,10 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    public void SetSkillPoint(int skPoint)
+    {
+        skillPoint += skPoint;
+
+        OnSkillPointChanged?.Invoke(skillPoint);
+    }
 }

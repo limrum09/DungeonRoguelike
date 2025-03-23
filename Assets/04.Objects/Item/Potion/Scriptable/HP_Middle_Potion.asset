@@ -21,7 +21,7 @@ MonoBehaviour:
   amount: 99
   isMax: 0
   price: 1200
-  isSustain: 1
+  isSustain: 0
   healSpeedTime: 5
   hpHeal: 100
   mpHeal: 0

@@ -127,6 +127,21 @@ public class PlayerController : MonoBehaviour
         Debug.Log("플레이어 리스폰 지역" + respawnPoint.transform.position);
     }
 
+    public void SetAnimatorAttackSpeedValue(float playerSpeed)
+    {
+        float attackSpeed = 1.0f;
+
+        if (playerSpeed >= 8.0f)
+            attackSpeed = 1.0f;
+        else if (playerSpeed >= 6.0f)
+            attackSpeed = 0.6f;
+        else if (playerSpeed >= 3.0f)
+            attackSpeed = 0.3f;
+
+        animator.SetFloat("AttackSpeed", attackSpeed);
+    }
+
+#region Animation Call Event
     public void CallEndAttackEvent()
     {
         if(Time.time - attackStartTime >= 0.2f)
@@ -139,18 +154,39 @@ public class PlayerController : MonoBehaviour
         isMove = true;
     }
 
-    public void StartSwim()
+    public void SwimStart()
     {
         isSwim = true;
         animator.SetBool("Swim", true);
     }
 
-    public void EndSwim()
+    public void SwimEnd()
     {
         isSwim = false;
         animator.SetBool("SwimMove", true);
         animator.SetBool("Swim", false);
     }
+
+    public void JumpEnd()
+    {
+        animator.SetBool("Jump", false);
+        animator.SetBool("DoubleJump", false);
+        animator.SetBool("JumpDown", false);
+    }
+
+    public void DieEnd()
+    {
+        animator.SetBool("Die", false);
+        Debug.Log("부활");
+    }
+
+    public void SkillEnd()
+    {
+        playerState = PlayerState.Idel;
+        isMove = true;
+        Debug.Log("Current State : " + playerState);
+    }
+#endregion
 
     // Update is called once per frame
     void FixedUpdate()
@@ -401,7 +437,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Die", true);
     }
 
-    #region UsingActiveSkill
+#region UsingActiveSkill
     public void InputActiveSkill(ActiveSkill skill)
     {
         bool rightWeaponnotMathch = skill.RightWeaponValue != animator.GetInteger("RightWeaponValue");
@@ -523,5 +559,5 @@ public class PlayerController : MonoBehaviour
 
         return addString + aniName;
     }
-    #endregion
+#endregion
 }

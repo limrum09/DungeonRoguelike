@@ -169,13 +169,13 @@ public class PlayerInteractionTest : MonoBehaviour
         }
     }
 
-    public void StartSwim()
+    public void SwimStart()
     {
         weaponR.SetActive(false);
         WeaponL.SetActive(false);
     }
 
-    public void EndSwim()
+    public void SwimEnd()
     {
         weaponR.SetActive(true);
         WeaponL.SetActive(true);

@@ -15,8 +15,7 @@ MonoBehaviour:
   itemtype: 1
   itemCode: P004003
   itemName: "\uACBD\uD5D8\uCE58 \uBB3C\uC57D(\uD558)"
-  itemInfo: "\uD558\uAE09 \uAD11\uC804\uC0AC \uBB3C\uC57D\uC774\uB2E4..\n\uCCB4\uB825\uC744
-    \uC18C\uBAA8\uD558\uC5EC \uACF5\uACA9\uB825\uC744 \uC99D\uAC00\uC2DC\uD0A8\uB2E4."
+  itemInfo: 
   itemImage: {fileID: -896516523, guid: c26ccf27369ae93439f8950b97590f83, type: 3}
   itemCnt: 0
   amount: 99

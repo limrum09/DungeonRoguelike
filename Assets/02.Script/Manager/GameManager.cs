@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour
         invenData.InvenDataStart();
     }
 
+    public void PlayerResurrection()
+    {
+        PlayerInteractionStatus.instance.Resurrection();
+        ChangePlayerStatus();
+    }
+
     private GameObject PlayerRespawnInRespawnPoint()
     {
         GameObject playerObject = Instantiate(player);
@@ -161,12 +167,15 @@ public class GameManager : MonoBehaviour
         if (player.CurrentHP >= player.MaxHP)
             player.CurrentHP = player.MaxHP;
 
+        playerController.SetAnimatorAttackSpeedValue(player.PlayerSpeed);
+
         ChangeHPBar();
     }
 
     public void PlayerStatusUp(string status) => playerSaveStatus.StatusUP(status);
     public void PlayerGetExp(int exp) => playerSaveStatus.GetExp(exp);
-
+    public void PlayerUseSkillPoint(int skPoint) => playerSaveStatus.SetSkillPoint(-skPoint);
+    public void PlayerDie() => Manager.Instance.UIAndScene.PlayerDie();
     public void PlayerWeaponChange(WeaponItem item) => itemStatus.ChangeWeaponItem(item);
     public void PlayerArmorChange(ArmorItem item) => itemStatus.ChangeArmorItem(item);
     public void ChangeHPBar()

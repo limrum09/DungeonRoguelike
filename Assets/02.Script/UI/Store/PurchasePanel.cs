@@ -15,6 +15,7 @@ public class PurchasePanel : MonoBehaviour
     private GameObject scarcehGoldPanel;
 
     private int itemCount;
+    [SerializeField]
     private InvenItem item = null;
 
     public void OpenPurchasePanel(InvenItem selectItem)

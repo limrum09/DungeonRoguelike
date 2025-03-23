@@ -50,14 +50,12 @@ public class CallEvent : MonoBehaviour
 
     public void DieEnd()
     {
-        player.Ani.SetBool("Die", false);
+        player.DieEnd();
     }
 
     public void JumpEnd()
     {
-        player.Ani.SetBool("Jump", false);
-        player.Ani.SetBool("DoubleJump", false);
-        player.Ani.SetBool("JumpDown", false);
+        player.JumpEnd();
     }
 
     public void SkillMove(float move)
@@ -71,8 +69,6 @@ public class CallEvent : MonoBehaviour
 
     public void SkillEnd()
     {
-        player.playerState = PlayerState.Idel;
-        player.isMove = true;
-        Debug.Log("Current State : " + player.playerState);
+        player.SkillEnd();
     }
 }

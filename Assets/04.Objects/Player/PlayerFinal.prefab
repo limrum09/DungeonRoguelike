@@ -307,7 +307,7 @@ MonoBehaviour:
   playerSpeed: 15
   rotationSpeed: 15
   jumpHeigt: 3
-  gravityValue: -9.8
+  gravityValue: -19.6
   isGround: 0
   isMove: 0
   isCombo: 0

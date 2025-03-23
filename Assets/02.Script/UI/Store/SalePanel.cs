@@ -14,6 +14,7 @@ public class SalePanel : MonoBehaviour
 
     private int itemCount;
     private int itemIndex = -1;
+    [SerializeField]
     private InvenItem item = null;
 
     public void OpenItemSalePanel(InvenItem saleItem, int saleItemIndex)
