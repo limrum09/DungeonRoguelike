@@ -189,12 +189,15 @@ public class ActiveSkill : ScriptableObject
         }
     }
 
-    public void SkillLevelUp()
+    public bool SkillLevelUp()
     {
         if (skillLevel >= maxLevel)
-            return;
-
-        skillLevel++;
+            return false;
+        else
+        {
+            skillLevel++;
+            return true;
+        }
         // 다른 것들 추가 필요
     }
 
@@ -203,7 +206,13 @@ public class ActiveSkill : ScriptableObject
         if (canUseSkill)
         {
             canUseSkill = false;
-            coolTimer = skillCoolTime;
+
+            float coolTimeStatus = PlayerInteractionStatus.instance.SkillCoolTime;
+
+            if (coolTimeStatus > 50.0)
+                coolTimeStatus = 50.0f;
+
+            coolTimer = (skillCoolTime * ( 1 - (coolTimeStatus / 100)));
             Manager.Instance.StartCoroutine(SkillCoolTimer());
         }
         else

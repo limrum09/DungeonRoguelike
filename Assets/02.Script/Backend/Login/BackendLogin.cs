@@ -84,7 +84,7 @@ public class BackendLogin : LoginBase
                 SetMessageOnly($"{inputFieldID.text}님, 환영합니다!");
 
                 // PlayerObject를 여기서 만들수 있다면 좋겠는데
-                SceneManager.LoadScene(SceneNames.Lobby.ToString());
+                SceneManager.LoadScene(SceneNames.Starting.ToString());
             }
             else
             {

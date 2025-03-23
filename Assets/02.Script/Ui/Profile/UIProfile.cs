@@ -27,6 +27,8 @@ public class UIProfile : MonoBehaviour
         currentHPText.text = currentHP.ToString();
 
         currentHPBar.rectTransform.sizeDelta = new Vector2((float)currentHP/ (float)maxHP * 500f, currentHPBar.rectTransform.sizeDelta.y);
+
+        Debug.Log($"체력 : {currentHP} / 최대 체력 : {maxHP}");
     }
 
     public void SetExpBar()

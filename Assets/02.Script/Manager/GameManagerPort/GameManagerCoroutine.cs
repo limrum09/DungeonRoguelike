@@ -59,7 +59,7 @@ public class GameManagerCoroutine : MonoBehaviour
         bool isSustain = newItem.IsSustain;
         float healSpeedTime = 0.0f;
 
-        if (isSustain)
+        if (!isSustain)
         {
             healSpeedTime = newItem.HealSpeedTime;
 
@@ -68,7 +68,7 @@ public class GameManagerCoroutine : MonoBehaviour
             if (healSpeedTime == 0.0f)
             {
                 Debug.Log("반복 시간 0초");
-                isSustain = false;
+                isSustain = true;
                 player.HealCurrentHP(hpHeal);
             }                
         }
@@ -83,7 +83,7 @@ public class GameManagerCoroutine : MonoBehaviour
             buffTime -= Time.deltaTime;
             healTimer += Time.deltaTime;
 
-            if(healTimer >= healSpeedTime && isSustain)
+            if(healTimer >= healSpeedTime && !isSustain)
             {
                 healTimer = 0.0f;
                 player.HealCurrentHP(hpHeal);

@@ -90,6 +90,7 @@ public class PlayerInteractionStatus : MonoBehaviour
             {
                 currentHP = 0;
                 isDie = true;
+                Manager.Instance.Game.PlayerDie();
             }
 
             Manager.Instance.Game.ChangeHPBar();
@@ -98,14 +99,14 @@ public class PlayerInteractionStatus : MonoBehaviour
 
     public void Resurrection()
     {
-        isDie = false;
-        playerController.Ani.SetBool("Die", false);
+        Resurrection(MaxHP);
     }
 
     public void Resurrection(int hp)
     {
         currentHP += hp;
         isDie = false;
-        playerController.Ani.SetBool("Die", false);
+        playerController.DieEnd();
+        Manager.Instance.Game.ChangeHPBar();
     }
 }

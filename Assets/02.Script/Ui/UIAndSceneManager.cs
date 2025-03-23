@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public enum SceneNames
 {
     Login = 0,
+    Starting,
     Lobby,
     Dongon1,
     Boss
@@ -49,6 +50,8 @@ public class UIAndSceneManager : MonoBehaviour
     private RankingViewer rankingViewer;    // 랭킹 UI
     [SerializeField]
     private StoreUIController storeUI;
+    [SerializeField]
+    private DieUIController dieUI;
 
     [Header("Other")]
     [SerializeField]
@@ -83,11 +86,12 @@ public class UIAndSceneManager : MonoBehaviour
 
         equipmentSelectUI.EquipmentSelectPanelStart();
         
-        skillUI.SkillUIInitialized();
+        skillUI.SkillUIStart();
         lobbyUI.LobbyUIStart();
         loddingUI.gameObject.SetActive(false);
         rankingViewer.RankingStart();
         StoreUI.StoreUIStart();
+        dieUI.CloseDieUI();
 
         SceneManager.sceneLoaded += SceneLoadEnd;
     }
@@ -101,6 +105,17 @@ public class UIAndSceneManager : MonoBehaviour
         SceneManager.sceneLoaded -= SceneLoadEnd;
     }
 
+    public void PlayerResurrection()
+    {
+        dieUI.CloseDieUI();
+        Manager.Instance.Game.PlayerResurrection();
+    }
+
+    public void PlayerDie()
+    {
+        dieUI.PlayerDie();
+    }
+
     #region Scene Load Functions
     // 씬 로드 끝나면 호출
     private void SceneLoadEnd(Scene scene, LoadSceneMode mode)
@@ -111,15 +126,20 @@ public class UIAndSceneManager : MonoBehaviour
     }
 
     // 씬 로드 시작, SceneNames로 입력이 들어오면 string으로 전화하여 LoadScene(string sceneName)호출
+    public void LoadLobbyScene()
+    {
+        Manager.Instance.Game.PlayerController.SceneChanging();
+        StartCoroutine(LoadAsyncScene("Lobby", false));
+    }
     public void LoadScene(SceneNames sceneName) => LoadScene(sceneName.ToString());
     // 씬 로드 시작
     public void LoadScene(string sceneName)
     {
         Manager.Instance.Game.PlayerController.SceneChanging();
         // 씬을 로딩하는 코루틴 실행
-        StartCoroutine(LoadAsyncScene(sceneName));
+        StartCoroutine(LoadAsyncScene(sceneName, true));
     }
-    IEnumerator LoadAsyncScene(string loadSceneName)
+    IEnumerator LoadAsyncScene(string loadSceneName, bool save)
     {
         loddingUI.gameObject.SetActive(true);
         loddingUI.LoddingUIStart();
@@ -127,13 +147,19 @@ public class UIAndSceneManager : MonoBehaviour
         // 씬이 로드된 정도를 확인한다.
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadSceneName);
 
-        Manager.Instance.Save.DataSaving();
-        yield return new WaitForSeconds(1.0f);
+        if (save)
+        {
+            Manager.Instance.Save.DataSaving();
+            yield return new WaitForSeconds(1.0f);
+        }
 
         Manager.Instance.Save.LoadData();
         yield return new WaitForSeconds(1.0f);
 
         loddingUI.LoddingRateValue("던전 찾는 중...", 60.0f);
+
+        ChangeHPBar();
+        ChangeEXPBar();
 
         // 씬이 로드가 완료가 되면 isDone이 true값을 바환한다.
         while (!asyncLoad.isDone)

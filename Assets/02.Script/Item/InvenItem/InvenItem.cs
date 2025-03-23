@@ -36,7 +36,7 @@ public class InvenItem : ScriptableObject
 
     [Header("HP & MP")]
     [SerializeField]
-    private bool isSustain;         // 즉발성, 체력을 한번만 회복(false), 체력 여러번 회복(true)
+    private bool isSustain;         // 즉발성, 체력을 한번만 회복(true), 체력 여러번 회복(false)
     [SerializeField]
     private float healSpeedTime;
     [SerializeField]
@@ -108,9 +108,12 @@ public class InvenItem : ScriptableObject
         clone.itemCnt = this.itemCnt;
         clone.amount = this.amount;
         clone.isMax = this.isMax;
+        clone.price = this.price;
 
         clone.hpHeal = this.hpHeal;
         clone.mpHeal = this.mpHeal;
+        clone.isSustain = this.isSustain;
+        clone.healSpeedTime = this.healSpeedTime;
         clone.increaseDamage = this.increaseDamage;
         clone.increaseSpeed = this.increaseSpeed;
 

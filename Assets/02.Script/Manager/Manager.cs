@@ -91,6 +91,7 @@ public class Manager : MonoBehaviour
         transparentManager = Instantiate(transparentManager, this.transform);
 
         Resources.UnloadUnusedAssets();
+        UIAndScene.LoadLobbyScene();
     }
 
     public void GameEnd()

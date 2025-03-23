@@ -16,6 +16,11 @@ public class DongeonEnterButton : MonoBehaviour
         btn.onClick.AddListener(EneterScene);
     }
 
+    public void ButtonInteractable(bool value)
+    {
+        btn.interactable = value;
+    }
+
     private void EneterScene()
     {
         if (sceneName == null)

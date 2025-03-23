@@ -15,13 +15,15 @@ MonoBehaviour:
   itemtype: 1
   itemCode: P001003
   itemName: HP_Small_Potion
-  itemInfo: "\uD558\uAE09 \uCCB4\uB825 \uD68C\uBCF5 \uBB3C\uC57D\uC774\uB2E4."
+  itemInfo: "\uD558\uAE09 \uCCB4\uB825 \uD68C\uBCF5 \uBB3C\uC57D\uC774\uB2E4.\n\uD558\uAE09
+    \uCCB4\uB825 \uD68C\uBCF5 \uBB3C\uC57D\uC774\uB2E4.\n\uD558\uAE09 \uCCB4\uB825
+    \uD68C\uBCF5 \uBB3C\uC57D\uC774\uB2E4."
   itemImage: {fileID: 453375901, guid: c26ccf27369ae93439f8950b97590f83, type: 3}
   itemCnt: 0
   amount: 99
   isMax: 0
   price: 100
-  isSustain: 1
+  isSustain: 0
   healSpeedTime: 5
   hpHeal: 10
   mpHeal: 0

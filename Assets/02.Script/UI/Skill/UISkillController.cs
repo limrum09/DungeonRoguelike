@@ -25,25 +25,10 @@ public class UISkillController : MonoBehaviour
     [SerializeField]
     private Button skillLevelUpBtn;
 
-    public void SkillUIInitialized()
+    public void SkillUIStart()
     {
-        if(currentSkill == null)
-        {
-            skillImage.sprite = null;
-            skillImage.gameObject.SetActive(false);
-
-            skillName.text = "";
-            skillInfo.text = "";
-            skillConditionInfo.text = "";
-
-            skillLevelUpBtn.interactable = false;
-        }
-
-        foreach(var skillImages in skillImageControllers)
-        {
-            if(skillImages != null)
-                skillImages.UISkillImageStart();
-        }
+        SkillUIInitialized();
+        Manager.Instance.Game.PlayerCurrentStatus.OnSkillPointChanged += RefreshSkillPoint;
     }
 
     public void SelectSkill(ActiveSkill skill)
@@ -112,12 +97,40 @@ public class UISkillController : MonoBehaviour
         if (currentSkill == null)
             return;
 
-        // 스킬 포인트 감소
-
         // 스킬 레벨업
-        currentSkill.SkillLevelUp();
+        if (currentSkill.SkillLevelUp())
+        {
+            // 스킬 포인트 감소
+            Manager.Instance.Game.PlayerUseSkillPoint(1);
+        }
 
         RefreshSkill();
+    }
+
+    private void SkillUIInitialized()
+    {
+        if (currentSkill == null)
+        {
+            skillImage.sprite = null;
+            skillImage.gameObject.SetActive(false);
+
+            skillName.text = "";
+            skillInfo.text = "";
+            skillConditionInfo.text = "";
+
+            skillLevelUpBtn.interactable = false;
+        }
+
+        foreach (var skillImages in skillImageControllers)
+        {
+            if (skillImages != null)
+                skillImages.UISkillImageStart();
+        }
+    }
+
+    private void RefreshSkillPoint(int skPoint)
+    {
+        skillPointText.text = skPoint.ToString();
     }
 
     private void RefreshSkill()
@@ -129,5 +142,10 @@ public class UISkillController : MonoBehaviour
 
         if (currentSkill.CurrentSkillLevel >= currentSkill.MaxSkillLeven)
             skillLevelUpBtn.interactable = false;
+    }
+
+    private void OnDestroy()
+    {
+        Manager.Instance.Game.PlayerCurrentStatus.OnSkillPointChanged -= RefreshSkillPoint;
     }
 }

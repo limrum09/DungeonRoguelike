@@ -14,4 +14,5 @@ public class PlayerStatusSaveData
     public int exp;
     public int currentExp;
     public int currentHp;
+    public int skillPoint;
 }

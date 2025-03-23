@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: InvenItemDatabase
   m_EditorClassIdentifier: 
   invenItem:
+  - {fileID: 11400000, guid: dc55df4ef1bace941bfa79ecfddc0172, type: 2}
+  - {fileID: 11400000, guid: 059917aea129c9142a96ded0bc177379, type: 2}
   - {fileID: 11400000, guid: 4f012e94ec64bb74386ccca81d1fb09f, type: 2}
   - {fileID: 11400000, guid: 4a01a0996da8c214a91c8c88722fd069, type: 2}
   - {fileID: 11400000, guid: b8f8bbcdab7b9324daca6ad6ee6143ce, type: 2}
+  - {fileID: 11400000, guid: 3b2666a2871d91749869ad9b6654daeb, type: 2}
+  - {fileID: 11400000, guid: 64881d5dada13264e97c96b0cdeb39ee, type: 2}
+  - {fileID: 11400000, guid: 5d86088e438260943b396fedbd14186c, type: 2}
   - {fileID: 11400000, guid: e9482e693e1a6de43956e64874d0fe74, type: 2}
   - {fileID: 11400000, guid: dab6d2675d2800342a919d911e1799d4, type: 2}
   - {fileID: 11400000, guid: 76ca7c659a77302489586adcfb02f2d1, type: 2}
   - {fileID: 11400000, guid: 11c8810ac0986944da14660d6ae7ab6a, type: 2}
   - {fileID: 11400000, guid: e20ee05264abc0d44b9475af802c84a9, type: 2}
   - {fileID: 11400000, guid: 0021a8f0c4162c34f9557737f1265409, type: 2}
-  - {fileID: 11400000, guid: dc55df4ef1bace941bfa79ecfddc0172, type: 2}

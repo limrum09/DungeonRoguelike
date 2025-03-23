@@ -12,8 +12,8 @@ public class PlayerCollider : MonoBehaviour
     {
         if (other.CompareTag("Water"))
         {
-            player.StartSwim();
-            weapon.StartSwim();
+            player.SwimStart();
+            weapon.SwimStart();
         }
     }
 
@@ -21,8 +21,8 @@ public class PlayerCollider : MonoBehaviour
     {
         if (other.CompareTag("Water"))
         {
-            player.EndSwim();
-            weapon.EndSwim();
+            player.SwimEnd();
+            weapon.SwimEnd();
         }
     }
 }
