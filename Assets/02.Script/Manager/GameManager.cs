@@ -108,18 +108,20 @@ public class GameManager : MonoBehaviour
         Manager.Instance.UIAndScene.LevelUPUI();
     }
 
-    public void SetExpChanged(int getExp, int getMaxExp, int getLevel)
+    public void SetExpChanged(bool levelUP, int getExp, int getMaxExp, int getLevel)
     {
-        if(level < getLevel)
-        {
-            level = getLevel;
-            LevelUP();
-        }
-
         currentExp = getExp;
         exp = getMaxExp;
 
-        Manager.Instance.UIAndScene.ChangeEXPBar();
+        if (level < getLevel)
+        {
+            level = getLevel;
+
+            if(levelUP)
+                LevelUP();
+        }
+
+        Manager.Instance.UIAndScene.ChangeEXPBar(level, CurrentExp, exp);
     }
 
     public void SetStatusChanged(string status, int value)
@@ -165,11 +167,12 @@ public class GameManager : MonoBehaviour
         }
 
         if (player.CurrentHP >= player.MaxHP)
+        {
             player.CurrentHP = player.MaxHP;
+        }            
 
         playerController.SetAnimatorAttackSpeedValue(player.PlayerSpeed);
-
-        ChangeHPBar();
+        Manager.Instance.UIAndScene.ChangeStatusUIValue();
     }
 
     public void PlayerStatusUp(string status) => playerSaveStatus.StatusUP(status);
@@ -181,7 +184,7 @@ public class GameManager : MonoBehaviour
     public void ChangeHPBar()
     {
         // HPBar와 전체적인 값을 변경시킨다.
-        Manager.Instance.UIAndScene.ChangeHPBar();
+        Manager.Instance.UIAndScene.ChangeHPBar(PlayerInteractionStatus.instance.CurrentHP, PlayerInteractionStatus.instance.MaxHP);
     }
 
     public void GetBuffItem(InvenItem item)

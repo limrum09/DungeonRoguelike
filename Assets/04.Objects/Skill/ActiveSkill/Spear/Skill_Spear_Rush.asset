@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_Spear_Rush
   m_EditorClassIdentifier: 
-  skillCode: Rush_04
+  code: SKILL_SPR_RUSH
   skillLevel: 1
   maxLevel: 10
   skillBasicDamage: 10
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: -0.7}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 8467337620029057757, guid: 0959e9760d45834458e9375e0b9fe143, type: 3}
   skillEffectPos: 5
   skillMaintenanceTime: 4.12

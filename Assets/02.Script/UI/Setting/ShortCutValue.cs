@@ -19,7 +19,7 @@ public class ShortCutValue : MonoBehaviour
     // 시작 시, 각자 해당되는 단축키 필드에 보여주기
     public void StartShortCutKey()
     {
-        string keyCode = Manager.Instance.Key.GetKeyCode(KeyValue).ToString();
+        string keyCode = Manager.Instance.Key.GetKeyCode(KeyValue, true).ToString();
 
         // Text에서 Alpha제거
         if (keyCode.Contains("Alpha"))
@@ -34,8 +34,6 @@ public class ShortCutValue : MonoBehaviour
     {
         bool oneChar = false;
         string currentString = inputKeyCodeValue.text;
-
-        Debug.Log("Current String : " + currentString);
 
         // 입력된 값이 1글자일 경우
         if (currentString.Length == 1 || currentString == " ")

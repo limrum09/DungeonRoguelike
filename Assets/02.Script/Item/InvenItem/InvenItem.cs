@@ -12,7 +12,7 @@ public enum ITEMTYPE
 }
 
 [CreateAssetMenu(fileName = "InvenItem", menuName = "Scriptable Object/Item")]
-public class InvenItem : ScriptableObject
+public class InvenItem : GameDataObject
 {
     [Header("Info")]
     public ITEMTYPE itemtype;
@@ -51,8 +51,10 @@ public class InvenItem : ScriptableObject
     private float increaseSpeed;
     [SerializeField]
     private float durationTime;
+    [SerializeField]
+    private ActiveSkill itemEffect;
 
-    public string ItemCode => itemCode;
+    public string ItemCode => code;
     public string ItemName => itemName;
     public string ItemInfo => itemInfo;
     public Sprite ItemImage => itemImage;
@@ -79,15 +81,23 @@ public class InvenItem : ScriptableObject
         {
             int overCnt = itemCnt - amount;
             itemCnt = amount;
-            InvenData.instance.AddItem(Resources.Load<InvenItemDatabase>("InvenItemDatabase").FindItemBy(ItemCode), overCnt);
+            InvenData.instance.AddItem(Resources.Load<InvenItemDatabase>("InvenItemDatabase").FindByCode(ItemCode), overCnt);
         }
     }
     public void SetItemCount(int i) => itemCnt = i;
 
     public void UsingItem()
     {
+        if (itemEffect != null)
+        {
+            Manager.Instance.Game.PlayerController.InputActiveSkill(itemEffect);
+            Debug.Log("아이템 이펙트");
+        }
+
         if (increaseDamage >= 0.0f || increaseSpeed > 0.0f || isSustain)
+        {
             Manager.Instance.Game.GetBuffItem(this);
+        }
         else if (!isSustain)
         {
             PlayerInteractionStatus.instance.HealCurrentHP(hpHeal);
@@ -118,6 +128,7 @@ public class InvenItem : ScriptableObject
         clone.increaseSpeed = this.increaseSpeed;
 
         clone.durationTime = this.durationTime;
+        clone.itemEffect = this.itemEffect;
 
         return clone;
     }

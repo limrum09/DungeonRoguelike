@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
   m_Name: Speed_Middle_Potion
   m_EditorClassIdentifier: 
+  code: POTION_SPEED_MIDDLE
   itemtype: 1
   itemCode: P002002
   itemName: Speed_Middle_Potion
@@ -28,3 +29,4 @@ MonoBehaviour:
   increaseDamage: 0
   increaseSpeed: 5
   durationTime: 60
+  itemEffect: {fileID: 0}

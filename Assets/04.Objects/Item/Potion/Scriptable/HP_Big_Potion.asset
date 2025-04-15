@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
   m_Name: HP_Big_Potion
   m_EditorClassIdentifier: 
+  code: POTION_HP_BIG
   itemtype: 1
   itemCode: P001001
   itemName: HP_Big_Potion
@@ -28,3 +29,4 @@ MonoBehaviour:
   increaseDamage: 0
   increaseSpeed: 0
   durationTime: 30
+  itemEffect: {fileID: 11400000, guid: fcedc8405b23fe94c8a4d2d744c203ad, type: 2}

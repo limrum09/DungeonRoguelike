@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentItem : ScriptableObject
+public class EquipmentItem : GameDataObject
 {
     [Header("ItemInfo")]
     [SerializeField]
@@ -35,7 +35,7 @@ public class EquipmentItem : ScriptableObject
     protected float itemCoolTime;
 
 
-    public string ItemCode => itemCode;
+    public string ItemCode => code;
     public string ItemName => itemName;
     public GameObject ItemObject => equipmentItem;
     public Sprite ItemSprite => itemSprite;

@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_MagicWand_FlameStrike
   m_EditorClassIdentifier: 
-  skillCode: Flame_Strike
+  code: SKILL_MGC_FLAMESTRIKE
   skillLevel: 1
   maxLevel: 5
   skillBasicDamage: 100
   skillLevelUpDamage: 50
   skillPosition: {x: 0, y: 0, z: 0}
-  skillRotation: {x: -90, y: 90, z: 0}
   skillMoveRange: 30
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 198345217066185332, guid: 67a01b6b58377084ba48610a52e6cd64, type: 3}
   skillEffectPos: 0
   skillMaintenanceTime: 3

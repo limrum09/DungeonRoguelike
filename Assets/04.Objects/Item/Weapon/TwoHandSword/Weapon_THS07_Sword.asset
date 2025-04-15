@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_THS07_Sword
   m_EditorClassIdentifier: 
+  code: THS07_Sword
   itemCode: THS07_Sword
   itemName: 
   equipmentItem: {fileID: 7138046058937190342, guid: e04f0e9c483df7643b493136bafed353, type: 3}
   itemSprite: {fileID: -1828914884, guid: fa870c187e6f54a41a733072e2bfa639, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 200
   itemDamage: 500

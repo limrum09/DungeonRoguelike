@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_Spear05
   m_EditorClassIdentifier: 
+  code: Spear05
   itemCode: Spear05
   itemName: "\uC784\uC2DC \uCC3D\uC774\uB984 1"
   equipmentItem: {fileID: 9069765037453165509, guid: 936e50e6373c5c442b10c77e4761fcdd, type: 3}

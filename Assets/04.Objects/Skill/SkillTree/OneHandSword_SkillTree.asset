@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d227249f67ce1f43a0006f4c92ace1f, type: 3}
+  m_Name: OneHandSword_SkillTree
+  m_EditorClassIdentifier: 
+  category: 1
+  skillNodes:
+  - skill: {fileID: 11400000, guid: 4515c0276947b8249a7e4ff092c12eba, type: 2}
+  - skill: {fileID: 11400000, guid: 540e9e61a24c22546ad51db51a4793b2, type: 2}
+  - skill: {fileID: 11400000, guid: 8f9eb67811763d841b82d360b339e367, type: 2}
+  - skill: {fileID: 11400000, guid: 6bdb1b474436e114caad558f4445374b, type: 2}

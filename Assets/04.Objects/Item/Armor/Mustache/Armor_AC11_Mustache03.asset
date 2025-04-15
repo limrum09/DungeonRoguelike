@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6807a09fed931354283c2a45ac8ce780, type: 3}
   m_Name: Armor_AC11_Mustache03
   m_EditorClassIdentifier: 
+  code: AC11_Mustache03
   itemCode: AC11_Mustache03
   itemName: 
   equipmentItem: {fileID: 2808136004964296417, guid: 12e29bf814d50fa4c95ca0a77fc7af7e, type: 3}
   itemSprite: {fileID: -429049908, guid: 28207216bc6ac4e47856cab795893fc9, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0

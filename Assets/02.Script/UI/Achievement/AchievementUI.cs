@@ -24,15 +24,11 @@ public class AchievementUI : MonoBehaviour
     [SerializeField]
     private List<AchievementToggle> toggles = new List<AchievementToggle>();
 
-    [SerializeField]
-    private List<Achievement> achievements = new List<Achievement>();
-
     private RectTransform contentRect;
     private float detailViewHeight;
     // Start is called before the first frame update
     public void AchievementUIStart()
     {
-
         var questSystem = Manager.Instance.Quest;
 
         for (int i = 0;i < questSystem.ActiveAchievements.Count; i++)
@@ -52,6 +48,18 @@ public class AchievementUI : MonoBehaviour
             view.CheckAchievementState();
 
         SetContentHeight(detailView.Count);
+
+        HideAchievementUI();
+    }
+
+    public void ViewAchievementUI()
+    {
+        achievementViewUI.SetActive(true);
+    }
+
+    public void HideAchievementUI()
+    {
+        achievementViewUI.SetActive(false);
     }
 
     public void SetContentHeight(int viewCount)
@@ -59,6 +67,7 @@ public class AchievementUI : MonoBehaviour
         
     }
 
+    // 토글 값에따라 업적 보여주는 값 변경
     public void ChangeAchievementState(AchievementViewState state)
     {
         foreach (var achievement in detailView)

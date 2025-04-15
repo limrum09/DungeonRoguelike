@@ -1,0 +1,130 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UISkillInfoController : MonoBehaviour
+{
+    private ActiveSkill currentSkill;
+
+    [Header("Skill Info")]
+    [SerializeField]
+    private Image skillImage;
+    [SerializeField]
+    private TextMeshProUGUI skillName;
+    [SerializeField]
+    private TextMeshProUGUI skillInfo;
+    [SerializeField]
+    private TextMeshProUGUI skillConditionInfo;
+
+    [Header("Skill Level Up Info")]
+    [SerializeField]
+    private TextMeshProUGUI skillPointText;
+    [SerializeField]
+    private Button skillLevelUpBtn;
+
+    public void SelectSkill(ActiveSkill skill)
+    {
+        bool checkCondition = true;
+        bool needConditions = false;
+
+        currentSkill = skill;
+
+        if (currentSkill != null)
+            skillImage.gameObject.SetActive(true);
+        else
+            SkillInfoUIInitialized();
+
+        // 스킬 이미지, 이름, 정보
+        skillImage.sprite = currentSkill.SkillIcon;
+        skillName.text = $"{currentSkill.SkillName} Lv.{currentSkill.CurrentSkillLevel} / MaxLv.{currentSkill.MaxSkillLevel}";
+        skillInfo.text = currentSkill.SkillInfo;
+
+        // 스킬 조건
+        string conditionText = null;
+
+        // 스킬의 필요한 레벨이 부족할 경우
+        if (!currentSkill.NeedLevelCondition)
+        {
+            checkCondition = false;
+            conditionText += $"레벨 {currentSkill.NeedPlayerLevel}이상";
+            needConditions = true;
+        }
+
+        // 선행스킬을 덜 익혔을 경우
+        if (!currentSkill.NeedSkillCondition)
+        {
+            checkCondition = false;
+            int cnt = currentSkill.Conditions.Length;
+
+            for (int i = 0; i < cnt; i++)
+            {
+                if (needConditions)
+                    conditionText += ",";
+
+                ActiveSkillCondition condition = currentSkill.Conditions[i];
+                conditionText += $" 스킬 '{condition.NeedActiveSkillName}' 레벨 {condition.NeedSkillLevel}이상";
+                needConditions = true;
+            }
+        }
+
+        // 스킬 조건을 모두 만족하지 못 한경우 실행
+        if (!checkCondition)
+        {
+            skillConditionInfo.text = conditionText;
+            skillLevelUpBtn.interactable = false;
+        }
+        else
+        {
+            skillConditionInfo.text = "";
+            skillLevelUpBtn.interactable = true;
+        }
+
+        if (currentSkill.CurrentSkillLevel >= currentSkill.MaxSkillLevel)
+            skillLevelUpBtn.interactable = false;
+    }
+
+    public void SkillInfoUIInitialized()
+    {
+        if (currentSkill == null)
+        {
+            skillImage.sprite = null;
+            skillImage.gameObject.SetActive(false);
+
+            skillName.text = "";
+            skillInfo.text = "";
+            skillConditionInfo.text = "";
+
+            skillLevelUpBtn.interactable = false;
+        }
+    }
+
+    public void SkillLevelUp()
+    {
+        if (currentSkill == null)
+            return;
+
+        // 스킬 레벨업
+        if (Manager.Instance.Skill.TryLevelUpSkill(currentSkill))
+        {
+            RefreshSkill();
+        }
+    }
+
+    public void RefreshSkill()
+    {
+        // 스킬 이미지, 이름, 정보
+        skillImage.sprite = currentSkill.SkillIcon;
+        skillName.text = $"{currentSkill.SkillName} Lv.{currentSkill.CurrentSkillLevel} / MaxLv.{currentSkill.MaxSkillLevel}";
+        skillInfo.text = currentSkill.SkillInfo;
+
+        if (currentSkill.CurrentSkillLevel >= currentSkill.MaxSkillLevel)
+            skillLevelUpBtn.interactable = false;
+    }
+
+    public void RefreshSkillPoint(int skPoint)
+    {
+        skillPointText.text = skPoint.ToString();
+    }
+}

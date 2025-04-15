@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6807a09fed931354283c2a45ac8ce780, type: 3}
   m_Name: Armor_Head04_Red
   m_EditorClassIdentifier: 
+  code: Head04_Red
   itemCode: Head04_Red
   itemName: 
   equipmentItem: {fileID: 638456201653107473, guid: 9f9fdc7582d8cc34d8f4da802e5dbfff, type: 3}
   itemSprite: {fileID: -1147688584, guid: 8478856390974de49a6c5da0e9463a2c, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0

@@ -28,8 +28,8 @@ public class PlayerInteractionStatus : MonoBehaviour
     public bool isDie;
 
 
-    public int MaxHP { get { return maxHP; } set { maxHP = value; } }
-    public int CurrentHP { get { return currentHP; } set { currentHP = value; } }
+    public int MaxHP { get { return maxHP; } set { maxHP = value; Manager.Instance.Game.ChangeHPBar(); } }
+    public int CurrentHP { get { return currentHP; } set { currentHP = value; Manager.Instance.Game.ChangeHPBar(); } }
     public int PlayerDamage { get { return playerDamage; } set { playerDamage = value; } }
     public int CriticalDamage { get { return criticalDamage; } set { criticalDamage = value; } }
     public int Sheild { get { return shied; } set { shied = value; } }

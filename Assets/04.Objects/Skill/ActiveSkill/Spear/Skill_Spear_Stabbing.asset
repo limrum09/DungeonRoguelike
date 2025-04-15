@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_Spear_Stabbing
   m_EditorClassIdentifier: 
-  skillCode: Stab_04
+  code: SKILL_SPR_STABBING
   skillLevel: 1
   maxLevel: 5
-  canMove: 0
+  skillBasicDamage: 0
+  skillLevelUpDamage: 0
+  skillPosition: {x: 0, y: 0, z: 0}
+  skillMoveRange: 0
+  skillEffect: {fileID: 0}
+  skillEffectPos: 5
+  skillMaintenanceTime: 0
+  skillMoveTime: 0
   skillName: "\uCC0C\uB974\uAE30(\uCC3D)"
   weapon: 5
   animationName: Spear_Stab
   icon: {fileID: 21300000, guid: 90cdcc9532d3e7341a16ed6b1e89af67, type: 3}
   skillInfo: "\uB108\uB3C4 \uD55C\uBC29 \uB098\uB3C4 \uD55C\uBC29"
+  canMove: 0
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 20

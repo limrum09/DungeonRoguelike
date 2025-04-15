@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
   m_Name: Berserk_Big_Potion
   m_EditorClassIdentifier: 
+  code: POTION_BERSERK_BIG
   itemtype: 1
   itemCode: P003001
   itemName: "\uAD11\uC804\uC0AC \uBB3C\uC57D(\uC0C1)"
@@ -28,3 +29,4 @@ MonoBehaviour:
   increaseDamage: 1000
   increaseSpeed: 5
   durationTime: 30
+  itemEffect: {fileID: 11400000, guid: cb7031dd8a7652e4bbe5c4f77e4ec5bb, type: 2}

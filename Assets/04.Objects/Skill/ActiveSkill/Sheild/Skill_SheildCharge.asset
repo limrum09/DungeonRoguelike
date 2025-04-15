@@ -12,23 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_SheildCharge
   m_EditorClassIdentifier: 
-  skillCode: SheildCharge_13
+  code: SKILL_SHD_CHARGE
   skillLevel: 1
   maxLevel: 10
-  canMove: 0
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 0}
-  skillMaintenanceTime: 0
+  skillEffectPos: 5
+  skillMaintenanceTime: 2
+  skillMoveTime: 0
   skillName: "\uC274\uB4DC \uCC28\uC9C0"
   weapon: 4
   animationName: SheildCharge
   icon: {fileID: 21300000, guid: 863d316d976504fc5a3734b33e10c55e, type: 3}
   skillInfo: 
+  canMove: 0
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 0

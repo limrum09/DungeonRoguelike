@@ -12,23 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_Dash
   m_EditorClassIdentifier: 
-  skillCode: Dash_00
+  code: SKILL_PUB_DASH
   skillLevel: 1
   maxLevel: 10
-  canMove: 1
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: -0.3, z: -0.8}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 7608509754243305970, guid: 3a78859cfe0ca6243b0bdd5f85a9f577, type: 3}
+  skillEffectPos: 5
   skillMaintenanceTime: 1.9
+  skillMoveTime: 0
   skillName: "\uC810\uBA78"
   weapon: 0
   animationName: Dash
   icon: {fileID: 21300000, guid: f33198f8c25aef140b75ca4af2fe37d3, type: 3}
   skillInfo: "\uC804\uBC29\uC744 \uD5A5\uD574 \uBE60\uB974\uAC8C \uC774\uB3D9\uD55C\uB2E4."
+  canMove: 1
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 5

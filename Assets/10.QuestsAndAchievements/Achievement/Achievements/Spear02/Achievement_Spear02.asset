@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0edace4b70aa24ba4405523ded26d0, type: 3}
   m_Name: Achievement_Spear02
   m_EditorClassIdentifier: 
+  code: Spear02
   questCode: Spear02
   category: {fileID: 11400000, guid: 4ff17c1979074814db4be72721fa63de, type: 2}
   icon: {fileID: 0}

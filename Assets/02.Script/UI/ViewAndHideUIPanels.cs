@@ -94,7 +94,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
             ToggleUI(skillUI, true);
         }
 
-        if (Input.GetKeyDown(key.GetKeyCode("Option")) && lastUI == null)
+        if (Input.GetKeyDown(KeyCode.Escape) && lastUI == null)
         {
             ToggleUI(optionUI, true);
         }
@@ -178,7 +178,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
         var root = viewUI.transform.parent;
         root.transform.SetAsLastSibling();
 
-        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UIOpen, "UI/UI_OpenAndClose");
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UICalling, "UI/UI_OpenAndClose");
 
         viewUI.SetActive(true);
     }
@@ -195,7 +195,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
         }
 
         // 소리 재생
-        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UIOpen, "UI/UI_OpenAndClose");
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UICalling, "UI/UI_OpenAndClose");
 
         // 보이도록 하기
         viewUI.SetActive(true);
@@ -205,7 +205,7 @@ public class ViewAndHideUIPanels : MonoBehaviour
     {
         hideUI.SetActive(false);
 
-        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UIClose, "UI/UI_OpenAndClose");
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.UICalling, "UI/UI_OpenAndClose");
     }
 
     public void LobbyScene()

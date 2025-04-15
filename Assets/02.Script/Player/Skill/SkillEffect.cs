@@ -38,7 +38,6 @@ public class SkillEffect : MonoBehaviour
         {
             EndSkillEffect();
         }
-            
     }
 
     private void EndSkillEffect()

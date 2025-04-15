@@ -45,9 +45,11 @@ public class ShortKeyItem : MonoBehaviour
     {
         get
         {
-            int index = itemIndex;
-            if (item == null)
-                index = -1;
+            int index = -1;
+
+            if (item != null)
+                index = itemIndex;
+
             return index;
         }
     }
@@ -103,15 +105,14 @@ public class ShortKeyItem : MonoBehaviour
         itemIndex = index;
     }
 
+    // 단축키에 추가된 스킬
     public void RegisterInput(ActiveSkill getSkill)
     {
-        item = null;
+        // 스킬 클론 생성
         ActiveSkill newSkill = getSkill.SkillClone();
-
         skill = newSkill;
 
         HideItem();
-        Debug.Log(shortkeyIndex + ", Get Skill : " + newSkill.name);
 
         if(skill != null)
         {
@@ -121,11 +122,12 @@ public class ShortKeyItem : MonoBehaviour
         }
     }
 
+    // 단축키에 추가된 아이템
     public void RegisterInput(int index)
     {
-        skill = null;
         itemIndex = index;
 
+        // InvenData의 아이템 할당
         item = InvenData.instance.invenSlots[itemIndex];
 
         HideSkill();
@@ -134,7 +136,7 @@ public class ShortKeyItem : MonoBehaviour
         {
             ViewItem();
 
-            // 다른 단축키에서 해당 아이템 제거
+            // 다른 단축키에서 추가하는 아이템이 있을 경우, 다른 단축키의 해당 아이템 제거
             shortKeyManager.InputItemInShortkey(shortkeyIndex);
         }        
     }
@@ -149,6 +151,7 @@ public class ShortKeyItem : MonoBehaviour
     public void HideItem()
     {
         item = null;
+        itemIndex = -1;
         itemIcon.sprite = null;
         itemCnt.text = "";
         viewPort.SetActive(false);
@@ -157,6 +160,16 @@ public class ShortKeyItem : MonoBehaviour
     public void RefreshItemCnt()
     {
         itemCnt.text = ItemCount().ToString();
+    }
+
+    public InvenItem GetItem()
+    {
+        return item;
+    }
+
+    public ActiveSkill GetSkill()
+    {
+        return skill;
     }
 
     private void Viewskill(ActiveSkill activeSkill)
@@ -222,7 +235,7 @@ public class ShortKeyItem : MonoBehaviour
     private void SetShortKeyText()
     {
         // 단축키를 받아와서 string으로 변환
-        string code = Manager.Instance.Key.GetKeyCode(inputShortKey).ToString();
+        string code = Manager.Instance.Key.GetKeyCode(inputShortKey, true).ToString();
 
         // 단축키가 숫자일시, "Alpha"가 들어가기에 제거
         if (code.Contains("Alpha"))
@@ -231,16 +244,6 @@ public class ShortKeyItem : MonoBehaviour
         }
 
         shortkeyNumber.text = code;
-    }
-
-    public InvenItem GetItem()
-    {
-        return item;
-    }
-
-    public ActiveSkill GetSkill()
-    {
-        return skill;
     }
 
     IEnumerator CoolTimer(float timer)

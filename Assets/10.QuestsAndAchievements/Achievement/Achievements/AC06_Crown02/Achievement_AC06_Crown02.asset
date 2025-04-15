@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0edace4b70aa24ba4405523ded26d0, type: 3}
   m_Name: Achievement_AC06_Crown02
   m_EditorClassIdentifier: 
+  code: AC06_Crown02
   questCode: AC06_Crown02
   category: {fileID: 11400000, guid: ea4fb6c8a8526f54eb99b8dbb684c1de, type: 2}
   icon: {fileID: 0}

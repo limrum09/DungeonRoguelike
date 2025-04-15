@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS11_Hammer
   m_EditorClassIdentifier: 
+  code: OHS11_Hammer_Right
   itemCode: OHS11_Hammer_Right
   itemName: 
   equipmentItem: {fileID: 3902788558152209826, guid: 2e01e3e0f8c4ef74784af78e323fc0e4, type: 3}
   itemSprite: {fileID: 808382119, guid: 0fc8d4fce356e1541b8e2618a6927f72, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 0
   itemDamage: 200

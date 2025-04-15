@@ -50,11 +50,12 @@ MonoBehaviour:
   soundManager: {fileID: 5624127034649162256, guid: 6850dc25a5fccb1439414013871192ba, type: 3}
   inputKey: {fileID: 8983265941710964075, guid: 985b048288777b64b9f2df0a889a31cb, type: 3}
   camearaController: {fileID: 1106456825603928745}
+  skillManager: {fileID: 2837861031513715833, guid: 26a65b3f3311d534da62c6da742f9054, type: 3}
   gameManager: {fileID: 4636573234975432104, guid: 86427736a62418f47b54a8fbdb0afa2c, type: 3}
   uIAndSceneManager: {fileID: 212626696, guid: 45c7084863d3a804e97db8e95a2fea7a, type: 3}
   transparentManager: {fileID: 5144083020264729702, guid: b1caadf9eafc963409989334331f4a38, type: 3}
   userInfo: {fileID: 5177555443571614416, guid: 4d283eda38ca559448f3c62931e9dd77, type: 3}
-  canUseShortcutKey: 0
+  canInputKey: 0
 --- !u!1001 &4642365647915926876
 PrefabInstance:
   m_ObjectHideFlags: 0

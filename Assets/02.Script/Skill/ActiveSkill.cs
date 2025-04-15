@@ -27,12 +27,10 @@ public enum SkillEffectPos
 }
 
 [CreateAssetMenu(menuName = "Skill/ActiveSkill", fileName = "Skill_")]
-public class ActiveSkill : ScriptableObject
+public class ActiveSkill : GameDataObject
 {
     [Header("Saveing Data")]
     // 에니메이션 이름_무기 번호
-    [SerializeField]
-    private string skillCode;       // 스킬 코드
     [SerializeField]
     private int skillLevel;
     [SerializeField]
@@ -46,11 +44,7 @@ public class ActiveSkill : ScriptableObject
     [SerializeField]
     private Vector3 skillPosition;
     [SerializeField]
-    private Vector3 skillRotation;
-    [SerializeField]
     private float skillMoveRange;
-    [SerializeField]
-    private Vector3 skillDamageRange;
     [SerializeField]
     private ParticleSystem skillEffect;
     [SerializeField]
@@ -89,9 +83,9 @@ public class ActiveSkill : ScriptableObject
     [SerializeField]
     private ActiveSkillCondition[] conditions;
 
-    public string SkillCode => skillCode;
+    public string SkillCode => code;
     public int CurrentSkillLevel => skillLevel;
-    public int MaxSkillLeven => maxLevel;
+    public int MaxSkillLevel => maxLevel;
     public bool CanMove => canMove;
     public bool CanUseSkill
     {
@@ -111,8 +105,6 @@ public class ActiveSkill : ScriptableObject
     public float SkillMoveTime => skillMoveTime;
 
     public Vector3 SkillPosition => skillPosition;
-    public Vector3 SkillRotation => skillRotation;
-    public Vector3 SkillDamageRange => skillDamageRange;
     public float SkillMoveRange => skillMoveRange;
     public ParticleSystem SkillEffect => skillEffect;
     public SkillEffectPos SkillEffectPosition => skillEffectPos;
@@ -121,15 +113,15 @@ public class ActiveSkill : ScriptableObject
     public SkillWeaponValue WeaponValue => weapon;
     public string AnimationName => animationName;
     public Sprite SkillIcon => icon;
-    public int SkillDamage => skillBasicDamage + (skillLevelUpDamage * skillLevel);
+    public int SkillDamage => skillBasicDamage + (skillLevelUpDamage * (skillLevel - 1));
     public string SkillInfo => skillInfo;
 
     public float skillCoolTime;
     public bool Targeting => targeting;
     public bool ViewRotation => isViewRotation;
-
-
     public float CurrentRemainCoolTimer => coolTimer;
+
+
     private float rightWeaponValue;
     private float leftWeaponValue;
     
@@ -225,6 +217,31 @@ public class ActiveSkill : ScriptableObject
     {
         if (coolTimer >= 0.0f)
             Manager.Instance.StartCoroutine(SkillCoolTimer());
+    }
+
+    public void SetSkillLevel(int inputLevel)
+    {
+        skillLevel = inputLevel;
+    }
+
+    public void ResetSkill()
+    {
+        skillLevel = 1;
+    }
+
+    public SkillData SaveSkillData()
+    {
+        return new SkillData
+        {
+            skillCode = this.code,
+            skillLevel = this.skillLevel
+        };
+    }
+
+    public void LoadSkillData(SkillData data)
+    {
+        if (data.skillCode == this.code)
+            this.skillLevel = data.skillLevel;
     }
 
     IEnumerator SkillCoolTimer()

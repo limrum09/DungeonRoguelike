@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_OneHand_Slash
   m_EditorClassIdentifier: 
-  skillCode: Slash_1
+  code: SKILL_OHS_SLASH
   skillLevel: 1
   maxLevel: 5
   skillBasicDamage: 100
   skillLevelUpDamage: 50
   skillPosition: {x: 0, y: 0.1, z: 0}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 1063892706703077768, guid: 901be293d9416414b91cddbe63ef7c65, type: 3}
   skillEffectPos: 5
   skillMaintenanceTime: 2

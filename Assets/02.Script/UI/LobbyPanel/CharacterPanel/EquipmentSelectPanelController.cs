@@ -43,7 +43,7 @@ public class EquipmentSelectPanelController : MonoBehaviour
         {
             // 아이템 찾기
             WeaponItem weaponItem = null;
-            weaponItem = weaponItemDatabase.FindItemBy(itemCode);
+            weaponItem = weaponItemDatabase.FindByCode(itemCode);
 
             if (weaponItem != null)
             {
@@ -57,7 +57,7 @@ public class EquipmentSelectPanelController : MonoBehaviour
         {
             // 아이템 찾기
             ArmorItem armorItem = null;
-            armorItem = armorItemDatabase.FindItemBy(itemCode);
+            armorItem = armorItemDatabase.FindByCode(itemCode);
 
             if (armorItem != null)
             {

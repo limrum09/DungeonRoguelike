@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
   m_Name: Speed_Big_Potion
   m_EditorClassIdentifier: 
+  code: POTION_SPEED_BIG
   itemtype: 1
   itemCode: P002001
   itemName: Speed_Big_Potion
@@ -28,3 +29,4 @@ MonoBehaviour:
   increaseDamage: 0
   increaseSpeed: 5
   durationTime: 180
+  itemEffect: {fileID: 0}

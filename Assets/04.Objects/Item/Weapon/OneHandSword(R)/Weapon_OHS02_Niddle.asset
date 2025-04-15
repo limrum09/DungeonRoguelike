@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS02_Niddle
   m_EditorClassIdentifier: 
+  code: OHS02_Niddle_Right
   itemCode: OHS02_Niddle_Right
   itemName: 
   equipmentItem: {fileID: 3263530568783716261, guid: f9ec344f25d9c0c4d93a8d5a176fa122, type: 3}
   itemSprite: {fileID: -1900777382, guid: 0fc8d4fce356e1541b8e2618a6927f72, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 0
   itemDamage: 100

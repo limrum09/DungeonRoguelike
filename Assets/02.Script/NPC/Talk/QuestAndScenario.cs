@@ -6,12 +6,15 @@ public enum ScenarioState
 {
     Inactive,
     Running,
-    WaitingForCompletion
+    WaitingForCompletion,
+    Completed
 }
 
 [CreateAssetMenu(menuName = "Quest/Story/QuestAndScenario", fileName = "QuestAndScenario")]
 public class QuestAndScenario : ScriptableObject
 {
+    [SerializeField]
+    private bool loop;
     [SerializeField]
     private ScenarioState state;
     [SerializeField]
@@ -19,6 +22,7 @@ public class QuestAndScenario : ScriptableObject
     [SerializeField]
     private Quest quest;
 
+    public bool IsLoop => loop;
     public ScenarioState State { 
         set
         {
@@ -32,4 +36,20 @@ public class QuestAndScenario : ScriptableObject
 
     public QuestScenarioCollection Scenarios => scenarios;
     public Quest Quest => quest;
+
+    public void RegisterQuestCompletedEvent()
+    {
+        quest.onCompleted += QuestCompleted;
+    }
+    public void UnRegisterQuestCompletedEvent()
+    {
+        quest.onCompleted -= QuestCompleted;
+    }
+
+    public void QuestCompleted(Quest quest)
+    {
+        state = loop ? ScenarioState.Inactive : ScenarioState.Completed;
+
+        UnRegisterQuestCompletedEvent();
+    }
 }

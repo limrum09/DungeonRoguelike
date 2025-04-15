@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public event Action<string, int> OnStatusChanged;  // Action<status type, status>
-    public event Action<int, int, int> OnExpChanged;     // Action<current exp, level>
+    public event Action<bool, int, int, int> OnExpChanged;     // Action<current exp, level>
     public event Action<int> OnSkillPointChanged;
 
     [SerializeField]
@@ -72,7 +72,7 @@ public class PlayerStatus : MonoBehaviour
         OnStatusChanged?.Invoke("dex", dex);
         OnStatusChanged?.Invoke("luk", luk);
         OnStatusChanged?.Invoke("bonus", bonusState);
-        OnExpChanged?.Invoke(currentExp, exp, level);
+        OnExpChanged?.Invoke(false, currentExp, exp, level);
         OnSkillPointChanged?.Invoke(skillPoint);
     }
 
@@ -93,7 +93,7 @@ public class PlayerStatus : MonoBehaviour
         OnStatusChanged?.Invoke("dex", dex);
         OnStatusChanged?.Invoke("luk", luk);
         OnStatusChanged?.Invoke("bonus", bonusState);
-        OnExpChanged?.Invoke(currentExp, exp, level);
+        OnExpChanged?.Invoke(false, currentExp, exp, level);
         OnSkillPointChanged?.Invoke(skillPoint);
     }
 
@@ -140,9 +140,10 @@ public class PlayerStatus : MonoBehaviour
                 bonusState += 5;
                 skillPoint += 1;
                 OnStatusChanged?.Invoke("bonus", bonusState);
+                Manager.Instance.Skill.CheckSkillConditionToPlayerLevelUp();
             }
 
-            OnExpChanged?.Invoke(currentExp, exp, level);
+            OnExpChanged?.Invoke(true, currentExp, exp, level);
         }
     }
 

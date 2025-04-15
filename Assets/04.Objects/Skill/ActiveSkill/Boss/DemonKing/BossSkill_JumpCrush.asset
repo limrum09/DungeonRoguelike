@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: BossSkill_JumpCrush
   m_EditorClassIdentifier: 
-  skillCode: Boss_Phase2_JumpCrush
+  code: BSKILL_CRUSH
   skillLevel: 1
   maxLevel: 1
   skillBasicDamage: 1200
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 30
-  skillDamageRange: {x: 10, y: 10, z: 10}
   skillEffect: {fileID: 198345217066185332, guid: 3a31ad0cbed607d4abdf9dba1186d166, type: 3}
   skillEffectPos: 7
   skillMaintenanceTime: 10
