@@ -6,146 +6,80 @@ using UnityEngine.UI;
 
 public class UISkillController : MonoBehaviour
 {
-    private ActiveSkill currentSkill;
+    [Header("Skill Trees")]
     [SerializeField]
-    private List<UISkillImageController> skillImageControllers;
+    private SkillTree publicSkillTree;
+    [SerializeField]
+    private List<SkillTree> weaponSkillTrees;
+    [SerializeField]
+    private List<SkillInstantiateCategory> categorys;
+
+    [Header("Prefab")]
+    [SerializeField]
+    private UISkillImage skillPrefab;
+
+    [Header("Rects")]
+    [SerializeField]
+    private RectTransform scrollViewContentRect;
+    [SerializeField]
+    private RectTransform publicAreaRect;
+    [SerializeField]
+    private RectTransform weaponAreaRect;
+
     [Header("Skill Info")]
     [SerializeField]
-    private Image skillImage;
-    [SerializeField]
-    private TextMeshProUGUI skillName;
-    [SerializeField]
-    private TextMeshProUGUI skillInfo;
-    [SerializeField]
-    private TextMeshProUGUI skillConditionInfo;
-
-    [Header("Skill Point")]
-    [SerializeField]
-    private TextMeshProUGUI skillPointText;
-    [SerializeField]
-    private Button skillLevelUpBtn;
+    private UISkillInfoController skillInfo;
 
     public void SkillUIStart()
     {
         SkillUIInitialized();
-        Manager.Instance.Game.PlayerCurrentStatus.OnSkillPointChanged += RefreshSkillPoint;
-    }
+        Manager.Instance.Game.PlayerCurrentStatus.OnSkillPointChanged += skillInfo.RefreshSkillPoint;
 
-    public void SelectSkill(ActiveSkill skill)
-    {
-        bool checkCondition = true;
-        bool needConditions = false;
+        // Weapon Skill 오브젝트의 크기를 재조절하기 위해 필요
+        int biggestCnt = 0;
+        // 스킬 추가위치
+        Transform categoryTf = null;
 
-        currentSkill = skill;
-
-        if (currentSkill != null)
-            skillImage.gameObject.SetActive(true);
-        else
-            SkillUIInitialized();
-
-        // 스킬 이미지, 이름, 정보
-        skillImage.sprite = currentSkill.SkillIcon;
-        skillName.text = $"{currentSkill.SkillName} Lv.{currentSkill.CurrentSkillLevel} / MaxLv.{currentSkill.MaxSkillLeven}";
-        skillInfo.text = currentSkill.SkillInfo;
-
-        // 스킬 조건
-        string conditionText = null;
-
-        // 스킬의 필요한 레벨이 부족할 경우
-        if (!currentSkill.NeedLevelCondition)
+        foreach(SkillTree skillTree in weaponSkillTrees)
         {
-            checkCondition = false;
-            conditionText += $"레벨 {currentSkill.NeedPlayerLevel}이상";
-            needConditions = true;
-        }
+            categoryTf = categorys.Find(category => category.Category == skillTree.Category).transform;
 
-        // 선행스킬을 덜 익혔을 경우
-        if (!currentSkill.NeedSkillCondition)
-        {
-            checkCondition = false;
-            int cnt = currentSkill.Conditions.Length;
+            int skillCount = skillTree.SkillNodes.Count;
 
-            for(int i = 0; i < cnt; i++)
+            if (biggestCnt < skillCount)
+                biggestCnt = skillCount;
+
+            for(int i = 0; i < skillCount; i++)
             {
-                if (needConditions)
-                    conditionText += ",";
-
-                ActiveSkillCondition condition = currentSkill.Conditions[i];
-                conditionText += $" 스킬 '{condition.NeedActiveSkillName}' 레벨 {condition.NeedSkillLevel}이상";
-                needConditions = true;
+                Instantiate(skillPrefab, categoryTf).SkillImageStart(skillTree.SkillNodes[i].skill);
             }
+
+            RectTransform rect = categoryTf.gameObject.GetComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(rect.sizeDelta.x, skillCount * 130f);
         }
 
-        // 스킬 조건을 모두 만족하지 못 한경우 실행
-        if (!checkCondition)
+        categoryTf = categorys.Find(category => category.Category == publicSkillTree.Category).transform;
+
+        int publicCnt = publicSkillTree.SkillNodes.Count / 5 + 1;
+        for (int i = 0; i < publicSkillTree.SkillNodes.Count; i++)
         {
-            skillConditionInfo.text = conditionText;
-            skillLevelUpBtn.interactable = false;
-        }
-        else
-        {
-            skillConditionInfo.text = "";
-            skillLevelUpBtn.interactable = true;
+            Instantiate(skillPrefab, categoryTf).SkillImageStart(publicSkillTree.SkillNodes[i].skill);
         }
 
-        if (currentSkill.CurrentSkillLevel >= currentSkill.MaxSkillLeven)
-            skillLevelUpBtn.interactable = false;
+        // UI 크기 재조정
+        publicAreaRect.sizeDelta = new Vector2(publicAreaRect.sizeDelta.x, 150f * publicCnt);
+        weaponAreaRect.sizeDelta = new Vector2(weaponAreaRect.sizeDelta.x, 130f * biggestCnt);
+        scrollViewContentRect.sizeDelta = new Vector2(scrollViewContentRect.sizeDelta.x, publicAreaRect.sizeDelta.y + weaponAreaRect.sizeDelta.y);
     }
 
-    public void SkillLevelUp()
-    {
-        if (currentSkill == null)
-            return;
+    public void SkillLevelUp() => skillInfo.SkillLevelUp();
 
-        // 스킬 레벨업
-        if (currentSkill.SkillLevelUp())
-        {
-            // 스킬 포인트 감소
-            Manager.Instance.Game.PlayerUseSkillPoint(1);
-        }
+    public void SelectSkill(ActiveSkill skill) => skillInfo.SelectSkill(skill);
 
-        RefreshSkill();
-    }
-
-    private void SkillUIInitialized()
-    {
-        if (currentSkill == null)
-        {
-            skillImage.sprite = null;
-            skillImage.gameObject.SetActive(false);
-
-            skillName.text = "";
-            skillInfo.text = "";
-            skillConditionInfo.text = "";
-
-            skillLevelUpBtn.interactable = false;
-        }
-
-        foreach (var skillImages in skillImageControllers)
-        {
-            if (skillImages != null)
-                skillImages.UISkillImageStart();
-        }
-    }
-
-    private void RefreshSkillPoint(int skPoint)
-    {
-        skillPointText.text = skPoint.ToString();
-    }
-
-    private void RefreshSkill()
-    {
-        // 스킬 이미지, 이름, 정보
-        skillImage.sprite = currentSkill.SkillIcon;
-        skillName.text = $"{currentSkill.SkillName} Lv.{currentSkill.CurrentSkillLevel} / MaxLv.{currentSkill.MaxSkillLeven}";
-        skillInfo.text = currentSkill.SkillInfo;
-
-        if (currentSkill.CurrentSkillLevel >= currentSkill.MaxSkillLeven)
-            skillLevelUpBtn.interactable = false;
-    }
+    private void SkillUIInitialized() => skillInfo.SkillInfoUIInitialized();
 
     private void OnDestroy()
     {
-        Manager.Instance.Game.PlayerCurrentStatus.OnSkillPointChanged -= RefreshSkillPoint;
+        Manager.Instance.Game.PlayerCurrentStatus.OnSkillPointChanged -= skillInfo.RefreshSkillPoint;
     }
 }

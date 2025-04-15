@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_Spear03
   m_EditorClassIdentifier: 
+  code: Spear03
   itemCode: Spear03
   itemName: 
   equipmentItem: {fileID: 1689198140833441989, guid: 60ec2cc1a69bbc14d8728ead33e23f59, type: 3}
   itemSprite: {fileID: 961738180, guid: 44d06c1bcff09f644801c8c616dc4b2d, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 0
   itemDamage: 600

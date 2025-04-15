@@ -124,7 +124,6 @@ public class PlayerController : MonoBehaviour
         sceneChagne = true;
         sceneLoadTimer = 0.0f;
         controller.enabled = true;
-        Debug.Log("플레이어 리스폰 지역" + respawnPoint.transform.position);
     }
 
     public void SetAnimatorAttackSpeedValue(float playerSpeed)
@@ -177,14 +176,12 @@ public class PlayerController : MonoBehaviour
     public void DieEnd()
     {
         animator.SetBool("Die", false);
-        Debug.Log("부활");
     }
 
     public void SkillEnd()
     {
         playerState = PlayerState.Idel;
         isMove = true;
-        Debug.Log("Current State : " + playerState);
     }
 #endregion
 
@@ -290,7 +287,7 @@ public class PlayerController : MonoBehaviour
             RotatePlayerToMousePos(mouseClickPos);
         }
 
-        bool isKeyBoardAttack = Input.GetKeyDown(key.GetKeyCode("Attack"));
+        bool isKeyBoardAttack = Input.GetKeyDown(key.GetKeyCode("Attack")) ? true : false;
 
         isAttack = (isMouseAttack ||  isKeyBoardAttack) && checkAnimator;
 
@@ -474,6 +471,9 @@ public class PlayerController : MonoBehaviour
     public void SkillAnimation(ActiveSkill skill)
     {
         string aniName = skill.AnimationName;
+
+        if (string.IsNullOrEmpty(aniName))
+            return;
 
         // 공용 스킬일 경우 무기의 종류에 따라서 스킬의 이름의 일부분이 다르기 때문에 알맞게 추가한다.
         if (skill.WeaponValue == SkillWeaponValue.Public)

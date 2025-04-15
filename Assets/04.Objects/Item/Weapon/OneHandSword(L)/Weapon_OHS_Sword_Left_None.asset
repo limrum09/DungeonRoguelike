@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS_Sword_Left_None
   m_EditorClassIdentifier: 
+  code: OHS_Sword_Left_None
   itemCode: OHS_Sword_Left_None
-  weaponItem: {fileID: 0}
-  weaponItemSprite: {fileID: 0}
-  equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
-  useOneHand: 1
-  leftWeapon: 1
-  weaponAnimator: {fileID: 9100000, guid: cc05ad1f2be3bd8419d1cbc952fae9a1, type: 2}
-  weaponValue: 0
+  itemName: 
+  equipmentItem: {fileID: 0}
+  itemSprite: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 0
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: 0db9da27ffb1de34f82a1e56273feb34, type: 2}
+  useOneHand: 1
+  leftWeapon: 1
+  weaponValue: 0

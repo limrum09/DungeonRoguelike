@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d227249f67ce1f43a0006f4c92ace1f, type: 3}
+  m_Name: TwoHand_SkillTree
+  m_EditorClassIdentifier: 
+  category: 2
+  skillNodes:
+  - skill: {fileID: 11400000, guid: f1b46242e32ef7c4f87e3f9398c61fb6, type: 2}
+  - skill: {fileID: 11400000, guid: b15c337afd44fa14fbf7bb47c692a9b3, type: 2}

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS13_Axe
   m_EditorClassIdentifier: 
+  code: OHS13_Axe_Left
   itemCode: OHS13_Axe_Left
   itemName: 
   equipmentItem: {fileID: 841242329023219168, guid: c4ac131e534416c4aafd651dc39c2945, type: 3}
   itemSprite: {fileID: 2036572583, guid: 0fc8d4fce356e1541b8e2618a6927f72, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 100
   itemDamage: 200

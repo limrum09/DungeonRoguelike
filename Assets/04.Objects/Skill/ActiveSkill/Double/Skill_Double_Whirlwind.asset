@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
-  m_Name: Skill_Double_Whirlwind
+  m_Name: Skill_Double_WhirlWind
   m_EditorClassIdentifier: 
-  skillCode: WhirlWind_11
+  code: SKILL_DHS_WHIRLWIND
   skillLevel: 1
   maxLevel: 5
   skillBasicDamage: 300
   skillLevelUpDamage: 100
   skillPosition: {x: 0, y: 0, z: 0}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 857840077812061369, guid: 8c4a8766b16160e45b304e99a3a6257b, type: 3}
   skillEffectPos: 0
   skillMaintenanceTime: 6.5

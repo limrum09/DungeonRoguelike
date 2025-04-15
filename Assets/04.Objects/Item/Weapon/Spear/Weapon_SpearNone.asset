@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_SpearNone
   m_EditorClassIdentifier: 
+  code: SpearNone
   itemCode: SpearNone
-  weaponItem: {fileID: 0}
-  weaponItemSprite: {fileID: 0}
-  equipmentCategory: {fileID: 11400000, guid: 155110a73134fde45ae3f2c0c1e87ead, type: 2}
-  useOneHand: 0
-  leftWeapon: 0
-  weaponAnimator: {fileID: 9100000, guid: 62f9ce182e8cdf547b48e85e6eb8140b, type: 2}
-  weaponValue: 0
+  itemName: 
+  equipmentItem: {fileID: 0}
+  itemSprite: {fileID: 0}
+  condition: {fileID: 0}
   itemHp: 0
   itemDamage: 0
   itemCriticalDamage: 0
@@ -27,3 +25,7 @@ MonoBehaviour:
   itemCriticalPer: 0
   itemSpeed: 0
   itemCoolTime: 0
+  equipmentCategory: {fileID: 11400000, guid: 155110a73134fde45ae3f2c0c1e87ead, type: 2}
+  useOneHand: 0
+  leftWeapon: 0
+  weaponValue: 0

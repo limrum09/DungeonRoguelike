@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f632da3896d650468e6421b3dc2941f, type: 3}
   m_Name: ArmorItemDatabase
   m_EditorClassIdentifier: 
-  armorItems:
+  datas:
   - {fileID: 11400000, guid: 872a82e8dcf941b4490a86ebbe222113, type: 2}
   - {fileID: 11400000, guid: a5299456d9224d448a3ebbbf4c97d9ca, type: 2}
   - {fileID: 11400000, guid: 3ef99a40ddf1cd244bc7dba208961a86, type: 2}

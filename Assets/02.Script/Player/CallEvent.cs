@@ -39,7 +39,7 @@ public class CallEvent : MonoBehaviour
     {
         Debug.Log("수영");
         string path = "Foot/" + swim;
-        Manager.Instance.Sound.SetAudioAudioPath(AudioType.PlayerAttack, path);
+        Manager.Instance.Sound.SetAudioAudioPath(AudioType.PlayerFoot, path);
     }
 
     public void SkillSound(string skill)

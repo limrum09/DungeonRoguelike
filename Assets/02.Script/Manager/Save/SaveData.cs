@@ -22,4 +22,7 @@ public class SaveData
     public string shortCutKeySaveData;
     public List<ShortCutKeySaveData> shortCutButton = new List<ShortCutKeySaveData>();
     public List<SoundSliderData> soundData = new List<SoundSliderData>();
+
+    public int skillPoint;
+    public List<SkillData> skillData = new List<SkillData>();
 }

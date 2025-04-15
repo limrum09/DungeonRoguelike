@@ -10,30 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
-  m_Name: Skill_OneHand_DownToUp
+  m_Name: Item_Big_Berserk
   m_EditorClassIdentifier: 
-  skillCode: DownToUp_1
+  code: 
   skillLevel: 1
-  maxLevel: 5
+  maxLevel: 0
   skillBasicDamage: 0
   skillLevelUpDamage: 0
-  skillPosition: {x: 0, y: 0.3, z: 0}
-  skillRotation: {x: 0, y: 0, z: 0}
+  skillPosition: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
-  skillEffect: {fileID: 4832769046433467078, guid: c82148477f3bb86489f39c369b61d931, type: 3}
+  skillEffect: {fileID: 1608554412525823662, guid: 68209742ed7b87742a49252f2eef91fb, type: 3}
   skillEffectPos: 5
-  skillMaintenanceTime: 3
+  skillMaintenanceTime: 30
   skillMoveTime: 0
-  skillName: "\uAC15\uD0C0(\uD55C\uC190\uAC80)"
-  weapon: 1
-  animationName: OneHand_DowntoUp
-  icon: {fileID: 21300000, guid: d13417c4003869e4ca9b88f75f11b34a, type: 3}
+  skillName: 
+  weapon: 0
+  animationName: 
+  icon: {fileID: 0}
   skillInfo: 
-  canMove: 0
+  canMove: 1
   targeting: 0
   isViewRotation: 0
   needPlayerLevel: 0
-  conditions:
-  - {fileID: 11400000, guid: e80540dc03e2b4e49a0b4e0d2fe1e5e0, type: 2}
+  conditions: []
   skillCoolTime: 0

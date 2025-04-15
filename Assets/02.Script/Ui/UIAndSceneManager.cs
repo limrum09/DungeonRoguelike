@@ -124,22 +124,29 @@ public class UIAndSceneManager : MonoBehaviour
         
         viewAndHide.CheckCurrentScene();
     }
-
-    // 씬 로드 시작, SceneNames로 입력이 들어오면 string으로 전화하여 LoadScene(string sceneName)호출
+    public void ExitStatingScene()
+    {
+        Manager.Instance.Game.PlayerController.SceneChanging();
+        StartCoroutine(LoadAsyncScene("Lobby", SaveAndLoadOptions.None, SaveAndLoadOptions.None));
+    }
+    
     public void LoadLobbyScene()
     {
         Manager.Instance.Game.PlayerController.SceneChanging();
-        StartCoroutine(LoadAsyncScene("Lobby", false));
+        StartCoroutine(LoadAsyncScene("Lobby", SaveAndLoadOptions.Quest | SaveAndLoadOptions.Equipment | SaveAndLoadOptions.ShortCutKey| SaveAndLoadOptions.SoundSetting, SaveAndLoadOptions.Inventory | SaveAndLoadOptions.Status));
     }
+
+    // 씬 로드 시작, SceneNames로 입력이 들어오면 string으로 전화하여 LoadScene(string sceneName)호출
     public void LoadScene(SceneNames sceneName) => LoadScene(sceneName.ToString());
     // 씬 로드 시작
     public void LoadScene(string sceneName)
     {
         Manager.Instance.Game.PlayerController.SceneChanging();
         // 씬을 로딩하는 코루틴 실행
-        StartCoroutine(LoadAsyncScene(sceneName, true));
+        StartCoroutine(LoadAsyncScene(sceneName, SaveAndLoadOptions.All , SaveAndLoadOptions.All));
+        Debug.Log("씬 전환");
     }
-    IEnumerator LoadAsyncScene(string loadSceneName, bool save)
+    IEnumerator LoadAsyncScene(string loadSceneName, SaveAndLoadOptions saveOption ,SaveAndLoadOptions loadOption)
     {
         loddingUI.gameObject.SetActive(true);
         loddingUI.LoddingUIStart();
@@ -147,19 +154,13 @@ public class UIAndSceneManager : MonoBehaviour
         // 씬이 로드된 정도를 확인한다.
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadSceneName);
 
-        if (save)
-        {
-            Manager.Instance.Save.DataSaving();
-            yield return new WaitForSeconds(1.0f);
-        }
+        Manager.Instance.Save.DataSaving(saveOption);
+        yield return new WaitForSeconds(1.0f);
 
-        Manager.Instance.Save.LoadData();
+        Manager.Instance.Save.LoadData(loadOption);
         yield return new WaitForSeconds(1.0f);
 
         loddingUI.LoddingRateValue("던전 찾는 중...", 60.0f);
-
-        ChangeHPBar();
-        ChangeEXPBar();
 
         // 씬이 로드가 완료가 되면 isDone이 true값을 바환한다.
         while (!asyncLoad.isDone)
@@ -170,23 +171,24 @@ public class UIAndSceneManager : MonoBehaviour
     #endregion
 
     #region External Call Functions
-    public void ChangeHPBar() 
+    public void ChangeHPBar(int currentHP, int maxHP) 
     {
-        uIProfile.SetHPBar();
-        statusUI.SetStatusUIText();
+        uIProfile.SetHPBar(currentHP, maxHP);
+        ChangeStatusUIValue();
     }
-    public void ChangeEXPBar()
+    public void ChangeEXPBar(int level, int currentExp, int maxExp)
     {
-        uIProfile.SetExpBar();
+        uIProfile.SetExpBar(level, currentExp, maxExp);
         statusUI.SetExpUIText();
     }
 
     public void LevelUPUI()
     {
-        uIProfile.SetExpBar();
-        statusUI.SetStatusUIText();
+        ChangeStatusUIValue();
         statusUI.ViewAndHideStateButton();
     }
+
+    public void ChangeStatusUIValue() => statusUI.SetStatusUIText();
     public void LoadSettingUIData() => settingUI.SettingControllerStart();
     public void ChangeEquipment(WeaponItem item) => Manager.Instance.Game.PlayerWeaponChange(item);
     public void ChangeEquipment(ArmorItem item) => Manager.Instance.Game.PlayerArmorChange(item);

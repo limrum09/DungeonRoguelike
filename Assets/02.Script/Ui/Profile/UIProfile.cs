@@ -16,29 +16,16 @@ public class UIProfile : MonoBehaviour
     public Image currentHPBar;
     public Image currentExpBar;
 
-    public void SetHPBar()
+    public void SetHPBar(int currentHP, int maxHP)
     {
-        var player = PlayerInteractionStatus.instance;
-
-        int maxHP = player.MaxHP;
-        int currentHP = player.CurrentHP;
-
         maxHPText.text = maxHP.ToString();
         currentHPText.text = currentHP.ToString();
 
-        currentHPBar.rectTransform.sizeDelta = new Vector2((float)currentHP/ (float)maxHP * 500f, currentHPBar.rectTransform.sizeDelta.y);
-
-        Debug.Log($"체력 : {currentHP} / 최대 체력 : {maxHP}");
+        currentHPBar.rectTransform.sizeDelta = new Vector2((float)currentHP / (float)maxHP * 500f, currentHPBar.rectTransform.sizeDelta.y);
     }
 
-    public void SetExpBar()
+    public void SetExpBar(int level, int currentEXP, int maxEXP)
     {
-        var gameMananger = Manager.Instance.Game;
-
-        int level = gameMananger.Level;
-        int maxEXP = gameMananger.Exp;
-        int currentEXP = gameMananger.CurrentExp;
-
         levelText.text = level.ToString();
         maxEXPText.text = maxEXP.ToString();
         currentEXPText.text = currentEXP.ToString();

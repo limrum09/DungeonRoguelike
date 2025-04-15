@@ -12,23 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_Double_JumpCrush
   m_EditorClassIdentifier: 
-  skillCode: JumpCrush_11
+  code: SKILL_DHS_CRUSH
   skillLevel: 1
   maxLevel: 5
-  canMove: 0
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 8157448984539032795, guid: 3ae1e6bfe497a8a41a6b042a3e228809, type: 3}
+  skillEffectPos: 5
   skillMaintenanceTime: 2
+  skillMoveTime: 0
   skillName: "\uB0B4\uB824 \uCC0D\uAE30"
   weapon: 3
   animationName: DoubleSword_JumpTakeDown
   icon: {fileID: 21300000, guid: 5687968f6941de042b0ae2e9a1d68e54, type: 3}
   skillInfo: "\uB6F0\uC5B4\uC62C\uB77C \uB0B4\uB824 \uCC0D\uB294\uB2E4."
+  canMove: 0
+  targeting: 0
+  isViewRotation: 0
   needPlayerLevel: 0
   conditions: []
   skillCoolTime: 5

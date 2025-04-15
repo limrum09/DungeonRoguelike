@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fbc5a5980a139418652f967dc60849, type: 3}
   m_Name: Exp_Small_Potion
   m_EditorClassIdentifier: 
+  code: P004003
   itemtype: 1
   itemCode: P004003
   itemName: "\uACBD\uD5D8\uCE58 \uBB3C\uC57D(\uD558)"
@@ -28,3 +29,4 @@ MonoBehaviour:
   increaseDamage: 100
   increaseSpeed: 5
   durationTime: 180
+  itemEffect: {fileID: 0}

@@ -58,22 +58,30 @@ public class SettingContorller : MonoBehaviour
         string keyCodeString = shortCut.InputKeyCodeValue.text;
         KeyCode _keyCode;
 
-        Debug.Log("Key Code String : " + keyCodeString);
-
         try
         {
+            // 숫자 0 ~ 9 사이의 값일 경우, 'Alpha'를 추가한다.
+            if (keyCodeString[0] >= '0' && keyCodeString[0] <= '9')
+                keyCodeString = "Alpha" + keyCodeString;
+
             // Attempt to parse the string to a KeyCode
             _keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyCodeString, true);
-            Debug.Log("Set Key Code : " + _keyCode);
-            
-            Manager.Instance.Key.ChangKeycode(shortCut.KeyValue, _keyCode);
-            Manager.Instance.UIAndScene.ChangeShortCutValue(shortCut.KeyValue);
 
-            shortCut.SetPrevText();
+            // keyCode 값을 보내고 중복이 있으면 true를 중복이 없으면 false를 반환하여, false인 경우 값을 바꾼다.
+            if (!Manager.Instance.Key.ChangKeycode(shortCut.KeyValue, _keyCode))
+            {
+                Manager.Instance.UIAndScene.ChangeShortCutValue(shortCut.KeyValue);
+
+                shortCut.SetPrevText();
+            }
+            else
+            {
+                shortCut.CancelChange();
+            }
+            
         }
         catch (System.ArgumentException)
         {
-            Debug.Log("Error String : " + keyCodeString);
             shortCut.CancelChange();
         }
     }

@@ -120,12 +120,18 @@ public class QuestSystem : MonoBehaviour
 
     public void LoadActiveQuest(QuestSaveData saveData, Quest quest)
     {
+        if (ContainsActiveQuest(quest) || ContainsActiveAchievement(quest))
+            return;
+
         var newQuest = QuestSystemRegister(quest);
         newQuest.LoadQuest(saveData);
     }
 
     public void LoadCompletedQuest(QuestSaveData saveData, Quest quest)
     {
+        if (ContainsCompletedQuest(quest) || ContainsCompletedAchievements(quest))
+            return;
+
         var newQuest = quest.Clone();
         newQuest.LoadQuest(saveData);
 

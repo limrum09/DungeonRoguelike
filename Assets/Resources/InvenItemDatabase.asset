@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7576483637095428b7cec3cc021b89, type: 3}
   m_Name: InvenItemDatabase
   m_EditorClassIdentifier: 
-  invenItem:
+  datas:
   - {fileID: 11400000, guid: dc55df4ef1bace941bfa79ecfddc0172, type: 2}
   - {fileID: 11400000, guid: 059917aea129c9142a96ded0bc177379, type: 2}
   - {fileID: 11400000, guid: 4f012e94ec64bb74386ccca81d1fb09f, type: 2}

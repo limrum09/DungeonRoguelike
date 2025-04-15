@@ -8,41 +8,13 @@ using UnityEditor;
 #endif
 
 [CreateAssetMenu(fileName ="ArmorItemDatabase", menuName ="GameManager/Database/ArmorItemDatabase")]
-public class ArmorItemDatabase : ScriptableObject
+public class ArmorItemDatabase : GameDatabase<ArmorItem>
 {
-    [SerializeField]
-    private List<ArmorItem> armorItems;
-
-    public IReadOnlyList<ArmorItem> ArmorItems => armorItems;
-
-    public ArmorItem FindItemBy(string armorItemCodeName) => armorItems.FirstOrDefault(x => x.ItemCode == armorItemCodeName);
-
 #if UNITY_EDITOR
-    [ContextMenu("FindArmorItem")]
-    private void FindArmorItem()
+    [ContextMenu("RefreshDatabase")]
+    private void RefreshDatabaseInChild()
     {
-        armorItems = new List<ArmorItem>();
-
-        // 찾고 싶은 에셋의 타입 
-        string[] guids = AssetDatabase.FindAssets($"t:{typeof(ArmorItem)}");
-
-        foreach (var guid in guids)
-        {
-            // 찾으려는 오브젝트의 경로
-            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-
-            // 경로를 통해 찾은 오브젝트
-            var armorItem = AssetDatabase.LoadAssetAtPath<ArmorItem>(assetPath);
-
-            if (armorItem.GetType() == typeof(ArmorItem))
-            {
-                armorItems.Add(armorItem);
-            }
-
-            EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssets();
-
-        }
+        RefreshDatabase(); // 부모 클래스의 메서드 호출
     }
 #endif
 }

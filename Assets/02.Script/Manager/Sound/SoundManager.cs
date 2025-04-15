@@ -1,8 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// master volume의 AudioType은 AudioTypeLastValue이다.
+/// 기본적인 volume은 해당하는 AudioType을 가지며, MasterVolumeType은 None을 가진다.
+/// </summary>
 public enum MasterVolumeType
 {
     None = 0,
@@ -14,9 +19,7 @@ public enum AudioType
     PlayerAttack = 0,
     PlayerFoot,
     PlayerSkill,
-    UIClick,
-    UIOpen,
-    UIClose,
+    UICalling,
     AudioTypeLastValue
 }
 public class SoundManager : MonoBehaviour
@@ -73,8 +76,6 @@ public class SoundManager : MonoBehaviour
             bgmAudio = newSoundObject.GetComponent<AudioSource>();
             bgmAudio.loop = true;
         }
-
-        soundSliders.Clear();
     }
 
     // 전부 초기화
@@ -111,22 +112,8 @@ public class SoundManager : MonoBehaviour
 
     public void SetAudioVolume(AudioType audioType, float value)
     {
-        if(audioType == AudioType.UIClick || audioType == AudioType.UIClose || audioType == AudioType.UIOpen)
-        {
-            Debug.Log("소리 : " + value + ", 마스터 소리 : " + masterVolumeSFX);
-            AudioSource playAudio1 = audios[(int)AudioType.UIClick];
-            AudioSource playAudio2 = audios[(int)AudioType.UIClose];
-            AudioSource playAudio3 = audios[(int)AudioType.UIOpen];
-
-            playAudio1.volume = value * masterVolumeSFX;
-            playAudio2.volume = value * masterVolumeSFX;
-            playAudio3.volume = value * masterVolumeSFX;
-        }
-        else
-        {
-            AudioSource playAudio = audios[(int)audioType];
-            playAudio.volume = value * masterVolumeSFX;
-        }
+        AudioSource playAudio = audios[(int)audioType];
+        playAudio.volume = value * masterVolumeSFX;
     }
 
     public void SetMasterVolume(MasterVolumeType masterVolume, float value)
@@ -137,7 +124,10 @@ public class SoundManager : MonoBehaviour
             bgmAudio.volume = masterVolumeBGM;
         }
         else if (masterVolume == MasterVolumeType.SFX)
+        {
             masterVolumeSFX = value;
+            RefreshAllSFXVolume();
+        }
     }
 
     public void SetSoundSlider(SliderValue slider)
@@ -153,30 +143,60 @@ public class SoundManager : MonoBehaviour
     /// <param name="soundValue"></param>
     public void SetSoundVolumeValueToLoad(string masterType, string audioType, float soundValue)
     {
-        try
+        MasterVolumeType setMasterType = FindMasterVolumeType(masterType);
+
+        if(setMasterType == MasterVolumeType.None)
         {
-            AudioType setAudioType = EnumUntil<AudioType>.Parse(audioType);
-            string audioTypeString = setAudioType.ToString();
+            AudioType audio = FindAudioVolumeType(audioType);
 
-            MasterVolumeType setMasterType = EnumUntil<MasterVolumeType>.Parse(masterType);
-            string masterTypeString = setMasterType.ToString();
+            if (audio == AudioType.AudioTypeLastValue)
+                return;
 
-            foreach (var slider in soundSliders)
+            SliderValue slider = SoundSliders.FirstOrDefault(x => x.Audio == audio);
+            slider?.SetSldierValueToLoad(soundValue);
+            SetAudioVolume(audio, soundValue);
+        }
+        else
+        {
+            SliderValue slider = SoundSliders.FirstOrDefault(x => x.MasterVolume == setMasterType);
+            slider?.SetSldierValueToLoad(soundValue);
+            SetMasterVolume(setMasterType, soundValue);
+        }
+    }
+
+    private void RefreshAllSFXVolume()
+    {
+        foreach(var slider in SoundSliders)
+        {
+            if(slider.MasterVolume == MasterVolumeType.None)
             {
-                if (audioTypeString.Equals(slider.Audio.ToString()) && setMasterType == MasterVolumeType.None)
-                {
-                    slider.SetSldierValueToLoad(soundValue);
-                    return;
-                }
-                else if (slider.MasterVolume == MasterVolumeType.BGM)
-                    slider.SetSldierValueToLoad(soundValue);
-                else if (slider.MasterVolume == MasterVolumeType.SFX)
-                    slider.SetSldierValueToLoad(soundValue);
+                SetAudioVolume(slider.Audio, slider.Slider);
             }
         }
-        catch {
+    }
 
-        };
+    private MasterVolumeType FindMasterVolumeType(string value)
+    {
+        try
+        {
+            return EnumUntil<MasterVolumeType>.Parse(value);
+        }
+        catch
+        {
+            return MasterVolumeType.None;
+        }
+    }
+
+    private AudioType FindAudioVolumeType(string value)
+    {
+        try
+        {
+            return EnumUntil<AudioType>.Parse(value);
+        }
+        catch
+        {
+            return AudioType.AudioTypeLastValue;
+        }
     }
 
     // 이름과 위치로 AudioClip을 가져옴

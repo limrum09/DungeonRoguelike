@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: Skill_OneHand_Stabbing
   m_EditorClassIdentifier: 
-  skillCode: Stabbing_1
-  skillLevel: 3
+  code: SKILL_OHS_STABBING
+  skillLevel: 1
   maxLevel: 5
   skillBasicDamage: 0
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0.5, z: 0.1}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 0
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 198415561904038508, guid: 462a508efd7ae9245bac2b6d0f9ece91, type: 3}
   skillEffectPos: 5
   skillMaintenanceTime: 3

@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925b995d2b1cacb428ef083ee4e60ccc, type: 3}
-  m_Name: Skill_OneHand_DownToUp_Condition
+  m_Script: {fileID: 11500000, guid: 4d227249f67ce1f43a0006f4c92ace1f, type: 3}
+  m_Name: Spear_SkillTree
   m_EditorClassIdentifier: 
-  needActiveSkill: {fileID: 11400000, guid: 540e9e61a24c22546ad51db51a4793b2, type: 2}
-  needSkillLevel: 3
+  category: 4
+  skillNodes:
+  - skill: {fileID: 11400000, guid: a553a0357c7c22748bc35c12a322266c, type: 2}
+  - skill: {fileID: 11400000, guid: d324a5d9ddd3e9b419b2138814af172c, type: 2}

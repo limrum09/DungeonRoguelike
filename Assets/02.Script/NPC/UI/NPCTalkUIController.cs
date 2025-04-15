@@ -58,7 +58,7 @@ public class NPCTalkUIController : MonoBehaviour
         playerScenarioPanel.gameObject.SetActive(false);    // Quest 선택 후, Player의 대화상자
 
         // 기본 NPC 대화상자 호출
-        npcBasicScenarioPanel.NPCTalk(npcBasicTalkScenario, questAndScenarios);
+        npcBasicScenarioPanel.NPCTalk(npcBasicTalkScenario, questAndScenarios, this);
     }
 
     // 호출 시 퀘스트UI 시작
@@ -94,9 +94,9 @@ public class NPCTalkUIController : MonoBehaviour
         else if(selectQuest.State == ScenarioState.WaitingForCompletion)
         {
             currentScenario = selectQuest.Scenarios.CompleteScenario;
-        }        
+        }
 
-        NPCQUestScenarioTalkToPlayer();
+        NPCQuestScenarioTalkToPlayer();
     }
 
     // Player나 NPC가 본인의 Scenario가 끝났을 시, 호출
@@ -105,12 +105,12 @@ public class NPCTalkUIController : MonoBehaviour
         Debug.Log("Next Scenario");
         if (selectQuest != null)
         {
-            NPCQUestScenarioTalkToPlayer();
+            NPCQuestScenarioTalkToPlayer();
         }
     }
 
     // 시나리오 재생
-    private void NPCQUestScenarioTalkToPlayer()
+    private void NPCQuestScenarioTalkToPlayer()
     {
         int length = currentScenario.Count;
 
@@ -151,11 +151,10 @@ public class NPCTalkUIController : MonoBehaviour
             currentScenario = selectQuest.Scenarios.AcceptionScenario;  // 현제 시나리오를 퀘스트 수락 시나리오로 변경
             selectQuest.State = ScenarioState.Running;                  // 시나리오 상태 변경
 
-            Quest acceptionQuest = selectQuest.Quest;                   // 선택한 퀘스트
+            Manager.Instance.Quest.QuestSystemRegister(selectQuest.Quest);   // QuestSystem에 퀘스트를 시작하도록 추가
+            selectQuest.RegisterQuestCompletedEvent();
 
-            Manager.Instance.Quest.QuestSystemRegister(acceptionQuest);   // QuestSystem에 퀘스트를 시작하도록 추가
-
-            NPCQUestScenarioTalkToPlayer();
+            NPCQuestScenarioTalkToPlayer();
         }        
     }
 
@@ -167,7 +166,7 @@ public class NPCTalkUIController : MonoBehaviour
             questScenarioIndex = 0;                                 // 시나리오 순서 초기화
             currentScenario = selectQuest.Scenarios.CancelScenario; // 현제 시나리오를 퀘스트 거절 시나리오로 변경
 
-            NPCQUestScenarioTalkToPlayer();
+            NPCQuestScenarioTalkToPlayer();
         }
     }
 

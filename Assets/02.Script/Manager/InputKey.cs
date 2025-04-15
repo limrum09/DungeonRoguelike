@@ -7,10 +7,22 @@ using UnityEngine;
 public class InputKey : MonoBehaviour
 {
     private Dictionary<string, KeyCode> inputKeys = new Dictionary<string, KeyCode>();
-    
+
+    private bool IsOverlap(string keyString, KeyCode code)
+    {
+        foreach(var keyValue in inputKeys)
+        {
+            if (keyValue.Key != keyString && keyValue.Value == code)
+                return true;
+        }
+
+        return false;
+    }
+
     public void InputKeyStart()
     {
         string path = Path.Combine(Application.persistentDataPath, "SaveFile");
+
         if (!File.Exists(path))
         {
             ResetKeyCode();
@@ -49,8 +61,11 @@ public class InputKey : MonoBehaviour
         Debug.Log("Count : " + inputKeys.Count);
     }
 
-    public void ChangKeycode(string keyString, KeyCode code)
+    public bool ChangKeycode(string keyString, KeyCode code)
     {
+        if (IsOverlap(keyString, code))
+            return true;
+
         bool isNotWASD = (code != KeyCode.W && code != KeyCode.A && code != KeyCode.S && code != KeyCode.D);
         if ((code >= KeyCode.A && code <= KeyCode.Z && isNotWASD) || 
             (code >= KeyCode.Alpha1 && code <= KeyCode.Alpha9) || code == KeyCode.Space)
@@ -58,13 +73,16 @@ public class InputKey : MonoBehaviour
             inputKeys[keyString] = code;
         }
 
+        return false;
         // 저장 필요
     }
 
-    public KeyCode GetKeyCode(string keyString)
+    public KeyCode GetKeyCode(string keyString, bool isUI = false)
     {
-        if (!Manager.Instance.canInputKey)
+        if (!Manager.Instance.canInputKey && !isUI)
+        {
             return KeyCode.None;
+        }
 
         if (inputKeys.TryGetValue(keyString, out KeyCode keyCode))
         {

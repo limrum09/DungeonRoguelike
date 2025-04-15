@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6eb2d927ba01b84c831b1424b7f3b4d, type: 3}
   m_Name: WeaponItemDatabase
   m_EditorClassIdentifier: 
-  weaponItem:
+  datas:
   - {fileID: 11400000, guid: f523fb47103bbc24b9a9736d81c208f0, type: 2}
   - {fileID: 11400000, guid: e9a01455a512b8f4e9023f67702f8738, type: 2}
   - {fileID: 11400000, guid: 09df0b7e1a707114e8ab198395c3a16a, type: 2}

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_Wand04
   m_EditorClassIdentifier: 
+  code: Wand04
   itemCode: Wand04
   itemName: "\uBE14\uB8E8 \uD06C\uB9AC\uC2A4\uD0C8 \uC644\uB4DC"
   equipmentItem: {fileID: 5765867852955860849, guid: 735d317493ec7b74392a75a3e3f02c8a, type: 3}
   itemSprite: {fileID: 816302063, guid: 9753dda9079ba044f8e33f52b62a5908, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 100
   itemDamage: 200

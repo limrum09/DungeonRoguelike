@@ -4,6 +4,19 @@ using System.IO;
 using UnityEngine;
 using BackEnd;
 
+[System.Flags]
+public enum SaveAndLoadOptions { 
+    None = 0,
+    Quest = 1 << 0,
+    Equipment = 1 << 1,
+    Status = 1 << 2,
+    Inventory = 1 << 3,
+    ShortCutKey = 1 << 4,
+    SoundSetting = 1 << 5,
+    Skill = 1 << 6,
+    All = Quest | Equipment | Status | Inventory | ShortCutKey | SoundSetting | Skill
+}
+
 public class SaveDatabase : MonoBehaviour
 {
     public SaveData saveData = new SaveData();
@@ -26,13 +39,13 @@ public class SaveDatabase : MonoBehaviour
     [SerializeField]
     private QuestDatabase questDatabase;
     [SerializeField]
-    private QuestDatabase achievementDatabase;
+    private AchievementDatabase achievementDatabase;
+    [SerializeField]
+    private SkillDatabase skillDatabase;
 
-    private string gameDataRowInData = string.Empty;
-
-    public void DataSaving()
+    public void DataSaving(SaveAndLoadOptions saveOption)
     {
-        SaveData(10);
+        SaveData(10, saveOption);
     }
 
     public void SaveDatabaseStart()
@@ -41,7 +54,8 @@ public class SaveDatabase : MonoBehaviour
         weaponItemDatabase = Resources.Load<WeaponItemDatabase>("WeaponItemDatabase");
         armorItemDatabase = Resources.Load<ArmorItemDatabase>("ArmorItemDatabase");
         questDatabase = Resources.Load<QuestDatabase>("QuestDatabase");
-        achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
+        achievementDatabase = Resources.Load<AchievementDatabase>("AchievementDatabase");
+        skillDatabase = Resources.Load<SkillDatabase>("SkillDatabase");
 
         QuestViewUI questViewUI = FindObjectOfType<QuestViewUI>();
         questViewUI.QuestUIStart();
@@ -51,10 +65,11 @@ public class SaveDatabase : MonoBehaviour
         invenSlots = manager.Game.InvenDatas.invenSlots;
         shortKey = manager.Key;
 
-        LoadData();
+        LoadData(SaveAndLoadOptions.All);
     }
 
-    private void Initialzed()
+    // 전체 값 초기화
+    public void Initialzed()
     {
         saveData.invenSaveData.Clear();
         saveData.inventoryCount = 0;
@@ -62,7 +77,7 @@ public class SaveDatabase : MonoBehaviour
         saveData.weaponItemCode.Clear();
         saveData.armorItemCode.Clear();
 
-        saveData.playerSaveStatus = null;
+        saveData.playerSaveStatus.Reset();
 
         saveData.activeQuestSaveData.Clear();
         saveData.completedQuestSaveData.Clear();
@@ -73,16 +88,17 @@ public class SaveDatabase : MonoBehaviour
         saveData.shortCutButton.Clear();
 
         saveData.soundData.Clear();
+        saveData.skillData.Clear();
     }
 
-    public void SaveData(int maxRepeatCount)
+    #region Save Functions
+    private void SaveQusetAndAchievement()
     {
-        if (maxRepeatCount <= 0)
-            return;
-
-        Initialzed();
-
-        saveData.playerSaveStatus = playerSaveStatus.GetPlayerSaveStatus();
+        // 값 초기화
+        saveData.activeQuestSaveData.Clear();
+        saveData.completedQuestSaveData.Clear();
+        saveData.activeAchievementSavaData.Clear();
+        saveData.completedAchievementSaveData.Clear();
 
         var questSystem = Manager.Instance.Quest;
 
@@ -91,12 +107,12 @@ public class SaveDatabase : MonoBehaviour
             saveData.activeQuestSaveData.Add(activeQuest.QuestSave());
         }
 
-        foreach(var completedQuest in questSystem.CompletedQuests)
+        foreach (var completedQuest in questSystem.CompletedQuests)
         {
             saveData.completedQuestSaveData.Add(completedQuest.QuestSave());
         }
 
-        foreach(var activeAcheivement in questSystem.ActiveAchievements)
+        foreach (var activeAcheivement in questSystem.ActiveAchievements)
         {
             saveData.activeAchievementSavaData.Add(activeAcheivement.QuestSave());
         }
@@ -105,38 +121,59 @@ public class SaveDatabase : MonoBehaviour
         {
             saveData.completedAchievementSaveData.Add(completedAcheivement.QuestSave());
         }
+    }
+
+    private void SaveWeaponAndArmor()
+    {
+        // 값 초기화
+        saveData.weaponItemCode.Clear();
+        saveData.armorItemCode.Clear();
 
         itemStatus = FindObjectOfType<ItemStatus>();
 
         // 무기 저장
-        for(int i =0; i < itemStatus.WeaponItems.Count; i++)
+        for (int i = 0; i < itemStatus.WeaponItems.Count; i++)
         {
             // itemStatus.WeaponItems는 왼손과 오른손을 위해 배열의 크기가 2이다. 
             // 무기가 기본적으로 오른손에 장착하며 한개의 무기를 사용하면 오른손에 장착된다.
             // 왼손에 장착된 무기가 없는 경우 itemStatus.WeaponItems[i].weaponItem는 null값을 가진다.
-            if(itemStatus.WeaponItems[i].weaponItem != null)
+            if (itemStatus.WeaponItems[i].weaponItem != null)
             {
                 saveData.weaponItemCode.Add(itemStatus.WeaponItems[i].weaponItem.ItemCode);
             }
         }
 
         // 방어구 저장
-        for(int i = 0; i < itemStatus.ArmorItems.Count; i++)
+        for (int i = 0; i < itemStatus.ArmorItems.Count; i++)
         {
             // 아이템을 장착하지 않는 경우 itemStatus.ArmorItmes[i].armorItem의 값은 null값이다.
-            if(itemStatus.ArmorItems[i].armorItem != null)
+            if (itemStatus.ArmorItems[i].armorItem != null)
             {
-                Debug.Log("Save Item : " + itemStatus.ArmorItems[i].armorItem.ItemCode);
                 saveData.armorItemCode.Add(itemStatus.ArmorItems[i].armorItem.ItemCode);
             }
         }
+    }
+
+    private void SavePlayerStatus()
+    {
+        // 값 초기화
+        saveData.playerSaveStatus.Reset();
+
+        saveData.playerSaveStatus = playerSaveStatus.GetPlayerSaveStatus();
+    }
+
+    private void SaveInventory()
+    {
+        // 값 초기화
+        saveData.invenSaveData.Clear();
+        saveData.inventoryCount = 0;
 
         // 현제 인벤토리의 크기를 저장
         saveData.inventoryCount = invenSlots.Count;
         saveData.invenGlodCount = InvenData.instance.InvenGoldCoinCount;
         for (int i = 0; i < saveData.inventoryCount; i++)
         {
-            if(invenSlots[i] != null)
+            if (invenSlots[i] != null)
             {
                 // 저장되는 ItemCode, itemCnt, index는 서로 다른 배열에 값을 저장된다.
                 // 서로 다른 배열의 같은 index값을 가진다. (저장시 i의 값에 저장된다.)
@@ -148,41 +185,107 @@ public class SaveDatabase : MonoBehaviour
                 saveData.invenSaveData.Add(newData);
             }
         }
+    }
 
-        // 단축키 저장
+    private void SaveShortCutKey()
+    {
+        // 값 초기화
+        saveData.shortCutKeySaveData = null;
+        saveData.shortCutButton.Clear();
+
+        // 8개의 단축키 슬롯 값 저장
         saveData.shortCutKeySaveData = shortKey.SerializeShortCutKeyDictionary();
 
         ShortKeyManager shortCutKeys = Manager.Instance.UIAndScene.ShortCutBox;
-        // 단축키 저장
-        for (int i = 0;i < Manager.Instance.UIAndScene.ShortCutBox.ShortKeys.Count; i++)
+        // 단축키 슬롯의 아이템 및 스킬 저장
+        for (int i = 0; i < Manager.Instance.UIAndScene.ShortCutBox.ShortKeys.Count; i++)
         {
             ShortCutKeySaveData shortCutKeySaveData = new ShortCutKeySaveData();
 
-            // 단축키에 아이템이 올려져 있는 경우
+            shortCutKeySaveData.itemIndex = -1;
+            shortCutKeySaveData.isItem = false;
+            shortCutKeySaveData.skill = null;
+
+            // 단축키에 아이템이올려져 있는 경우
             if (shortCutKeys.ShortKeys[i].GetItem() != null)
             {
-                shortCutKeySaveData.isItem = true;
                 shortCutKeySaveData.itemIndex = shortCutKeys.ShortKeys[i].ItemIndex;
+                shortCutKeySaveData.isItem = true;
             }
-            // 단축키에 스킬이 올려져 있는 경우
+            // 스킬인 경우
             else if (shortCutKeys.ShortKeys[i].GetSkill() != null)
             {
-                shortCutKeySaveData.isItem = false;
                 shortCutKeySaveData.skill = shortCutKeys.ShortKeys[i].GetSkill();
             }
-            //단축키에 아무 것도 없는 경우
-            else
-                shortCutKeySaveData = null;
 
             // 값 추가
             saveData.shortCutButton.Add(shortCutKeySaveData);
         }
+    }
+
+    private void SaveSoundSetting()
+    {
+        // 값 초기화
+        saveData.soundData.Clear();
 
         // SoundData 저장
         for (int i = 0; i < Manager.Instance.Sound.SoundSliders.Count; i++)
         {
             saveData.soundData.Add(Manager.Instance.Sound.SoundSliders[i].SoundValueSave());
         }
+    }
+
+    private void SaveSkillDatas()
+    {
+        List<string> tempSaveSkillCode = new List<string>();
+
+        foreach(var skill in skillDatabase.Datas)
+        {
+            // skill code가 빈 값이면 저장안함
+            if (string.IsNullOrEmpty(skill.SkillCode))
+            {
+                continue;
+            }   
+
+            // 겹치는 것이 있는지 검사
+            if (tempSaveSkillCode.Contains(skill.SkillCode))
+                continue;
+
+            tempSaveSkillCode.Add(skill.SkillCode);
+            saveData.skillData.Add(skill.SaveSkillData());
+        }
+    }
+    #endregion
+
+    #region Backend Save
+    private void SaveData(int maxRepeatCount, SaveAndLoadOptions saveOption)
+    {
+        if (maxRepeatCount <= 0)
+            return;
+
+        if (saveOption == SaveAndLoadOptions.None)
+            return;
+
+        if (saveOption.HasFlag(SaveAndLoadOptions.All) || saveOption.HasFlag(SaveAndLoadOptions.Quest))
+            SaveQusetAndAchievement();
+
+        if (saveOption.HasFlag(SaveAndLoadOptions.All) || saveOption.HasFlag(SaveAndLoadOptions.Equipment))
+            SaveWeaponAndArmor();
+
+        if (saveOption.HasFlag(SaveAndLoadOptions.All) || saveOption.HasFlag(SaveAndLoadOptions.Status))
+            SavePlayerStatus();
+
+        if (saveOption.HasFlag(SaveAndLoadOptions.All) || saveOption.HasFlag(SaveAndLoadOptions.Inventory))
+            SaveInventory();
+
+        if (saveOption.HasFlag(SaveAndLoadOptions.All) || saveOption.HasFlag(SaveAndLoadOptions.ShortCutKey))
+            SaveShortCutKey();
+
+        if (saveOption.HasFlag(SaveAndLoadOptions.All) || saveOption.HasFlag(SaveAndLoadOptions.SoundSetting))
+            SaveSoundSetting();
+
+        if (saveOption.HasFlag(SaveAndLoadOptions.All) || saveOption.HasFlag(SaveAndLoadOptions.Skill))
+            SaveSkillDatas();
 
         if (Manager.Instance.UIAndScene.LoddingUI.gameObject.activeSelf)
             Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("유저 정보 확인 중...!", 25);
@@ -215,7 +318,7 @@ public class SaveDatabase : MonoBehaviour
             case "Repeat":
             case "repeat":
                 Debug.LogError("연결 재시도");
-                SaveData(maxRepeatCount - 1);
+                SaveData(maxRepeatCount - 1, saveOption);
                 break;
             case "Success":
             case "success":
@@ -247,94 +350,42 @@ public class SaveDatabase : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
-
-    public void LoadData()
+    #region Load Functions
+    private void LoadQuestsAndAchievements()
     {
-        Debug.Log("Load Data");
-
-        bool getSaveDataToBackendServer = false;
-
-        shortKey.DeserializeShortCutKeyDictionary(saveData.shortCutKeySaveData);
-
-        Backend.GameData.GetMyData(Constants.USER_DATA_TABLE, new Where(), callback =>
-        {
-            if(callback.IsSuccess())
-            {
-                Manager.Instance.UIAndScene.Notion.SetNotionText("게임 데이터 불러오기 완료");
-                try
-                {
-                    LitJson.JsonData gameDataJson = callback.FlattenRows();
-
-                    if(gameDataJson.Count <= 0)
-                    {
-                        Manager.Instance.UIAndScene.Notion.SetNotionText("데이터가 존재하지 않습니다");
-                    }
-                    else
-                    {
-                        string loadJson = gameDataJson[0]["JsonSaveData"].ToString();
-
-                        // 해당 위치에 InvenSaveData가 변환된 데이터가 있으면 가져오기
-                        saveData = JsonUtility.FromJson<SaveData>(loadJson);
-
-                        LoadDatas();
-
-                        Manager.Instance.UIAndScene.Notion.SetNotionText("뒤끝 서버에서 데이터 불러오기 완료");
-                    }
-                }
-                catch (System.Exception e)
-                {
-                    Debug.Log("Json 데이터 피팅 실패 : " + e);
-
-                    string path = Path.Combine(Application.persistentDataPath, UserInfo.UserData.gamerId);
-
-                    if (File.Exists(path) && !getSaveDataToBackendServer)
-                    {
-                        // Json문자열을 읽어오기
-                        string loadJson = File.ReadAllText(path);
-
-                        // 해당 위치에 InvenSaveData가 변환된 데이터가 있으면 가져오기
-                        saveData = JsonUtility.FromJson<SaveData>(loadJson);
-
-                        Manager.Instance.UIAndScene.Notion.SetNotionText("로컬에서 가져오기");
-
-                        LoadDatas();
-                    }
-                }
-            }
-        });
-    }
-
-    private void LoadDatas()
-    {
-        // saveData = JsonUtility.FromJson<SaveData>(json);
-        var manager = Manager.Instance;
+        var quest = Manager.Instance.Quest;
 
         foreach (var activeQuest in saveData.activeQuestSaveData)
         {
-            Quest newActiveQuest = questDatabase.FindQuestBy(activeQuest.questCode);
-            manager.Quest.LoadActiveQuest(activeQuest, newActiveQuest);
+            Quest newActiveQuest = questDatabase.FindByCode(activeQuest.questCode);
+            quest.LoadActiveQuest(activeQuest, newActiveQuest);
         }
 
         foreach (var completedQuest in saveData.completedQuestSaveData)
         {
-            Quest newCompletedQuest = questDatabase.FindQuestBy(completedQuest.questCode);
-            manager.Quest.LoadCompletedQuest(completedQuest, newCompletedQuest);
+            Quest newCompletedQuest = questDatabase.FindByCode(completedQuest.questCode);
+            quest.LoadCompletedQuest(completedQuest, newCompletedQuest);
         }
 
         foreach (var activeAchivement in saveData.activeAchievementSavaData)
         {
-            Achievement newActiveAchievement = achievementDatabase.FindQuestBy(activeAchivement.questCode) as Achievement;
-            manager.Quest.LoadActiveQuest(activeAchivement, newActiveAchievement);
+            Achievement newActiveAchievement = achievementDatabase.FindByCode(activeAchivement.questCode) as Achievement;
+            quest.LoadActiveQuest(activeAchivement, newActiveAchievement);
         }
 
         foreach (var completedAchivement in saveData.completedAchievementSaveData)
         {
-            Achievement newCompletedAchievement = achievementDatabase.FindQuestBy(completedAchivement.questCode) as Achievement;
-            manager.Quest.LoadCompletedQuest(completedAchivement, newCompletedAchievement);
+            Achievement newCompletedAchievement = achievementDatabase.FindByCode(completedAchivement.questCode) as Achievement;
+            quest.LoadCompletedQuest(completedAchivement, newCompletedAchievement);
         }
 
+        Manager.Instance.UIAndScene.AchievementUI.AchievementUIStart();
+    }
 
+    private void LoadWeaponAndArmor()
+    {
         for (int i = 0; i < saveData.weaponItemCode.Count; i++)
         {
             if (!string.IsNullOrEmpty(saveData.weaponItemCode[i]))
@@ -343,7 +394,7 @@ public class SaveDatabase : MonoBehaviour
                 WeaponItem item = SearchWeaponItem(saveData.weaponItemCode[i]);
 
                 // GameManager의 PlayerWeaponChange 호출
-                manager.Game.PlayerWeaponChange(item);
+                Manager.Instance.Game.PlayerWeaponChange(item);
             }
         }
 
@@ -355,11 +406,18 @@ public class SaveDatabase : MonoBehaviour
                 ArmorItem item = SearchArmorItem(saveData.armorItemCode[i]);
 
                 // GameManager의 PlayerArmorChange 호출
-                manager.Game.PlayerArmorChange(item);
+                Manager.Instance.Game.PlayerArmorChange(item);
             }
         }
+    }
 
+    private void LoadPlayerStatus()
+    {
+        playerSaveStatus.SetPlayerSavestatus(saveData.playerSaveStatus);
+    }
 
+    private void LoadInventory()
+    {
         // 인벤토리 초가화
         InvenData.instance.Initialzed(saveData.inventoryCount);
         InvenData.instance.ChangeGlodValue(saveData.invenGlodCount);
@@ -379,30 +437,157 @@ public class SaveDatabase : MonoBehaviour
                 InvenData.instance.RefreshInvenSlot(saveData.invenSaveData[i].index);
             }
         }
-
-        playerSaveStatus.SetPlayerSavestatus(saveData.playerSaveStatus);
-
-        // 단축키 로드
-        shortKey.DeserializeShortCutKeyDictionary(saveData.shortCutKeySaveData);        
-
-        // UI에 보여지는 단축키 값 로드
-        manager.UIAndScene.LoadShortCutKeys(saveData.shortCutButton);
-        manager.UIAndScene.LoadSettingUIData();
-
-        for (int i = 0; i < saveData.soundData.Count; i++)
-        {
-            manager.Sound.SetSoundVolumeValueToLoad(saveData.soundData[i].masterType, saveData.soundData[i].audioType, saveData.soundData[i].value);
-        }
-
-        manager.UIAndScene.AchievementUI.AchievementUIStart();
-
-        manager.UIAndScene.LoddingUI.LoddingRateValue("유저 정보 확인 중...!", 40);
-
-        manager.canInputKey = true;
-        Debug.Log("사용자 데이터 로드 완료");
     }
 
-    private InvenItem SearchInvenItem(string itemCode) => invenItemDatabase.FindItemBy(itemCode);
-    private WeaponItem SearchWeaponItem(string itemCode) => weaponItemDatabase.FindItemBy(itemCode);
-    private ArmorItem SearchArmorItem(string itemCode) => armorItemDatabase.FindItemBy(itemCode);
+    private void LoadShortCutKey()
+    {
+        // 단축키 로드
+        shortKey.DeserializeShortCutKeyDictionary(saveData.shortCutKeySaveData);
+
+        // UI에 보여지는 단축키 값 로드
+        Manager.Instance.UIAndScene.LoadShortCutKeys(saveData.shortCutButton);
+        Manager.Instance.UIAndScene.LoadSettingUIData();
+    }
+
+    private void LoadSoundSetting()
+    {
+        // 소리값 로드
+        for (int i = 0; i < saveData.soundData.Count; i++)
+        {
+            Manager.Instance.Sound.SetSoundVolumeValueToLoad(saveData.soundData[i].masterType, saveData.soundData[i].audioType, saveData.soundData[i].value);
+        }
+    }
+
+    private void LoadSkillDatas()
+    {
+        skillDatabase.ResetSkillData();
+
+        for (int i = 0; i < saveData.skillData.Count; i++)
+        {
+            ActiveSkill findSkill = skillDatabase.FindByCode(saveData.skillData[i].skillCode);
+
+            if(findSkill != null)
+            {
+                findSkill.LoadSkillData(saveData.skillData[i]);
+            }
+        }
+
+        Manager.Instance.Skill.CheckSkillConditionToPlayerLevelUp();
+    }
+
+    private void LocalLoadDatas()
+    {
+        string path = Path.Combine(Application.persistentDataPath, UserInfo.UserData.gamerId);
+
+        if (File.Exists(path))
+        {
+            // Json문자열을 읽어오기
+            string loadJson = File.ReadAllText(path);
+
+            // 해당 위치에 InvenSaveData가 변환된 데이터가 있으면 가져오기
+            saveData = JsonUtility.FromJson<SaveData>(loadJson);
+
+            LoadDatas();
+        }
+    }
+
+    private void LoadDatas()
+    {
+        // saveData = JsonUtility.FromJson<SaveData>(json);
+        LoadQuestsAndAchievements();
+        LoadWeaponAndArmor();
+        LoadPlayerStatus();
+        LoadInventory();
+        LoadShortCutKey();
+        LoadSoundSetting();
+        LoadSkillDatas();
+    }
+    #endregion
+
+    #region Backend Load
+    public void LoadData(SaveAndLoadOptions loadOption)
+    {
+        Debug.Log("Load Data");
+
+        if (loadOption == SaveAndLoadOptions.None)
+            return;
+
+        Backend.GameData.GetMyData(Constants.USER_DATA_TABLE, new Where(), callback =>
+        {
+            var notion = Manager.Instance.UIAndScene.Notion;
+            if (callback.IsSuccess())
+            {
+                notion.SetNotionText("게임 데이터 불러오기 완료");
+                try
+                {
+                    LitJson.JsonData gameDataJson = callback.FlattenRows();
+
+                    if (gameDataJson.Count <= 0)
+                    {
+                        notion.SetNotionText("데이터가 존재하지 않습니다");
+                    }
+                    else
+                    {
+                        string loadJson = gameDataJson[0]["JsonSaveData"].ToString();
+
+                        // 해당 위치에 InvenSaveData가 변환된 데이터가 있으면 가져오기
+                        saveData = JsonUtility.FromJson<SaveData>(loadJson);
+                        
+                        if (loadOption.HasFlag(SaveAndLoadOptions.All))
+                        {
+                            LoadDatas();
+                        }
+                        else
+                        {
+                            if (loadOption.HasFlag(SaveAndLoadOptions.Quest))
+                                LoadQuestsAndAchievements();
+
+                            if (loadOption.HasFlag(SaveAndLoadOptions.Equipment))
+                                LoadWeaponAndArmor();
+
+                            if (loadOption.HasFlag(SaveAndLoadOptions.Inventory))
+                                LoadInventory();
+
+                            if (loadOption.HasFlag(SaveAndLoadOptions.Status))
+                                LoadPlayerStatus();
+
+                            if (loadOption.HasFlag(SaveAndLoadOptions.ShortCutKey))
+                                LoadShortCutKey();
+
+                            if (loadOption.HasFlag(SaveAndLoadOptions.SoundSetting))
+                                LoadSoundSetting();
+
+                            if (loadOption.HasFlag(SaveAndLoadOptions.Skill))
+                                LoadSkillDatas();
+                        }
+
+                        Manager.Instance.canInputKey = true;
+                        notion.SetNotionText("뒤끝 서버에서 데이터 불러오기 완료");
+                    }
+                }
+                // 무언가 오류가 나올 경우
+                catch (System.Exception e)
+                {
+                    Debug.Log("Json 데이터 피팅 실패 : " + e);
+
+                    LocalLoadDatas();
+                    notion.SetNotionText("로컬에서 가져오기");
+                }
+
+                Manager.Instance.UIAndScene.LoddingUI.LoddingRateValue("유저 정보 확인 중...!", 40);
+            }
+            // 로그인 정보 불러오기 실패
+            else
+            {
+                notion.SetNotionText("로그인 정보 불러오기 실패 : " + callback);
+                LocalLoadDatas();
+                notion.SetNotionText("로컬에서 가져오기");
+            }
+        });
+    }
+    #endregion
+
+    private InvenItem SearchInvenItem(string itemCode) => invenItemDatabase.FindByCode(itemCode);
+    private WeaponItem SearchWeaponItem(string itemCode) => weaponItemDatabase.FindByCode(itemCode);
+    private ArmorItem SearchArmorItem(string itemCode) => armorItemDatabase.FindByCode(itemCode);
 }

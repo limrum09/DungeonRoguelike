@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_OHS01_Stick
   m_EditorClassIdentifier: 
+  code: OHS01_Stick_Right
   itemCode: OHS01_Stick_Right
   itemName: 
   equipmentItem: {fileID: 827500848075308831, guid: d74d166bac1266b45b0fec2f2c95fe9b, type: 3}
   itemSprite: {fileID: -591872573, guid: 0fc8d4fce356e1541b8e2618a6927f72, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 10
   itemDamage: 50

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25200c184fdf06d40bb9070126b17b6d, type: 3}
   m_Name: Quest_KillOrcs2
   m_EditorClassIdentifier: 
+  code: QKILLORC002
   questCode: QKILLORC002
   category: {fileID: 11400000, guid: d022e4465de60e543a90de11315cdeb9, type: 2}
   icon: {fileID: 21300000, guid: a90a16980323b4c019b887093825bda3, type: 3}

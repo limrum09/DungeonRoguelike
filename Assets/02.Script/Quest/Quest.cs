@@ -13,7 +13,7 @@ public enum QuestState
 }
 
 [CreateAssetMenu(menuName = "Quest/Quest", fileName = "Quest_")]
-public class Quest : ScriptableObject
+public class Quest : GameDataObject
 {
     #region Events
     public delegate void TaskSuccessChangedHandler(Quest quest, Task task, int currentSuccess, int prevSuccess);
@@ -60,7 +60,7 @@ public class Quest : ScriptableObject
 
     private int currentTaskGroupIndex;
 
-    public string QuestCode => questCode;
+    public string QuestCode => code;
     public QuestCategory Category => category;
     public Sprite Icon => icon;
     public string CodeName => codeName;

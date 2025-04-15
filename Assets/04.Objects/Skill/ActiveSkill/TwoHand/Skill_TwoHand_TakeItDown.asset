@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
+  m_Name: Skill_TwoHand_TakeItDown
+  m_EditorClassIdentifier: 
+  code: SKILL_THS_TAKEDOWN
+  skillLevel: 1
+  maxLevel: 0
+  skillBasicDamage: 0
+  skillLevelUpDamage: 0
+  skillPosition: {x: 0, y: 0, z: 0}
+  skillMoveRange: 0
+  skillEffect: {fileID: 198190562059387860, guid: 3118fb407c0638e4f912eeca1d30cbb6, type: 3}
+  skillEffectPos: 5
+  skillMaintenanceTime: 5
+  skillMoveTime: 0
+  skillName: "\uB0B4\uB824\uCC0D\uAE30"
+  weapon: 2
+  animationName: 2Hand_UptoDown
+  icon: {fileID: 21300000, guid: 2fdcc62dc87fd104eb5dba297390c589, type: 3}
+  skillInfo: "\uB300\uAC80\uC744 \uB0B4\uB824\uCC0D\uC5B4 \uB208 \uC55E\uC758 \uC801\uC744
+    \uBD84\uC1C4\uD55C\uB2E4."
+  canMove: 0
+  targeting: 0
+  isViewRotation: 0
+  needPlayerLevel: 0
+  conditions: []
+  skillCoolTime: 0

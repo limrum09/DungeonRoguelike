@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925b995d2b1cacb428ef083ee4e60ccc, type: 3}
-  m_Name: _Condition
+  m_Script: {fileID: 11500000, guid: 4d227249f67ce1f43a0006f4c92ace1f, type: 3}
+  m_Name: DoubleHand_SkillTree
   m_EditorClassIdentifier: 
-  needActiveSkill: {fileID: 11400000, guid: 8f9eb67811763d841b82d360b339e367, type: 2}
-  needSkillLevel: 3
+  category: 3
+  skillNodes:
+  - skill: {fileID: 11400000, guid: 4d0473c17a292bd4ba4bca50acfb27f0, type: 2}
+  - skill: {fileID: 11400000, guid: 875687bb3780d2c48a237315cc9aee81, type: 2}

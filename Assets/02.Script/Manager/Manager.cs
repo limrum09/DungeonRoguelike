@@ -15,6 +15,8 @@ public class Manager : MonoBehaviour
     private InputKey inputKey;
     [SerializeField]
     private CameraController camearaController;
+    [SerializeField]
+    private SkillManager skillManager;
 
     [SerializeField]
     private GameManager gameManager;
@@ -31,6 +33,8 @@ public class Manager : MonoBehaviour
     public SoundManager Sound => soundManager;
     public InputKey Key => inputKey;
     public CameraController Camera => camearaController;
+    public SkillManager Skill => skillManager;
+
     public TransparentObjectManager TransParent => transparentManager;
     public UserInfo UserInfoData => userInfo;
 
@@ -56,7 +60,7 @@ public class Manager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        saveManager.DataSaving();
+        saveManager.DataSaving(SaveAndLoadOptions.All);
     }
 
     private void Start()
@@ -80,6 +84,8 @@ public class Manager : MonoBehaviour
         userInfo = Instantiate(userInfo, this.transform);
         userInfo.GetUserInfoFromBackend();
 
+        skillManager = Instantiate(skillManager, this.transform);
+
         saveManager = Instantiate(saveManager, this.transform);
         saveManager.SaveDatabaseStart();
 
@@ -91,13 +97,12 @@ public class Manager : MonoBehaviour
         transparentManager = Instantiate(transparentManager, this.transform);
 
         Resources.UnloadUnusedAssets();
-        UIAndScene.LoadLobbyScene();
+        UIAndScene.ExitStatingScene();
     }
 
     public void GameEnd()
     {
-        saveManager.SaveData(10);
-
+        saveManager.DataSaving(SaveAndLoadOptions.All);
         Application.Quit();
     }
 }

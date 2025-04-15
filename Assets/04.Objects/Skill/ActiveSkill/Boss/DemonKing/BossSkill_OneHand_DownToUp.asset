@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11774ab8614d4cbe531029b024498, type: 3}
   m_Name: BossSkill_OneHand_DownToUp
   m_EditorClassIdentifier: 
-  skillCode: Boss_DownToUp_1
+  code: BSKILL_SOWRDAURA
   skillLevel: 1
   maxLevel: 1
   skillBasicDamage: 800
   skillLevelUpDamage: 0
   skillPosition: {x: 0, y: 0, z: 0}
-  skillRotation: {x: 0, y: 0, z: 0}
   skillMoveRange: 3
-  skillDamageRange: {x: 0, y: 0, z: 0}
   skillEffect: {fileID: 4193660840820342590, guid: cfea361e58203c24eb4062ed84201e0e, type: 3}
   skillEffectPos: 0
   skillMaintenanceTime: 2

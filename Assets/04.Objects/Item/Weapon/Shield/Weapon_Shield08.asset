@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae818701f20084ca804abad3429a12, type: 3}
   m_Name: Weapon_Shield08
   m_EditorClassIdentifier: 
+  code: Shield08
   itemCode: Shield08
   itemName: 
   equipmentItem: {fileID: 614552550947990708, guid: ef949616e200c274db11ba6a2515c9ba, type: 3}
   itemSprite: {fileID: 823143706, guid: 071ef495b2186104d893ca64b2f1d111, type: 3}
-  achievement: {fileID: 0}
   condition: {fileID: 0}
   itemHp: 200
   itemDamage: 0

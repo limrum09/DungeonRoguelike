@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0edace4b70aa24ba4405523ded26d0, type: 3}
   m_Name: Achievement_OHS16_Sword_Right
   m_EditorClassIdentifier: 
+  code: OHS16_Sword_Right
   questCode: OHS16_Sword_Right
   category: {fileID: 11400000, guid: d022e4465de60e543a90de11315cdeb9, type: 2}
   icon: {fileID: 0}
